@@ -236,32 +236,32 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Tertiary students
+* Tertiary student
 * Has a need to track everyday expenses/income
 * Wishes to cultivate good saving habits
 * Prefers desktop apps
 * Prefers typing to mouse interactions
 
-**Value proposition**: manage finances and cultivate good financial habits (such as saving) efficiently by typing in CLI commands
+**Value proposition**: Manage finances and cultivate good financial habits (such as saving) efficiently by typing in CLI commands
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​        | I want to …​                 | So that I can…​                                                     |
-| -------- | ----------------- | ------------------------------- | ---------------------------------------------------------------------- |                                                                                    
-| `* * *`  | new user          | see usage instructions          | refer to instructions when I forget how to use the app                 |
-| `* * *`  | user              | add an expense                  |                                                                        |
-| `* * *`  | user              | view a list of past expenses    | keep track of my past expenses                                         |
-| `* * *`  | user              | group expenditure by categories | keep track of what I spend my money on across categories               |
-| `* * *`  | user              | delete an expense               | remove expenses that were entered wrongly                              |
-| `* * *`  | user              | set a monthly spending limit    | track how much I have to left to spend for the month                   |
-| `* * *`  | user              | add an income                   |                                                                        |
-| `* * *`  | user              | view a list of past income      | keep track of my past income                                           |
-| `* * *`  | user              | delete an income                | remove income that was entered wrongly                                 |
-| `* * *`  | user              | set monthly saving goals        | cultivate good saving habits                                           |
-| `* *`    | user              | view my saving trends           | better plan my future expenses                                         |
-| `*`      | user              | complete savings challenges     | be motivated to reach my savings goals                                 | 
+| Priority | As a …​               | I want to …​                 | So that I can…​                                                          |
+| -------- | ------------------------ | ------------------------------- | --------------------------------------------------------------------------- |                                                                                    
+| `* * *`  | new user                 | see usage instructions          | refer to instructions when I forget how to use the app                      |
+| `* * *`  | user                     | add an expense                  |                                                                             |
+| `* * *`  | user                     | view a list of past expenses    | keep track of my past expenses                                              |
+| `* * *`  | user                     | group expenditure by categories | keep track of what I spend my money on across categories                    |
+| `* * *`  | user                     | delete an expense               | remove expenses that were entered wrongly                                   |
+| `* * *`  | user                     | set a monthly spending limit    | track how much I have left to spend for the month                           |
+| `* * *`  | user                     | add an income                   |                                                                             |
+| `* * *`  | user                     | view a list of past income      | keep track of my past income                                                |
+| `* * *`  | user                     | delete an income                | remove income that was entered wrongly                                      |
+| `* * *`  | user                     | set monthly saving goals        | cultivate good saving habits                                                |
+| `* *`    | user                     | view my saving trends           | better plan my future expenses                                              |
+| `*`      | user                     | complete savings challenges     | be motivated to reach my savings goals                                      | 
 
 *{More to be added}*
 
@@ -297,7 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 expenses/income without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 expenses/incomes without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
