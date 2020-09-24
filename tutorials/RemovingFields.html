@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/tp/assets/css/style.css">
 <title>Tutorial: Removing Fields</title>
 
 </head>
@@ -14,7 +14,7 @@
 <header class="site-header">
 
   <div class="wrapper">
-<a class="site-title" rel="author" href="/">Fine$$e</a><nav class="site-nav">
+<a class="site-title" rel="author" href="/tp/">Fine$$e</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger">
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -25,8 +25,8 @@
         </label>
 
         <div class="trigger">
-<a class="page-link" href="/Minutes.html">Meeting Minutes</a><a class="page-link" href="/UserGuide.html">User Guide</a><a class="page-link" href="/DeveloperGuide.html">Developer Guide</a><a class="page-link" href="/AboutUs.html">About Us</a><a class="page-link no-hover" href="https://github.com/AY2021S1-CS2103T-W16-3/tp">
-            <img src="/images/github-icon.png" class="icon" alt="View on GitHub">
+<a class="page-link" href="/tp/Minutes.html">Meeting Minutes</a><a class="page-link" href="/tp/UserGuide.html">User Guide</a><a class="page-link" href="/tp/DeveloperGuide.html">Developer Guide</a><a class="page-link" href="/tp/AboutUs.html">About Us</a><a class="page-link no-hover" href="https://github.com/AY2021S1-CS2103T-W16-3/tp">
+            <img src="/tp/images/github-icon.png" class="icon" alt="View on GitHub">
           </a>
 </div>
       </nav>
@@ -70,11 +70,11 @@
 
 <p>The <code class="highlighter-rouge">address</code> field in <code class="highlighter-rouge">Person</code> is actually an instance of the <code class="highlighter-rouge">seedu.address.model.person.Address</code> class. Since removing the <code class="highlighter-rouge">Address</code> class will break the application, we start by identifying <code class="highlighter-rouge">Address</code>’s usages. This allows us to see code that depends on <code class="highlighter-rouge">Address</code> to function properly and edit them on a case-by-case basis. Right-click the <code class="highlighter-rouge">Address</code> class and select <code class="highlighter-rouge">Refactor</code> &gt; <code class="highlighter-rouge">Safe Delete</code> through the menu.</p>
 
-<p><img src="/images/remove/UnsafeDelete.png" alt="Usages detected"></p>
+<p><img src="/tp/images/remove/UnsafeDelete.png" alt="Usages detected"></p>
 
 <p>Choose to <code class="highlighter-rouge">View Usages</code> and you should be presented with a list of <code class="highlighter-rouge">Safe Delete Conflicts</code>. These conflicts describe locations in which the <code class="highlighter-rouge">Address</code> class is used.</p>
 
-<p><img src="/images/remove/SafeDeleteConflicts.png" alt="List of conflicts"></p>
+<p><img src="/tp/images/remove/SafeDeleteConflicts.png" alt="List of conflicts"></p>
 
 <p>Remove usages of <code class="highlighter-rouge">Address</code> by performing <code class="highlighter-rouge">Safe Delete</code>s on each entry. You will need to exercise discretion when removing usages of <code class="highlighter-rouge">Address</code>. Functions like <code class="highlighter-rouge">ParserUtil#parseAddress()</code> can be safely removed but its usages must be removed as well. Other usages like in <code class="highlighter-rouge">EditPersonDescriptor</code> may require more careful inspection.</p>
 
@@ -89,7 +89,7 @@
   </li>
   <li>
     <p>Select <code class="highlighter-rouge">View Usages</code> again.<br>
-<img src="/images/remove/UnsafeDeleteOnField.png" alt="UnsafeDeleteOnField"></p>
+<img src="/tp/images/remove/UnsafeDeleteOnField.png" alt="UnsafeDeleteOnField"></p>
   </li>
   <li>
     <p>Remove the usages of <code class="highlighter-rouge">address</code> and select <code class="highlighter-rouge">Do refactor</code> when you are done.</p>
@@ -111,7 +111,7 @@
 
 <p>Places of interest to look out for would be resources used by the application. <code class="highlighter-rouge">main/resources</code> contains images and <code class="highlighter-rouge">fxml</code> files used by the application and <code class="highlighter-rouge">test/resources</code> contains test data. For example, there is a <code class="highlighter-rouge">$address</code> in each <code class="highlighter-rouge">PersonCard</code> that has not been removed nor identified.</p>
 
-<p><img src="/images/remove/%24address.png" alt="$address"></p>
+<p><img src="/tp/images/remove/%24address.png" alt="$address"></p>
 
 <p>A quick look at the <code class="highlighter-rouge">PersonCard</code> class and its <code class="highlighter-rouge">fxml</code> file quickly reveals why it slipped past the automated refactoring.</p>
 
