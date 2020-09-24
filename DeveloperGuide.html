@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="/pages/AY2021S1-CS2103T-W16-3/tp/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 <title>Developer Guide</title>
 
 </head>
@@ -14,7 +14,7 @@
 <header class="site-header">
 
   <div class="wrapper">
-<a class="site-title" rel="author" href="/pages/AY2021S1-CS2103T-W16-3/tp/">Fine$$e</a><nav class="site-nav">
+<a class="site-title" rel="author" href="/">Fine$$e</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger">
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -25,8 +25,8 @@
         </label>
 
         <div class="trigger">
-<a class="page-link" href="/pages/AY2021S1-CS2103T-W16-3/tp/Minutes.html">Meeting Minutes</a><a class="page-link" href="/pages/AY2021S1-CS2103T-W16-3/tp/UserGuide.html">User Guide</a><a class="page-link" href="/pages/AY2021S1-CS2103T-W16-3/tp/DeveloperGuide.html">Developer Guide</a><a class="page-link" href="/pages/AY2021S1-CS2103T-W16-3/tp/AboutUs.html">About Us</a><a class="page-link no-hover" href="https://github.com/AY2021S1-CS2103T-W16-3/tp">
-            <img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/github-icon.png" class="icon" alt="View on GitHub">
+<a class="page-link" href="/Minutes.html">Meeting Minutes</a><a class="page-link" href="/UserGuide.html">User Guide</a><a class="page-link" href="/DeveloperGuide.html">Developer Guide</a><a class="page-link" href="/AboutUs.html">About Us</a><a class="page-link no-hover" href="https://github.com/AY2021S1-CS2103T-W16-3/tp">
+            <img src="/images/github-icon.png" class="icon" alt="View on GitHub">
           </a>
 </div>
       </nav>
@@ -91,7 +91,7 @@
 
 <h2 id="setting-up-getting-started"><strong>Setting up, getting started</strong></h2>
 
-<p>Refer to the guide <a href="/pages/AY2021S1-CS2103T-W16-3/tp/SettingUp.html"><em>Setting up and getting started</em></a>.</p>
+<p>Refer to the guide <a href="/SettingUp.html"><em>Setting up and getting started</em></a>.</p>
 
 <hr>
 
@@ -138,7 +138,7 @@
 
 <p>For example, the <code class="highlighter-rouge">Logic</code> component (see the class diagram given below) defines its API in the <code class="highlighter-rouge">Logic.java</code> interface and exposes its functionality using the <code class="highlighter-rouge">LogicManager.java</code> class which implements the <code class="highlighter-rouge">Logic</code> interface.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/LogicClassDiagram.png" alt="Class Diagram of the Logic Component"></p>
+<p><img src="/images/LogicClassDiagram.png" alt="Class Diagram of the Logic Component"></p>
 
 <p><strong>How the architecture components interact with each other</strong></p>
 
@@ -150,7 +150,7 @@
 
 <h3 id="ui-component">UI component</h3>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/UiClassDiagram.png" alt="Structure of the UI Component"></p>
+<p><img src="/images/UiClassDiagram.png" alt="Structure of the UI Component"></p>
 
 <p><strong>API</strong> :
 <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java"><code class="highlighter-rouge">Ui.java</code></a></p>
@@ -168,7 +168,7 @@
 
 <h3 id="logic-component">Logic component</h3>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/LogicClassDiagram.png" alt="Structure of the Logic Component"></p>
+<p><img src="/images/LogicClassDiagram.png" alt="Structure of the Logic Component"></p>
 
 <p><strong>API</strong> :
 <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java"><code class="highlighter-rouge">Logic.java</code></a></p>
@@ -184,7 +184,7 @@
 
 <p>Given below is the Sequence Diagram for interactions within the <code class="highlighter-rouge">Logic</code> component for the <code class="highlighter-rouge">execute("delete 1")</code> API call.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/DeleteSequenceDiagram.png" alt="Interactions Inside the Logic Component for the `delete 1` Command"></p>
+<p><img src="/images/DeleteSequenceDiagram.png" alt="Interactions Inside the Logic Component for the `delete 1` Command"></p>
 
 <div class="alert alert-info">
 <img class="emoji" title=":information_source:" alt=":information_source:" raw="ℹ️" src="https://github.githubassets.com/images/icons/emoji/unicode/2139.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))"><strong>Note:</strong> The lifeline for <code class="highlighter-rouge">DeleteCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -192,7 +192,7 @@
 
 <h3 id="model-component">Model component</h3>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/ModelClassDiagram.png" alt="Structure of the Model Component"></p>
+<p><img src="/images/ModelClassDiagram.png" alt="Structure of the Model Component"></p>
 
 <p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java"><code class="highlighter-rouge">Model.java</code></a></p>
 
@@ -207,13 +207,13 @@
 
 <div class="alert alert-info">
 <img class="emoji" title=":information_source:" alt=":information_source:" raw="ℹ️" src="https://github.githubassets.com/images/icons/emoji/unicode/2139.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))"><strong>Note:</strong> An alternative (arguably, a more OOP) model is given below. It has a <code class="highlighter-rouge">Tag</code> list in the <code class="highlighter-rouge">AddressBook</code>, which <code class="highlighter-rouge">Person</code> references. This allows <code class="highlighter-rouge">AddressBook</code> to only require one <code class="highlighter-rouge">Tag</code> object per unique <code class="highlighter-rouge">Tag</code>, instead of each <code class="highlighter-rouge">Person</code> needing their own <code class="highlighter-rouge">Tag</code> object.<br>
-<img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram">
+<img src="/images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram">
 
 </div>
 
 <h3 id="storage-component">Storage component</h3>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/StorageClassDiagram.png" alt="Structure of the Storage Component"></p>
+<p><img src="/images/StorageClassDiagram.png" alt="Structure of the Storage Component"></p>
 
 <p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java"><code class="highlighter-rouge">Storage.java</code></a></p>
 
@@ -254,15 +254,15 @@
 
 <p>Step 1. The user launches the application for the first time. The <code class="highlighter-rouge">VersionedAddressBook</code> will be initialized with the initial address book state, and the <code class="highlighter-rouge">currentStatePointer</code> pointing to that single address book state.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/UndoRedoState0.png" alt="UndoRedoState0"></p>
+<p><img src="/images/UndoRedoState0.png" alt="UndoRedoState0"></p>
 
 <p>Step 2. The user executes <code class="highlighter-rouge">delete 5</code> command to delete the 5th person in the address book. The <code class="highlighter-rouge">delete</code> command calls <code class="highlighter-rouge">Model#commitAddressBook()</code>, causing the modified state of the address book after the <code class="highlighter-rouge">delete 5</code> command executes to be saved in the <code class="highlighter-rouge">addressBookStateList</code>, and the <code class="highlighter-rouge">currentStatePointer</code> is shifted to the newly inserted address book state.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/UndoRedoState1.png" alt="UndoRedoState1"></p>
+<p><img src="/images/UndoRedoState1.png" alt="UndoRedoState1"></p>
 
 <p>Step 3. The user executes <code class="highlighter-rouge">add n/David …​</code> to add a new person. The <code class="highlighter-rouge">add</code> command also calls <code class="highlighter-rouge">Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code class="highlighter-rouge">addressBookStateList</code>.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/UndoRedoState2.png" alt="UndoRedoState2"></p>
+<p><img src="/images/UndoRedoState2.png" alt="UndoRedoState2"></p>
 
 <div class="alert alert-info">
 <img class="emoji" title=":information_source:" alt=":information_source:" raw="ℹ️" src="https://github.githubassets.com/images/icons/emoji/unicode/2139.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))"><strong>Note:</strong> If a command fails its execution, it will not call <code class="highlighter-rouge">Model#commitAddressBook()</code>, so the address book state will not be saved into the <code class="highlighter-rouge">addressBookStateList</code>.
@@ -271,7 +271,7 @@
 
 <p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code class="highlighter-rouge">undo</code> command. The <code class="highlighter-rouge">undo</code> command will call <code class="highlighter-rouge">Model#undoAddressBook()</code>, which will shift the <code class="highlighter-rouge">currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/UndoRedoState3.png" alt="UndoRedoState3"></p>
+<p><img src="/images/UndoRedoState3.png" alt="UndoRedoState3"></p>
 
 <div class="alert alert-info">
 <img class="emoji" title=":information_source:" alt=":information_source:" raw="ℹ️" src="https://github.githubassets.com/images/icons/emoji/unicode/2139.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))"><strong>Note:</strong> If the <code class="highlighter-rouge">currentStatePointer</code> is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The <code class="highlighter-rouge">undo</code> command uses <code class="highlighter-rouge">Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather
@@ -281,7 +281,7 @@ than attempting to perform the undo.
 
 <p>The following sequence diagram shows how the undo operation works:</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram"></p>
+<p><img src="/images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram"></p>
 
 <div class="alert alert-info">
 <img class="emoji" title=":information_source:" alt=":information_source:" raw="ℹ️" src="https://github.githubassets.com/images/icons/emoji/unicode/2139.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))"><strong>Note:</strong> The lifeline for <code class="highlighter-rouge">UndoCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -297,15 +297,15 @@ than attempting to perform the undo.
 
 <p>Step 5. The user then decides to execute the command <code class="highlighter-rouge">list</code>. Commands that do not modify the address book, such as <code class="highlighter-rouge">list</code>, will usually not call <code class="highlighter-rouge">Model#commitAddressBook()</code>, <code class="highlighter-rouge">Model#undoAddressBook()</code> or <code class="highlighter-rouge">Model#redoAddressBook()</code>. Thus, the <code class="highlighter-rouge">addressBookStateList</code> remains unchanged.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/UndoRedoState4.png" alt="UndoRedoState4"></p>
+<p><img src="/images/UndoRedoState4.png" alt="UndoRedoState4"></p>
 
 <p>Step 6. The user executes <code class="highlighter-rouge">clear</code>, which calls <code class="highlighter-rouge">Model#commitAddressBook()</code>. Since the <code class="highlighter-rouge">currentStatePointer</code> is not pointing at the end of the <code class="highlighter-rouge">addressBookStateList</code>, all address book states after the <code class="highlighter-rouge">currentStatePointer</code> will be purged. Reason: It no longer makes sense to redo the <code class="highlighter-rouge">add n/David …​</code> command. This is the behavior that most modern desktop applications follow.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/UndoRedoState5.png" alt="UndoRedoState5"></p>
+<p><img src="/images/UndoRedoState5.png" alt="UndoRedoState5"></p>
 
 <p>The following activity diagram summarizes what happens when a user executes a new command:</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/CommitActivityDiagram.png" alt="CommitActivityDiagram"></p>
+<p><img src="/images/CommitActivityDiagram.png" alt="CommitActivityDiagram"></p>
 
 <h4 id="design-consideration">Design consideration:</h4>
 
@@ -340,11 +340,11 @@ itself.
 <h2 id="documentation-logging-testing-configuration-dev-ops"><strong>Documentation, logging, testing, configuration, dev-ops</strong></h2>
 
 <ul>
-  <li><a href="/pages/AY2021S1-CS2103T-W16-3/tp/Documentation.html">Documentation guide</a></li>
-  <li><a href="/pages/AY2021S1-CS2103T-W16-3/tp/Testing.html">Testing guide</a></li>
-  <li><a href="/pages/AY2021S1-CS2103T-W16-3/tp/Logging.html">Logging guide</a></li>
-  <li><a href="/pages/AY2021S1-CS2103T-W16-3/tp/Configuration.html">Configuration guide</a></li>
-  <li><a href="/pages/AY2021S1-CS2103T-W16-3/tp/DevOps.html">DevOps guide</a></li>
+  <li><a href="/Documentation.html">Documentation guide</a></li>
+  <li><a href="/Testing.html">Testing guide</a></li>
+  <li><a href="/Logging.html">Logging guide</a></li>
+  <li><a href="/Configuration.html">Configuration guide</a></li>
+  <li><a href="/DevOps.html">DevOps guide</a></li>
 </ul>
 
 <hr>

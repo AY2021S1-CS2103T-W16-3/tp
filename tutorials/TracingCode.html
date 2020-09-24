@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="/pages/AY2021S1-CS2103T-W16-3/tp/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 <title>Tutorial: Tracing code</title>
 
 </head>
@@ -14,7 +14,7 @@
 <header class="site-header">
 
   <div class="wrapper">
-<a class="site-title" rel="author" href="/pages/AY2021S1-CS2103T-W16-3/tp/">Fine$$e</a><nav class="site-nav">
+<a class="site-title" rel="author" href="/">Fine$$e</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger">
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -25,8 +25,8 @@
         </label>
 
         <div class="trigger">
-<a class="page-link" href="/pages/AY2021S1-CS2103T-W16-3/tp/Minutes.html">Meeting Minutes</a><a class="page-link" href="/pages/AY2021S1-CS2103T-W16-3/tp/UserGuide.html">User Guide</a><a class="page-link" href="/pages/AY2021S1-CS2103T-W16-3/tp/DeveloperGuide.html">Developer Guide</a><a class="page-link" href="/pages/AY2021S1-CS2103T-W16-3/tp/AboutUs.html">About Us</a><a class="page-link no-hover" href="https://github.com/AY2021S1-CS2103T-W16-3/tp">
-            <img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/github-icon.png" class="icon" alt="View on GitHub">
+<a class="page-link" href="/Minutes.html">Meeting Minutes</a><a class="page-link" href="/UserGuide.html">User Guide</a><a class="page-link" href="/DeveloperGuide.html">Developer Guide</a><a class="page-link" href="/AboutUs.html">About Us</a><a class="page-link no-hover" href="https://github.com/AY2021S1-CS2103T-W16-3/tp">
+            <img src="/images/github-icon.png" class="icon" alt="View on GitHub">
           </a>
 </div>
       </nav>
@@ -60,7 +60,7 @@
 
 <p>Before we jump into the code, it is useful to get an idea of the overall structure and the high-level behavior of the application. This is provided in the ‘Architecture’ section of the developer guide. In particular, the architecture diagram (reproduced below), tells us that the App consists of several components.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/ArchitectureDiagram.png" alt="ArchitectureDiagram"></p>
+<p><img src="/images/ArchitectureDiagram.png" alt="ArchitectureDiagram"></p>
 
 <p>It also has a sequence diagram (reproduced below) that tells us how a command propagates through the App.</p>
 
@@ -71,7 +71,7 @@ guide"></p>
 
 <p>Before we proceed, ensure that you have done the following:</p>
 <ol>
-  <li>Read the <a href="/pages/AY2021S1-CS2103T-W16-3/tp/DeveloperGuide.html#architecture"><em>Architecture</em> section of the DG</a>
+  <li>Read the <a href="/DeveloperGuide.html#architecture"><em>Architecture</em> section of the DG</a>
 </li>
   <li>Set up the project in Intellij IDEA</li>
   <li>Learn basic debugging features of Intellij IDEA</li>
@@ -81,16 +81,16 @@ guide"></p>
 
 <p>As you know, the first step of debugging is to put in a breakpoint where you want the debugger to pause the execution. For example, if you are trying to understand how the App starts up, you would put a breakpoint in the first statement of the <code class="highlighter-rouge">main</code> method. In our case, we would want to begin the tracing at the very point where the App start processing user input (i.e., somewhere in the UI component), and then trace through how the execution proceeds through the UI component. However, the execution path through a GUI is often somewhat obscure due to various <em>event-driven mechanisms</em> used by GUI frameworks, which happens to be the case here too. Therefore, let us put the breakpoint where the UI transfers control to the Logic component. According to the sequence diagram, the UI component yields control to the Logic component through a method named <code class="highlighter-rouge">execute</code>. Searching through the code base for <code class="highlighter-rouge">execute()</code> yields a promising candidate in <code class="highlighter-rouge">seedu.address.ui.CommandBox.CommandExecutor</code>.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/Execute.png" alt="Using the `Search for target by name` feature. `Navigate` &gt; `Symbol`."></p>
+<p><img src="/images/tracing/Execute.png" alt="Using the `Search for target by name` feature. `Navigate` &gt; `Symbol`."></p>
 
 <p>A quick look at the class confirms that this is indeed close to what we’re looking for. However, it is just an <code class="highlighter-rouge">Interface</code>. Let’s delve further and find the implementation of the interface by using the <code class="highlighter-rouge">Find Usages</code> feature in IntelliJ IDEA.</p>
 
-<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/FindUsages.png" alt="`Find Usages` tool window. `Edit` &gt; `Find` &gt; `Find Usages`."></p>
+<p><img src="/images/tracing/FindUsages.png" alt="`Find Usages` tool window. `Edit` &gt; `Find` &gt; `Find Usages`."></p>
 
 <p>Bingo! <code class="highlighter-rouge">MainWindow#executeCommand()</code> seems to be exactly what we’re looking for!</p>
 
 <p>Now let’s set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left gutter to set a breakpoint, as shown below.
- <img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/LeftGutter.png" alt="LeftGutter"></p>
+ <img src="/images/tracing/LeftGutter.png" alt="LeftGutter"></p>
 
 <h2 id="tracing-the-execution-path">Tracing the execution path</h2>
 
@@ -109,18 +109,18 @@ guide"></p>
   </li>
   <li>
     <p>The Debugger tool window should show up and look something like this:<br>
-<img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/DebuggerStep1.png" alt="DebuggerStep1"></p>
+<img src="/images/tracing/DebuggerStep1.png" alt="DebuggerStep1"></p>
   </li>
   <li>
     <p>Use the <code class="highlighter-rouge">Show execution point</code> feature to jump to the line of code that we stopped at:<br>
-<img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/ShowExecutionPoint.png" alt="ShowExecutionPoint"></p>
+<img src="/images/tracing/ShowExecutionPoint.png" alt="ShowExecutionPoint"></p>
   </li>
   <li>
     <p><code class="highlighter-rouge">CommandResult commandResult = logic.execute(commandText);</code> is the line that you end up at.</p>
   </li>
   <li>
     <p>We are interested in the <code class="highlighter-rouge">logic.execute(commandText)</code> portion of that line so let’s <code class="highlighter-rouge">Step in</code> into that method call:<br>
- <img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/StepInto.png" alt="StepInto"></p>
+ <img src="/images/tracing/StepInto.png" alt="StepInto"></p>
   </li>
   <li>
     <p>We end up in <code class="highlighter-rouge">LogicManager#execute()</code>. Let’s take a look at the body of the method and annotate what we can deduce.</p>
@@ -157,7 +157,7 @@ guide"></p>
     <p><code class="highlighter-rouge">LogicManager#execute()</code> appears to delegate most of the heavy lifting to other components. Let’s take a closer look at each one.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">Step over</code> the logging code since it is of no interest to us now. <img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/StepOver.png" alt="StepOver"></p>
+    <p><code class="highlighter-rouge">Step over</code> the logging code since it is of no interest to us now. <img src="/images/tracing/StepOver.png" alt="StepOver"></p>
   </li>
   <li>
     <p><code class="highlighter-rouge">Step into</code> the line where user input in parsed from a String to a Command.</p>
@@ -174,7 +174,7 @@ guide"></p>
   </li>
   <li>
     <p><code class="highlighter-rouge">Step over</code> until you reach the <code class="highlighter-rouge">switch</code> statement. The <code class="highlighter-rouge">Variables</code> window now shows the value of both <code class="highlighter-rouge">commandWord</code> and <code class="highlighter-rouge">arguments</code>:<br>
- <img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/Variables.png" alt="Variables"></p>
+ <img src="/images/tracing/Variables.png" alt="Variables"></p>
   </li>
   <li>
     <p>We see that the value of <code class="highlighter-rouge">commandWord</code> is now <code class="highlighter-rouge">edit</code> but <code class="highlighter-rouge">arguments</code> is still not processed in any meaningful way.</p>
@@ -201,13 +201,13 @@ guide"></p>
   </li>
   <li>
     <p>The rest of the method seems to exhaustively check for the existence of each possible parameter of the <code class="highlighter-rouge">edit</code> command and store any possible changes in an <code class="highlighter-rouge">EditPersonDescriptor</code>. Recall that we can verify the contents of <code class="highlighter-rouge">editPersonDesciptor</code> through the <code class="highlighter-rouge">Variable</code> tool window.<br>
-<img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/EditCommand.png" alt="EditCommand"></p>
+<img src="/images/tracing/EditCommand.png" alt="EditCommand"></p>
   </li>
   <li>
     <p>Let’s continue stepping through until we return to <code class="highlighter-rouge">LogicManager#execute()</code>.</p>
 
     <p>The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far matches with the diagram?<br>
- <img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/tracing/LogicSequenceDiagram.png" alt="Tracing an `edit` command through the Logic component"></p>
+ <img src="/images/tracing/LogicSequenceDiagram.png" alt="Tracing an `edit` command through the Logic component"></p>
   </li>
   <li>
     <p>Now let’s see what happens when we call <code class="highlighter-rouge">command#execute()</code>!</p>
