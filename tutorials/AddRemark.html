@@ -88,13 +88,13 @@
 
 <p>Run <code class="highlighter-rouge">Main#main</code> and try out your new <code class="highlighter-rouge">RemarkCommand</code>. If everything went well, you should see something like this:</p>
 
-<p><img src="../images/add-remark/RemarkHello.png" alt="Output displayed"></p>
+<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/add-remark/RemarkHello.png" alt="Output displayed"></p>
 
 <h2 id="change-remarkcommand-to-throw-an-exception">Change <code class="highlighter-rouge">RemarkCommand</code> to throw an exception</h2>
 
 <p>While we have successfully printed a message to <code class="highlighter-rouge">ResultDisplay</code>, the command does not do what it is supposed to do. Let’s change the command to throw an <code class="highlighter-rouge">CommandException</code> to accurately reflect that our command is still a work in progress.</p>
 
-<p><img src="../images/add-remark/CommandInterface.png" alt="The relationship between RemarkCommand and Command"></p>
+<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/add-remark/CommandInterface.png" alt="The relationship between RemarkCommand and Command"></p>
 
 <p>Following the convention in other commands, we add relevant messages as constants and use them.</p>
 
@@ -177,7 +177,7 @@
 
 <p>Create a <code class="highlighter-rouge">RemarkCommandParser</code> class in the <code class="highlighter-rouge">seedu.address.logic.parser</code> package. The class must extend the <code class="highlighter-rouge">Parser</code> interface.</p>
 
-<p><img src="../images/add-remark/ParserInterface.png" alt="The relationship between Parser and RemarkCommandParser"></p>
+<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/add-remark/ParserInterface.png" alt="The relationship between Parser and RemarkCommandParser"></p>
 
 <p>Thankfully, <code class="highlighter-rouge">ArgumentTokenizer#tokenize()</code> makes it trivial to parse user input. Let’s take a look at the JavaDoc provided for the function to understand what it does.</p>
 
@@ -290,7 +290,7 @@ validation.</p>
 
 <p>That’s it! Fire up the application again and you should see something like this:</p>
 
-<p><img src="../images/add-remark/%24Remark.png" alt="$remark shows up in each entry"></p>
+<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/add-remark/%24Remark.png" alt="$remark shows up in each entry"></p>
 
 <h2 id="modify-person-to-support-a-remark-field">Modify <code class="highlighter-rouge">Person</code> to support a <code class="highlighter-rouge">Remark</code> field</h2>
 
@@ -341,7 +341,7 @@ to see what the changes entail.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p><img src="../images/add-remark/RemarkBound.png" alt="The remark label is bound properly!"></p>
+<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/add-remark/RemarkBound.png" alt="The remark label is bound properly!"></p>
 
 <h2 id="putting-everything-together">Putting everything together</h2>
 
@@ -387,7 +387,7 @@ save it with <code class="highlighter-rouge">Model#setPerson()</code>.</p>
     <span class="o">}</span>
 </code></pre></div></div>
 
-<p><img src="../images/add-remark/RemarkComplete.png" alt="Congratulations!"></p>
+<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/add-remark/RemarkComplete.png" alt="Congratulations!"></p>
 
 <h2 id="writing-tests">Writing tests</h2>
 
@@ -404,11 +404,11 @@ save it with <code class="highlighter-rouge">Model#setPerson()</code>.</p>
 
 <p>Let’s create a test for <code class="highlighter-rouge">RemarkCommand#execute()</code> to test that adding a remark works. On <code class="highlighter-rouge">IntelliJ IDEA</code> you can bring up the context menu and choose to <code class="highlighter-rouge">Go To</code> &gt; <code class="highlighter-rouge">Test</code> or use the appropriate keyboard shortcut.</p>
 
-<p><img src="../images/add-remark/ContextMenu.png" alt="Using the context menu to jump to tests"></p>
+<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/add-remark/ContextMenu.png" alt="Using the context menu to jump to tests"></p>
 
 <p>Then, create a test for the <code class="highlighter-rouge">execute</code> method.</p>
 
-<p><img src="../images/add-remark/CreateTest.png" alt="Creating a test for `execute`."></p>
+<p><img src="/pages/AY2021S1-CS2103T-W16-3/tp/images/add-remark/CreateTest.png" alt="Creating a test for `execute`."></p>
 
 <p>Following convention, let’s change the name of the generated method to <code class="highlighter-rouge">execute_addRemarkUnfilteredList_success</code>.</p>
 
