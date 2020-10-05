@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.RowConstraints?>
+<VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -21,15 +22,17 @@
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
-            <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <FlowPane fx:id="categories" styleClass="cell_categories"/>
       </HBox>
-      <FlowPane fx:id="categories" />
       <Label fx:id="amount" styleClass="cell_small_label" text="\$amount" />
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
     </VBox>
+    <rowConstraints>
+      <RowConstraints />
+    </rowConstraints>
   </GridPane>
-</HBox>
+</VBox>

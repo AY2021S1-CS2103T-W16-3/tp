@@ -40,6 +40,7 @@ public class TransactionListPanel extends UiPart<Region> {
             if (empty || transaction == null) {
                 setGraphic(null);
                 setText(null);
+                setStyle("-fx-background-color: #2E2E36");
             } else {
                 setGraphic(new TransactionCard(transaction, getIndex() + 1).getRoot());
             }

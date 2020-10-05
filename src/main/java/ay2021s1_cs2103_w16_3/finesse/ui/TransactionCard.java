@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * An UI component that displays information of a {@code Transaction}.
@@ -27,7 +29,7 @@ public class TransactionCard extends UiPart<Region> {
     public final Transaction transaction;
 
     @FXML
-    private HBox cardPane;
+    private VBox cardPane;
     @FXML
     private Label title;
     @FXML
@@ -49,9 +51,14 @@ public class TransactionCard extends UiPart<Region> {
         title.setText(transaction.getTitle().fullTitle);
         amount.setText(transaction.getAmount().value);
         date.setText(transaction.getDate().value);
+        categories.setHgap(10);
         transaction.getCategories().stream()
                 .sorted(Comparator.comparing(category -> category.categoryName))
-                .forEach(category -> categories.getChildren().add(new Label(category.categoryName)));
+                .forEach(category -> {
+                    Label newCategory = new Label(category.categoryName);
+                    newCategory.setStyle("-fx-font-family: Eczar");
+                    categories.getChildren().add(newCategory);
+                });
     }
 
     @Override
