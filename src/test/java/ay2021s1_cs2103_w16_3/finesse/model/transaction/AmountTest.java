@@ -27,14 +27,21 @@ public class AmountTest {
         // invalid amounts
         assertFalse(Amount.isValidAmount("")); // empty string
         assertFalse(Amount.isValidAmount(" ")); // spaces only
-        assertFalse(Amount.isValidAmount("91")); // less than 3 numbers
         assertFalse(Amount.isValidAmount("phone")); // non-numeric
         assertFalse(Amount.isValidAmount("9011p041")); // alphabets within digits
         assertFalse(Amount.isValidAmount("9312 1534")); // spaces within digits
+        assertFalse(Amount.isValidAmount("40.")); // no numbers after decimal
+        assertFalse(Amount.isValidAmount("40.4")); // 1 decimal place
+        assertFalse(Amount.isValidAmount("40.404")); // 3 decimal places
+        assertFalse(Amount.isValidAmount("€3")); // wrong currency prefix
 
         // valid amounts
-        assertTrue(Amount.isValidAmount("911")); // exactly 3 numbers
-        assertTrue(Amount.isValidAmount("93121534"));
-        assertTrue(Amount.isValidAmount("124293842033123")); // long amount values
+        assertTrue(Amount.isValidAmount("$1")); // $ prefix
+        assertTrue(Amount.isValidAmount("4.20")); // 2 decimal places
+        assertTrue(Amount.isValidAmount("$3.50")); // $ prefix, 2 decimal places
+        assertTrue(Amount.isValidAmount("91")); // numbers
+        assertTrue(Amount.isValidAmount("911")); // numbers
+        assertTrue(Amount.isValidAmount("93121534")); // long numbers
+        assertTrue(Amount.isValidAmount("124293842033123")); // long numbers
     }
 }
