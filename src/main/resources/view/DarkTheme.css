@@ -157,6 +157,16 @@
      -fx-background-color: #3B3B44;
 }
 
+.result-container {
+     -fx-background-color: #3B3B44;
+     -fx-background-insets: 3, 3, 3, 3;
+     -fx-background-radius: 10, 10, 10, 10;
+     -fx-border-radius: 10, 10, 10, 10;
+     -fx-padding: 5;
+     -fx-border-insets: 5, 5, 5, 5;
+     -fx-border-color: #3B3B44;
+}
+
 .pane-with-border {
      -fx-background-color: #2E2E36;
      -fx-border-color: #2E2E36;
@@ -168,7 +178,7 @@
 }
 
 .result-display {
-    -fx-background-color: #3B3B44;
+    -fx-background-color: transparent;
     -fx-font-family: "Eczar";
     -fx-font-size: 16px;
     -fx-text-fill: white;
@@ -259,7 +269,7 @@
 }
 
 .button:focused {
-    -fx-border-color: white, white;
+    -fx-border-color: #3B3B44;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
@@ -273,7 +283,7 @@
 }
 
 .button:default {
-    -fx-background-color: -fx-focus-color;
+    -fx-background-color: #2E2E36;
     -fx-text-fill: #ffffff;
 }
 
@@ -358,7 +368,8 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #2E2E36, transparent, #2E2E36;
+    -fx-background-color: #3B3B44;
+    -fx-border-color: transparent, #3B3B44, transparent, #3B3B44;
     -fx-background-radius: 0;
 }
 
