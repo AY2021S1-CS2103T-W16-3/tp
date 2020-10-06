@@ -2,38 +2,38 @@
   "_comment": "Fine$$e save file which contains the same Transaction values as in TypicalPersons#getTypicalFinanceTracker()",
   "transactions" : [ {
     "title" : "Alice Pauline",
-    "amount" : "94351253",
-    "date" : "alice@example.com",
+    "amount" : "$1",
+    "date" : "06/09/2020",
     "categories" : [ "friends" ]
   }, {
     "title" : "Benson Meier",
-    "amount" : "98765432",
-    "date" : "johnd@example.com",
+    "amount" : "2",
+    "date" : "05/10/2020",
     "categories" : [ "owesMoney", "friends" ]
   }, {
     "title" : "Carl Kurz",
-    "amount" : "95352563",
-    "date" : "heinz@example.com",
+    "amount" : "3.50",
+    "date" : "06/10/2020",
     "categories" : [ ]
   }, {
     "title" : "Daniel Meier",
-    "amount" : "87652533",
-    "date" : "cornelia@example.com",
+    "amount" : "4",
+    "date" : "06/10/2020",
     "categories" : [ "friends" ]
   }, {
     "title" : "Elle Meyer",
-    "amount" : "9482224",
-    "date" : "werner@example.com",
+    "amount" : "5",
+    "date" : "06/10/2020",
     "categories" : [ ]
   }, {
     "title" : "Fiona Kunz",
-    "amount" : "9482427",
-    "date" : "lydia@example.com",
+    "amount" : "6",
+    "date" : "06/10/2020",
     "categories" : [ ]
   }, {
     "title" : "George Best",
-    "amount" : "9482442",
-    "date" : "anna@example.com",
+    "amount" : "7",
+    "date" : "06/10/2020",
     "categories" : [ ]
   } ]
 }

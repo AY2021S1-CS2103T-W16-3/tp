@@ -1,12 +1,12 @@
 {
   "transactions": [ {
     "title": "Alice Pauline",
-    "amount": "94351253",
-    "date": "alice@example.com",
+    "amount": "200",
+    "date": "04/08/2011",
     "categories": [ "friends" ]
   }, {
     "title": "Alice Pauline",
-    "amount": "94351253",
-    "date": "pauline@example.com"
+    "amount": "200",
+    "date": "04/08/2011"
   } ]
 }

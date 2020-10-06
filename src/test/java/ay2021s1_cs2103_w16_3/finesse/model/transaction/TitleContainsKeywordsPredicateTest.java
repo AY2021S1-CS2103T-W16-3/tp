@@ -72,6 +72,6 @@ public class TitleContainsKeywordsPredicateTest {
         // Keywords match amount and date, but does not match title
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new TransactionBuilder().withTitle("Alice").withAmount("12345")
-                .withDate("alice@email.com").build()));
+                .withDate("31/12/2019").build()));
     }
 }

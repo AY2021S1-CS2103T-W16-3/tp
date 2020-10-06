@@ -29,8 +29,8 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_BOB = "Bob Choo";
     public static final String VALID_AMOUNT_AMY = "11111111";
     public static final String VALID_AMOUNT_BOB = "22222222";
-    public static final String VALID_DATE_AMY = "amy@example.com";
-    public static final String VALID_DATE_BOB = "bob@example.com";
+    public static final String VALID_DATE_AMY = "31/10/2020";
+    public static final String VALID_DATE_BOB = "25/12/2020";
     public static final String VALID_CATEGORY_HUSBAND = "husband";
     public static final String VALID_CATEGORY_FRIEND = "friend";
 
@@ -45,7 +45,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
     public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "911a"; // 'a' not allowed in amounts
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // only numbers and '/' allowed
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "hubby*";
     // '*' not allowed in categories
 

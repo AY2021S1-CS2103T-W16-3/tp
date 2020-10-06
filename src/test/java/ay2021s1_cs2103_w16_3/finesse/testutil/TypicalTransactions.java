@@ -22,25 +22,25 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 public class TypicalTransactions {
 
     public static final Transaction ALICE = new TransactionBuilder().withTitle("Alice Pauline")
-            .withDate("alice@example.com").withAmount("94351253").withCategories("friends").build();
+            .withDate("06/09/2020").withAmount("$1").withCategories("friends").build();
     public static final Transaction BENSON = new TransactionBuilder().withTitle("Benson Meier")
-            .withDate("johnd@example.com").withAmount("98765432").withCategories("owesMoney", "friends").build();
-    public static final Transaction CARL = new TransactionBuilder().withTitle("Carl Kurz").withAmount("95352563")
-            .withDate("heinz@example.com").build();
-    public static final Transaction DANIEL = new TransactionBuilder().withTitle("Daniel Meier").withAmount("87652533")
-            .withDate("cornelia@example.com").withCategories("friends").build();
-    public static final Transaction ELLE = new TransactionBuilder().withTitle("Elle Meyer").withAmount("9482224")
-            .withDate("werner@example.com").build();
-    public static final Transaction FIONA = new TransactionBuilder().withTitle("Fiona Kunz").withAmount("9482427")
-            .withDate("lydia@example.com").build();
-    public static final Transaction GEORGE = new TransactionBuilder().withTitle("George Best").withAmount("9482442")
-            .withDate("anna@example.com").build();
+            .withDate("05/10/2020").withAmount("2").withCategories("owesMoney", "friends").build();
+    public static final Transaction CARL = new TransactionBuilder().withTitle("Carl Kurz").withAmount("3.50")
+            .withDate("06/10/2020").build();
+    public static final Transaction DANIEL = new TransactionBuilder().withTitle("Daniel Meier").withAmount("4")
+            .withDate("06/10/2020").withCategories("friends").build();
+    public static final Transaction ELLE = new TransactionBuilder().withTitle("Elle Meyer").withAmount("5")
+            .withDate("06/10/2020").build();
+    public static final Transaction FIONA = new TransactionBuilder().withTitle("Fiona Kunz").withAmount("6")
+            .withDate("06/10/2020").build();
+    public static final Transaction GEORGE = new TransactionBuilder().withTitle("George Best").withAmount("7")
+            .withDate("06/10/2020").build();
 
     // Manually added
-    public static final Transaction HOON = new TransactionBuilder().withTitle("Hoon Meier").withAmount("8482424")
-            .withDate("stefan@example.com").build();
-    public static final Transaction IDA = new TransactionBuilder().withTitle("Ida Mueller").withAmount("8482131")
-            .withDate("hans@example.com").build();
+    public static final Transaction HOON = new TransactionBuilder().withTitle("Hoon Meier").withAmount("8")
+            .withDate("06/10/2020").build();
+    public static final Transaction IDA = new TransactionBuilder().withTitle("Ida Mueller").withAmount("9")
+            .withDate("06/10/2020").build();
 
     // Manually added - Transaction's details found in {@code CommandTestUtil}
     public static final Transaction AMY = new TransactionBuilder().withTitle(VALID_TITLE_AMY)
