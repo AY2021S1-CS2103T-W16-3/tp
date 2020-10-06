@@ -162,7 +162,7 @@
      -fx-background-insets: 3, 3, 3, 3;
      -fx-background-radius: 10, 10, 10, 10;
      -fx-border-radius: 10, 10, 10, 10;
-     -fx-padding: 5;
+     -fx-padding: 5 8 5 5;
      -fx-border-insets: 5, 5, 5, 5;
      -fx-border-color: #3B3B44;
 }
@@ -171,6 +171,13 @@
      -fx-background-color: #2E2E36;
      -fx-border-color: #2E2E36;
      -fx-border-top-width: 1px;
+}
+
+.command-pane{
+    -fx-background-color: #2E2E36;
+    -fx-border-color: #2E2E36;
+    -fx-border-top-width: 1px;
+    -fx-padding: 3 5 3 19;
 }
 
 .status-bar {
@@ -240,6 +247,13 @@
 
 .menu {
     -fx-padding: 15, 0, 0, 0;
+}
+
+.command-box-label {
+    -fx-background-color: #2E2E36;
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto Condensed";
+    -fx-font-size: 12pt;
 }
 
 /*
