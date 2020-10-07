@@ -20,7 +20,7 @@ public class IncomePanel extends UiPart<Region> {
     private ListView<Transaction> incomeListView;
 
     /**
-     * Creates a {@code TransactionListPanel} with the given {@code ObservableList}.
+     * Creates a {@code IncomePanel} with the given {@code ObservableList}.
      */
     public IncomePanel(ObservableList<Transaction> transactionList) {
         super(FXML);

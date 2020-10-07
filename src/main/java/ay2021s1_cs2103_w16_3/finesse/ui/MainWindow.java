@@ -86,7 +86,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label panelLabel;
 
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -219,7 +218,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the analytics window
+     * Opens the analytics window.
      */
     @FXML
     private void handleAnalytics() {
@@ -292,7 +291,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Changes the overview menu tab to blue while the rest becomes the same as the background color
+     * Changes the overview menu tab to blue while the rest becomes the same as the background color.
      */
     private void onOverview() {
         menuOverviewTab.setStyle("-fx-background-color: #3e7b91");
@@ -302,7 +301,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Changes the income menu tab to blue while the rest becomes the same as the background color
+     * Changes the income menu tab to blue while the rest becomes the same as the background color.
      */
     private void onIncome() {
         menuOverviewTab.setStyle("-fx-background-color: #2E2E36");
@@ -312,7 +311,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Changes the expense menu tab to blue while the rest becomes the same as the background color
+     * Changes the expense menu tab to blue while the rest becomes the same as the background color.
      */
     private void onExpense() {
         menuOverviewTab.setStyle("-fx-background-color: #2E2E36");
@@ -323,7 +322,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Changes the analytics menu tab to blue while the rest becomes the same as the background color
+     * Changes the analytics menu tab to blue while the rest becomes the same as the background color.
      */
     private void onAnalytics() {
         menuOverviewTab.setStyle("-fx-background-color: #2E2E36");
