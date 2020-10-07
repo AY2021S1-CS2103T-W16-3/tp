@@ -249,6 +249,14 @@
     -fx-padding: 15, 0, 0, 0;
 }
 
+.menu-item {
+    -fx-font-size: 16pt;
+}
+
+.menu-item:focused {
+    -fx-background-color: #3e7b91;
+}
+
 .command-box-label {
     -fx-background-color: #2E2E36;
     -fx-text-fill: white;
@@ -256,6 +264,11 @@
     -fx-font-size: 12pt;
 }
 
+.panel-label {
+    -fx-font-family: "Roboto Condensed";
+    -fx-text-fill: white;
+    -fx-font-size: 16pt;
+}
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
