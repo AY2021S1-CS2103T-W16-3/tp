@@ -1,10 +1,13 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_TAB_FORMAT;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.AddCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.AddExpenseCommand;
@@ -12,6 +15,8 @@ import ay2021s1_cs2103_w16_3.finesse.logic.commands.AddIncomeCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.ClearCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.Command;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.DeleteCommand;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.DeleteExpenseCommand;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.DeleteIncomeCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.EditCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.ExitCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.FindCommand;
@@ -65,7 +70,16 @@ public class FinanceTrackerParser {
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            final DeleteCommand baseCommand = new DeleteCommandParser().parse(arguments);
+            switch (uiState.getCurrentTab()) {
+            case EXPENSES:
+                return new DeleteExpenseCommand(baseCommand);
+            case INCOME:
+                return new DeleteIncomeCommand(baseCommand);
+            default:
+                throw new ParseException(commandInvalidTabMessage(commandWord,
+                        UiState.Tab.EXPENSES, UiState.Tab.INCOME));
+            }
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -93,6 +107,11 @@ public class FinanceTrackerParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    private String commandInvalidTabMessage(String command, UiState.Tab... tabs) {
+        return String.format(MESSAGE_INVALID_TAB_FORMAT, command,
+                Stream.of(tabs).map(UiState.Tab::toString).collect(Collectors.joining(", ")));
     }
 
 }

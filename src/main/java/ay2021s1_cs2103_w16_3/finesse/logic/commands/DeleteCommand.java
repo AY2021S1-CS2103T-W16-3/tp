@@ -30,6 +30,10 @@ public class DeleteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    protected Index getTargetIndex() {
+        return targetIndex;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

@@ -20,7 +20,7 @@ import ay2021s1_cs2103_w16_3.finesse.logic.commands.AddCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandResult;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.ListCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
-import ay2021s1_cs2103_w16_3.finesse.logic.parser.FinanceTrackerParserTest.OverviewUiStateStub;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.FinanceTrackerParserTest.ExpensesUiStateStub;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
@@ -40,7 +40,7 @@ public class LogicManagerTest {
 
     private Model model = new ModelManager();
     private Logic logic;
-    private OverviewUiStateStub overviewUiStateStub = new OverviewUiStateStub();
+    private ExpensesUiStateStub expensesUiStateStub = new ExpensesUiStateStub();
 
     @BeforeEach
     public void setUp() {
@@ -103,7 +103,7 @@ public class LogicManagerTest {
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
             Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(inputCommand, overviewUiStateStub);
+        CommandResult result = logic.execute(inputCommand, expensesUiStateStub);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
@@ -143,7 +143,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
-        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand, overviewUiStateStub));
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand, expensesUiStateStub));
         assertEquals(expectedModel, model);
     }
 
