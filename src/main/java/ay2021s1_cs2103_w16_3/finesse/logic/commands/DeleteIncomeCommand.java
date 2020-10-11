@@ -10,14 +10,14 @@ import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 
 /**
- * Deletes a transaction identified using its displayed index from the finance tracker.
+ * Deletes an income identified using its displayed index from the finance tracker.
  */
 public class DeleteIncomeCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the income identified by the index number used in the displayed transaction list.\n"
+            + ": Deletes the income identified by the index number used in the displayed income list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
