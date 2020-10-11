@@ -3,6 +3,7 @@ package ay2021s1_cs2103_w16_3.finesse.ui.income;
 import java.util.logging.Logger;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.core.LogsCenter;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import ay2021s1_cs2103_w16_3.finesse.ui.TransactionCard;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiPart;
@@ -17,28 +18,28 @@ public class IncomePanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(IncomePanel.class);
 
     @FXML
-    private ListView<Transaction> incomeListView;
+    private ListView<Income> incomeListView;
 
     /**
      * Creates a {@code IncomePanel} with the given {@code ObservableList}.
      */
-    public IncomePanel(ObservableList<Transaction> transactionList) {
+    public IncomePanel(ObservableList<Income> incomeList) {
         super(FXML);
-        incomeListView.setItems(transactionList);
+        incomeListView.setItems(incomeList);
         incomeListView.setCellFactory(listView -> new IncomeListViewCell());
     }
 
-    class IncomeListViewCell extends ListCell<Transaction> {
+    class IncomeListViewCell extends ListCell<Income> {
         @Override
-        protected void updateItem(Transaction transaction, boolean empty) {
-            super.updateItem(transaction, empty);
+        protected void updateItem(Income income, boolean empty) {
+            super.updateItem(income, empty);
 
-            if (empty || transaction == null) {
+            if (empty || income == null) {
                 setGraphic(null);
                 setText(null);
                 setStyle("-fx-background-color: #2E2E36");
             } else {
-                setGraphic(new TransactionCard(transaction, getIndex() + 1).getRoot());
+                setGraphic(new TransactionCard(income, getIndex() + 1).getRoot());
             }
         }
     }

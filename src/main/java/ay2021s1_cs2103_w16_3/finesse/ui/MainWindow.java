@@ -146,14 +146,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        transactionListPanel = new TransactionListPanel(logic.getFilteredTransactionList());
-        transactionListPanelPlaceholder.getChildren().add(transactionListPanel.getRoot());
-
-        incomePanel = new IncomePanel(logic.getFilteredTransactionList());
+        incomePanel = new IncomePanel(logic.getFilteredIncomeList());
         transactionListPanelPlaceholder.getChildren().add(incomePanel.getRoot());
 
-        expensePanel = new ExpensePanel(logic.getFilteredTransactionList());
+        expensePanel = new ExpensePanel(logic.getFilteredExpenseList());
         transactionListPanelPlaceholder.getChildren().add(expensePanel.getRoot());
+
+        transactionListPanel = new TransactionListPanel(logic.getFilteredTransactionList());
+        transactionListPanelPlaceholder.getChildren().add(transactionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -197,7 +197,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleIncome() {
         panelLabel.setText("Income");
-        incomePanel = new IncomePanel(logic.getFilteredTransactionList());
+        incomePanel = new IncomePanel(logic.getFilteredIncomeList());
         transactionListPanelPlaceholder.getChildren().add(incomePanel.getRoot());
         incomePanel.getRoot().toFront();
 
@@ -236,7 +236,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExpense() {
         panelLabel.setText("Expense");
-        expensePanel = new ExpensePanel(logic.getFilteredTransactionList());
+        expensePanel = new ExpensePanel(logic.getFilteredExpenseList());
         transactionListPanelPlaceholder.getChildren().add(expensePanel.getRoot());
         expensePanel.getRoot().toFront();
 
