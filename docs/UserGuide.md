@@ -110,7 +110,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched. e.g. `Snack` will not match `Snacks`
 * Titles matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Tea Coffee` will return `Bubble Tea`, `Starbucks Coffee`
-  
+
 Examples:
 * `find milk` returns `strawberry milk` and `Chocolate Milk`
 * `find tea coffee` returns `Bubble Tea` and `Starbucks Coffee`
