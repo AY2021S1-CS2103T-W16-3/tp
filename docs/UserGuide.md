@@ -18,7 +18,8 @@ Fine\$\$e is a **desktop finance tracker optimized for use via a Command Line In
 
 1. Copy the file to the folder you want to use as the *home folder* for Fine$$e.
 
-1. Double-click the file to start the app.
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds, but without any sample data.<br>
+   ![Ui](images/Ui.png)
 
 1. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will bring up the help message.<br>
    Some example commands you can try:
