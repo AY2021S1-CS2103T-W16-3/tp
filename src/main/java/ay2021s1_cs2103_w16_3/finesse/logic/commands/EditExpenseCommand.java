@@ -20,7 +20,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
  */
 public class EditExpenseCommand extends EditCommand {
 
-    public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Expense: %1$s";
+    public static final String MESSAGE_EDIT_EXPENSE_SUCCESS = "Edited Expense: %1$s";
 
     public EditExpenseCommand(EditCommand superCommand) {
         super(superCommand.getTargetIndex(), superCommand.getEditTransactionDescriptor());
@@ -40,7 +40,7 @@ public class EditExpenseCommand extends EditCommand {
 
         model.setExpense(expenseToEdit, editedExpense);
         model.updateFilteredExpenseList(PREDICATE_SHOW_ALL_TRANSACTIONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, editedExpense));
+        return new CommandResult(String.format(MESSAGE_EDIT_EXPENSE_SUCCESS, editedExpense));
     }
 
     /**

@@ -1,5 +1,6 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_AMY;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BOB;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
@@ -16,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ay2021s1_cs2103_w16_3.finesse.commons.core.Messages;
 import ay2021s1_cs2103_w16_3.finesse.commons.core.index.Index;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.EditCommand.EditTransactionDescriptor;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs.EditCommandStub;
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
@@ -40,10 +41,10 @@ public class EditExpenseCommandTest {
         Expense editedExpense = new TransactionBuilder().buildExpense();
         EditTransactionDescriptor descriptor =
                 new EditTransactionDescriptorBuilder(editedExpense).build();
-        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(
-                new EditCommand(INDEX_FIRST_TRANSACTION, descriptor));
+        EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, descriptor);
+        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(superCommand);
 
-        String expectedMessage = String.format(EditExpenseCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedExpense);
+        String expectedMessage = String.format(EditExpenseCommand.MESSAGE_EDIT_EXPENSE_SUCCESS, editedExpense);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
         expectedModel.setExpense(model.getFilteredExpenseList().get(0), editedExpense);
@@ -62,10 +63,10 @@ public class EditExpenseCommandTest {
 
         EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
                 .withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB).withCategories(VALID_CATEGORY_HUSBAND).build();
-        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(
-                new EditCommand(indexLastExpense, descriptor));
+        EditCommandStub superCommand = new EditCommandStub(indexLastExpense, descriptor);
+        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(superCommand);
 
-        String expectedMessage = String.format(EditExpenseCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedExpense);
+        String expectedMessage = String.format(EditExpenseCommand.MESSAGE_EDIT_EXPENSE_SUCCESS, editedExpense);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
         expectedModel.setExpense(lastExpense, editedExpense);
@@ -75,11 +76,11 @@ public class EditExpenseCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(
-                new EditCommand(INDEX_FIRST_TRANSACTION, new EditTransactionDescriptor()));
+        EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, new EditTransactionDescriptor());
+        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(superCommand);
         Expense editedExpense = model.getFilteredExpenseList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
 
-        String expectedMessage = String.format(EditExpenseCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedExpense);
+        String expectedMessage = String.format(EditExpenseCommand.MESSAGE_EDIT_EXPENSE_SUCCESS, editedExpense);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
 
@@ -94,10 +95,11 @@ public class EditExpenseCommandTest {
                 .get(INDEX_FIRST_TRANSACTION.getZeroBased());
         Expense editedExpense =
                 new TransactionBuilder(expenseInFilteredList).withTitle(VALID_TITLE_BOB).buildExpense();
-        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(new EditCommand(INDEX_FIRST_TRANSACTION,
-                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build()));
+        EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION,
+                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
+        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(superCommand);
 
-        String expectedMessage = String.format(EditExpenseCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedExpense);
+        String expectedMessage = String.format(EditExpenseCommand.MESSAGE_EDIT_EXPENSE_SUCCESS, editedExpense);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
         expectedModel.setExpense(model.getFilteredExpenseList().get(0), editedExpense);
@@ -110,10 +112,10 @@ public class EditExpenseCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredExpenseList().size() + 1);
         EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
                 .withTitle(VALID_TITLE_BOB).build();
-        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(
-                new EditCommand(outOfBoundIndex, descriptor));
+        EditCommandStub superCommand = new EditCommandStub(outOfBoundIndex, descriptor);
+        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(superCommand);
 
-        assertCommandFailure(editExpenseCommand, model, Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
+        assertCommandFailure(editExpenseCommand, model, MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
     }
 
     /**
@@ -127,21 +129,22 @@ public class EditExpenseCommandTest {
         // ensures that outOfBoundIndex is still in bounds of finance tracker list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getExpenseList().size());
 
-        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(new EditCommand(outOfBoundIndex,
-                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build()));
+        EditCommandStub superCommand = new EditCommandStub(outOfBoundIndex,
+                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
+        EditExpenseCommand editExpenseCommand = new EditExpenseCommand(superCommand);
 
-        assertCommandFailure(editExpenseCommand, model, Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
+        assertCommandFailure(editExpenseCommand, model, MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditExpenseCommand standardCommand = new EditExpenseCommand(
-                new EditCommand(INDEX_FIRST_TRANSACTION, DESC_AMY));
+        final EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, DESC_AMY);
+        final EditExpenseCommand standardCommand = new EditExpenseCommand(superCommand);
 
         // same values -> returns true
         EditTransactionDescriptor copyDescriptor = new EditTransactionDescriptor(DESC_AMY);
-        EditExpenseCommand commandWithSameValues = new EditExpenseCommand(
-                new EditCommand(INDEX_FIRST_TRANSACTION, copyDescriptor));
+        EditCommandStub superCommandWithSameValues = new EditCommandStub(INDEX_FIRST_TRANSACTION, copyDescriptor);
+        EditExpenseCommand commandWithSameValues = new EditExpenseCommand(superCommandWithSameValues);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -154,10 +157,10 @@ public class EditExpenseCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TRANSACTION, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_SECOND_TRANSACTION, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TRANSACTION, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_FIRST_TRANSACTION, DESC_BOB)));
     }
 
 }
