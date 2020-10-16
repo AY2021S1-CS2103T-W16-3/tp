@@ -203,7 +203,11 @@ public class FinanceTrackerParserTest {
 
     @Test
     public void parseCommand_editWhenOverviewTab() throws Exception {
-        assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD, overviewUiStateStub));
+        Expense expense = new TransactionBuilder().buildExpense();
+        EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder(expense).build();
+        assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_TRANSACTION.getOneBased() + " "
+                + TransactionUtil.getEditTransactionDescriptorDetails(descriptor), overviewUiStateStub));
     }
 
     @Test
@@ -228,7 +232,11 @@ public class FinanceTrackerParserTest {
 
     @Test
     public void parseCommand_editWhenAnalyticsTab() throws Exception {
-        assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD, analyticsUiStateStub));
+        Expense expense = new TransactionBuilder().buildExpense();
+        EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder(expense).build();
+        assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_TRANSACTION.getOneBased() + " "
+                + TransactionUtil.getEditTransactionDescriptorDetails(descriptor), analyticsUiStateStub));
     }
 
     @Test
@@ -288,8 +296,10 @@ public class FinanceTrackerParserTest {
 
     @Test
     public void parseCommand_findWhenAnalyticsTab() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
         assertThrows(ParseException.class, () -> parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TRANSACTION.getOneBased(), analyticsUiStateStub));
+                FindCommand.COMMAND_WORD + " " + keywords.stream()
+                        .collect(Collectors.joining(" ")), analyticsUiStateStub));
     }
 
     @Test
