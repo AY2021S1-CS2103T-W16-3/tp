@@ -15,15 +15,16 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs.FindCommandStub;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
 import ay2021s1_cs2103_w16_3.finesse.model.UserPrefs;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.TitleContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindTransactionCommand}.
  */
-public class FindCommandTest {
+public class FindTransactionCommandTest {
     private Model model = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
 
@@ -34,33 +35,37 @@ public class FindCommandTest {
         TitleContainsKeywordsPredicate secondPredicate =
                 new TitleContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindCommandStub firstSuperCommand = new FindCommandStub(firstPredicate);
+        FindTransactionCommand firstFindTransactionCommand = new FindTransactionCommand(firstSuperCommand);
+        FindCommandStub secondSuperCommand = new FindCommandStub(secondPredicate);
+        FindTransactionCommand secondFindTransactionCommand = new FindTransactionCommand(secondSuperCommand);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(firstFindTransactionCommand.equals(firstFindTransactionCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FindCommandStub firstSuperCommandCopy = new FindCommandStub(firstPredicate);
+        FindTransactionCommand firstFindTransactionCommandCopy = new FindTransactionCommand(firstSuperCommandCopy);
+        assertTrue(firstFindTransactionCommand.equals(firstFindTransactionCommandCopy));
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertFalse(firstFindTransactionCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertFalse(firstFindTransactionCommand.equals(null));
 
         // different predicates -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertFalse(firstFindTransactionCommand.equals(secondFindTransactionCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noTransactionFound() {
         String expectedMessage = String.format(MESSAGE_TRANSACTIONS_LISTED_OVERVIEW, 0);
         TitleContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        FindCommandStub superCommand = new FindCommandStub(predicate);
+        FindTransactionCommand findTransactionCommand = new FindTransactionCommand(superCommand);
         expectedModel.updateFilteredTransactionList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(findTransactionCommand, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredTransactionList());
     }
 
@@ -68,9 +73,10 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleTransactionsFound() {
         String expectedMessage = String.format(MESSAGE_TRANSACTIONS_LISTED_OVERVIEW, 3);
         TitleContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        FindCommandStub superCommand = new FindCommandStub(predicate);
+        FindTransactionCommand findTransactionCommand = new FindTransactionCommand(superCommand);
         expectedModel.updateFilteredTransactionList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(findTransactionCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTransactionList());
     }
 
