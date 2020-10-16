@@ -1,5 +1,6 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.TabCommand.MESSAGE_SWITCH_TABS_SUCCESS;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
@@ -50,5 +51,10 @@ public class TabCommandTest {
         String formattedSuccessMessage = String.format(MESSAGE_SWITCH_TABS_SUCCESS, Tab.ANALYTICS);
         CommandResult expectedCommandResult = new CommandResult(formattedSuccessMessage, Tab.ANALYTICS);
         assertCommandSuccess(new TabCommand(Index.fromOneBased(4)), model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        assertCommandFailure(new TabCommand(Index.fromOneBased(5)), model, TabCommand.MESSAGE_TAB_DOES_NOT_EXIST);
     }
 }
