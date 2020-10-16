@@ -10,10 +10,7 @@ import java.util.Set;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.*;
 
 /**
  * Edits an income identified using its displayed index from the finance tracker.
@@ -29,16 +26,16 @@ public class EditIncomeCommand extends EditCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Income> lastShownList = model.getFilteredIncomeList();
+        List<Transaction> lastShownList = model.getFilteredIncomeList();
 
         if (getTargetIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_INCOME_DISPLAYED_INDEX);
         }
 
-        Income incomeToEdit = lastShownList.get(getTargetIndex().getZeroBased());
+        Income incomeToEdit = (Income) lastShownList.get(getTargetIndex().getZeroBased());
         Income editedIncome = createEditedIncome(incomeToEdit, getEditTransactionDescriptor());
 
-        model.setIncome(incomeToEdit, editedIncome);
+        model.setTransaction(incomeToEdit, editedIncome);
         model.updateFilteredIncomeList(PREDICATE_SHOW_ALL_TRANSACTIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_INCOME_SUCCESS, editedIncome));
     }

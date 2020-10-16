@@ -29,15 +29,14 @@ public class DeleteExpenseCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Expense expenseToDelete = model.getFilteredExpenseList()
-                .get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        Expense expenseToDelete = (Expense) model.getFilteredExpenseList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
         DeleteCommandStub superCommand = new DeleteCommandStub(INDEX_FIRST_TRANSACTION);
         DeleteExpenseCommand deleteExpenseCommand = new DeleteExpenseCommand(superCommand);
 
         String expectedMessage = String.format(DeleteExpenseCommand.MESSAGE_DELETE_EXPENSE_SUCCESS, expenseToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFinanceTracker(), new UserPrefs());
-        expectedModel.deleteExpense(expenseToDelete);
+        expectedModel.deleteTransaction(expenseToDelete);
 
         assertCommandSuccess(deleteExpenseCommand, model, expectedMessage, expectedModel);
     }
@@ -55,15 +54,14 @@ public class DeleteExpenseCommandTest {
     public void execute_validIndexFilteredList_success() {
         showExpenseAtIndex(model, INDEX_FIRST_TRANSACTION);
 
-        Expense expenseToDelete = model.getFilteredExpenseList()
-                .get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        Expense expenseToDelete = (Expense) model.getFilteredExpenseList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
         DeleteCommandStub superCommand = new DeleteCommandStub(INDEX_FIRST_TRANSACTION);
         DeleteExpenseCommand deleteExpenseCommand = new DeleteExpenseCommand(superCommand);
 
         String expectedMessage = String.format(DeleteExpenseCommand.MESSAGE_DELETE_EXPENSE_SUCCESS, expenseToDelete);
 
         Model expectedModel = new ModelManager(model.getFinanceTracker(), new UserPrefs());
-        expectedModel.deleteExpense(expenseToDelete);
+        expectedModel.deleteTransaction(expenseToDelete);
         showNoExpenses(expectedModel);
 
         assertCommandSuccess(deleteExpenseCommand, model, expectedMessage, expectedModel);

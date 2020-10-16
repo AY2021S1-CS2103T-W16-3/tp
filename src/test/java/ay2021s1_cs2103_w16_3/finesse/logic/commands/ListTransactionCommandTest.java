@@ -34,7 +34,7 @@ public class ListTransactionCommandTest {
         expectedModel.updateFilteredTransactionList(PREDICATE_SHOW_ALL_TRANSACTIONS);
         assertCommandSuccess(new ListTransactionCommand(), model,
                 new CommandResult(ListTransactionCommand.MESSAGE_SUCCESS, Tab.OVERVIEW), expectedModel);
-        assertEquals(getTypicalTransactions().size(), model.getFilteredTransactionList().size());
+        assertEquals(getTypicalFinanceTracker().getTransactionList().size(), model.getFilteredTransactionList().size());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class ListTransactionCommandTest {
         expectedModel.updateFilteredTransactionList(transaction -> true);
         assertCommandSuccess(new ListTransactionCommand(), model,
                 new CommandResult(ListTransactionCommand.MESSAGE_SUCCESS, Tab.OVERVIEW), expectedModel);
-        assertEquals(getTypicalTransactions().size() + 1, model.getFilteredTransactionList().size());
+        assertEquals(getTypicalFinanceTracker().getTransactionList().size() + 1, model.getFilteredTransactionList().size());
     }
 
     @Test
@@ -52,9 +52,8 @@ public class ListTransactionCommandTest {
         model.addTransaction(new TransactionBuilder().buildExpense());
         expectedModel = new ModelManager(model.getFinanceTracker(), new UserPrefs());
         expectedModel.updateFilteredTransactionList(transaction -> true);
-        assertCommandSuccess(new ListTransactionCommand(), model,
-                new CommandResult(ListTransactionCommand.MESSAGE_SUCCESS, Tab.OVERVIEW), expectedModel);
-        assertEquals(getTypicalTransactions().size() + 1, model.getFilteredTransactionList().size());
+        assertCommandSuccess(new ListTransactionCommand(), model, new CommandResult(ListTransactionCommand.MESSAGE_SUCCESS, Tab.OVERVIEW), expectedModel);
+        assertEquals(getTypicalFinanceTracker().getTransactionList().size() + 1, model.getFilteredTransactionList().size());
     }
 
 }

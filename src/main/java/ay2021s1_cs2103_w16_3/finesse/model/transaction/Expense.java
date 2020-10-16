@@ -10,4 +10,25 @@ public class Expense extends Transaction {
         super(title, amount, date, categories);
     }
 
+    /**
+     * Returns true if both expenses have the same identity and data fields.
+     * This defines a stronger notion of equality between two expenses.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Expense)) {
+            return false;
+        }
+
+        Expense otherExpense = (Expense) other;
+        return otherExpense.getTitle().equals(getTitle())
+                && otherExpense.getAmount().equals(getAmount())
+                && otherExpense.getDate().equals(getDate())
+                && otherExpense.getCategories().equals(getCategories());
+    }
+
 }

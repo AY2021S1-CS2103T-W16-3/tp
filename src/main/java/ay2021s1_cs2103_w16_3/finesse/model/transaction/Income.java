@@ -10,4 +10,25 @@ public class Income extends Transaction {
         super(title, amount, date, categories);
     }
 
+    /**
+     * Returns true if both incomes have the same identity and data fields.
+     * This defines a stronger notion of equality between two incomes.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Income)) {
+            return false;
+        }
+
+        Income otherIncome = (Income) other;
+        return otherIncome.getTitle().equals(getTitle())
+                && otherIncome.getAmount().equals(getAmount())
+                && otherIncome.getDate().equals(getDate())
+                && otherIncome.getCategories().equals(getCategories());
+    }
+
 }

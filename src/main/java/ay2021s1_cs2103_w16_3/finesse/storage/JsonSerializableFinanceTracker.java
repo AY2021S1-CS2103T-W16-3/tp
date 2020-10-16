@@ -21,7 +21,6 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 @JsonRootName(value = "fine$$e")
 class JsonSerializableFinanceTracker {
 
-    private final List<JsonAdaptedTransaction> transactions = new ArrayList<>();
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
     private final List<JsonAdaptedIncome> incomes = new ArrayList<>();
 
@@ -29,10 +28,8 @@ class JsonSerializableFinanceTracker {
      * Constructs a {@code JsonSerializableFinanceTracker} with the given transactions.
      */
     @JsonCreator
-    public JsonSerializableFinanceTracker(@JsonProperty("transactions") List<JsonAdaptedTransaction> transactions,
-                                          @JsonProperty("expenses") List<JsonAdaptedExpense> expenses,
+    public JsonSerializableFinanceTracker(@JsonProperty("expenses") List<JsonAdaptedExpense> expenses,
                                           @JsonProperty("incomes") List<JsonAdaptedIncome> incomes) {
-        this.transactions.addAll(transactions);
         this.expenses.addAll(expenses);
         this.incomes.addAll(incomes);
     }
@@ -43,8 +40,6 @@ class JsonSerializableFinanceTracker {
      * @param source future changes to this will not affect the created {@code JsonSerializableFinanceTracker}.
      */
     public JsonSerializableFinanceTracker(ReadOnlyFinanceTracker source) {
-        transactions.addAll(source.getTransactionList().stream().map(JsonAdaptedTransaction::new)
-                .collect(Collectors.toList()));
         expenses.addAll(source.getExpenseList().stream().map(JsonAdaptedExpense::new)
                 .collect(Collectors.toList()));
         incomes.addAll(source.getIncomeList().stream().map(JsonAdaptedIncome::new)
@@ -58,17 +53,13 @@ class JsonSerializableFinanceTracker {
      */
     public FinanceTracker toModelType() throws IllegalValueException {
         FinanceTracker financeTracker = new FinanceTracker();
-        for (JsonAdaptedTransaction jsonAdaptedTransaction : transactions) {
-            Transaction transaction = jsonAdaptedTransaction.toModelType();
-            financeTracker.addTransaction(transaction);
-        }
         for (JsonAdaptedExpense jsonAdaptedExpense : expenses) {
             Expense expense = jsonAdaptedExpense.toModelType();
-            financeTracker.addExpense(expense);
+            financeTracker.addTransaction(expense);
         }
         for (JsonAdaptedIncome jsonAdaptedIncome : incomes) {
             Income income = jsonAdaptedIncome.toModelType();
-            financeTracker.addIncome(income);
+            financeTracker.addTransaction(income);
         }
         return financeTracker;
     }

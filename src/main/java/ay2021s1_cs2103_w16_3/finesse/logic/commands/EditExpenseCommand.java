@@ -10,10 +10,7 @@ import java.util.Set;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.*;
 
 /**
  * Edits an expense identified using its displayed index from the finance tracker.
@@ -29,16 +26,16 @@ public class EditExpenseCommand extends EditCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Expense> lastShownList = model.getFilteredExpenseList();
+        List<Transaction> lastShownList = model.getFilteredExpenseList();
 
         if (getTargetIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
         }
 
-        Expense expenseToEdit = lastShownList.get(getTargetIndex().getZeroBased());
+        Expense expenseToEdit = (Expense) lastShownList.get(getTargetIndex().getZeroBased());
         Expense editedExpense = createEditedExpense(expenseToEdit, getEditTransactionDescriptor());
 
-        model.setExpense(expenseToEdit, editedExpense);
+        model.setTransaction(expenseToEdit, editedExpense);
         model.updateFilteredExpenseList(PREDICATE_SHOW_ALL_TRANSACTIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_EXPENSE_SUCCESS, editedExpense));
     }

@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collections;
 
+import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
 import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs.FindCommandStub;
@@ -71,13 +72,20 @@ public class FindTransactionCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleTransactionsFound() {
-        String expectedMessage = String.format(MESSAGE_TRANSACTIONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_TRANSACTIONS_LISTED_OVERVIEW, 6);
         TitleContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommandStub superCommand = new FindCommandStub(predicate);
         FindTransactionCommand findTransactionCommand = new FindTransactionCommand(superCommand);
         expectedModel.updateFilteredTransactionList(predicate);
         assertCommandSuccess(findTransactionCommand, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTransactionList());
+        assertEquals(Arrays.asList(
+                new TransactionBuilder(CARL).buildExpense(),
+                new TransactionBuilder(ELLE).buildExpense(),
+                new TransactionBuilder(FIONA).buildExpense(),
+                new TransactionBuilder(CARL).buildIncome(),
+                new TransactionBuilder(ELLE).buildIncome(),
+                new TransactionBuilder(FIONA).buildIncome()
+        ), model.getFilteredTransactionList());
     }
 
     /**

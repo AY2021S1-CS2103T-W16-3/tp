@@ -68,12 +68,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Expense> getFilteredExpenseList() {
+    public ObservableList<Transaction> getFilteredExpenseList() {
         return model.getFilteredExpenseList();
     }
 
     @Override
-    public ObservableList<Income> getFilteredIncomeList() {
+    public ObservableList<Transaction> getFilteredIncomeList() {
         return model.getFilteredIncomeList();
     }
 

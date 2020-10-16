@@ -39,10 +39,10 @@ public interface Logic {
     ObservableList<Transaction> getFilteredTransactionList();
 
     /** Returns an unmodifiable view of the filtered list of expenses. */
-    ObservableList<Expense> getFilteredExpenseList();
+    ObservableList<Transaction> getFilteredExpenseList();
 
     /** Returns an unmodifiable view of the filtered list of incomes. */
-    ObservableList<Income> getFilteredIncomeList();
+    ObservableList<Transaction> getFilteredIncomeList();
 
     /**
      * Returns the user prefs' finance tracker file path.

@@ -8,6 +8,7 @@ import java.util.List;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
 /**
  * Deletes an income identified using its displayed index from the finance tracker.
@@ -23,14 +24,14 @@ public class DeleteIncomeCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Income> lastShownList = model.getFilteredIncomeList();
+        List<Transaction> lastShownList = model.getFilteredIncomeList();
 
         if (getTargetIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_INCOME_DISPLAYED_INDEX);
         }
 
-        Income incomeToDelete = lastShownList.get(getTargetIndex().getZeroBased());
-        model.deleteIncome(incomeToDelete);
+        Income incomeToDelete = (Income) lastShownList.get(getTargetIndex().getZeroBased());
+        model.deleteTransaction(incomeToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_INCOME_SUCCESS, incomeToDelete));
     }
 

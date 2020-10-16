@@ -13,8 +13,15 @@ import javafx.collections.ObservableList;
  * The API of the Model component.
  */
 public interface Model {
+
     /** {@code Predicate} that always evaluate to true. */
-    Predicate<Transaction> PREDICATE_SHOW_ALL_TRANSACTIONS = unused -> true;
+    Predicate<Transaction> PREDICATE_SHOW_ALL_TRANSACTIONS = transaction -> true;
+
+    /** {@code Predicate} that evaluates to true if the transaction is an {@code Expense} */
+    Predicate<Transaction> PREDICATE_SHOW_ALL_EXPENSES = transaction -> transaction instanceof Expense;
+
+    /** {@code Predicate} that evaluates to true if the transaction is an {@code Income} */
+    Predicate<Transaction> PREDICATE_SHOW_ALL_INCOMES = transaction -> transaction instanceof Income;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -61,31 +68,9 @@ public interface Model {
     void deleteTransaction(Transaction target);
 
     /**
-     * Deletes the given expense.
-     * The expense must exist in the finance tracker.
-     */
-    void deleteExpense(Expense target);
-
-    /**
-     * Deletes the given income.
-     * The income must exist in the finance tracker.
-     */
-    void deleteIncome(Income target);
-
-    /**
      * Adds the given transaction.
      */
     void addTransaction(Transaction transaction);
-
-    /**
-     * Adds the given expense.
-     */
-    void addExpense(Expense expense);
-
-    /**
-     * Adds the given income.
-     */
-    void addIncome(Income income);
 
     /**
      * Replaces the given transaction {@code target} with {@code editedTransaction}.
@@ -93,26 +78,14 @@ public interface Model {
      */
     void setTransaction(Transaction target, Transaction editedTransaction);
 
-    /**
-     * Replaces the given expense {@code target} with {@code editedExpense}.
-     * {@code target} must exist in the finance tracker.
-     */
-    void setExpense(Expense target, Expense editedExpense);
-
-    /**
-     * Replaces the given income {@code target} with {@code editedIncome}.
-     * {@code target} must exist in the finance tracker.
-     */
-    void setIncome(Income target, Income editedIncome);
-
     /** Returns an unmodifiable view of the filtered transaction list. */
     ObservableList<Transaction> getFilteredTransactionList();
 
     /** Returns an unmodifiable view of the filtered expense list. */
-    ObservableList<Expense> getFilteredExpenseList();
+    ObservableList<Transaction> getFilteredExpenseList();
 
     /** Returns an unmodifiable view of the filtered income list. */
-    ObservableList<Income> getFilteredIncomeList();
+    ObservableList<Transaction> getFilteredIncomeList();
 
     /**
      * Updates the filter of the filtered transaction list to filter by the given {@code predicate}.

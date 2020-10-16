@@ -13,7 +13,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
  * Represents a Transaction in the finance tracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Transaction {
+public class Transaction implements Comparable<Transaction> {
 
     // Identity fields
     private final Title title;
@@ -52,6 +52,11 @@ public class Transaction {
      */
     public Set<Category> getCategories() {
         return Collections.unmodifiableSet(categories);
+    }
+
+    @Override // TODO
+    public int compareTo(Transaction transaction) {
+        return 0;
     }
 
     /**
@@ -93,5 +98,6 @@ public class Transaction {
         getCategories().forEach(builder::append);
         return builder.toString();
     }
+
 
 }

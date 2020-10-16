@@ -117,7 +117,7 @@ public class CommandTestUtil {
 
         Transaction transaction = model.getFilteredTransactionList().get(targetIndex.getZeroBased());
         final String[] splitTitle = transaction.getTitle().fullTitle.split("\\s+");
-        model.updateFilteredTransactionList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        model.updateFilteredTransactionList(t -> t == transaction);
 
         assertEquals(1, model.getFilteredTransactionList().size());
     }
@@ -129,9 +129,9 @@ public class CommandTestUtil {
     public static void showExpenseAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenseList().size());
 
-        Expense expense = model.getFilteredExpenseList().get(targetIndex.getZeroBased());
+        Expense expense = (Expense) model.getFilteredExpenseList().get(targetIndex.getZeroBased());
         final String[] splitTitle = expense.getTitle().fullTitle.split("\\s+");
-        model.updateFilteredExpenseList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        model.updateFilteredExpenseList(e -> e == expense);
 
         assertEquals(1, model.getFilteredExpenseList().size());
     }
@@ -143,9 +143,9 @@ public class CommandTestUtil {
     public static void showIncomeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredIncomeList().size());
 
-        Income income = model.getFilteredIncomeList().get(targetIndex.getZeroBased());
+        Income income = (Income) model.getFilteredIncomeList().get(targetIndex.getZeroBased());
         final String[] splitTitle = income.getTitle().fullTitle.split("\\s+");
-        model.updateFilteredIncomeList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        model.updateFilteredIncomeList(i -> i == income);
 
         assertEquals(1, model.getFilteredIncomeList().size());
     }

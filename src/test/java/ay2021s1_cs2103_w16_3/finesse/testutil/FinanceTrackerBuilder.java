@@ -32,7 +32,7 @@ public class FinanceTrackerBuilder {
      * Adds a new {@code Transaction} to the {@code FinanceTracker} that we are building.
      */
     public FinanceTrackerBuilder withExpense(Expense expense) {
-        financeTracker.addExpense(expense);
+        financeTracker.addTransaction(expense);
         return this;
     }
 
@@ -40,7 +40,7 @@ public class FinanceTrackerBuilder {
      * Adds a new {@code Transaction} to the {@code FinanceTracker} that we are building.
      */
     public FinanceTrackerBuilder withIncome(Income income) {
-        financeTracker.addIncome(income);
+        financeTracker.addTransaction(income);
         return this;
     }
 

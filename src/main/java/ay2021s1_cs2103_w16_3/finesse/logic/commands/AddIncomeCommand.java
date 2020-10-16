@@ -45,7 +45,7 @@ public class AddIncomeCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        model.addIncome(toAdd);
+        model.addTransaction(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

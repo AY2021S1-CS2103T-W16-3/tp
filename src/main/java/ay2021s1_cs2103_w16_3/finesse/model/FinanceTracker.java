@@ -11,6 +11,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.IncomeList;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.TransactionList;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -55,28 +56,12 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
     }
 
     /**
-     * Replaces the contents of the expense list with {@code expenses}.
-     */
-    public void setExpenses(List<Expense> expenses) {
-        this.expenses.setExpenses(expenses);
-    }
-
-    /**
-     * Replaces the contents of the income list with {@code incomes}.
-     */
-    public void setIncomes(List<Income> incomes) {
-        this.incomes.setIncomes(incomes);
-    }
-
-    /**
      * Resets the existing data of this {@code FinanceTracker} with {@code newData}.
      */
     public void resetData(ReadOnlyFinanceTracker newData) {
         requireNonNull(newData);
 
         setTransactions(newData.getTransactionList());
-        setExpenses(newData.getExpenseList());
-        setIncomes(newData.getIncomeList());
     }
 
     //// transaction-level operations
@@ -86,20 +71,6 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
      */
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
-    }
-
-    /**
-     * Adds an expense to the finance tracker.
-     */
-    public void addExpense(Expense expense) {
-        expenses.add(expense);
-    }
-
-    /**
-     * Adds an income to the finance tracker.
-     */
-    public void addIncome(Income income) {
-        incomes.add(income);
     }
 
     /**
@@ -113,47 +84,11 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
     }
 
     /**
-     * Replaces the given expense {@code target} in the list with {@code editedExpense}.
-     * {@code target} must exist in the finance tracker.
-     */
-    public void setExpense(Expense target, Expense editedExpense) {
-        requireNonNull(editedExpense);
-
-        expenses.setExpense(target, editedExpense);
-    }
-
-    /**
-     * Replaces the given income {@code target} in the list with {@code editedIncome}.
-     * {@code target} must exist in the finance tracker.
-     */
-    public void setIncome(Income target, Income editedIncome) {
-        requireNonNull(editedIncome);
-
-        incomes.setIncome(target, editedIncome);
-    }
-
-    /**
      * Removes {@code key} from this {@code FinanceTracker}.
      * {@code key} must exist in the finance tracker.
      */
     public void removeTransaction(Transaction key) {
         transactions.remove(key);
-    }
-
-    /**
-     * Removes {@code key} from this {@code FinanceTracker}.
-     * {@code key} must exist in the finance tracker.
-     */
-    public void removeExpense(Expense key) {
-        expenses.remove(key);
-    }
-
-    /**
-     * Removes {@code key} from this {@code FinanceTracker}.
-     * {@code key} must exist in the finance tracker.
-     */
-    public void removeIncome(Income key) {
-        incomes.remove(key);
     }
 
     //// util methods
@@ -171,12 +106,24 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
 
     @Override
     public ObservableList<Expense> getExpenseList() {
-        return expenses.asUnmodifiableObservableList();
+        ObservableList<Expense> expensesX = FXCollections.observableArrayList();
+        transactions.forEach(t -> {
+            if (t instanceof Expense) {
+                expensesX.add((Expense) t);
+            }
+        });
+        return FXCollections.unmodifiableObservableList(expensesX);
     }
 
     @Override
     public ObservableList<Income> getIncomeList() {
-        return incomes.asUnmodifiableObservableList();
+        ObservableList<Income> incomesX = FXCollections.observableArrayList();
+        transactions.forEach(t -> {
+            if (t instanceof Income) {
+                incomesX.add((Income) t);
+            }
+        });
+        return FXCollections.unmodifiableObservableList(incomesX);
     }
 
     @Override

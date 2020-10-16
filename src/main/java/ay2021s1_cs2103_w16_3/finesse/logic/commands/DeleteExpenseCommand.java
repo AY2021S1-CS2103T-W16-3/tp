@@ -8,6 +8,7 @@ import java.util.List;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
 /**
  * Deletes an expense identified using its displayed index from the finance tracker.
@@ -23,14 +24,14 @@ public class DeleteExpenseCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Expense> lastShownList = model.getFilteredExpenseList();
+        List<Transaction> lastShownList = model.getFilteredExpenseList();
 
         if (getTargetIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
         }
 
-        Expense expenseToDelete = lastShownList.get(getTargetIndex().getZeroBased());
-        model.deleteExpense(expenseToDelete);
+        Expense expenseToDelete = (Expense) lastShownList.get(getTargetIndex().getZeroBased());
+        model.deleteTransaction(expenseToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EXPENSE_SUCCESS, expenseToDelete));
     }
 
