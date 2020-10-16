@@ -248,20 +248,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​               | I want to …​                 | So that I can…​                                                          |
-| -------- | ------------------------ | ------------------------------- | --------------------------------------------------------------------------- |
-| `* * *`  | new user                 | see usage instructions          | refer to instructions when I forget how to use the app                      |
-| `* * *`  | user                     | add an expense                  |                                                                             |
-| `* * *`  | user                     | view a list of past expenses    | keep track of my past expenses                                              |
-| `* * *`  | user                     | group expenditure by categories | keep track of what I spend my money on across categories                    |
-| `* * *`  | user                     | delete an expense               | remove expenses that were entered wrongly                                   |
-| `* * *`  | user                     | set a monthly spending limit    | track how much I have left to spend for the month                           |
-| `* * *`  | user                     | add an income                   |                                                                             |
-| `* * *`  | user                     | view a list of past income      | keep track of my past income                                                |
-| `* * *`  | user                     | delete an income                | remove income that was entered wrongly                                      |
-| `* * *`  | user                     | set monthly saving goals        | cultivate good saving habits                                                |
-| `* *`    | user                     | view my saving trends           | better plan my future expenses                                              |
-| `*`      | user                     | complete savings challenges     | be motivated to reach my savings goals                                      |
+| Priority | As a …​               | I want to …​                  | So that I can…​                                                          |
+| -------- | ------------------------ | -------------------------------  | --------------------------------------------------------------------------- |
+| `* * *`  | new user                 | see usage instructions           | refer to instructions when I forget how to use the app                      |
+| `* * *`  | user                     | add an expense                   |                                                                             |
+| `* * *`  | user                     | add an income                    |                                                                             |
+| `* * *`  | user                     | view a list of past transactions | keep track of my past expenses/incomes                                      |
+| `* * *`  | user                     | edit a transaction               | update expenses/incomes that were entered wrongly                           |
+| `* * *`  | user                     | delete a transaction             | remove expenses/incomes that were entered wrongly                           |
+| `* * *`  | user                     | group transactions by categories | keep track of my past expenses/incomes across various categories            |
+| `* * *`  | user                     | search for transactions          | easily find related expenses/incomes                                        |
+| `* *`    | user                     | set a monthly spending limit     | track how much I have left to spend for the month                           |
+| `* *`    | user                     | set a monthly saving goal        | cultivate good saving habits                                                |
+| `* *`    | user                     | view my saving trends            | better manage my future expenses                                            |
 
 *{More to be added}*
 
