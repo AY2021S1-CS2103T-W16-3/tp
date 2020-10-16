@@ -14,7 +14,7 @@ Fine\$\$e is a **desktop finance tracker optimized for use via a Command Line In
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `fine$$e.jar` from [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
+1. Download the latest `fine$$e.jar` from [here](https://github.com/AY2021S1-CS2103T-W16-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the *home folder* for Fine$$e.
 
@@ -83,27 +83,26 @@ Format: `add-income t/TITLE a/AMOUNT d/DATE [c/CATEGORY]...`
 
 Examples:
 * `add-income t/Internship a/560 d/03/10/2020 c/Work`
-* `addi t/Angpao money a/$20 d/10/10/2020 c/CNY c/Gift`
+* `addi t/Angpao money a/$20 d/25/01/2020 c/CNY c/Gift`
 
 ### List transactions: `list`
 
 Shows a list of all transactions on the current tab.
-
-Format: `list`
-
 * On Overview tab: lists all transactions (expenses/incomes).
 * On Expenses tab: lists all expenses.
 * On Income tab: lists all incomes.
 
+Format: `list`
+
 ### Finding transactions by keyword: `find`
 
 Finds transactions with titles that contain any of the given keywords on the current tab.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
 * On Overview tab: searches all transactions (expenses/incomes).
 * On Expenses tab: searches all expenses.
 * On Income tab: searches all incomes.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
 * The search is case-insensitive. e.g `taxi` will match `Taxi`
 * The order of the keywords does not matter. e.g. `Bus Train` will match `Train Bus`
 * Only the title is searched.
