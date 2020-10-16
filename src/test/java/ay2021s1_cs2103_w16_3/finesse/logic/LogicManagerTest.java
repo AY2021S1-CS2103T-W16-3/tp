@@ -11,17 +11,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import ay2021s1_cs2103_w16_3.finesse.commons.core.GuiSettings;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.AddCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandResult;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.ListIncomeCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.FinanceTrackerParserTest.ExpensesUiStateStub;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
+import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
@@ -90,8 +93,49 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFinanceTracker() {
+        // Since a FinanceTracker was not specified for 'model',
+        // the FinanceTracker returned is the default FinanceTracker.
+        assertEquals(new FinanceTracker(), logic.getFinanceTracker());
+    }
+
+    @Test
     public void getFilteredTransactionList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTransactionList().remove(0));
+    }
+
+    @Test
+    public void getFilteredExpenseList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredExpenseList().remove(0));
+    }
+
+    @Test
+    public void getFilteredIncomeList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredIncomeList().remove(0));
+    }
+
+    @Test
+    public void getFinanceTrackerFilePath() {
+        // By default, the file path is set to 'data/fine$$e.json' in UserPrefs.
+        assertEquals(Paths.get("data" , "fine$$e.json"), logic.getFinanceTrackerFilePath());
+    }
+
+    @Test
+    public void getGuiSettings() {
+        // Since a UserPrefs was not specified for 'model', the GuiSettings returned is the default GuiSettings.
+        assertEquals(new GuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
+    }
+
+    @Test
+    public void setGuiSettings_validGuiSettings_setsGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(800, 1200, 100, 100);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**
