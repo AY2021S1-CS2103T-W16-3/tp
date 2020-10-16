@@ -1,8 +1,8 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INCOMES_LISTED_OVERVIEW;
 import static java.util.Objects.requireNonNull;
 
-import ay2021s1_cs2103_w16_3.finesse.commons.core.Messages;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 
 /**
@@ -21,7 +21,7 @@ public class FindIncomeCommand extends FindCommand {
         requireNonNull(model);
         model.updateFilteredIncomeList(getPredicate());
         return new CommandResult(
-                String.format(Messages.MESSAGE_TRANSACTIONS_LISTED_OVERVIEW,
+                String.format(MESSAGE_INCOMES_LISTED_OVERVIEW,
                         model.getFilteredIncomeList().size()));
     }
 
