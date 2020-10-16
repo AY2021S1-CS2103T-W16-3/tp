@@ -60,7 +60,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getFinanceTracker(), new UserPrefs());
         expectedModel.deleteTransaction(transactionToDelete);
-        showNoTransaction(expectedModel);
+        showNoTransactions(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -101,9 +101,9 @@ public class DeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show no transactions.
      */
-    private void showNoTransaction(Model model) {
+    private void showNoTransactions(Model model) {
         model.updateFilteredTransactionList(p -> false);
 
         assertTrue(model.getFilteredTransactionList().isEmpty());
