@@ -20,7 +20,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
  */
 public class EditIncomeCommand extends EditCommand {
 
-    public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Income: %1$s";
+    public static final String MESSAGE_EDIT_INCOME_SUCCESS = "Edited Income: %1$s";
 
     public EditIncomeCommand(EditCommand superCommand) {
         super(superCommand.getTargetIndex(), superCommand.getEditTransactionDescriptor());
@@ -40,7 +40,7 @@ public class EditIncomeCommand extends EditCommand {
 
         model.setIncome(incomeToEdit, editedIncome);
         model.updateFilteredIncomeList(PREDICATE_SHOW_ALL_TRANSACTIONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, editedIncome));
+        return new CommandResult(String.format(MESSAGE_EDIT_INCOME_SUCCESS, editedIncome));
     }
 
     /**

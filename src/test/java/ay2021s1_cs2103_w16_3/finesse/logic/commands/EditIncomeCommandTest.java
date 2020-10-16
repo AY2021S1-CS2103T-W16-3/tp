@@ -1,5 +1,6 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_INCOME_DISPLAYED_INDEX;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_AMY;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BOB;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
@@ -16,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ay2021s1_cs2103_w16_3.finesse.commons.core.Messages;
 import ay2021s1_cs2103_w16_3.finesse.commons.core.index.Index;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.EditCommand.EditTransactionDescriptor;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs.EditCommandStub;
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
@@ -40,10 +41,10 @@ public class EditIncomeCommandTest {
         Income editedIncome = new TransactionBuilder().buildIncome();
         EditTransactionDescriptor descriptor =
                 new EditTransactionDescriptorBuilder(editedIncome).build();
-        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(
-                new EditCommand(INDEX_FIRST_TRANSACTION, descriptor));
+        EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, descriptor);
+        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);
 
-        String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedIncome);
+        String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_INCOME_SUCCESS, editedIncome);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
         expectedModel.setIncome(model.getFilteredIncomeList().get(0), editedIncome);
@@ -62,10 +63,10 @@ public class EditIncomeCommandTest {
 
         EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
                 .withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB).withCategories(VALID_CATEGORY_HUSBAND).build();
-        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(
-                new EditCommand(indexLastIncome, descriptor));
+        EditCommandStub superCommand = new EditCommandStub(indexLastIncome, descriptor);
+        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);
 
-        String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedIncome);
+        String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_INCOME_SUCCESS, editedIncome);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
         expectedModel.setIncome(lastIncome, editedIncome);
@@ -75,11 +76,11 @@ public class EditIncomeCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(
-                new EditCommand(INDEX_FIRST_TRANSACTION, new EditTransactionDescriptor()));
+        EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, new EditTransactionDescriptor());
+        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);
         Income editedIncome = model.getFilteredIncomeList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
 
-        String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedIncome);
+        String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_INCOME_SUCCESS, editedIncome);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
 
@@ -94,10 +95,11 @@ public class EditIncomeCommandTest {
                 .get(INDEX_FIRST_TRANSACTION.getZeroBased());
         Income editedIncome =
                 new TransactionBuilder(incomeInFilteredList).withTitle(VALID_TITLE_BOB).buildIncome();
-        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(new EditCommand(INDEX_FIRST_TRANSACTION,
-                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build()));
+        EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION,
+                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
+        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);
 
-        String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedIncome);
+        String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_INCOME_SUCCESS, editedIncome);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
         expectedModel.setIncome(model.getFilteredIncomeList().get(0), editedIncome);
@@ -110,10 +112,10 @@ public class EditIncomeCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredIncomeList().size() + 1);
         EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
                 .withTitle(VALID_TITLE_BOB).build();
-        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(
-                new EditCommand(outOfBoundIndex, descriptor));
+        EditCommandStub superCommand = new EditCommandStub(outOfBoundIndex, descriptor);
+        EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);
 
-        assertCommandFailure(editIncomeCommand, model, Messages.MESSAGE_INVALID_INCOME_DISPLAYED_INDEX);
+        assertCommandFailure(editIncomeCommand, model, MESSAGE_INVALID_INCOME_DISPLAYED_INDEX);
     }
 
     /**
@@ -130,18 +132,18 @@ public class EditIncomeCommandTest {
         EditIncomeCommand editIncomeCommand = new EditIncomeCommand(new EditCommand(outOfBoundIndex,
                 new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build()));
 
-        assertCommandFailure(editIncomeCommand, model, Messages.MESSAGE_INVALID_INCOME_DISPLAYED_INDEX);
+        assertCommandFailure(editIncomeCommand, model, MESSAGE_INVALID_INCOME_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditIncomeCommand standardCommand = new EditIncomeCommand(
-                new EditCommand(INDEX_FIRST_TRANSACTION, DESC_AMY));
+        final EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, DESC_AMY);
+        final EditIncomeCommand standardCommand = new EditIncomeCommand(superCommand);
 
         // same values -> returns true
         EditTransactionDescriptor copyDescriptor = new EditTransactionDescriptor(DESC_AMY);
-        EditIncomeCommand commandWithSameValues = new EditIncomeCommand(
-                new EditCommand(INDEX_FIRST_TRANSACTION, copyDescriptor));
+        EditCommandStub superCommandWithSameValues = new EditCommandStub(INDEX_FIRST_TRANSACTION, copyDescriptor);
+        EditIncomeCommand commandWithSameValues = new EditIncomeCommand(superCommandWithSameValues);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -154,10 +156,10 @@ public class EditIncomeCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TRANSACTION, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_SECOND_TRANSACTION, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TRANSACTION, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_FIRST_TRANSACTION, DESC_BOB)));
     }
 
 }

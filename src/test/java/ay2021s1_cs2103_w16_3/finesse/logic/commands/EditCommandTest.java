@@ -1,5 +1,6 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_AMY;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BOB;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
@@ -16,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ay2021s1_cs2103_w16_3.finesse.commons.core.Messages;
 import ay2021s1_cs2103_w16_3.finesse.commons.core.index.Index;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.EditCommand.EditTransactionDescriptor;
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
@@ -108,7 +108,7 @@ public class EditCommandTest {
                 .withTitle(VALID_TITLE_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
     }
 
     /**
@@ -125,7 +125,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
     }
 
     @Test
