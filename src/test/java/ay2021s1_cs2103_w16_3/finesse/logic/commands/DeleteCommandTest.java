@@ -96,7 +96,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different transaction -> returns false
+        // different transactions -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
