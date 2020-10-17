@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
  * Represents a Transaction's date in the finance tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String, Clock)}
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should be of the format dd/mm/yyyy "
             + "and cannot be later than the current date";
@@ -77,4 +77,8 @@ public class Date {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Date date) {
+        return value.compareTo(date.value);
+    }
 }

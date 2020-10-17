@@ -3,6 +3,7 @@ package ay2021s1_cs2103_w16_3.finesse.model.transaction;
 import static ay2021s1_cs2103_w16_3.finesse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -13,7 +14,18 @@ import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
  * Represents a Transaction in the finance tracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Transaction implements Comparable<Transaction> {
+public class Transaction {
+
+    public static final Comparator<Transaction> TRANSACTION_COMPARATOR = new Comparator<Transaction>() {
+        @Override
+        public int compare(Transaction t1, Transaction t2) {
+            int comparisonByDate = t1.date.compareTo(t2.date);
+            if (comparisonByDate != 0) {
+                return comparisonByDate;
+            }
+            return t1.title.compareTo(t2.title);
+        }
+    };
 
     // Identity fields
     private final Title title;
@@ -52,11 +64,6 @@ public class Transaction implements Comparable<Transaction> {
      */
     public Set<Category> getCategories() {
         return Collections.unmodifiableSet(categories);
-    }
-
-    @Override // TODO
-    public int compareTo(Transaction transaction) {
-        return 0;
     }
 
     /**

@@ -1,6 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.model.transaction;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.util.CollectionUtil.requireAllNonNull;
+import static ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction.TRANSACTION_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
@@ -29,6 +30,7 @@ public class TransactionList implements Iterable<Transaction> {
     public void add(Transaction toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sortTransactions();
     }
 
     /**
@@ -46,6 +48,7 @@ public class TransactionList implements Iterable<Transaction> {
         }
 
         internalList.set(index, editedTransaction);
+        sortTransactions();
     }
 
     /**
@@ -57,11 +60,13 @@ public class TransactionList implements Iterable<Transaction> {
         if (!internalList.remove(toRemove)) {
             throw new TransactionNotFoundException();
         }
+        sortTransactions();
     }
 
     public void setTransactions(TransactionList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sortTransactions();
     }
 
     /**
@@ -71,6 +76,14 @@ public class TransactionList implements Iterable<Transaction> {
         requireAllNonNull(transactions);
 
         internalList.setAll(transactions);
+        sortTransactions();
+    }
+
+    /**
+     * Sorts the list based on {@code TRANSACTION_COMPARATOR}
+     */
+    public void sortTransactions() {
+        internalList.sort(TRANSACTION_COMPARATOR);
     }
 
     /**

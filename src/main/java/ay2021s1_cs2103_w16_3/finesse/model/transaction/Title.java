@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents a Transaction's title in the finance tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
-public class Title {
+public class Title implements Comparable<Title> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -56,4 +56,8 @@ public class Title {
         return fullTitle.hashCode();
     }
 
+    @Override
+    public int compareTo(Title title) {
+        return fullTitle.compareTo(title.fullTitle);
+    }
 }

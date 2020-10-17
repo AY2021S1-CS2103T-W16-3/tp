@@ -3,7 +3,6 @@ package ay2021s1_cs2103_w16_3.finesse.ui.expense;
 import java.util.logging.Logger;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.core.LogsCenter;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import ay2021s1_cs2103_w16_3.finesse.ui.TransactionCard;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiPart;

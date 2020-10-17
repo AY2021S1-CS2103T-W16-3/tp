@@ -13,13 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collections;
 
-import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
 import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
 import ay2021s1_cs2103_w16_3.finesse.model.UserPrefs;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.TitleContainsKeywordsPredicate;
+import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -74,10 +74,10 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(
                 new TransactionBuilder(CARL).buildExpense(),
-                new TransactionBuilder(ELLE).buildExpense(),
-                new TransactionBuilder(FIONA).buildExpense(),
                 new TransactionBuilder(CARL).buildIncome(),
+                new TransactionBuilder(ELLE).buildExpense(),
                 new TransactionBuilder(ELLE).buildIncome(),
+                new TransactionBuilder(FIONA).buildExpense(),
                 new TransactionBuilder(FIONA).buildIncome()), model.getFilteredTransactionList());
     }
 

@@ -13,7 +13,6 @@ import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
 /**
  * An Immutable FinanceTracker that is serializable to JSON format.
