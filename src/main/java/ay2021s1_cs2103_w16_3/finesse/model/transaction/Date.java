@@ -3,25 +3,22 @@ package ay2021s1_cs2103_w16_3.finesse.model.transaction;
 import static ay2021s1_cs2103_w16_3.finesse.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Transaction's date in the finance tracker.
- * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String, Clock)}
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be of the format dd/mm/yyyy";
-    public static final String VALIDATION_REGEX = "^\\d{2}/\\d{2}/\\d{4}$";
-    public static final SimpleDateFormat VALIDATION_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be of the format dd/mm/yyyy "
+            + "and cannot be later than the current date";
+    public static final DateTimeFormatter VALIDATION_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    static {
-        // initialize VALIDATION_FORMAT to strict mode
-        VALIDATION_FORMAT.setLenient(false);
-    }
-
-    public final String value;
+    private final LocalDate value;
 
     /**
      * Constructs an {@code Date}.
@@ -31,24 +28,41 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        value = date;
+        value = LocalDate.parse(date, VALIDATION_FORMAT);
     }
 
     /**
      * Returns if a given string is a valid date.
+     * Uses {@link #isValidDate(String, Clock)} with the current system time.
+     * A valid date must be in dd/mm/yyyy format representing a correct date (all parts within range),
+     * and additionally can only be at or before the current date.
      */
     public static boolean isValidDate(String test) {
+        return isValidDate(test, Clock.systemDefaultZone());
+    }
+
+    /**
+     * Returns if a given string is a valid date. Allows for a custom Clock to be used for testing purposes.
+     * A valid date must be in dd/mm/yyyy format representing a correct date (all parts within range),
+     * and additionally can only be at or before the current date.
+     */
+    public static boolean isValidDate(String test, Clock currentTime) {
         try {
-            VALIDATION_FORMAT.parse(test);
-            return test.matches(VALIDATION_REGEX);
-        } catch (ParseException e) {
+            LocalDate value = LocalDate.parse(test, VALIDATION_FORMAT);
+            LocalDate today = LocalDate.now(currentTime);
+            return value.isEqual(today) || value.isBefore(today);
+        } catch (DateTimeParseException e) {
             return false;
         }
     }
 
+    /**
+     * Returns a String representation of this Date that can be used to construct an identical Date.
+     * @return A String representation of this Date.
+     */
     @Override
     public String toString() {
-        return value;
+        return VALIDATION_FORMAT.format(value);
     }
 
     @Override

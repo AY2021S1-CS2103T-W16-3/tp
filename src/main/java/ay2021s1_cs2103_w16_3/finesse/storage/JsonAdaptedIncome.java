@@ -49,7 +49,7 @@ class JsonAdaptedIncome {
     public JsonAdaptedIncome(Income source) {
         title = source.getTitle().fullTitle;
         amount = source.getAmount().value;
-        date = source.getDate().value;
+        date = source.getDate().toString();
         categories.addAll(source.getCategories().stream()
                 .map(JsonAdaptedCategory::new)
                 .collect(Collectors.toList()));

@@ -31,8 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_BOB = "Bob Choo";
     public static final String VALID_AMOUNT_AMY = "11111111";
     public static final String VALID_AMOUNT_BOB = "22222222";
-    public static final String VALID_DATE_AMY = "31/10/2020";
-    public static final String VALID_DATE_BOB = "25/12/2020";
+    public static final String VALID_DATE_AMY = "31/10/2019";
+    public static final String VALID_DATE_BOB = "25/12/2019";
     public static final String VALID_CATEGORY_HUSBAND = "husband";
     public static final String VALID_CATEGORY_FRIEND = "friend";
 

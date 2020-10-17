@@ -49,7 +49,7 @@ public class TransactionUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + transaction.getTitle().fullTitle + " ");
         sb.append(PREFIX_AMOUNT + transaction.getAmount().value + " ");
-        sb.append(PREFIX_DATE + transaction.getDate().value + " ");
+        sb.append(PREFIX_DATE + transaction.getDate().toString() + " ");
         transaction.getCategories().stream().forEach(
             s -> sb.append(PREFIX_CATEGORY + s.categoryName + " ")
         );
@@ -63,7 +63,7 @@ public class TransactionUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.fullTitle).append(" "));
         descriptor.getAmount().ifPresent(amount -> sb.append(PREFIX_AMOUNT).append(amount.value).append(" "));
-        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
+        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.toString()).append(" "));
         if (descriptor.getCategories().isPresent()) {
             Set<Category> categories = descriptor.getCategories().get();
             if (categories.isEmpty()) {
