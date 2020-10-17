@@ -8,7 +8,6 @@ import java.util.List;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
 /**
  * Deletes an income identified using its displayed index from the finance tracker.

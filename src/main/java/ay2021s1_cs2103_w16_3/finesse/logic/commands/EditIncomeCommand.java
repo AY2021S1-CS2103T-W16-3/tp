@@ -14,7 +14,6 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
 /**
  * Edits an income identified using its displayed index from the finance tracker.

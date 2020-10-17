@@ -3,12 +3,9 @@ package ay2021s1_cs2103_w16_3.finesse.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Objects;
 
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.ExpenseList;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.IncomeList;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.TransactionList;
 import javafx.collections.FXCollections;
