@@ -29,7 +29,7 @@ public class DeleteExpenseCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Expense expenseToDelete = (Expense) model.getFilteredExpenseList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        Expense expenseToDelete = model.getFilteredExpenseList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
         DeleteCommandStub superCommand = new DeleteCommandStub(INDEX_FIRST_TRANSACTION);
         DeleteExpenseCommand deleteExpenseCommand = new DeleteExpenseCommand(superCommand);
 
@@ -54,7 +54,7 @@ public class DeleteExpenseCommandTest {
     public void execute_validIndexFilteredList_success() {
         showExpenseAtIndex(model, INDEX_FIRST_TRANSACTION);
 
-        Expense expenseToDelete = (Expense) model.getFilteredExpenseList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        Expense expenseToDelete = model.getFilteredExpenseList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
         DeleteCommandStub superCommand = new DeleteCommandStub(INDEX_FIRST_TRANSACTION);
         DeleteExpenseCommand deleteExpenseCommand = new DeleteExpenseCommand(superCommand);
 

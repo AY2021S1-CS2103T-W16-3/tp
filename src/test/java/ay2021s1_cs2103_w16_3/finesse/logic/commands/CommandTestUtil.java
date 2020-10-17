@@ -127,7 +127,7 @@ public class CommandTestUtil {
     public static void showExpenseAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenseList().size());
 
-        Expense expense = (Expense) model.getFilteredExpenseList().get(targetIndex.getZeroBased());
+        Expense expense = model.getFilteredExpenseList().get(targetIndex.getZeroBased());
         final String[] splitTitle = expense.getTitle().fullTitle.split("\\s+");
         model.updateFilteredExpenseList(e -> e == expense);
 
@@ -141,7 +141,7 @@ public class CommandTestUtil {
     public static void showIncomeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredIncomeList().size());
 
-        Income income = (Income) model.getFilteredIncomeList().get(targetIndex.getZeroBased());
+        Income income = model.getFilteredIncomeList().get(targetIndex.getZeroBased());
         final String[] splitTitle = income.getTitle().fullTitle.split("\\s+");
         model.updateFilteredIncomeList(i -> i == income);
 

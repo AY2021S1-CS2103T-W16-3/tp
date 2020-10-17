@@ -55,7 +55,7 @@ public class EditExpenseCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastExpense = Index.fromOneBased(model.getFilteredExpenseList().size());
-        Expense lastExpense = (Expense) model.getFilteredExpenseList().get(indexLastExpense.getZeroBased());
+        Expense lastExpense = model.getFilteredExpenseList().get(indexLastExpense.getZeroBased());
 
         TransactionBuilder expenseInList = new TransactionBuilder(lastExpense);
         Expense editedExpense = expenseInList.withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB)
@@ -78,7 +78,7 @@ public class EditExpenseCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, new EditTransactionDescriptor());
         EditExpenseCommand editExpenseCommand = new EditExpenseCommand(superCommand);
-        Expense editedExpense = (Expense) model.getFilteredExpenseList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        Expense editedExpense = model.getFilteredExpenseList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
 
         String expectedMessage = String.format(EditExpenseCommand.MESSAGE_EDIT_EXPENSE_SUCCESS, editedExpense);
 
@@ -91,7 +91,7 @@ public class EditExpenseCommandTest {
     public void execute_filteredList_success() {
         showExpenseAtIndex(model, INDEX_FIRST_TRANSACTION);
 
-        Expense expenseInFilteredList = (Expense) model.getFilteredExpenseList()
+        Expense expenseInFilteredList = model.getFilteredExpenseList()
                 .get(INDEX_FIRST_TRANSACTION.getZeroBased());
         Expense editedExpense =
                 new TransactionBuilder(expenseInFilteredList).withTitle(VALID_TITLE_BOB).buildExpense();
