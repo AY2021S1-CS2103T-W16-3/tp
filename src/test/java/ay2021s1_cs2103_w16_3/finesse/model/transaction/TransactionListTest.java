@@ -4,9 +4,12 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.ALICE;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.BOB;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalTransactions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -118,5 +121,39 @@ public class TransactionListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> transactionList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void iterator_iteratesTransactionsInOrder_success() {
+        List<Transaction> transactions = getTypicalTransactions();
+        transactionList.setTransactions(transactions);
+        Iterator<Transaction> iterator = transactionList.iterator();
+        transactions.stream().forEach(transaction -> assertEquals(transaction, iterator.next()));
+    }
+
+    @Test
+    public void equals_distinctTransactionListsWithSameAttributes_returnsTrue() {
+        List<Transaction> transactions = getTypicalTransactions();
+        TransactionList firstTransactionList = new TransactionList();
+        TransactionList secondTransactionList = new TransactionList();
+
+        firstTransactionList.setTransactions(transactions);
+        secondTransactionList.setTransactions(transactions);
+
+        assertNotSame(firstTransactionList, secondTransactionList);
+        assertEquals(firstTransactionList, secondTransactionList);
+    }
+
+    @Test
+    public void hashCode_distinctTransactionListsWithSameAttributes_returnsTrue() {
+        List<Transaction> transactions = getTypicalTransactions();
+        TransactionList firstTransactionList = new TransactionList();
+        TransactionList secondTransactionList = new TransactionList();
+
+        firstTransactionList.setTransactions(transactions);
+        secondTransactionList.setTransactions(transactions);
+
+        assertNotSame(firstTransactionList, secondTransactionList);
+        assertEquals(firstTransactionList.hashCode(), secondTransactionList.hashCode());
     }
 }
