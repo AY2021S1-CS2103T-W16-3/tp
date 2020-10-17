@@ -18,6 +18,8 @@ import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyUserPrefs;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
 import javafx.collections.ObservableList;
@@ -129,12 +131,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Transaction> getFilteredExpenseList() {
+        public ObservableList<Expense> getFilteredExpenseList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Transaction> getFilteredIncomeList() {
+        public ObservableList<Income> getFilteredIncomeList() {
             throw new AssertionError("This method should not be called.");
         }
 

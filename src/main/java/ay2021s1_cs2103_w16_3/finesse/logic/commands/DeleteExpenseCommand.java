@@ -24,13 +24,13 @@ public class DeleteExpenseCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Transaction> lastShownList = model.getFilteredExpenseList();
+        List<Expense> lastShownList = model.getFilteredExpenseList();
 
         if (getTargetIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
         }
 
-        Expense expenseToDelete = (Expense) lastShownList.get(getTargetIndex().getZeroBased());
+        Expense expenseToDelete = lastShownList.get(getTargetIndex().getZeroBased());
         model.deleteTransaction(expenseToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EXPENSE_SUCCESS, expenseToDelete));
     }

@@ -30,13 +30,13 @@ public class EditExpenseCommand extends EditCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Transaction> lastShownList = model.getFilteredExpenseList();
+        List<Expense> lastShownList = model.getFilteredExpenseList();
 
         if (getTargetIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
         }
 
-        Expense expenseToEdit = (Expense) lastShownList.get(getTargetIndex().getZeroBased());
+        Expense expenseToEdit = lastShownList.get(getTargetIndex().getZeroBased());
         Expense editedExpense = createEditedExpense(expenseToEdit, getEditTransactionDescriptor());
 
         model.setTransaction(expenseToEdit, editedExpense);

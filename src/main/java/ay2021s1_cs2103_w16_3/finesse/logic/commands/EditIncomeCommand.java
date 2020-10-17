@@ -30,13 +30,13 @@ public class EditIncomeCommand extends EditCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Transaction> lastShownList = model.getFilteredIncomeList();
+        List<Income> lastShownList = model.getFilteredIncomeList();
 
         if (getTargetIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_INCOME_DISPLAYED_INDEX);
         }
 
-        Income incomeToEdit = (Income) lastShownList.get(getTargetIndex().getZeroBased());
+        Income incomeToEdit = lastShownList.get(getTargetIndex().getZeroBased());
         Income editedIncome = createEditedIncome(incomeToEdit, getEditTransactionDescriptor());
 
         model.setTransaction(incomeToEdit, editedIncome);

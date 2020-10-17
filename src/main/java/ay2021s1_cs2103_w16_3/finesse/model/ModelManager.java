@@ -9,7 +9,10 @@ import java.util.logging.Logger;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.core.GuiSettings;
 import ay2021s1_cs2103_w16_3.finesse.commons.core.LogsCenter;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -126,8 +129,10 @@ public class ModelManager implements Model {
      * {@code versionedFinanceTracker}.
      */
     @Override
-    public ObservableList<Transaction> getFilteredExpenseList() {
-        return filteredExpenses;
+    public ObservableList<Expense> getFilteredExpenseList() {
+        ObservableList<Expense> newFilteredExpenses = FXCollections.observableArrayList();
+        filteredExpenses.forEach(e -> newFilteredExpenses.add((Expense) e));
+        return FXCollections.unmodifiableObservableList(newFilteredExpenses);
     }
 
     /**
@@ -135,8 +140,10 @@ public class ModelManager implements Model {
      * {@code versionedFinanceTracker}.
      */
     @Override
-    public ObservableList<Transaction> getFilteredIncomeList() {
-        return filteredIncomes;
+    public ObservableList<Income> getFilteredIncomeList() {
+        ObservableList<Income> newFilteredIncomes = FXCollections.observableArrayList();
+        filteredIncomes.forEach(i -> newFilteredIncomes.add((Income) i));
+        return FXCollections.unmodifiableObservableList(newFilteredIncomes);
     }
 
     @Override

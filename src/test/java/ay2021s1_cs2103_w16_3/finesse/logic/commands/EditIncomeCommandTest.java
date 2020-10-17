@@ -55,7 +55,7 @@ public class EditIncomeCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastIncome = Index.fromOneBased(model.getFilteredIncomeList().size());
-        Income lastIncome = (Income) model.getFilteredIncomeList().get(indexLastIncome.getZeroBased());
+        Income lastIncome = model.getFilteredIncomeList().get(indexLastIncome.getZeroBased());
 
         TransactionBuilder incomeInList = new TransactionBuilder(lastIncome);
         Income editedIncome = incomeInList.withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB)
@@ -78,7 +78,7 @@ public class EditIncomeCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, new EditTransactionDescriptor());
         EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);
-        Income editedIncome = (Income) model.getFilteredIncomeList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        Income editedIncome = model.getFilteredIncomeList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
 
         String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_INCOME_SUCCESS, editedIncome);
 
@@ -91,10 +91,8 @@ public class EditIncomeCommandTest {
     public void execute_filteredList_success() {
         showIncomeAtIndex(model, INDEX_FIRST_TRANSACTION);
 
-        Income incomeInFilteredList = (Income) model.getFilteredIncomeList()
-                .get(INDEX_FIRST_TRANSACTION.getZeroBased());
-        Income editedIncome =
-                new TransactionBuilder(incomeInFilteredList).withTitle(VALID_TITLE_BOB).buildIncome();
+        Income incomeInFilteredList = model.getFilteredIncomeList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        Income editedIncome = new TransactionBuilder(incomeInFilteredList).withTitle(VALID_TITLE_BOB).buildIncome();
         EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION,
                 new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
         EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);

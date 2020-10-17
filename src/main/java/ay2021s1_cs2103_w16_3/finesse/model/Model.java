@@ -82,10 +82,10 @@ public interface Model {
     ObservableList<Transaction> getFilteredTransactionList();
 
     /** Returns an unmodifiable view of the filtered expense list. */
-    ObservableList<Transaction> getFilteredExpenseList();
+    ObservableList<Expense> getFilteredExpenseList();
 
     /** Returns an unmodifiable view of the filtered income list. */
-    ObservableList<Transaction> getFilteredIncomeList();
+    ObservableList<Income> getFilteredIncomeList();
 
     /**
      * Updates the filter of the filtered transaction list to filter by the given {@code predicate}.

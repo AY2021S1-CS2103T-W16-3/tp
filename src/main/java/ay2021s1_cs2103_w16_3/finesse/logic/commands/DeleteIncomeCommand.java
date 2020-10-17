@@ -24,13 +24,13 @@ public class DeleteIncomeCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Transaction> lastShownList = model.getFilteredIncomeList();
+        List<Income> lastShownList = model.getFilteredIncomeList();
 
         if (getTargetIndex().getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_INCOME_DISPLAYED_INDEX);
         }
 
-        Income incomeToDelete = (Income) lastShownList.get(getTargetIndex().getZeroBased());
+        Income incomeToDelete = lastShownList.get(getTargetIndex().getZeroBased());
         model.deleteTransaction(incomeToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_INCOME_SUCCESS, incomeToDelete));
     }
