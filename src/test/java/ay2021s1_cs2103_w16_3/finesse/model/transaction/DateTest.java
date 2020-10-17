@@ -1,7 +1,9 @@
 package ay2021s1_cs2103_w16_3.finesse.model.transaction;
 
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Clock;
@@ -53,5 +55,21 @@ public class DateTest {
 
         // valid date
         assertTrue(Date.isValidDate("06/10/2020")); // 6 October 2020
+    }
+
+    @Test
+    public void equals_distinctDatesWithSameAttributes_returnsTrue() {
+        Date firstDate = new Date("22/09/2000");
+        Date secondDate = new Date("22/09/2000");
+        assertNotSame(firstDate, secondDate);
+        assertEquals(firstDate, secondDate);
+    }
+
+    @Test
+    public void hashCode_distinctDatesWithSameAttributes_returnsTrue() {
+        Date firstDate = new Date("22/09/2000");
+        Date secondDate = new Date("22/09/2000");
+        assertNotSame(firstDate, secondDate);
+        assertEquals(firstDate.hashCode(), secondDate.hashCode());
     }
 }
