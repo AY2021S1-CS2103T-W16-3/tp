@@ -70,7 +70,7 @@ public class DeleteCommandTest {
         showTransactionAtIndex(model, INDEX_FIRST_TRANSACTION);
 
         Index outOfBoundIndex = INDEX_SECOND_TRANSACTION;
-        // ensures that outOfBoundIndex is still in bounds of finance tracker list
+        // Ensures that outOfBoundIndex is still within the boundaries of the finance tracker's list of transactions.
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getTransactionList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
