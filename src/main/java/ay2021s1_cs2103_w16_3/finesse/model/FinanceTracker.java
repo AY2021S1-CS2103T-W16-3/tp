@@ -20,8 +20,6 @@ import javafx.collections.ObservableList;
 public class FinanceTracker implements ReadOnlyFinanceTracker {
 
     private final TransactionList transactions;
-    private final ExpenseList expenses;
-    private final IncomeList incomes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,8 +30,6 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
      */
     {
         transactions = new TransactionList();
-        expenses = new ExpenseList();
-        incomes = new IncomeList();
     }
 
     public FinanceTracker() {}
@@ -106,37 +102,35 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
 
     @Override
     public ObservableList<Expense> getExpenseList() {
-        ObservableList<Expense> expensesX = FXCollections.observableArrayList();
+        ObservableList<Expense> expenses = FXCollections.observableArrayList();
         transactions.forEach(t -> {
             if (t instanceof Expense) {
-                expensesX.add((Expense) t);
+                expenses.add((Expense) t);
             }
         });
-        return FXCollections.unmodifiableObservableList(expensesX);
+        return FXCollections.unmodifiableObservableList(expenses);
     }
 
     @Override
     public ObservableList<Income> getIncomeList() {
-        ObservableList<Income> incomesX = FXCollections.observableArrayList();
+        ObservableList<Income> incomes = FXCollections.observableArrayList();
         transactions.forEach(t -> {
             if (t instanceof Income) {
-                incomesX.add((Income) t);
+                incomes.add((Income) t);
             }
         });
-        return FXCollections.unmodifiableObservableList(incomesX);
+        return FXCollections.unmodifiableObservableList(incomes);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FinanceTracker // instanceof handles nulls
-                && transactions.equals(((FinanceTracker) other).transactions)
-                && expenses.equals(((FinanceTracker) other).expenses)
-                && incomes.equals(((FinanceTracker) other).incomes));
+                && transactions.equals(((FinanceTracker) other).transactions));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(transactions, expenses, incomes);
+        return transactions.hashCode();
     }
 }
