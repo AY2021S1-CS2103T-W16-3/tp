@@ -21,6 +21,8 @@ import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
@@ -105,7 +107,13 @@ public class EditCommand extends Command {
         Set<Category> updatedCategories = editTransactionDescriptor.getCategories()
                 .orElse(transactionToEdit.getCategories());
 
-        return new Transaction(updatedTitle, updatedAmount, updatedDate, updatedCategories);
+        if (transactionToEdit instanceof Expense) {
+            return new Expense(updatedTitle, updatedAmount, updatedDate, updatedCategories);
+        } else if (transactionToEdit instanceof Income) {
+            return new Income(updatedTitle, updatedAmount, updatedDate, updatedCategories);
+        } else {
+            return new Transaction(updatedTitle, updatedAmount, updatedDate, updatedCategories);
+        }
     }
 
     @Override

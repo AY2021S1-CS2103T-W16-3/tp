@@ -23,6 +23,8 @@ import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
 import ay2021s1_cs2103_w16_3.finesse.model.UserPrefs;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import ay2021s1_cs2103_w16_3.finesse.testutil.EditTransactionDescriptorBuilder;
 import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
@@ -36,7 +38,18 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Transaction editedTransaction = new TransactionBuilder().build();
+        Transaction transactionToEdit = model.getFilteredTransactionList().get(0);
+
+        TransactionBuilder editedTransactionBuilder = new TransactionBuilder();
+        Transaction editedTransaction;
+        if (transactionToEdit instanceof Expense) {
+            editedTransaction = editedTransactionBuilder.buildExpense();
+        } else if (transactionToEdit instanceof Income) {
+            editedTransaction = editedTransactionBuilder.buildIncome();
+        } else {
+            editedTransaction = editedTransactionBuilder.build();
+        }
+
         EditCommand.EditTransactionDescriptor descriptor =
                 new EditTransactionDescriptorBuilder(editedTransaction).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TRANSACTION, descriptor);
@@ -44,7 +57,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
-        expectedModel.setTransaction(model.getFilteredTransactionList().get(0), editedTransaction);
+        expectedModel.setTransaction(transactionToEdit, editedTransaction);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -54,9 +67,16 @@ public class EditCommandTest {
         Index indexLastTransaction = Index.fromOneBased(model.getFilteredTransactionList().size());
         Transaction lastTransaction = model.getFilteredTransactionList().get(indexLastTransaction.getZeroBased());
 
-        TransactionBuilder transactionInList = new TransactionBuilder(lastTransaction);
-        Transaction editedTransaction = transactionInList.withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB)
-                .withCategories(VALID_CATEGORY_HUSBAND).build();
+        TransactionBuilder editedTransactionBuilder = new TransactionBuilder(lastTransaction)
+                .withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB).withCategories(VALID_CATEGORY_HUSBAND);
+        Transaction editedTransaction;
+        if (lastTransaction instanceof Expense) {
+            editedTransaction = editedTransactionBuilder.buildExpense();
+        } else if (lastTransaction instanceof Income) {
+            editedTransaction = editedTransactionBuilder.buildIncome();
+        } else {
+            editedTransaction = editedTransactionBuilder.build();
+        }
 
         EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
                 .withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB).withCategories(VALID_CATEGORY_HUSBAND).build();
@@ -88,15 +108,25 @@ public class EditCommandTest {
 
         Transaction transactionInFilteredList = model.getFilteredTransactionList()
                 .get(INDEX_FIRST_TRANSACTION.getZeroBased());
-        Transaction editedTransaction =
-                new TransactionBuilder(transactionInFilteredList).withTitle(VALID_TITLE_BOB).build();
+
+        TransactionBuilder editedTransactionBuilder =
+                new TransactionBuilder(transactionInFilteredList).withTitle(VALID_TITLE_BOB);
+        Transaction editedTransaction;
+        if (transactionInFilteredList instanceof Expense) {
+            editedTransaction = editedTransactionBuilder.buildExpense();
+        } else if (transactionInFilteredList instanceof Income) {
+            editedTransaction = editedTransactionBuilder.buildIncome();
+        } else {
+            editedTransaction = editedTransactionBuilder.build();
+        }
+
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TRANSACTION,
                 new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction);
 
         Model expectedModel = new ModelManager(new FinanceTracker(model.getFinanceTracker()), new UserPrefs());
-        expectedModel.setTransaction(model.getFilteredTransactionList().get(0), editedTransaction);
+        expectedModel.setTransaction(transactionInFilteredList, editedTransaction);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
