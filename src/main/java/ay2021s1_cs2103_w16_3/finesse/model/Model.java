@@ -73,6 +73,16 @@ public interface Model {
     void addTransaction(Transaction transaction);
 
     /**
+     * Adds the given expense.
+     */
+    void addExpense(Expense expense);
+
+    /**
+     * Adds the given income.
+     */
+    void addIncome(Income income);
+
+    /**
      * Replaces the given transaction {@code target} with {@code editedTransaction}.
      * {@code target} must exist in the finance tracker.
      */

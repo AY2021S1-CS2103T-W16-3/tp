@@ -87,7 +87,7 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + AMOUNT_DESC_AMY + DATE_DESC_AMY;
         Expense expectedExpense = new TransactionBuilder(AMY).withCategories().buildExpense();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addTransaction(expectedExpense);
+        expectedModel.addExpense(expectedExpense);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

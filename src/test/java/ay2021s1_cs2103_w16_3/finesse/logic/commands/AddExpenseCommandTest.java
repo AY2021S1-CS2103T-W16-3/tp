@@ -106,6 +106,16 @@ public class AddExpenseCommandTest {
         }
 
         @Override
+        public void addExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addIncome(Income income) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setFinanceTracker(ReadOnlyFinanceTracker newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -160,12 +170,12 @@ public class AddExpenseCommandTest {
      * A Model stub that always accept the transaction being added.
      */
     private class ModelStubAcceptingExpenseAdded extends ModelStub {
-        final ArrayList<Transaction> expensesAdded = new ArrayList<>();
+        final ArrayList<Expense> expensesAdded = new ArrayList<>();
 
         @Override
-        public void addTransaction(Transaction transaction) {
-            requireNonNull(transaction);
-            expensesAdded.add(transaction);
+        public void addExpense(Expense expense) {
+            requireNonNull(expense);
+            expensesAdded.add(expense);
         }
 
         @Override

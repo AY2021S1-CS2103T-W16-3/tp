@@ -107,6 +107,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addExpense(Expense expense) {
+        financeTracker.addTransaction(expense);
+        updateFilteredExpenseList(PREDICATE_SHOW_ALL_TRANSACTIONS);
+    }
+
+    @Override
+    public void addIncome(Income income) {
+        financeTracker.addTransaction(income);
+        updateFilteredIncomeList(PREDICATE_SHOW_ALL_TRANSACTIONS);
+    }
+
+    @Override
     public void setTransaction(Transaction target, Transaction editedTransaction) {
         requireAllNonNull(target, editedTransaction);
 

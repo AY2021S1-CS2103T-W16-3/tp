@@ -38,7 +38,7 @@ public class ListTransactionCommandTest {
 
     @Test
     public void execute_hasSomeIncome() {
-        model.addTransaction(new TransactionBuilder().buildIncome());
+        model.addIncome(new TransactionBuilder().buildIncome());
         expectedModel = new ModelManager(model.getFinanceTracker(), new UserPrefs());
         expectedModel.updateFilteredTransactionList(transaction -> true);
         assertCommandSuccess(new ListTransactionCommand(), model,
@@ -49,7 +49,7 @@ public class ListTransactionCommandTest {
 
     @Test
     public void execute_hasSomeExpense() {
-        model.addTransaction(new TransactionBuilder().buildExpense());
+        model.addExpense(new TransactionBuilder().buildExpense());
         expectedModel = new ModelManager(model.getFinanceTracker(), new UserPrefs());
         expectedModel.updateFilteredTransactionList(transaction -> true);
         assertCommandSuccess(new ListTransactionCommand(), model,

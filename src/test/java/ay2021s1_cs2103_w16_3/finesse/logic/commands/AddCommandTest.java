@@ -106,6 +106,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addIncome(Income income) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setFinanceTracker(ReadOnlyFinanceTracker newData) {
             throw new AssertionError("This method should not be called.");
         }
