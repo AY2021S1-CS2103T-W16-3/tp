@@ -16,16 +16,8 @@ import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
  */
 public class Transaction {
 
-    public static final Comparator<Transaction> TRANSACTION_COMPARATOR = new Comparator<Transaction>() {
-        @Override
-        public int compare(Transaction t1, Transaction t2) {
-            int comparisonByDate = t1.date.compareTo(t2.date);
-            if (comparisonByDate != 0) {
-                return comparisonByDate;
-            }
-            return t1.title.compareTo(t2.title);
-        }
-    };
+    public static final Comparator<Transaction> TRANSACTION_COMPARATOR =
+            Comparator.comparing((Transaction t) -> t.date).thenComparing(t -> t.title);
 
     // Identity fields
     private final Title title;
