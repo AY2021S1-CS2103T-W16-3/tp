@@ -1,7 +1,9 @@
 package ay2021s1_cs2103_w16_3.finesse.model.transaction;
 
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -44,5 +46,21 @@ public class AmountTest {
         assertTrue(Amount.isValidAmount("911")); // numbers
         assertTrue(Amount.isValidAmount("93121534")); // long numbers
         assertTrue(Amount.isValidAmount("124293842033123")); // long numbers
+    }
+
+    @Test
+    public void equals_distinctAmountsWithSameAttributes_returnsTrue() {
+        Amount firstAmount = new Amount("3.78");
+        Amount secondAmount = new Amount("3.78");
+        assertNotSame(firstAmount, secondAmount);
+        assertEquals(firstAmount, secondAmount);
+    }
+
+    @Test
+    public void hashCode_distinctAmountsWithSameAttributes_returnsTrue() {
+        Amount firstAmount = new Amount("3.78");
+        Amount secondAmount = new Amount("3.78");
+        assertNotSame(firstAmount, secondAmount);
+        assertEquals(firstAmount.hashCode(), secondAmount.hashCode());
     }
 }
