@@ -80,7 +80,7 @@ public class TransactionList implements Iterable<Transaction> {
     }
 
     /**
-     * Sorts the list based on {@code TRANSACTION_COMPARATOR}
+     * Sorts the list based on {@code TRANSACTION_COMPARATOR}.
      */
     public void sortTransactions() {
         internalList.sort(TRANSACTION_COMPARATOR);
