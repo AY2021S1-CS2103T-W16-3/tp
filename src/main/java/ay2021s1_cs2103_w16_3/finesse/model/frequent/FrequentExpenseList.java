@@ -1,15 +1,22 @@
 package ay2021s1_cs2103_w16_3.finesse.model.frequent;
 
-import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.FrequentExpenseNotFoundException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import static ay2021s1_cs2103_w16_3.finesse.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static ay2021s1_cs2103_w16_3.finesse.commons.util.CollectionUtil.requireAllNonNull;
-import static java.util.Objects.requireNonNull;
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.FrequentExpenseNotFoundException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+/**
+ * A list of frequent expenses that does not allow nulls.
+ * The removal of a transaction uses FrequentExpense#equals(Object) so as to ensure that the transaction with exactly
+ * the same fields will be removed.
+ *
+ * Supports a minimal set of list operations.
+ */
 public class FrequentExpenseList {
     private final ObservableList<FrequentExpense> internalFrequentExpenseList = FXCollections.observableArrayList();
     private final ObservableList<FrequentExpense> internalUnmodifiableFrequentExpenseList =

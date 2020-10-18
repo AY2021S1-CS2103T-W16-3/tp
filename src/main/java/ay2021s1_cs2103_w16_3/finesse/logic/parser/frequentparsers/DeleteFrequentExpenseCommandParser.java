@@ -8,6 +8,9 @@ import ay2021s1_cs2103_w16_3.finesse.logic.parser.Parser;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.ParserUtil;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
 
+/**
+ * Parser input arguments and creates a new DeleteFrequentExpenseCommand object
+ */
 public class DeleteFrequentExpenseCommandParser implements Parser<DeleteFrequentExpenseCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteFrequentExpenseCommand

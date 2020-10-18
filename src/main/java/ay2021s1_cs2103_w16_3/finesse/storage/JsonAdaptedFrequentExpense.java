@@ -1,20 +1,24 @@
 package ay2021s1_cs2103_w16_3.finesse.storage;
 
-import ay2021s1_cs2103_w16_3.finesse.commons.exceptions.IllegalValueException;
-import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
-import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import ay2021s1_cs2103_w16_3.finesse.commons.exceptions.IllegalValueException;
+import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
+
+/**
+ * JSON-friendly version of {@link FrequentExpense}.
+ */
 public class JsonAdaptedFrequentExpense {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "FrequentExpense's %s is missing!";
 
