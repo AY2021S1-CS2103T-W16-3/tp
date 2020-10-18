@@ -10,13 +10,8 @@ import static java.util.Objects.requireNonNull;
 public class Title implements Comparable<Title> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
-
-    /*
-     * The first character of the title must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+            "Titles should be printable and contain at least one graphical character.";
+    public static final String VALIDATION_REGEX = "\\p{Graph}\\p{Print}*";
 
     public final String fullTitle;
 

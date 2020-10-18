@@ -19,7 +19,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
 import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
 
 public class JsonAdaptedExpenseTest {
-    private static final String INVALID_TITLE = "R@chel";
+    private static final String INVALID_TITLE = "R\u2416chel";
     private static final String INVALID_AMOUNT = "+651234";
     private static final String INVALID_DATE = "example.com";
     private static final String INVALID_CATEGORY = "\u2416friend";
