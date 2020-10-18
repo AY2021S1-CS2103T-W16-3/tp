@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.core.GuiSettings;
 import ay2021s1_cs2103_w16_3.finesse.commons.core.LogsCenter;
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Transaction> filteredTransactions;
     private final FilteredList<Transaction> filteredExpenses;
     private final FilteredList<Transaction> filteredIncomes;
+    private final FilteredList<FrequentExpense> filteredFrequentExpenses;
 
     /**
      * Initializes a ModelManager with the given financeTracker and userPrefs.
@@ -42,6 +44,8 @@ public class ModelManager implements Model {
         filteredTransactions = new FilteredList<>(this.financeTracker.getTransactionList());
         filteredExpenses = new FilteredList<>(this.financeTracker.getTransactionList(), PREDICATE_SHOW_ALL_EXPENSES);
         filteredIncomes = new FilteredList<>(this.financeTracker.getTransactionList(), PREDICATE_SHOW_ALL_INCOMES);
+        filteredFrequentExpenses = new FilteredList<>(this.financeTracker.getFrequentExpenseList(),
+                PREDICATE_SHOW_ALL_FREQUENT_EXPENSES);
     }
 
     public ModelManager() {
@@ -119,6 +123,13 @@ public class ModelManager implements Model {
         financeTracker.setTransaction(target, editedTransaction);
     }
 
+    //=========== Frequent Expense ================================================================================
+
+    @Override
+    public void addFrequentExpense(FrequentExpense frequentExpense) {
+        financeTracker.addFrequentExpense(frequentExpense);
+    }
+
     //=========== Filtered Transaction List Accessors =============================================================
 
     /**
@@ -150,6 +161,13 @@ public class ModelManager implements Model {
         ObservableList<Income> newFilteredIncomes = FXCollections.observableArrayList();
         filteredIncomes.forEach(i -> newFilteredIncomes.add((Income) i));
         return FXCollections.unmodifiableObservableList(newFilteredIncomes);
+    }
+
+    @Override
+    public ObservableList<FrequentExpense> getFilteredFrequentExpenseList() {
+        ObservableList<FrequentExpense> newFilteredFrequentExpenses = FXCollections.observableArrayList();
+        filteredFrequentExpenses.forEach(i -> newFilteredFrequentExpenses.add(i));
+        return FXCollections.unmodifiableObservableList(newFilteredFrequentExpenses);
     }
 
     @Override

@@ -30,7 +30,9 @@ import ay2021s1_cs2103_w16_3.finesse.logic.commands.ListExpenseCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.ListIncomeCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.ListTransactionCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.TabCommand;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.frequent.AddFrequentExpenseCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.frequentparsers.AddFrequentExpenseCommandParser;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiState;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiState.Tab;
 
@@ -86,6 +88,10 @@ public class FinanceTrackerParser {
         case AddIncomeCommand.COMMAND_WORD:
         case AddIncomeCommand.COMMAND_ALIAS:
             return new AddIncomeCommandParser().parse(arguments);
+
+        case AddFrequentExpenseCommand.COMMAND_WORD:
+        case AddFrequentExpenseCommand.COMMAND_ALIAS:
+            return new AddFrequentExpenseCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             final EditCommand baseEditCommand = new EditCommandParser().parse(arguments);

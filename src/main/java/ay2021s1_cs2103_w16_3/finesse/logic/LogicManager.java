@@ -13,6 +13,7 @@ import ay2021s1_cs2103_w16_3.finesse.logic.parser.FinanceTrackerParser;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
@@ -70,6 +71,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Expense> getFilteredExpenseList() {
         return model.getFilteredExpenseList();
+    }
+
+    @Override
+    public ObservableList<FrequentExpense> getFilteredFrequentExpenseList() {
+        return model.getFilteredFrequentExpenseList();
     }
 
     @Override

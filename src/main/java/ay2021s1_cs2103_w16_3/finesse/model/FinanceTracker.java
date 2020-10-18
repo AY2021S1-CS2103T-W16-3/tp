@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpenseList;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
@@ -17,6 +19,7 @@ import javafx.collections.ObservableList;
 public class FinanceTracker implements ReadOnlyFinanceTracker {
 
     private final TransactionList transactions;
+    private final FrequentExpenseList frequentExpenses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,6 +30,7 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
      */
     {
         transactions = new TransactionList();
+        frequentExpenses = new FrequentExpenseList();
     }
 
     public FinanceTracker() {}
@@ -49,12 +53,20 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
     }
 
     /**
+     * Replaces the contents of the transaction list with {@code frequentExpenses}.
+     */
+    public void setFrequentExpenses(List<FrequentExpense> frequentExpenses) {
+        this.frequentExpenses.setFrequentExpenses(frequentExpenses);
+    }
+
+    /**
      * Resets the existing data of this {@code FinanceTracker} with {@code newData}.
      */
     public void resetData(ReadOnlyFinanceTracker newData) {
         requireNonNull(newData);
 
         setTransactions(newData.getTransactionList());
+        setFrequentExpenses(newData.getFrequentExpenseList());
     }
 
     //// transaction-level operations
@@ -64,6 +76,13 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
      */
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
+    }
+
+    /**
+     * Adds a frequent expense to the finance tracker.
+     */
+    public void addFrequentExpense(FrequentExpense frequentExpense) {
+        frequentExpenses.add(frequentExpense);
     }
 
     /**
@@ -117,6 +136,11 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
             }
         });
         return FXCollections.unmodifiableObservableList(incomes);
+    }
+
+    @Override
+    public ObservableList<FrequentExpense> getFrequentExpenseList() {
+        return frequentExpenses.asUnmodifiableObservableList();
     }
 
     @Override

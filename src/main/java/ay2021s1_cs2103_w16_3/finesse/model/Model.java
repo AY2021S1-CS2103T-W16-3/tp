@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.core.GuiSettings;
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
@@ -22,6 +23,8 @@ public interface Model {
 
     /** {@code Predicate} that evaluates to true if the transaction is an {@code Income} */
     Predicate<Transaction> PREDICATE_SHOW_ALL_INCOMES = transaction -> transaction instanceof Income;
+
+    Predicate<FrequentExpense> PREDICATE_SHOW_ALL_FREQUENT_EXPENSES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -78,6 +81,11 @@ public interface Model {
     void addIncome(Income income);
 
     /**
+     * Adds the given frequent expense.
+     */
+    void addFrequentExpense(FrequentExpense frequentExpense);
+
+    /**
      * Replaces the given transaction {@code target} with {@code editedTransaction}.
      * {@code target} must exist in the finance tracker.
      */
@@ -91,6 +99,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered income list. */
     ObservableList<Income> getFilteredIncomeList();
+
+    /** Returns an unmodifiable view of the filtered income list. */
+    ObservableList<FrequentExpense> getFilteredFrequentExpenseList();
 
     /**
      * Updates the filter of the filtered transaction list to filter by the given {@code predicate}.
