@@ -25,40 +25,38 @@ public class TransactionTest {
     // TODO: Not properly fixing this since this will be deleted once {@code Transaction} is made abstract.
     @Test
     public void equals() {
-        // same values (expense) -> returns true
-        Expense bubbleTeaCopy = new TransactionBuilder(BUBBLE_TEA).buildExpense();
-        assertTrue(BUBBLE_TEA.equals(bubbleTeaCopy));
+        Transaction bubbleTea = new TransactionBuilder(BUBBLE_TEA).build();
 
-        // same values (income) -> returns true
-        Income internshipCopy = new TransactionBuilder(INTERNSHIP).buildIncome();
-        assertTrue(INTERNSHIP.equals(internshipCopy));
+        // same values -> returns true
+        Transaction bubbleTeaCopy = new TransactionBuilder(bubbleTea).build();
+        assertTrue(bubbleTea.equals(bubbleTeaCopy));
 
         // same object -> returns true
-        assertTrue(BUBBLE_TEA.equals(BUBBLE_TEA));
+        assertTrue(bubbleTea.equals(bubbleTea));
 
         // null -> returns false
-        assertFalse(BUBBLE_TEA.equals(null));
+        assertFalse(bubbleTea.equals(null));
 
         // different type -> returns false
-        assertFalse(BUBBLE_TEA.equals(5));
+        assertFalse(bubbleTea.equals(5));
 
         // different transaction -> returns false
-        assertFalse(BUBBLE_TEA.equals(INTERNSHIP_2));
+        assertFalse(bubbleTea.equals(INTERNSHIP_2));
 
         // different title -> returns false
-        Transaction editedBubbleTea = new TransactionBuilder(BUBBLE_TEA).withTitle(VALID_TITLE_INTERNSHIP).build();
-        assertFalse(BUBBLE_TEA.equals(editedBubbleTea));
+        Transaction editedBubbleTea = new TransactionBuilder(bubbleTea).withTitle(VALID_TITLE_INTERNSHIP).build();
+        assertFalse(bubbleTea.equals(editedBubbleTea));
 
         // different amounts -> returns false
-        editedBubbleTea = new TransactionBuilder(BUBBLE_TEA).withAmount(VALID_AMOUNT_INTERNSHIP).build();
-        assertFalse(BUBBLE_TEA.equals(editedBubbleTea));
+        editedBubbleTea = new TransactionBuilder(bubbleTea).withAmount(VALID_AMOUNT_INTERNSHIP).build();
+        assertFalse(bubbleTea.equals(editedBubbleTea));
 
         // different dates -> returns false
-        editedBubbleTea = new TransactionBuilder(BUBBLE_TEA).withDate(VALID_DATE_INTERNSHIP).build();
-        assertFalse(BUBBLE_TEA.equals(editedBubbleTea));
+        editedBubbleTea = new TransactionBuilder(bubbleTea).withDate(VALID_DATE_INTERNSHIP).build();
+        assertFalse(bubbleTea.equals(editedBubbleTea));
 
         // different categories -> returns false
-        editedBubbleTea = new TransactionBuilder(BUBBLE_TEA).withCategories(VALID_CATEGORY_WORK).build();
-        assertFalse(BUBBLE_TEA.equals(editedBubbleTea));
+        editedBubbleTea = new TransactionBuilder(bubbleTea).withCategories(VALID_CATEGORY_WORK).build();
+        assertFalse(bubbleTea.equals(editedBubbleTea));
     }
 }
