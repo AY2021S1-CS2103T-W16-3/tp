@@ -33,7 +33,7 @@ public class DeleteFrequentExpenseCommand extends Command {
     }
 
     @Override
-    public CommandResult execute (Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<FrequentExpense> lastShownList = model.getFilteredFrequentExpenseList();
 
