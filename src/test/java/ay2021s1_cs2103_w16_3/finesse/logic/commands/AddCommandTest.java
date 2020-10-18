@@ -44,26 +44,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Transaction alice = new TransactionBuilder().withTitle("Alice").build();
-        Transaction bob = new TransactionBuilder().withTitle("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Transaction firstTransaction = new TransactionBuilder().withTitle("First Transaction").build();
+        Transaction secondTransaction = new TransactionBuilder().withTitle("Second Transaction").build();
+        AddCommand addFirstTransactionCommand = new AddCommand(firstTransaction);
+        AddCommand addSecondTransactionCommand = new AddCommand(secondTransaction);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addFirstTransactionCommand.equals(addFirstTransactionCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addFirstTransactionCommandCopy = new AddCommand(firstTransaction);
+        assertTrue(addFirstTransactionCommand.equals(addFirstTransactionCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addFirstTransactionCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addFirstTransactionCommand.equals(null));
 
         // different transaction -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addFirstTransactionCommand.equals(addSecondTransactionCommand));
     }
 
     /**

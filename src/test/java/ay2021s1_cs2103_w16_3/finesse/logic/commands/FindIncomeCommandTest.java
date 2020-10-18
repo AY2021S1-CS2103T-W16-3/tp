@@ -2,9 +2,9 @@ package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INCOMES_LISTED_OVERVIEW;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.CARL;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.ELLE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.FIONA;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.GST_VOUCHER;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.TEACHING_ASSISTANT;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -72,12 +72,13 @@ public class FindIncomeCommandTest {
     @Test
     public void execute_multipleKeywords_multipleIncomesFound() {
         String expectedMessage = String.format(MESSAGE_INCOMES_LISTED_OVERVIEW, 3);
-        TitleContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        TitleContainsKeywordsPredicate predicate = preparePredicate("gst internship teaching");
         FindCommandStub superCommand = new FindCommandStub(predicate);
         FindIncomeCommand findIncomeCommand = new FindIncomeCommand(superCommand);
         expectedModel.updateFilteredIncomeList(predicate);
         assertCommandSuccess(findIncomeCommand, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredIncomeList());
+        // Ordered by date, then by title.
+        assertEquals(Arrays.asList(TEACHING_ASSISTANT, GST_VOUCHER, INTERNSHIP), model.getFilteredIncomeList());
     }
 
     /**

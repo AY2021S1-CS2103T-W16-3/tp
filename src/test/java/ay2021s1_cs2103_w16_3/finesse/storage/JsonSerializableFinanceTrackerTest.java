@@ -16,8 +16,10 @@ import ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions;
 public class JsonSerializableFinanceTrackerTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableFinanceTrackerTest");
-    private static final Path TYPICAL_TRANSACTIONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsFinanceTracker.json");
-    private static final Path INVALID_TRANSACTION_FILE = TEST_DATA_FOLDER.resolve("invalidPersonFinanceTracker.json");
+    private static final Path TYPICAL_TRANSACTIONS_FILE =
+            TEST_DATA_FOLDER.resolve("typicalTransactionsFinanceTracker.json");
+    private static final Path INVALID_TRANSACTION_FILE =
+            TEST_DATA_FOLDER.resolve("invalidTransactionsFinanceTracker.json");
 
     @Test
     public void toModelType_typicalTransactionsFile_success() throws Exception {

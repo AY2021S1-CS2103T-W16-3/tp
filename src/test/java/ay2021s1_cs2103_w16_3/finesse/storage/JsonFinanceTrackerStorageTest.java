@@ -1,9 +1,9 @@
 package ay2021s1_cs2103_w16_3.finesse.storage;
 
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.ALICE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.HOON;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.IDA;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.TEACHING_ASSISTANT_2;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.TUITION_FEES_2;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -54,13 +54,13 @@ public class JsonFinanceTrackerStorageTest {
 
     @Test
     public void readFinanceTracker_invalidTransactionFinanceTracker_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readFinanceTracker("invalidPersonFinanceTracker.json"));
+        assertThrows(DataConversionException.class, () -> readFinanceTracker("invalidTransactionsFinanceTracker.json"));
     }
 
     @Test
     public void readFinanceTracker_invalidAndValidTransactionFinanceTracker_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readFinanceTracker(
-                "invalidAndValidPersonFinanceTracker.json"));
+                "invalidAndValidTransactionsFinanceTracker.json"));
     }
 
     @Test
@@ -75,14 +75,14 @@ public class JsonFinanceTrackerStorageTest {
         assertEquals(original, new FinanceTracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addTransaction(new TransactionBuilder(HOON).buildExpense());
-        original.removeTransaction(new TransactionBuilder(ALICE).buildExpense());
+        original.addTransaction(new TransactionBuilder(TUITION_FEES_2).buildExpense());
+        original.removeTransaction(new TransactionBuilder(BUBBLE_TEA).buildExpense());
         jsonFinanceTrackerStorage.saveFinanceTracker(original, filePath);
         readBack = jsonFinanceTrackerStorage.readFinanceTracker(filePath).get();
         assertEquals(original, new FinanceTracker(readBack));
 
         // Save and read without specifying file path
-        original.addTransaction(new TransactionBuilder(IDA).buildIncome());
+        original.addTransaction(new TransactionBuilder(TEACHING_ASSISTANT_2).buildIncome());
         jsonFinanceTrackerStorage.saveFinanceTracker(original); // file path not specified
         readBack = jsonFinanceTrackerStorage.readFinanceTracker().get(); // file path not specified
         assertEquals(original, new FinanceTracker(readBack));

@@ -44,26 +44,26 @@ public class AddExpenseCommandTest {
 
     @Test
     public void equals() {
-        Expense alice = new TransactionBuilder().withTitle("Alice").buildExpense();
-        Expense bob = new TransactionBuilder().withTitle("Bob").buildExpense();
-        AddExpenseCommand addAliceCommand = new AddExpenseCommand(alice);
-        AddExpenseCommand addBobCommand = new AddExpenseCommand(bob);
+        Expense bubbleTea = new TransactionBuilder().withTitle("Bubble Tea").buildExpense();
+        Expense tuitionFees = new TransactionBuilder().withTitle("Tuition Fees").buildExpense();
+        AddExpenseCommand addBubbleTeaCommand = new AddExpenseCommand(bubbleTea);
+        AddExpenseCommand addTuitionFeesCommand = new AddExpenseCommand(tuitionFees);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addBubbleTeaCommand.equals(addBubbleTeaCommand));
 
         // same values -> returns true
-        AddExpenseCommand addAliceCommandCopy = new AddExpenseCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddExpenseCommand addBubbleTeaCommandCopy = new AddExpenseCommand(bubbleTea);
+        assertTrue(addBubbleTeaCommand.equals(addBubbleTeaCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addBubbleTeaCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addBubbleTeaCommand.equals(null));
 
         // different transaction -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addBubbleTeaCommand.equals(addTuitionFeesCommand));
     }
 
     /**

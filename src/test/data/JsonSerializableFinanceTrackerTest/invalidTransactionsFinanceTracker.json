@@ -1,0 +1,14 @@
+{
+  "expenses": [ {
+    "title": "Bubble Tea",
+    "amount": "$4.80",
+    "date": "not a date",
+    "categories": [ "Food & Beverage" ]
+  } ],
+  "incomes": [ {
+    "title": "Internship",
+    "amount": "$560.00",
+    "date": "not a date",
+    "categories": [ "Work" ]
+  } ]
+}

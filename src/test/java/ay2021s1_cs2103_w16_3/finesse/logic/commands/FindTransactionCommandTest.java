@@ -2,9 +2,12 @@ package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_TRANSACTIONS_LISTED_OVERVIEW;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.CARL;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.ELLE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.FIONA;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.AIMA;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.CARLS_JR;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.GST_VOUCHER;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.PEN_REFILLS;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.TEACHING_ASSISTANT;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -73,18 +76,18 @@ public class FindTransactionCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTransactionsFound() {
         String expectedMessage = String.format(MESSAGE_TRANSACTIONS_LISTED_OVERVIEW, 6);
-        TitleContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        TitleContainsKeywordsPredicate predicate = preparePredicate("gst carl's artificial internship pen teaching");
         FindCommandStub superCommand = new FindCommandStub(predicate);
         FindTransactionCommand findTransactionCommand = new FindTransactionCommand(superCommand);
         expectedModel.updateFilteredTransactionList(predicate);
         assertCommandSuccess(findTransactionCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(
-                new TransactionBuilder(CARL).buildExpense(),
-                new TransactionBuilder(CARL).buildIncome(),
-                new TransactionBuilder(ELLE).buildExpense(),
-                new TransactionBuilder(ELLE).buildIncome(),
-                new TransactionBuilder(FIONA).buildExpense(),
-                new TransactionBuilder(FIONA).buildIncome()
+                new TransactionBuilder(TEACHING_ASSISTANT).buildIncome(),
+                new TransactionBuilder(AIMA).buildExpense(),
+                new TransactionBuilder(CARLS_JR).buildExpense(),
+                new TransactionBuilder(GST_VOUCHER).buildIncome(),
+                new TransactionBuilder(INTERNSHIP).buildIncome(),
+                new TransactionBuilder(PEN_REFILLS).buildExpense()
         ), model.getFilteredTransactionList());
     }
 

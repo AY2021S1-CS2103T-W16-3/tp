@@ -1,11 +1,11 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_INCOME_DISPLAYED_INDEX;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_AMY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_HUSBAND;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_WORK;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_INTERNSHIP;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showIncomeAtIndex;
@@ -58,11 +58,12 @@ public class EditIncomeCommandTest {
         Income lastIncome = model.getFilteredIncomeList().get(indexLastIncome.getZeroBased());
 
         TransactionBuilder incomeInList = new TransactionBuilder(lastIncome);
-        Income editedIncome = incomeInList.withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB)
-                .withCategories(VALID_CATEGORY_HUSBAND).buildIncome();
+        Income editedIncome = incomeInList.withTitle(VALID_TITLE_INTERNSHIP).withAmount(VALID_AMOUNT_INTERNSHIP)
+                .withCategories(VALID_CATEGORY_WORK).buildIncome();
 
         EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
-                .withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB).withCategories(VALID_CATEGORY_HUSBAND).build();
+                .withTitle(VALID_TITLE_INTERNSHIP).withAmount(VALID_AMOUNT_INTERNSHIP)
+                .withCategories(VALID_CATEGORY_WORK).build();
         EditCommandStub superCommand = new EditCommandStub(indexLastIncome, descriptor);
         EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);
 
@@ -92,9 +93,10 @@ public class EditIncomeCommandTest {
         showIncomeAtIndex(model, INDEX_FIRST_TRANSACTION);
 
         Income incomeInFilteredList = model.getFilteredIncomeList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
-        Income editedIncome = new TransactionBuilder(incomeInFilteredList).withTitle(VALID_TITLE_BOB).buildIncome();
+        Income editedIncome = new TransactionBuilder(incomeInFilteredList)
+                .withTitle(VALID_TITLE_INTERNSHIP).buildIncome();
         EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION,
-                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
+                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_INTERNSHIP).build());
         EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);
 
         String expectedMessage = String.format(EditIncomeCommand.MESSAGE_EDIT_INCOME_SUCCESS, editedIncome);
@@ -109,7 +111,7 @@ public class EditIncomeCommandTest {
     public void execute_invalidIncomeIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredIncomeList().size() + 1);
         EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
-                .withTitle(VALID_TITLE_BOB).build();
+                .withTitle(VALID_TITLE_INTERNSHIP).build();
         EditCommandStub superCommand = new EditCommandStub(outOfBoundIndex, descriptor);
         EditIncomeCommand editIncomeCommand = new EditIncomeCommand(superCommand);
 
@@ -128,18 +130,18 @@ public class EditIncomeCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getIncomeList().size());
 
         EditIncomeCommand editIncomeCommand = new EditIncomeCommand(new EditCommand(outOfBoundIndex,
-                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build()));
+                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_INTERNSHIP).build()));
 
         assertCommandFailure(editIncomeCommand, model, MESSAGE_INVALID_INCOME_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, DESC_AMY);
+        final EditCommandStub superCommand = new EditCommandStub(INDEX_FIRST_TRANSACTION, DESC_BUBBLE_TEA);
         final EditIncomeCommand standardCommand = new EditIncomeCommand(superCommand);
 
         // same values -> returns true
-        EditTransactionDescriptor copyDescriptor = new EditTransactionDescriptor(DESC_AMY);
+        EditTransactionDescriptor copyDescriptor = new EditTransactionDescriptor(DESC_BUBBLE_TEA);
         EditCommandStub superCommandWithSameValues = new EditCommandStub(INDEX_FIRST_TRANSACTION, copyDescriptor);
         EditIncomeCommand commandWithSameValues = new EditIncomeCommand(superCommandWithSameValues);
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -154,10 +156,10 @@ public class EditIncomeCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_SECOND_TRANSACTION, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_SECOND_TRANSACTION, DESC_BUBBLE_TEA)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_FIRST_TRANSACTION, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_FIRST_TRANSACTION, DESC_INTERNSHIP)));
     }
 
 }

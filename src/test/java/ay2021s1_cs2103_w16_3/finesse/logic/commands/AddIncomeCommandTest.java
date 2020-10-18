@@ -44,26 +44,26 @@ public class AddIncomeCommandTest {
 
     @Test
     public void equals() {
-        Income alice = new TransactionBuilder().withTitle("Alice").buildIncome();
-        Income bob = new TransactionBuilder().withTitle("Bob").buildIncome();
-        AddIncomeCommand addAliceCommand = new AddIncomeCommand(alice);
-        AddIncomeCommand addBobCommand = new AddIncomeCommand(bob);
+        Income internship = new TransactionBuilder().withTitle("Internship").buildIncome();
+        Income teachingAssistant = new TransactionBuilder().withTitle("Teaching Assistant").buildIncome();
+        AddIncomeCommand addInternshipCommand = new AddIncomeCommand(internship);
+        AddIncomeCommand addTeachingAssistantCommand = new AddIncomeCommand(teachingAssistant);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addInternshipCommand.equals(addInternshipCommand));
 
         // same values -> returns true
-        AddIncomeCommand addAliceCommandCopy = new AddIncomeCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddIncomeCommand addInternshipCommandCopy = new AddIncomeCommand(internship);
+        assertTrue(addInternshipCommand.equals(addInternshipCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addInternshipCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addInternshipCommand.equals(null));
 
         // different transaction -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addInternshipCommand.equals(addTeachingAssistantCommand));
     }
 
     /**

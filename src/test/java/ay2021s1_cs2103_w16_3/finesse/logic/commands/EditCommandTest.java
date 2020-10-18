@@ -1,11 +1,11 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_AMY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_HUSBAND;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_WORK;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_INTERNSHIP;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showTransactionAtIndex;
@@ -68,7 +68,8 @@ public class EditCommandTest {
         Transaction lastTransaction = model.getFilteredTransactionList().get(indexLastTransaction.getZeroBased());
 
         TransactionBuilder editedTransactionBuilder = new TransactionBuilder(lastTransaction)
-                .withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB).withCategories(VALID_CATEGORY_HUSBAND);
+                .withTitle(VALID_TITLE_INTERNSHIP).withAmount(VALID_AMOUNT_INTERNSHIP)
+                .withCategories(VALID_CATEGORY_WORK);
         Transaction editedTransaction;
         if (lastTransaction instanceof Expense) {
             editedTransaction = editedTransactionBuilder.buildExpense();
@@ -79,7 +80,8 @@ public class EditCommandTest {
         }
 
         EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
-                .withTitle(VALID_TITLE_BOB).withAmount(VALID_AMOUNT_BOB).withCategories(VALID_CATEGORY_HUSBAND).build();
+                .withTitle(VALID_TITLE_INTERNSHIP).withAmount(VALID_AMOUNT_INTERNSHIP)
+                .withCategories(VALID_CATEGORY_WORK).build();
         EditCommand editCommand = new EditCommand(indexLastTransaction, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction);
@@ -110,7 +112,7 @@ public class EditCommandTest {
                 .get(INDEX_FIRST_TRANSACTION.getZeroBased());
 
         TransactionBuilder editedTransactionBuilder =
-                new TransactionBuilder(transactionInFilteredList).withTitle(VALID_TITLE_BOB);
+                new TransactionBuilder(transactionInFilteredList).withTitle(VALID_TITLE_INTERNSHIP);
         Transaction editedTransaction;
         if (transactionInFilteredList instanceof Expense) {
             editedTransaction = editedTransactionBuilder.buildExpense();
@@ -121,7 +123,7 @@ public class EditCommandTest {
         }
 
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TRANSACTION,
-                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
+                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_INTERNSHIP).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction);
 
@@ -135,7 +137,7 @@ public class EditCommandTest {
     public void execute_invalidTransactionIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTransactionList().size() + 1);
         EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
-                .withTitle(VALID_TITLE_BOB).build();
+                .withTitle(VALID_TITLE_INTERNSHIP).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
@@ -153,17 +155,17 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getTransactionList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
+                new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_INTERNSHIP).build());
 
         assertCommandFailure(editCommand, model, MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TRANSACTION, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TRANSACTION, DESC_BUBBLE_TEA);
 
         // same values -> returns true
-        EditCommand.EditTransactionDescriptor copyDescriptor = new EditCommand.EditTransactionDescriptor(DESC_AMY);
+        EditTransactionDescriptor copyDescriptor = new EditTransactionDescriptor(DESC_BUBBLE_TEA);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_TRANSACTION, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -177,10 +179,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TRANSACTION, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TRANSACTION, DESC_BUBBLE_TEA)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TRANSACTION, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TRANSACTION, DESC_INTERNSHIP)));
     }
 
 }

@@ -43,35 +43,36 @@ public class TitleContainsKeywordsPredicateTest {
     public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
         TitleContainsKeywordsPredicate predicate =
-                new TitleContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new TransactionBuilder().withTitle("Alice Bob").build()));
+                new TitleContainsKeywordsPredicate(Collections.singletonList("Damith"));
+        assertTrue(predicate.test(new TransactionBuilder().withTitle("Damith Seth").build()));
 
         // Multiple keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new TransactionBuilder().withTitle("Alice Bob").build()));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Damith", "Seth"));
+        assertTrue(predicate.test(new TransactionBuilder().withTitle("Damith Seth").build()));
 
         // Only one matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new TransactionBuilder().withTitle("Alice Carol").build()));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Seth", "Aaron"));
+        assertTrue(predicate.test(new TransactionBuilder().withTitle("Damith Aaron").build()));
 
         // Mixed-case keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new TransactionBuilder().withTitle("Alice Bob").build()));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("dAMiTh", "SEtH"));
+        assertTrue(predicate.test(new TransactionBuilder().withTitle("Damith Seth").build()));
     }
 
     @Test
     public void test_titleDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new TransactionBuilder().withTitle("Alice").build()));
+        assertFalse(predicate.test(new TransactionBuilder().withTitle("Damith").build()));
 
         // Non-matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new TransactionBuilder().withTitle("Alice Bob").build()));
+        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Aaron"));
+        assertFalse(predicate.test(new TransactionBuilder().withTitle("Damith Seth").build()));
 
         // Keywords match amount and date, but does not match title
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new TransactionBuilder().withTitle("Alice").withAmount("12345")
+        predicate = new TitleContainsKeywordsPredicate(
+                Arrays.asList("12345", "damith@comp.nus.edu.sg", "COM2", "31/12/2019"));
+        assertFalse(predicate.test(new TransactionBuilder().withTitle("Damith").withAmount("12345")
                 .withDate("31/12/2019").build()));
     }
 }

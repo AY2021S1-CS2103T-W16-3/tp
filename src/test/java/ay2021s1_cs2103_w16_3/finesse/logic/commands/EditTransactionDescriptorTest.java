@@ -1,11 +1,11 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_AMY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_HUSBAND;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_WORK;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_INTERNSHIP;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,36 +19,36 @@ public class EditTransactionDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditTransactionDescriptor descriptorWithSameValues = new EditCommand.EditTransactionDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditTransactionDescriptor descriptorWithSameValues = new EditCommand.EditTransactionDescriptor(DESC_BUBBLE_TEA);
+        assertTrue(DESC_BUBBLE_TEA.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_BUBBLE_TEA.equals(DESC_BUBBLE_TEA));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_BUBBLE_TEA.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_BUBBLE_TEA.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_BUBBLE_TEA.equals(DESC_INTERNSHIP));
 
         // different title -> returns false
-        EditCommand.EditTransactionDescriptor editedAmy = new EditTransactionDescriptorBuilder(DESC_AMY)
-                .withTitle(VALID_TITLE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditCommand.EditTransactionDescriptor editedAmy = new EditTransactionDescriptorBuilder(DESC_BUBBLE_TEA)
+                .withTitle(VALID_TITLE_INTERNSHIP).build();
+        assertFalse(DESC_BUBBLE_TEA.equals(editedAmy));
 
         // different amount -> returns false
-        editedAmy = new EditTransactionDescriptorBuilder(DESC_AMY).withAmount(VALID_AMOUNT_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditTransactionDescriptorBuilder(DESC_BUBBLE_TEA).withAmount(VALID_AMOUNT_INTERNSHIP).build();
+        assertFalse(DESC_BUBBLE_TEA.equals(editedAmy));
 
         // different date -> returns false
-        editedAmy = new EditTransactionDescriptorBuilder(DESC_AMY).withDate(VALID_DATE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditTransactionDescriptorBuilder(DESC_BUBBLE_TEA).withDate(VALID_DATE_INTERNSHIP).build();
+        assertFalse(DESC_BUBBLE_TEA.equals(editedAmy));
 
         // different categories -> returns false
-        editedAmy = new EditTransactionDescriptorBuilder(DESC_AMY).withCategories(VALID_CATEGORY_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditTransactionDescriptorBuilder(DESC_BUBBLE_TEA).withCategories(VALID_CATEGORY_WORK).build();
+        assertFalse(DESC_BUBBLE_TEA.equals(editedAmy));
     }
 }

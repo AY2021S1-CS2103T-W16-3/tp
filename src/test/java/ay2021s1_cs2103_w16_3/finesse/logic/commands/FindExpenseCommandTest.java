@@ -2,9 +2,9 @@ package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.CARL;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.ELLE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.FIONA;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.AIMA;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.CARLS_JR;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.PEN_REFILLS;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -72,12 +72,13 @@ public class FindExpenseCommandTest {
     @Test
     public void execute_multipleKeywords_multipleExpensesFound() {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 3);
-        TitleContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        TitleContainsKeywordsPredicate predicate = preparePredicate("carl's artificial pen");
         FindCommandStub superCommand = new FindCommandStub(predicate);
         FindExpenseCommand findExpenseCommand = new FindExpenseCommand(superCommand);
         expectedModel.updateFilteredExpenseList(predicate);
         assertCommandSuccess(findExpenseCommand, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredExpenseList());
+        // Ordered by date, then by title.
+        assertEquals(Arrays.asList(AIMA, CARLS_JR, PEN_REFILLS), model.getFilteredExpenseList());
     }
 
     /**

@@ -25,43 +25,43 @@ import ay2021s1_cs2103_w16_3.finesse.testutil.EditTransactionDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_TITLE_AMY = "Amy Bee";
-    public static final String VALID_TITLE_BOB = "Bob Choo";
-    public static final String VALID_AMOUNT_AMY = "11111111";
-    public static final String VALID_AMOUNT_BOB = "22222222";
-    public static final String VALID_DATE_AMY = "31/10/2019";
-    public static final String VALID_DATE_BOB = "25/12/2019";
-    public static final String VALID_CATEGORY_HUSBAND = "husband";
-    public static final String VALID_CATEGORY_FRIEND = "friend";
+    public static final String VALID_TITLE_BUBBLE_TEA = "Bubble Tea";
+    public static final String VALID_TITLE_INTERNSHIP = "Internship";
+    public static final String VALID_AMOUNT_BUBBLE_TEA = "$4.80";
+    public static final String VALID_AMOUNT_INTERNSHIP = "$560";
+    public static final String VALID_DATE_BUBBLE_TEA = "14/10/2020";
+    public static final String VALID_DATE_INTERNSHIP = "06/10/2020";
+    public static final String VALID_CATEGORY_FOOD_BEVERAGE = "Food & Beverage";
+    public static final String VALID_CATEGORY_WORK = "Work";
 
-    public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
-    public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
-    public static final String AMOUNT_DESC_AMY = " " + PREFIX_AMOUNT + VALID_AMOUNT_AMY;
-    public static final String AMOUNT_DESC_BOB = " " + PREFIX_AMOUNT + VALID_AMOUNT_BOB;
-    public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
-    public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
-    public static final String CATEGORY_DESC_FRIEND = " " + PREFIX_CATEGORY + VALID_CATEGORY_FRIEND;
-    public static final String CATEGORY_DESC_HUSBAND = " " + PREFIX_CATEGORY + VALID_CATEGORY_HUSBAND;
+    public static final String TITLE_DESC_BUBBLE_TEA = " " + PREFIX_TITLE + VALID_TITLE_BUBBLE_TEA;
+    public static final String TITLE_DESC_INTERNSHIP = " " + PREFIX_TITLE + VALID_TITLE_INTERNSHIP;
+    public static final String AMOUNT_DESC_BUBBLE_TEA = " " + PREFIX_AMOUNT + VALID_AMOUNT_BUBBLE_TEA;
+    public static final String AMOUNT_DESC_INTERNSHIP = " " + PREFIX_AMOUNT + VALID_AMOUNT_INTERNSHIP;
+    public static final String DATE_DESC_BUBBLE_TEA = " " + PREFIX_DATE + VALID_DATE_BUBBLE_TEA;
+    public static final String DATE_DESC_INTERNSHIP = " " + PREFIX_DATE + VALID_DATE_INTERNSHIP;
+    public static final String CATEGORY_DESC_FOOD_BEVERAGE = " " + PREFIX_CATEGORY + VALID_CATEGORY_FOOD_BEVERAGE;
+    public static final String CATEGORY_DESC_WORK = " " + PREFIX_CATEGORY + VALID_CATEGORY_WORK;
 
-    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James\u2416"; // 'SYN' not allowed in titles
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Movie\u2416"; // 'SYN' not allowed in titles
     public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "911a"; // 'a' not allowed in amounts
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // only numbers and '/' allowed
-    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "hubby\u2416";
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bobby!zijian"; // only numbers and '/' allowed
+    public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "CS2103T\u2416";
     // 'SYN' not allowed in categories
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditTransactionDescriptor DESC_AMY;
-    public static final EditCommand.EditTransactionDescriptor DESC_BOB;
+    public static final EditCommand.EditTransactionDescriptor DESC_BUBBLE_TEA;
+    public static final EditCommand.EditTransactionDescriptor DESC_INTERNSHIP;
 
     static {
-        DESC_AMY = new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withAmount(VALID_AMOUNT_AMY).withDate(VALID_DATE_AMY)
-                .withCategories(VALID_CATEGORY_FRIEND).build();
-        DESC_BOB = new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withAmount(VALID_AMOUNT_BOB).withDate(VALID_DATE_BOB)
-                .withCategories(VALID_CATEGORY_HUSBAND, VALID_CATEGORY_FRIEND).build();
+        DESC_BUBBLE_TEA = new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BUBBLE_TEA)
+                .withAmount(VALID_AMOUNT_BUBBLE_TEA).withDate(VALID_DATE_BUBBLE_TEA)
+                .withCategories(VALID_CATEGORY_FOOD_BEVERAGE).build();
+        DESC_INTERNSHIP = new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_INTERNSHIP)
+                .withAmount(VALID_AMOUNT_INTERNSHIP).withDate(VALID_DATE_INTERNSHIP)
+                .withCategories(VALID_CATEGORY_WORK, VALID_CATEGORY_FOOD_BEVERAGE).build();
     }
 
     /**

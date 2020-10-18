@@ -17,9 +17,9 @@ import ay2021s1_cs2103_w16_3.finesse.model.util.SampleDataUtil;
  */
 public class TransactionBuilder {
 
-    public static final String DEFAULT_TITLE = "Alice Pauline";
-    public static final String DEFAULT_AMOUNT = "$1.00";
-    public static final String DEFAULT_DATE = "07/10/2020";
+    public static final String DEFAULT_TITLE = "Bubble Tea";
+    public static final String DEFAULT_AMOUNT = "$4.80";
+    public static final String DEFAULT_DATE = "14/10/2020";
 
     private Title title;
     private Amount amount;

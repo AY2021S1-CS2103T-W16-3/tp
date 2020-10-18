@@ -1,18 +1,19 @@
 package ay2021s1_cs2103_w16_3.finesse.testutil;
 
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_AMY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_FRIEND;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_HUSBAND;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_AMY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_FOOD_BEVERAGE;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_WORK;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_INTERNSHIP;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
@@ -24,33 +25,51 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
  */
 public class TypicalTransactions {
 
-    public static final Transaction ALICE = new TransactionBuilder().withTitle("Alice Pauline")
-            .withDate("06/09/2020").withAmount("$1").withCategories("friends").build();
-    public static final Transaction BENSON = new TransactionBuilder().withTitle("Benson Meier")
-            .withDate("05/10/2020").withAmount("2").withCategories("owesMoney", "friends").build();
-    public static final Transaction CARL = new TransactionBuilder().withTitle("Carl Kurz").withAmount("3.50")
-            .withDate("06/10/2020").build();
-    public static final Transaction DANIEL = new TransactionBuilder().withTitle("Daniel Meier").withAmount("4")
-            .withDate("06/10/2020").withCategories("friends").build();
-    public static final Transaction ELLE = new TransactionBuilder().withTitle("Elle Meyer").withAmount("5")
-            .withDate("06/10/2020").build();
-    public static final Transaction FIONA = new TransactionBuilder().withTitle("Fiona Kunz").withAmount("6")
-            .withDate("06/10/2020").build();
-    public static final Transaction GEORGE = new TransactionBuilder().withTitle("George Best").withAmount("7")
-            .withDate("06/10/2020").build();
+    // Expenses
+    public static final Expense BUBBLE_TEA = new TransactionBuilder().withTitle("Bubble Tea")
+            .withDate("14/10/2020").withAmount("$4.80").withCategories("Food & Beverage").buildExpense();
+    public static final Expense TUITION_FEES = new TransactionBuilder().withTitle("Tuition Fees")
+            .withDate("05/10/2020").withAmount("4221").withCategories("NUS", "GIRO").buildExpense();
+    public static final Expense CARLS_JR = new TransactionBuilder().withTitle("Carl's Jr.").withAmount("11.60")
+            .withDate("06/10/2020").withCategories("Food & Beverage").buildExpense();
+    public static final Expense EZLINK_TOPUP = new TransactionBuilder().withTitle("EZ-Link Top-up").withAmount("20")
+            .withDate("06/10/2020").withCategories("Transport").buildExpense();
+    public static final Expense AIMA = new TransactionBuilder().withTitle("Artificial Intelligence: A Modern Approach")
+            .withAmount("139.00").withDate("06/10/2020").buildExpense();
+    public static final Expense PEN_REFILLS = new TransactionBuilder().withTitle("Pen Refills").withAmount("6")
+            .withDate("06/10/2020").buildExpense();
+    public static final Expense MOVIE = new TransactionBuilder().withTitle("Movie").withAmount("9")
+            .withDate("06/10/2020").buildExpense();
+
+    // Incomes
+    public static final Income INTERNSHIP = new TransactionBuilder().withTitle("Internship")
+            .withDate("06/10/2020").withAmount("$560").withCategories("Work").buildIncome();
+    public static final Income TEACHING_ASSISTANT = new TransactionBuilder().withTitle("Teaching Assistant")
+            .withDate("05/10/2020").withAmount("1920").withCategories("NUS", "GIRO").buildIncome();
+    public static final Income STARTUP_FUNDING = new TransactionBuilder().withTitle("Start-up Funding")
+            .withDate("20/09/2020").withAmount("10000.00").withCategories("NUS Enterprise").buildIncome();
+    public static final Income ALLOWANCE = new TransactionBuilder().withTitle("Allowance")
+            .withDate("06/10/2020").withAmount("$100.00").buildIncome();
+    public static final Income ANG_PAO = new TransactionBuilder().withTitle("Ang Pao")
+            .withDate("06/10/2020").withAmount("88").buildIncome();
+    public static final Income GST_VOUCHER = new TransactionBuilder().withTitle("GST Voucher")
+            .withDate("06/10/2020").withAmount("300").buildIncome();
+    public static final Income HACKATHON_WINNINGS = new TransactionBuilder().withTitle("Hackathon Winnings")
+            .withDate("22/09/2020").withAmount("1000").buildIncome();
 
     // Manually added
-    public static final Transaction HOON = new TransactionBuilder().withTitle("Hoon Meier").withAmount("8")
-            .withDate("06/10/2020").build();
-    public static final Transaction IDA = new TransactionBuilder().withTitle("Ida Mueller").withAmount("9")
-            .withDate("06/10/2020").build();
+    public static final Transaction TUITION_FEES_2 = new TransactionBuilder().withTitle("Tuition Fees")
+            .withDate("05/10/2020").withAmount("4221").withCategories("NUS", "GIRO").build();
+    public static final Transaction TEACHING_ASSISTANT_2 = new TransactionBuilder().withTitle("Teaching Assistant")
+            .withDate("05/10/2020").withAmount("1920").withCategories("NUS", "GIRO").build();
 
     // Manually added - Transaction's details found in {@code CommandTestUtil}
-    public static final Transaction AMY = new TransactionBuilder().withTitle(VALID_TITLE_AMY)
-            .withAmount(VALID_AMOUNT_AMY).withDate(VALID_DATE_AMY).withCategories(VALID_CATEGORY_FRIEND).build();
-    public static final Transaction BOB = new TransactionBuilder().withTitle(VALID_TITLE_BOB)
-            .withAmount(VALID_AMOUNT_BOB).withDate(VALID_DATE_BOB)
-            .withCategories(VALID_CATEGORY_HUSBAND, VALID_CATEGORY_FRIEND).build();
+    public static final Transaction BUBBLE_TEA_2 = new TransactionBuilder().withTitle(VALID_TITLE_BUBBLE_TEA)
+            .withAmount(VALID_AMOUNT_BUBBLE_TEA).withDate(VALID_DATE_BUBBLE_TEA)
+            .withCategories(VALID_CATEGORY_FOOD_BEVERAGE).build();
+    public static final Transaction INTERNSHIP_2 = new TransactionBuilder().withTitle(VALID_TITLE_INTERNSHIP)
+            .withAmount(VALID_AMOUNT_INTERNSHIP).withDate(VALID_DATE_INTERNSHIP)
+            .withCategories(VALID_CATEGORY_WORK, VALID_CATEGORY_FOOD_BEVERAGE).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -67,20 +86,17 @@ public class TypicalTransactions {
     }
 
     public static List<Transaction> getTypicalTransactions() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return Stream.concat(getTypicalExpenses().stream(), getTypicalIncomes().stream())
+                .collect(Collectors.toList());
     }
 
     public static List<Expense> getTypicalExpenses() {
-        return getTypicalTransactions().stream()
-                .map(TransactionBuilder::new)
-                .map(TransactionBuilder::buildExpense)
-                .collect(Collectors.toList());
+        return new ArrayList<>(Arrays.asList(BUBBLE_TEA, TUITION_FEES, CARLS_JR,
+                EZLINK_TOPUP, AIMA, PEN_REFILLS, MOVIE));
     }
 
     public static List<Income> getTypicalIncomes() {
-        return getTypicalTransactions().stream()
-                .map(TransactionBuilder::new)
-                .map(TransactionBuilder::buildIncome)
-                .collect(Collectors.toList());
+        return new ArrayList<>(Arrays.asList(INTERNSHIP, TEACHING_ASSISTANT, STARTUP_FUNDING,
+                ALLOWANCE, ANG_PAO, GST_VOUCHER, HACKATHON_WINNINGS));
     }
 }

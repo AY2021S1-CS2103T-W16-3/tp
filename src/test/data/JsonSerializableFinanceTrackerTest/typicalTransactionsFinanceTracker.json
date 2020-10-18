@@ -1,0 +1,75 @@
+{
+  "_comment": "Fine$$e save file which contains the same Transaction values as in TypicalTransactions#getTypicalFinanceTracker()",
+  "expenses": [ {
+    "title": "Bubble Tea",
+    "amount": "$4.80",
+    "date": "14/10/2020",
+    "categories": [ "Food & Beverage" ]
+  }, {
+    "title": "Tuition Fees",
+    "amount": "$4221.00",
+    "date": "05/10/2020",
+    "categories": [ "NUS", "GIRO" ]
+  }, {
+    "title": "Carl's Jr.",
+    "amount": "$11.60",
+    "date": "06/10/2020",
+    "categories": [ "Food & Beverage" ]
+  }, {
+    "title": "EZ-Link Top-up",
+    "amount": "$20.00",
+    "date": "06/10/2020",
+    "categories": [ "Transport" ]
+  }, {
+    "title": "Artificial Intelligence: A Modern Approach",
+    "amount": "$139.00",
+    "date": "06/10/2020",
+    "categories": [ ]
+  }, {
+    "title": "Pen Refills",
+    "amount": "$6.00",
+    "date": "06/10/2020",
+    "categories": [ ]
+  }, {
+    "title": "Movie",
+    "amount": "$9.00",
+    "date": "06/10/2020",
+    "categories": [ ]
+  } ],
+  "incomes": [ {
+    "title": "Internship",
+    "amount": "$560.00",
+    "date": "06/10/2020",
+    "categories": [ "Work" ]
+  }, {
+    "title": "Teaching Assistant",
+    "amount": "$1920.00",
+    "date": "05/10/2020",
+    "categories": [ "NUS", "GIRO" ]
+  }, {
+    "title": "Start-up Funding",
+    "amount": "$10000.00",
+    "date": "20/09/2020",
+    "categories": [ "NUS Enterprise" ]
+  }, {
+    "title": "Allowance",
+    "amount": "$100.00",
+    "date": "06/10/2020",
+    "categories": [ ]
+  }, {
+    "title": "Ang Pao",
+    "amount": "$88.00",
+    "date": "06/10/2020",
+    "categories": [ ]
+  }, {
+    "title": "GST Voucher",
+    "amount": "$300.00",
+    "date": "06/10/2020",
+    "categories": [ ]
+  }, {
+    "title": "Hackathon Winnings",
+    "amount": "$1000.00",
+    "date": "22/09/2020",
+    "categories": [ ]
+  } ]
+}

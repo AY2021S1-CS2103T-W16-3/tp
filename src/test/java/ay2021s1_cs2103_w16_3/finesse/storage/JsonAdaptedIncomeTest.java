@@ -2,7 +2,7 @@ package ay2021s1_cs2103_w16_3.finesse.storage;
 
 import static ay2021s1_cs2103_w16_3.finesse.storage.JsonAdaptedIncome.MISSING_FIELD_MESSAGE_FORMAT;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.BENSON;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.TUITION_FEES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -24,16 +24,16 @@ public class JsonAdaptedIncomeTest {
     private static final String INVALID_DATE = "example.com";
     private static final String INVALID_CATEGORY = "\u2416friend";
 
-    private static final String VALID_TITLE = BENSON.getTitle().toString();
-    private static final String VALID_AMOUNT = BENSON.getAmount().toString();
-    private static final String VALID_DATE = BENSON.getDate().toString();
-    private static final List<JsonAdaptedCategory> VALID_CATEGORIES = BENSON.getCategories().stream()
+    private static final String VALID_TITLE = TUITION_FEES.getTitle().toString();
+    private static final String VALID_AMOUNT = TUITION_FEES.getAmount().toString();
+    private static final String VALID_DATE = TUITION_FEES.getDate().toString();
+    private static final List<JsonAdaptedCategory> VALID_CATEGORIES = TUITION_FEES.getCategories().stream()
             .map(JsonAdaptedCategory::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validIncomeDetails_returnsIncome() throws Exception {
-        Income bensonIncome = new TransactionBuilder(BENSON).buildIncome();
+        Income bensonIncome = new TransactionBuilder(TUITION_FEES).buildIncome();
         JsonAdaptedIncome income = new JsonAdaptedIncome(bensonIncome);
         assertEquals(bensonIncome, income.toModelType());
     }

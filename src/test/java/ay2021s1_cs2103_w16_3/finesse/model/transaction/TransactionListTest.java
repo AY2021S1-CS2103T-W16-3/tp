@@ -1,9 +1,10 @@
 package ay2021s1_cs2103_w16_3.finesse.model.transaction;
 
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_HUSBAND;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_WORK;
+import static ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction.TRANSACTION_COMPARATOR;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.ALICE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.BOB;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.INTERNSHIP_2;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalTransactions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -28,44 +29,44 @@ public class TransactionListTest {
 
     @Test
     public void setTransaction_nullTargetTransaction_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> transactionList.setTransaction(null, ALICE));
+        assertThrows(NullPointerException.class, () -> transactionList.setTransaction(null, BUBBLE_TEA));
     }
 
     @Test
     public void setTransaction_nullEditedTransaction_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> transactionList.setTransaction(ALICE, null));
+        assertThrows(NullPointerException.class, () -> transactionList.setTransaction(BUBBLE_TEA, null));
     }
 
     @Test
     public void setTransaction_targetTransactionNotInList_throwsTransactionNotFoundException() {
-        assertThrows(TransactionNotFoundException.class, () -> transactionList.setTransaction(ALICE, ALICE));
+        assertThrows(TransactionNotFoundException.class, () -> transactionList.setTransaction(BUBBLE_TEA, BUBBLE_TEA));
     }
 
     @Test
     public void setTransaction_editedTransactionIsSameTransaction_success() {
-        transactionList.add(ALICE);
-        transactionList.setTransaction(ALICE, ALICE);
+        transactionList.add(BUBBLE_TEA);
+        transactionList.setTransaction(BUBBLE_TEA, BUBBLE_TEA);
         TransactionList expectedTransactionList = new TransactionList();
-        expectedTransactionList.add(ALICE);
+        expectedTransactionList.add(BUBBLE_TEA);
         assertEquals(expectedTransactionList, transactionList);
     }
 
     @Test
     public void setTransaction_editedTransactionHasSameIdentity_success() {
-        transactionList.add(ALICE);
-        Transaction editedAlice = new TransactionBuilder(ALICE).withCategories(VALID_CATEGORY_HUSBAND).build();
-        transactionList.setTransaction(ALICE, editedAlice);
+        transactionList.add(BUBBLE_TEA);
+        Transaction editedBubbleTea = new TransactionBuilder(BUBBLE_TEA).withCategories(VALID_CATEGORY_WORK).build();
+        transactionList.setTransaction(BUBBLE_TEA, editedBubbleTea);
         TransactionList expectedTransactionList = new TransactionList();
-        expectedTransactionList.add(editedAlice);
+        expectedTransactionList.add(editedBubbleTea);
         assertEquals(expectedTransactionList, transactionList);
     }
 
     @Test
     public void setTransaction_editedTransactionHasDifferentIdentity_success() {
-        transactionList.add(ALICE);
-        transactionList.setTransaction(ALICE, BOB);
+        transactionList.add(BUBBLE_TEA);
+        transactionList.setTransaction(BUBBLE_TEA, INTERNSHIP_2);
         TransactionList expectedTransactionList = new TransactionList();
-        expectedTransactionList.add(BOB);
+        expectedTransactionList.add(INTERNSHIP_2);
         assertEquals(expectedTransactionList, transactionList);
     }
 
@@ -76,13 +77,13 @@ public class TransactionListTest {
 
     @Test
     public void remove_transactionDoesNotExist_throwsTransactionNotFoundException() {
-        assertThrows(TransactionNotFoundException.class, () -> transactionList.remove(ALICE));
+        assertThrows(TransactionNotFoundException.class, () -> transactionList.remove(BUBBLE_TEA));
     }
 
     @Test
     public void remove_existingTransaction_removesTransaction() {
-        transactionList.add(ALICE);
-        transactionList.remove(ALICE);
+        transactionList.add(BUBBLE_TEA);
+        transactionList.remove(BUBBLE_TEA);
         TransactionList expectedTransactionList = new TransactionList();
         assertEquals(expectedTransactionList, transactionList);
     }
@@ -95,9 +96,9 @@ public class TransactionListTest {
 
     @Test
     public void setTransactions_transactionList_replacesOwnListWithProvidedTransactionList() {
-        transactionList.add(ALICE);
+        transactionList.add(BUBBLE_TEA);
         TransactionList expectedTransactionList = new TransactionList();
-        expectedTransactionList.add(BOB);
+        expectedTransactionList.add(INTERNSHIP_2);
         transactionList.setTransactions(expectedTransactionList);
         assertEquals(expectedTransactionList, transactionList);
     }
@@ -109,11 +110,11 @@ public class TransactionListTest {
 
     @Test
     public void setTransactions_list_replacesOwnListWithProvidedList() {
-        transactionList.add(ALICE);
-        List<Transaction> transactionList = Collections.singletonList(BOB);
+        transactionList.add(BUBBLE_TEA);
+        List<Transaction> transactionList = Collections.singletonList(INTERNSHIP_2);
         this.transactionList.setTransactions(transactionList);
         TransactionList expectedTransactionList = new TransactionList();
-        expectedTransactionList.add(BOB);
+        expectedTransactionList.add(INTERNSHIP_2);
         assertEquals(expectedTransactionList, this.transactionList);
     }
 
@@ -126,6 +127,7 @@ public class TransactionListTest {
     @Test
     public void iterator_iteratesTransactionsInOrder_success() {
         List<Transaction> transactions = getTypicalTransactions();
+        transactions.sort(TRANSACTION_COMPARATOR);
         transactionList.setTransactions(transactions);
         Iterator<Transaction> iterator = transactionList.iterator();
         transactions.stream().forEach(transaction -> assertEquals(transaction, iterator.next()));

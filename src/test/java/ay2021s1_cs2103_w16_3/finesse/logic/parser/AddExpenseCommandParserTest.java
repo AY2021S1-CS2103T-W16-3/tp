@@ -1,29 +1,29 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_AMY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_FRIEND;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_HUSBAND;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DATE_DESC_AMY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DATE_DESC_BOB;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_FOOD_BEVERAGE;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_WORK;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DATE_DESC_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DATE_DESC_INTERNSHIP;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_FRIEND;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_HUSBAND;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.TITLE_DESC_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.TITLE_DESC_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_FOOD_BEVERAGE;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_WORK;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_INTERNSHIP;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.AMY;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.BOB;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.BUBBLE_TEA_2;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.INTERNSHIP_2;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,36 +40,38 @@ public class AddExpenseCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Expense expectedExpense = new TransactionBuilder(BOB).withCategories(VALID_CATEGORY_FRIEND).buildExpense();
+        Expense expectedExpense = new TransactionBuilder(INTERNSHIP_2)
+                .withCategories(VALID_CATEGORY_FOOD_BEVERAGE).buildExpense();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + CATEGORY_DESC_FRIEND, new AddExpenseCommand(expectedExpense));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_INTERNSHIP + AMOUNT_DESC_INTERNSHIP
+                + DATE_DESC_INTERNSHIP + CATEGORY_DESC_FOOD_BEVERAGE, new AddExpenseCommand(expectedExpense));
 
         // multiple titles - last title accepted
-        assertParseSuccess(parser, TITLE_DESC_AMY + TITLE_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + CATEGORY_DESC_FRIEND, new AddExpenseCommand(expectedExpense));
+        assertParseSuccess(parser, TITLE_DESC_BUBBLE_TEA + TITLE_DESC_INTERNSHIP + AMOUNT_DESC_INTERNSHIP
+                + DATE_DESC_INTERNSHIP + CATEGORY_DESC_FOOD_BEVERAGE, new AddExpenseCommand(expectedExpense));
 
         // multiple amounts - last amount accepted
-        assertParseSuccess(parser, TITLE_DESC_BOB + AMOUNT_DESC_AMY + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + CATEGORY_DESC_FRIEND, new AddExpenseCommand(expectedExpense));
+        assertParseSuccess(parser, TITLE_DESC_INTERNSHIP + AMOUNT_DESC_BUBBLE_TEA + AMOUNT_DESC_INTERNSHIP
+                + DATE_DESC_INTERNSHIP + CATEGORY_DESC_FOOD_BEVERAGE, new AddExpenseCommand(expectedExpense));
 
         // multiple dates - last date accepted
-        assertParseSuccess(parser, TITLE_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_AMY + DATE_DESC_BOB
-                + CATEGORY_DESC_FRIEND, new AddExpenseCommand(expectedExpense));
+        assertParseSuccess(parser, TITLE_DESC_INTERNSHIP + AMOUNT_DESC_INTERNSHIP + DATE_DESC_BUBBLE_TEA
+                + DATE_DESC_INTERNSHIP + CATEGORY_DESC_FOOD_BEVERAGE, new AddExpenseCommand(expectedExpense));
 
         // multiple categories - all accepted
-        Expense expectedExpenseMultipleCategories = new TransactionBuilder(BOB)
-                .withCategories(VALID_CATEGORY_FRIEND, VALID_CATEGORY_HUSBAND).buildExpense();
-        assertParseSuccess(parser, TITLE_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB + CATEGORY_DESC_HUSBAND
-                + CATEGORY_DESC_FRIEND, new AddExpenseCommand(expectedExpenseMultipleCategories));
+        Expense expectedExpenseMultipleCategories = new TransactionBuilder(INTERNSHIP_2)
+                .withCategories(VALID_CATEGORY_FOOD_BEVERAGE, VALID_CATEGORY_WORK).buildExpense();
+        assertParseSuccess(parser, TITLE_DESC_INTERNSHIP + AMOUNT_DESC_INTERNSHIP + DATE_DESC_INTERNSHIP
+                + CATEGORY_DESC_WORK + CATEGORY_DESC_FOOD_BEVERAGE,
+                new AddExpenseCommand(expectedExpenseMultipleCategories));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero categories
-        Expense expectedExpense = new TransactionBuilder(AMY).withCategories().buildExpense();
-        assertParseSuccess(parser, TITLE_DESC_AMY + AMOUNT_DESC_AMY + DATE_DESC_AMY,
+        Expense expectedExpense = new TransactionBuilder(BUBBLE_TEA_2).withCategories().buildExpense();
+        assertParseSuccess(parser, TITLE_DESC_BUBBLE_TEA + AMOUNT_DESC_BUBBLE_TEA + DATE_DESC_BUBBLE_TEA,
                 new AddExpenseCommand(expectedExpense));
     }
 
@@ -78,43 +80,47 @@ public class AddExpenseCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExpenseCommand.MESSAGE_USAGE);
 
         // missing title prefix
-        assertParseFailure(parser, VALID_TITLE_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, VALID_TITLE_INTERNSHIP + AMOUNT_DESC_INTERNSHIP + DATE_DESC_INTERNSHIP,
+                expectedMessage);
 
         // missing amount prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + VALID_AMOUNT_BOB + DATE_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, TITLE_DESC_INTERNSHIP + VALID_AMOUNT_INTERNSHIP + DATE_DESC_INTERNSHIP,
+                expectedMessage);
 
         // missing date prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + AMOUNT_DESC_BOB + VALID_DATE_BOB, expectedMessage);
+        assertParseFailure(parser, TITLE_DESC_INTERNSHIP + AMOUNT_DESC_INTERNSHIP + VALID_DATE_INTERNSHIP,
+                expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_TITLE_BOB + VALID_AMOUNT_BOB + VALID_DATE_BOB, expectedMessage);
+        assertParseFailure(parser, VALID_TITLE_INTERNSHIP + VALID_AMOUNT_INTERNSHIP + VALID_DATE_INTERNSHIP,
+                expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid title
-        assertParseFailure(parser, INVALID_TITLE_DESC + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + CATEGORY_DESC_HUSBAND + CATEGORY_DESC_FRIEND, Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TITLE_DESC + AMOUNT_DESC_INTERNSHIP + DATE_DESC_INTERNSHIP
+                + CATEGORY_DESC_WORK + CATEGORY_DESC_FOOD_BEVERAGE, Title.MESSAGE_CONSTRAINTS);
 
         // invalid amount
-        assertParseFailure(parser, TITLE_DESC_BOB + INVALID_AMOUNT_DESC + DATE_DESC_BOB
-                + CATEGORY_DESC_HUSBAND + CATEGORY_DESC_FRIEND, Amount.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_INTERNSHIP + INVALID_AMOUNT_DESC + DATE_DESC_INTERNSHIP
+                + CATEGORY_DESC_WORK + CATEGORY_DESC_FOOD_BEVERAGE, Amount.MESSAGE_CONSTRAINTS);
 
         // invalid date
-        assertParseFailure(parser, TITLE_DESC_BOB + AMOUNT_DESC_BOB + INVALID_DATE_DESC
-                + CATEGORY_DESC_HUSBAND + CATEGORY_DESC_FRIEND, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_INTERNSHIP + AMOUNT_DESC_INTERNSHIP + INVALID_DATE_DESC
+                + CATEGORY_DESC_WORK + CATEGORY_DESC_FOOD_BEVERAGE, Date.MESSAGE_CONSTRAINTS);
 
         // invalid category
-        assertParseFailure(parser, TITLE_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                + INVALID_CATEGORY_DESC + VALID_CATEGORY_FRIEND, Category.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_INTERNSHIP + AMOUNT_DESC_INTERNSHIP + DATE_DESC_INTERNSHIP
+                + INVALID_CATEGORY_DESC + VALID_CATEGORY_FOOD_BEVERAGE, Category.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_TITLE_DESC + AMOUNT_DESC_BOB + INVALID_DATE_DESC,
+        assertParseFailure(parser, INVALID_TITLE_DESC + AMOUNT_DESC_INTERNSHIP + INVALID_DATE_DESC,
                 Title.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_BOB + AMOUNT_DESC_BOB + DATE_DESC_BOB
-                        + CATEGORY_DESC_HUSBAND + CATEGORY_DESC_FRIEND,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_INTERNSHIP + AMOUNT_DESC_INTERNSHIP
+                + DATE_DESC_INTERNSHIP + CATEGORY_DESC_WORK + CATEGORY_DESC_FOOD_BEVERAGE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExpenseCommand.MESSAGE_USAGE));
     }
 }

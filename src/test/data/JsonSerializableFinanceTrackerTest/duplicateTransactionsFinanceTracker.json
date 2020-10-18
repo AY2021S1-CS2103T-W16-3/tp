@@ -1,0 +1,24 @@
+{
+  "expenses": [ {
+    "title": "Bubble Tea",
+    "amount": "$4.80",
+    "date": "14/10/2020",
+    "categories": [ "Food & Beverage" ]
+  }, {
+    "title": "Bubble Tea",
+    "amount": "$4.80",
+    "date": "14/10/2020",
+    "categories": [ "Food & Beverage" ]
+  } ],
+  "incomes": [ {
+    "title": "Internship",
+    "amount": "$560.00",
+    "date": "06/10/2020",
+    "categories": [ "Work" ]
+  }, {
+    "title": "Internship",
+    "amount": "$560.00",
+    "date": "06/10/2020",
+    "categories": [ "Work" ]
+  } ]
+}

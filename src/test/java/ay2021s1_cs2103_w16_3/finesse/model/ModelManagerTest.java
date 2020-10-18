@@ -2,8 +2,8 @@ package ay2021s1_cs2103_w16_3.finesse.model;
 
 import static ay2021s1_cs2103_w16_3.finesse.model.Model.PREDICATE_SHOW_ALL_TRANSACTIONS;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.ALICE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.BENSON;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.TUITION_FEES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -90,11 +90,12 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        FinanceTracker financeTracker = new FinanceTrackerBuilder().withTransaction(ALICE).withTransaction(BENSON)
-                .withExpense(new TransactionBuilder(ALICE).buildExpense())
-                .withExpense(new TransactionBuilder(BENSON).buildExpense())
-                .withIncome(new TransactionBuilder(ALICE).buildIncome())
-                .withIncome(new TransactionBuilder(BENSON).buildIncome()).build();
+        FinanceTracker financeTracker = new FinanceTrackerBuilder()
+                .withTransaction(BUBBLE_TEA).withTransaction(TUITION_FEES)
+                .withExpense(new TransactionBuilder(BUBBLE_TEA).buildExpense())
+                .withExpense(new TransactionBuilder(TUITION_FEES).buildExpense())
+                .withIncome(new TransactionBuilder(BUBBLE_TEA).buildIncome())
+                .withIncome(new TransactionBuilder(TUITION_FEES).buildIncome()).build();
         FinanceTracker differentFinanceTracker = new FinanceTracker();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -115,7 +116,7 @@ public class ModelManagerTest {
         // different financeTracker -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentFinanceTracker, userPrefs)));
 
-        String[] keywords = ALICE.getTitle().fullTitle.split("\\s+");
+        String[] keywords = BUBBLE_TEA.getTitle().fullTitle.split("\\s+");
 
         // different filteredTransactionList -> returns false
         modelManager.updateFilteredTransactionList(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
