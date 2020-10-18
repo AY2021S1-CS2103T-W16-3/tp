@@ -86,4 +86,8 @@ shadowJar {
     archiveFileName = 'fine$$e.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
