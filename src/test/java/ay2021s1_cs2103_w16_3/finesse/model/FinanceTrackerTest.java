@@ -2,7 +2,9 @@ package ay2021s1_cs2103_w16_3.finesse.model;
 
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalTransactions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 import java.util.Collections;
 
@@ -42,5 +44,29 @@ public class FinanceTrackerTest {
     @Test
     public void getIncomeList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> financeTracker.getIncomeList().remove(0));
+    }
+
+    @Test
+    public void equals_distinctFinanceTrackersWithSameAttributes_returnsTrue() {
+        FinanceTracker firstFinanceTracker = new FinanceTracker();
+        FinanceTracker secondFinanceTracker = new FinanceTracker();
+
+        firstFinanceTracker.setTransactions(getTypicalTransactions());
+        secondFinanceTracker.setTransactions(getTypicalTransactions());
+
+        assertNotSame(firstFinanceTracker, secondFinanceTracker);
+        assertEquals(firstFinanceTracker, secondFinanceTracker);
+    }
+
+    @Test
+    public void hashCode_distinctFinanceTrackersWithSameAttributes_returnsTrue() {
+        FinanceTracker firstFinanceTracker = new FinanceTracker();
+        FinanceTracker secondFinanceTracker = new FinanceTracker();
+
+        firstFinanceTracker.setTransactions(getTypicalTransactions());
+        secondFinanceTracker.setTransactions(getTypicalTransactions());
+
+        assertNotSame(firstFinanceTracker, secondFinanceTracker);
+        assertEquals(firstFinanceTracker.hashCode(), secondFinanceTracker.hashCode());
     }
 }
