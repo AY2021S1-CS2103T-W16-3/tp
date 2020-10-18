@@ -66,6 +66,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label panelLabel;
     @FXML
+    private Label rightPanelLabel;
+    @FXML
     private Tab menuHelpTab;
     @FXML
     private Tab menuOverviewTab;
@@ -216,6 +218,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleOverview() {
         if (menuOverviewTab.isSelected()) {
             panelLabel.setText("Overview");
+            rightPanelLabel.setText("Savings Summary");
 
             transactionListPanel = new TransactionListPanel(logic.getFilteredTransactionList());
             transactionListPanelPlaceholder.getChildren().add(transactionListPanel.getRoot());
@@ -250,6 +253,7 @@ public class MainWindow extends UiPart<Stage> {
     private void handleExpense() {
         if (menuExpenseTab.isSelected()) {
             panelLabel.setText("Expense");
+            rightPanelLabel.setText("Frequent Expenses");
 
             expensePanel = new ExpensePanel(logic.getFilteredExpenseList());
             transactionListPanelPlaceholder.getChildren().add(expensePanel.getRoot());

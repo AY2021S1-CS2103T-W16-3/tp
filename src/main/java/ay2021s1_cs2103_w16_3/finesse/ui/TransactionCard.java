@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
 public class TransactionCard extends UiPart<Region> {
 
     private static final String FXML = "TransactionListCard.fxml";
-    private static final double PREFFERED_CARD_HEIGHT = 70.00;
+    private static final double PREFERRED_CARD_HEIGHT = 70.00;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -47,7 +47,7 @@ public class TransactionCard extends UiPart<Region> {
     public TransactionCard(Transaction transaction, int displayedIndex) {
         super(FXML);
         this.transaction = transaction;
-        cardPane.setPrefHeight(PREFFERED_CARD_HEIGHT);
+        cardPane.setPrefHeight(PREFERRED_CARD_HEIGHT);
         id.setText(displayedIndex + ". ");
         title.setText(transaction.getTitle().fullTitle);
         amount.setText(transaction.getAmount().toString());
@@ -58,6 +58,13 @@ public class TransactionCard extends UiPart<Region> {
                     newCategory.setStyle("-fx-font-family: Eczar");
                     categories.getChildren().add(newCategory);
                 });
+    }
+
+    /**
+     * Edits the height and the width of the {@code cardPane} VBox with the new width and new height.
+     */
+    public void editCardSize(double newWidth, double newHeight) {
+        cardPane.setPrefSize(newWidth, newHeight);
     }
 
     @Override

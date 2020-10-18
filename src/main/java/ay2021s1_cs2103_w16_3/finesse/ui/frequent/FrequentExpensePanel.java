@@ -14,6 +14,8 @@ import javafx.scene.layout.Region;
 
 public class FrequentExpensePanel extends UiPart<Region> {
     private static final String FXML = "FrequentExpensePanel.fxml";
+    private static final double PREFERRED_CARD_HEIGHT = 40.00;
+    private static final double PREFERRED_CARD_WIDTH = 100.00;
     private final Logger logger = LogsCenter.getLogger(FrequentExpensePanel.class);
 
     @FXML
@@ -38,7 +40,9 @@ public class FrequentExpensePanel extends UiPart<Region> {
                 setText(null);
                 setStyle("-fx-background-color: #2E2E36");
             } else {
-                setGraphic(new TransactionCard(frequentExpense, getIndex() + 1).getRoot());
+                TransactionCard newTransactionCard = new TransactionCard(frequentExpense, getIndex() + 1);
+                newTransactionCard.editCardSize(PREFERRED_CARD_WIDTH, PREFERRED_CARD_HEIGHT);
+                setGraphic(newTransactionCard.getRoot());
             }
         }
     }

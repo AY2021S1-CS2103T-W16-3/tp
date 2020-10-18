@@ -10,7 +10,6 @@
     <padding>
         <Insets left="10" top="10" bottom="15" />
     </padding>
-    <Label fx:id="savingsPanelHeader" text="Savings Summary" styleClass="panel-label"/>
     <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
         <padding>
             <Insets bottom="10" top="20"/>

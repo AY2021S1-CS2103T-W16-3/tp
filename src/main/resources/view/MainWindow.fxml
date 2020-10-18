@@ -37,7 +37,8 @@
               <StackPane fx:id="transactionListPanelPlaceholder" maxWidth="Infinity" minWidth="500"
                          HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
             </VBox>
-            <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+            <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" alignment="CENTER">
+              <Label fx:id="rightPanelLabel" text="Savings Summary" styleClass="panel-label"/>
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
