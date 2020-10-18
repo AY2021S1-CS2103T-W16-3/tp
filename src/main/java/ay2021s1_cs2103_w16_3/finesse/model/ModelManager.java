@@ -130,6 +130,11 @@ public class ModelManager implements Model {
         financeTracker.addFrequentExpense(frequentExpense);
     }
 
+    @Override
+    public void deleteFrequentExpense(FrequentExpense frequentExpense) {
+        financeTracker.removeFrequentExpense(frequentExpense);
+    }
+
     //=========== Filtered Transaction List Accessors =============================================================
 
     /**

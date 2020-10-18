@@ -103,6 +103,14 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
         transactions.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code FinanceTracker}.
+     * {@code key} must exist in the finance tracker.
+     */
+    public void removeFrequentExpense(FrequentExpense key) {
+        frequentExpenses.remove(key);
+    }
+
     //// util methods
 
     @Override
