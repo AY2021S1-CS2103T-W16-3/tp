@@ -96,6 +96,16 @@ public class FinanceTracker implements ReadOnlyFinanceTracker {
     }
 
     /**
+     * Replaces the given frequent expense {@code target} in the list with {@code editedFrequentExpense}.
+     * {@code target} must exist in the frequent expense list.
+     */
+    public void setFrequentExpense(FrequentExpense target, FrequentExpense editedFrequentExpense) {
+        requireNonNull(editedFrequentExpense);
+
+        frequentExpenses.setFrequentExpense(target, editedFrequentExpense);
+    }
+
+    /**
      * Removes {@code key} from this {@code FinanceTracker}.
      * {@code key} must exist in the finance tracker.
      */

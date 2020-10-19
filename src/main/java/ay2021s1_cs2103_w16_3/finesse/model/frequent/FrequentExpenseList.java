@@ -31,6 +31,23 @@ public class FrequentExpenseList {
     }
 
     /**
+     * Replaces the frequent expense {@code target} in the list with {@code editedFrequentExpense}.
+     * {@code target} must exist in the list.
+     * The frequent expense identity of {@code editedFrequentExpense} must not be the same as another existing
+     * frequent expense in the list.
+     */
+    public void setFrequentExpense(FrequentExpense target, FrequentExpense editedFrequentExpense) {
+        requireAllNonNull(target, editedFrequentExpense);
+
+        int index = internalFrequentExpenseList.indexOf(target);
+        if (index == -1) {
+            throw new FrequentExpenseNotFoundException();
+        }
+
+        internalFrequentExpenseList.set(index, editedFrequentExpense);
+    }
+
+    /**
      * Removes the equivalent frequent expense from the list.
      * The frequent expense must exist in the list.
      */

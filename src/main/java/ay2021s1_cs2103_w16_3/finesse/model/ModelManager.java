@@ -135,6 +135,20 @@ public class ModelManager implements Model {
         financeTracker.removeFrequentExpense(frequentExpense);
     }
 
+    @Override
+    public void setFrequentExpense(FrequentExpense target, FrequentExpense editedFrequentExpense) {
+        requireAllNonNull(target, editedFrequentExpense);
+
+        financeTracker.setFrequentExpense(target, editedFrequentExpense);
+    }
+
+    @Override
+    public void updateFilteredFrequentExpenseList(Predicate<FrequentExpense> predicate) {
+        requireNonNull(predicate);
+
+        filteredFrequentExpenses.setPredicate(predicate);
+    }
+
     //=========== Filtered Transaction List Accessors =============================================================
 
     /**

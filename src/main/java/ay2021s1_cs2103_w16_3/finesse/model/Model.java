@@ -97,6 +97,12 @@ public interface Model {
      */
     void setTransaction(Transaction target, Transaction editedTransaction);
 
+    /**
+     * Replaces the given frequent expense {@code target} with {@code editedFrequentExpense}.
+     * {@code target} must exist in the finance tracker.
+     */
+    void setFrequentExpense(FrequentExpense target, FrequentExpense editedFrequentExpense);
+
     /** Returns an unmodifiable view of the filtered transaction list. */
     ObservableList<Transaction> getFilteredTransactionList();
 
@@ -126,4 +132,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIncomeList(Predicate<Transaction> predicate);
+
+    /**
+     * Updates the filter of the filtered frequent expense list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredFrequentExpenseList(Predicate<FrequentExpense> predicate);
+
 }

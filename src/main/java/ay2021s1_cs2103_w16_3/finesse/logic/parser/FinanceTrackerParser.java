@@ -33,10 +33,12 @@ import ay2021s1_cs2103_w16_3.finesse.logic.commands.TabCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.frequent.AddFrequentExpenseCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.frequent.ConvertFrequentExpenseCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.frequent.DeleteFrequentExpenseCommand;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.frequent.EditFrequentExpenseCommand;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.frequentparsers.AddFrequentExpenseCommandParser;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.frequentparsers.ConvertFrequentExpenseCommandParser;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.frequentparsers.DeleteFrequentExpenseCommandParser;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.frequentparsers.EditFrequentExpenseCommandParser;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiState;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiState.Tab;
 
@@ -108,6 +110,9 @@ public class FinanceTrackerParser {
                 throw new ParseException(commandInvalidTabMessage(commandWord,
                         Tab.EXPENSES, Tab.INCOME));
             }
+
+        case EditFrequentExpenseCommand.COMMAND_WORD:
+            return new EditFrequentExpenseCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             final DeleteCommand baseDeleteCommand = new DeleteCommandParser().parse(arguments);
