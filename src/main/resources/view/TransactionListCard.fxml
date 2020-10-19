@@ -23,10 +23,10 @@
                       <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
               </Label>
-              <Label fx:id="title" text="\$title" styleClass="cell_big_label" />
+              <Label fx:id="title" text="\$title" styleClass="cell_big_label" wrapText="true"/>
           </HBox>
           <columnConstraints>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="150" />
+              <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="250" />
           </columnConstraints>
           <FlowPane fx:id="categories" styleClass="cell_categories" GridPane.columnIndex="1" />
           <columnConstraints>

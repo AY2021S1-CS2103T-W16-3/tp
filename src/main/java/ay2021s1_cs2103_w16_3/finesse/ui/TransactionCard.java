@@ -61,11 +61,60 @@ public class TransactionCard extends UiPart<Region> {
     }
 
     /**
+     * Creates a {@code TransactionCard} with the given {@code Transaction} and index to display. The font size of
+     * the content is set based on the given {@code fontSize}.
+     */
+    public TransactionCard(Transaction transaction, int displayedIndex, int fontSize) {
+        super(FXML);
+        this.transaction = transaction;
+        String fontSizeParsedToString = String.valueOf(fontSize);
+        String categoriesFontSizeParsedToString = String.valueOf(fontSize - 2);
+        cardPane.setPrefHeight(PREFERRED_CARD_HEIGHT);
+
+        id.setText(displayedIndex + ". ");
+        id.setStyle(String.format("-fx-font-size: %spx", fontSizeParsedToString));
+
+        title.setText(transaction.getTitle().fullTitle);
+        title.setStyle(String.format("-fx-font-size: %spx", fontSizeParsedToString));
+
+        amount.setText(transaction.getAmount().toString());
+        amount.setStyle(String.format("-fx-font-size: %spx", fontSizeParsedToString));
+
+        transaction.getCategories().stream()
+                .sorted(Comparator.comparing(category -> category.categoryName))
+                .forEach(category -> {
+                    Label newCategory = new Label(category.categoryName);
+                    newCategory.setStyle("-fx-font-family: Eczar");
+                    newCategory.setStyle(String.format("-fx-font-size: %spx", categoriesFontSizeParsedToString));
+                    categories.getChildren().add(newCategory);
+                });
+    }
+
+    /**
      * Edits the height and the width of the {@code cardPane} VBox with the new width and new height.
      */
     public void editCardSize(double newWidth, double newHeight) {
         cardPane.setPrefSize(newWidth, newHeight);
     }
+
+//    /**
+//     * Updates the font size of the information within the transaction card.
+//     * @param newFontSize The new font size to be applied.
+//     */
+//    public void editDetailsFontSize(int newFontSize) {
+//        String fontSize = String.valueOf(newFontSize);
+//
+//
+//        amount.setStyle("-fx-font-size: " + fontSize + "px");
+//        transaction.getCategories().stream()
+//                .sorted(Comparator.comparing(category -> category.categoryName))
+//                .forEach(category -> {
+//                    Label newCategory = new Label(category.categoryName);
+//                    newCategory.setStyle("-fx-font-family: Eczar");
+//                    newCategory.setStyle();
+//                    categories.getChildren().add(newCategory);
+//                });
+//    }
 
     @Override
     public boolean equals(Object other) {

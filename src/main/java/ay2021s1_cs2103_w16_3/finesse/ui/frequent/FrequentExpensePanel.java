@@ -40,7 +40,8 @@ public class FrequentExpensePanel extends UiPart<Region> {
                 setText(null);
                 setStyle("-fx-background-color: #2E2E36");
             } else {
-                TransactionCard newTransactionCard = new TransactionCard(frequentExpense, getIndex() + 1);
+                TransactionCard newTransactionCard = new TransactionCard(frequentExpense, getIndex() + 1,
+                        12);
                 newTransactionCard.editCardSize(PREFERRED_CARD_WIDTH, PREFERRED_CARD_HEIGHT);
                 setGraphic(newTransactionCard.getRoot());
             }

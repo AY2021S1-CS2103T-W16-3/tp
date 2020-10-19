@@ -34,7 +34,7 @@
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
-              <StackPane fx:id="transactionListPanelPlaceholder" maxWidth="Infinity" minWidth="500"
+              <StackPane fx:id="transactionListPanelPlaceholder" maxWidth="Infinity" minWidth="400"
                          HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
             </VBox>
             <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" alignment="CENTER">
@@ -42,7 +42,7 @@
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <StackPane fx:id="savingsGoalPlaceholder" maxWidth="Infinity" minWidth="100" prefWidth="100"
+              <StackPane fx:id="savingsGoalPlaceholder" maxWidth="Infinity" minWidth="100" prefWidth="150"
                          HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
             </VBox>
         </HBox>

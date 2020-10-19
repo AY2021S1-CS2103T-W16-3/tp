@@ -137,13 +137,13 @@
 }
 
 .cell_categories {
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
     -fx-font-family: "Eczar";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
@@ -401,7 +401,7 @@
 }
 
 #categories {
-    -fx-hgap: 7;
+    -fx-hgap: 5;
     -fx-vgap: 3;
     -fx-background-insets: 10;
 }
