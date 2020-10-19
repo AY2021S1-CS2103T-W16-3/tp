@@ -63,7 +63,7 @@ public class FrequentExpenseBuilder {
         return this;
     }
 
-    public FrequentExpense build() {
+    public FrequentExpense buildFrequentExpense() {
         return new FrequentExpense(title, amount, categories);
     }
 

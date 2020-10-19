@@ -1,6 +1,6 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands.frequent;
 
-import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public class DeleteFrequentExpenseCommand extends Command {
         List<FrequentExpense> lastShownList = model.getFilteredFrequentExpenseList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX);
         }
 
         FrequentExpense frequentExpenseToDelete = lastShownList.get(targetIndex.getZeroBased());

@@ -1,6 +1,6 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands.frequent;
 
-import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE;
 import static java.util.Objects.requireNonNull;
 
@@ -49,12 +49,26 @@ public class ConvertFrequentExpenseCommand extends Command {
         List<FrequentExpense> lastShownList = model.getFilteredFrequentExpenseList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX);
         }
 
         FrequentExpense frequentExpenseToBeConverted = lastShownList.get(targetIndex.getZeroBased());
         Expense newExpenseToAdd = frequentExpenseToBeConverted.convert(date);
         model.addExpense(newExpenseToAdd);
         return new CommandResult(String.format(MESSAGE_CONVERT_FREQUENT_EXPENSE_SUCCESS, newExpenseToAdd));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ConvertFrequentExpenseCommand)) {
+            return false;
+        }
+
+        ConvertFrequentExpenseCommand e = (ConvertFrequentExpenseCommand) other;
+        return targetIndex.equals(e.targetIndex) && date.equals(e.date);
     }
 }

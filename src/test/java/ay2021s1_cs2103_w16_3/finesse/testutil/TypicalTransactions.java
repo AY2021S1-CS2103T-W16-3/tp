@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
@@ -57,6 +58,16 @@ public class TypicalTransactions {
     public static final Income HACKATHON_WINNINGS = new TransactionBuilder().withTitle("Hackathon Winnings")
             .withDate("22/09/2020").withAmount("1000").buildIncome();
 
+    // Frequent Expenses
+    public static final FrequentExpense PHONE_BILL = new FrequentExpenseBuilder().withTitle("Phone Bill")
+            .withAmount("60").buildFrequentExpense();
+    public static final FrequentExpense SPOTIFY_SUBSCRIPTION = new FrequentExpenseBuilder()
+            .withTitle("Spotify Subscription").withAmount("9.90").buildFrequentExpense();
+    public static final FrequentExpense NETFLIX_SUBSCRIPTION = new FrequentExpenseBuilder()
+            .withTitle("Netflix Subscription").withAmount("20").buildFrequentExpense();
+    public static final FrequentExpense TIMES_MAGAZINE_SUBSCRIPTION = new FrequentExpenseBuilder()
+            .withTitle("Times Magazine Subscription").withAmount("12").buildFrequentExpense();
+
     // Manually added
     public static final Expense TUITION_FEES_2 = new TransactionBuilder().withTitle("Tuition Fees")
             .withDate("05/10/2020").withAmount("4221").withCategories("NUS", "GIRO").buildExpense();
@@ -80,6 +91,7 @@ public class TypicalTransactions {
         FinanceTracker ft = new FinanceTracker();
         getTypicalExpenses().forEach(ft::addTransaction);
         getTypicalIncomes().forEach(ft::addTransaction);
+        getTypicalFrequentExpenses().forEach(ft::addFrequentExpense);
         return ft;
     }
 
@@ -96,5 +108,10 @@ public class TypicalTransactions {
     public static List<Income> getTypicalIncomes() {
         return new ArrayList<>(Arrays.asList(INTERNSHIP, TEACHING_ASSISTANT, STARTUP_FUNDING,
                 ALLOWANCE, ANG_PAO, GST_VOUCHER, HACKATHON_WINNINGS));
+    }
+
+    public static List<FrequentExpense> getTypicalFrequentExpenses() {
+        return new ArrayList<>(Arrays.asList(PHONE_BILL, SPOTIFY_SUBSCRIPTION, NETFLIX_SUBSCRIPTION,
+                TIMES_MAGAZINE_SUBSCRIPTION));
     }
 }

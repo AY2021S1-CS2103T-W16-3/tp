@@ -13,11 +13,14 @@ import java.util.List;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.core.index.Index;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.frequent.EditFrequentExpenseCommand;
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
+import ay2021s1_cs2103_w16_3.finesse.testutil.EditFrequentExpenseDescriptorBuilder;
 import ay2021s1_cs2103_w16_3.finesse.testutil.EditTransactionDescriptorBuilder;
 
 /**
@@ -28,15 +31,18 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_BUBBLE_TEA = "Bubble Tea";
     public static final String VALID_TITLE_INTERNSHIP = "Internship";
     public static final String VALID_TITLE_SPOTIFY_SUBSCRIPTION = "Spotify Subscription";
+    public static final String VALID_TITLE_PHONE_BILL = "Phone Bill";
     public static final String VALID_AMOUNT_BUBBLE_TEA = "$4.80";
     public static final String VALID_AMOUNT_INTERNSHIP = "$560";
     public static final String VALID_AMOUNT_SPOTIFY_SUBSCRIPTION = "9.90";
+    public static final String VALID_AMOUNT_PHONE_BILL = "60";
     public static final String VALID_DATE_BUBBLE_TEA = "14/10/2020";
     public static final String VALID_DATE_INTERNSHIP = "06/10/2020";
     public static final String VALID_DATE_SPOTIFY_SUBSCRIPTION = "08/10/2020";
     public static final String VALID_CATEGORY_FOOD_BEVERAGE = "Food & Beverage";
     public static final String VALID_CATEGORY_WORK = "Work";
     public static final String VALID_CATEGORY_UTILITIES = "Utilities";
+    public static final String VALID_CATEGORY_MISCELLANEOUS = "Miscellaneous";
 
     public static final String TITLE_DESC_BUBBLE_TEA = " " + PREFIX_TITLE + VALID_TITLE_BUBBLE_TEA;
     public static final String TITLE_DESC_INTERNSHIP = " " + PREFIX_TITLE + VALID_TITLE_INTERNSHIP;
@@ -58,6 +64,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditTransactionDescriptor DESC_BUBBLE_TEA;
     public static final EditCommand.EditTransactionDescriptor DESC_INTERNSHIP;
+    public static final EditFrequentExpenseCommand.EditFrequentExpenseDescriptor DESC_SPOTIFY_SUBSCRIPTION;
+    public static final EditFrequentExpenseCommand.EditFrequentExpenseDescriptor DESC_PHONE_BILL;
 
     static {
         DESC_BUBBLE_TEA = new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_BUBBLE_TEA)
@@ -66,6 +74,11 @@ public class CommandTestUtil {
         DESC_INTERNSHIP = new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_INTERNSHIP)
                 .withAmount(VALID_AMOUNT_INTERNSHIP).withDate(VALID_DATE_INTERNSHIP)
                 .withCategories(VALID_CATEGORY_WORK, VALID_CATEGORY_FOOD_BEVERAGE).build();
+        DESC_SPOTIFY_SUBSCRIPTION = new EditFrequentExpenseDescriptorBuilder()
+                .withTitle(VALID_TITLE_SPOTIFY_SUBSCRIPTION).withAmount(VALID_AMOUNT_SPOTIFY_SUBSCRIPTION)
+                .withCategories(VALID_CATEGORY_MISCELLANEOUS).build();
+        DESC_PHONE_BILL = new EditFrequentExpenseDescriptorBuilder().withTitle(VALID_TITLE_PHONE_BILL)
+                .withAmount(VALID_AMOUNT_PHONE_BILL).withCategories(VALID_CATEGORY_UTILITIES).build();
     }
 
     /**
@@ -98,17 +111,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the finance tracker, filtered transaction list and selected transaction in {@code actualModel} remain unchanged
+     * - the finance tracker, filtered transaction list, filtered frequent expense list
+     * and selected transaction in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         FinanceTracker expectedFinanceTracker = new FinanceTracker(actualModel.getFinanceTracker());
         List<Transaction> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTransactionList());
+        List<FrequentExpense> expectedFilteredFrequentExpenseList =
+                new ArrayList<>(actualModel.getFilteredFrequentExpenseList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedFinanceTracker, actualModel.getFinanceTracker());
         assertEquals(expectedFilteredList, actualModel.getFilteredTransactionList());
+        assertEquals(expectedFilteredFrequentExpenseList, actualModel.getFilteredFrequentExpenseList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the transaction at the given {@code targetIndex} in the
@@ -136,6 +153,20 @@ public class CommandTestUtil {
         model.updateFilteredExpenseList(e -> e == expense);
 
         assertEquals(1, model.getFilteredExpenseList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the frequent expense at the given {@code targetIndex} in the
+     * {@code model}'s finance tracker.
+     */
+    public static void showFrequentExpenseAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredFrequentExpenseList().size());
+
+        FrequentExpense frequentExpense = model.getFilteredFrequentExpenseList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = frequentExpense.getTitle().fullTitle.split("\\s+");
+        model.updateFilteredFrequentExpenseList(e -> e == frequentExpense);
+
+        assertEquals(1, model.getFilteredFrequentExpenseList().size());
     }
 
     /**

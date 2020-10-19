@@ -15,7 +15,6 @@ import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.FrequentExpenseNo
 import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentExpenseBuilder;
 
 public class FrequentExpenseListTest {
-
     private final FrequentExpenseList frequentExpenseList = new FrequentExpenseList();
 
     @Test
@@ -54,7 +53,7 @@ public class FrequentExpenseListTest {
     public void setFrequentExpense_editedFrequentExpenseHasSameIdentity_success() {
         frequentExpenseList.add(PHONE_BILL);
         FrequentExpense editedPhone = new FrequentExpenseBuilder(PHONE_BILL).withCategories(VALID_CATEGORY_UTILITIES)
-                .build();
+                .buildFrequentExpense();
         frequentExpenseList.setFrequentExpense(PHONE_BILL, editedPhone);
         FrequentExpenseList expectedTransactionList = new FrequentExpenseList();
         expectedTransactionList.add(editedPhone);

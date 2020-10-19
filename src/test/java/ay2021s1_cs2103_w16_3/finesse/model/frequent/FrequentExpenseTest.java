@@ -16,7 +16,7 @@ public class FrequentExpenseTest {
     @Test
     public void equals() {
         // same values -> returns true
-        FrequentExpense aliceCopy = new FrequentExpenseBuilder(PHONE_BILL).build();
+        FrequentExpense aliceCopy = new FrequentExpenseBuilder(PHONE_BILL).buildFrequentExpense();
         assertTrue(PHONE_BILL.equals(aliceCopy));
 
         // same object -> returns true
@@ -28,21 +28,42 @@ public class FrequentExpenseTest {
         // different type -> returns false
         assertFalse(PHONE_BILL.equals(5));
 
-        // different transaction -> returns false
+        // different frequent expense -> returns false
         assertFalse(PHONE_BILL.equals(SPOTIFY_SUBSCRIPTION));
 
         // different title -> returns false
         FrequentExpense editedPhoneBill = new FrequentExpenseBuilder(PHONE_BILL)
-                .withTitle(VALID_TITLE_SPOTIFY_SUBSCRIPTION).build();
+                .withTitle(VALID_TITLE_SPOTIFY_SUBSCRIPTION).buildFrequentExpense();
         assertFalse(PHONE_BILL.equals(editedPhoneBill));
 
         // different amounts -> returns false
-        editedPhoneBill = new FrequentExpenseBuilder(PHONE_BILL).withAmount(VALID_AMOUNT_SPOTIFY_SUBSCRIPTION).build();
+        editedPhoneBill = new FrequentExpenseBuilder(PHONE_BILL).withAmount(VALID_AMOUNT_SPOTIFY_SUBSCRIPTION)
+                .buildFrequentExpense();
         assertFalse(PHONE_BILL.equals(editedPhoneBill));
 
         // different categories -> returns false
-        editedPhoneBill = new FrequentExpenseBuilder(PHONE_BILL).withCategories(VALID_CATEGORY_FOOD_BEVERAGE).build();
+        editedPhoneBill = new FrequentExpenseBuilder(PHONE_BILL).withCategories(VALID_CATEGORY_FOOD_BEVERAGE)
+                .buildFrequentExpense();
         assertFalse(PHONE_BILL.equals(editedPhoneBill));
+    }
+
+    @Test
+    public void isSameFrequentExpense() {
+        // same object -> return true
+        assertTrue(PHONE_BILL.isSameFrequentExpense(PHONE_BILL));
+
+        // null -> return false
+        assertFalse(PHONE_BILL.isSameFrequentExpense(null));
+
+        // different name -> return false
+        FrequentExpense editedFrequentExpense = new FrequentExpenseBuilder(PHONE_BILL)
+                .withTitle(VALID_TITLE_SPOTIFY_SUBSCRIPTION).buildFrequentExpense();
+        assertFalse(PHONE_BILL.isSameFrequentExpense(editedFrequentExpense));
+
+        // different amount -> return true
+        editedFrequentExpense = new FrequentExpenseBuilder(PHONE_BILL).withAmount(VALID_AMOUNT_SPOTIFY_SUBSCRIPTION)
+                .buildFrequentExpense();
+        assertFalse(PHONE_BILL.isSameFrequentExpense(editedFrequentExpense));
     }
 
 }
