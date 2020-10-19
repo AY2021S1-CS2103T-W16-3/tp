@@ -27,18 +27,16 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_BUBBLE_TEA = "Bubble Tea";
     public static final String VALID_TITLE_INTERNSHIP = "Internship";
-    public static final String VALID_TITLE_PHONE_BILL = "Phone Bill";
     public static final String VALID_TITLE_SPOTIFY_SUBSCRIPTION = "Spotify Subscription";
     public static final String VALID_AMOUNT_BUBBLE_TEA = "$4.80";
     public static final String VALID_AMOUNT_INTERNSHIP = "$560";
-    public static final String VALID_AMOUNT_PHONE_BILL = "60";
     public static final String VALID_AMOUNT_SPOTIFY_SUBSCRIPTION = "9.90";
     public static final String VALID_DATE_BUBBLE_TEA = "14/10/2020";
     public static final String VALID_DATE_INTERNSHIP = "06/10/2020";
-    public static final String VALID_DATE_PHONE_BILL = "07/10/2020";
     public static final String VALID_DATE_SPOTIFY_SUBSCRIPTION = "08/10/2020";
     public static final String VALID_CATEGORY_FOOD_BEVERAGE = "Food & Beverage";
     public static final String VALID_CATEGORY_WORK = "Work";
+    public static final String VALID_CATEGORY_UTILITIES = "Utilities";
 
     public static final String TITLE_DESC_BUBBLE_TEA = " " + PREFIX_TITLE + VALID_TITLE_BUBBLE_TEA;
     public static final String TITLE_DESC_INTERNSHIP = " " + PREFIX_TITLE + VALID_TITLE_INTERNSHIP;

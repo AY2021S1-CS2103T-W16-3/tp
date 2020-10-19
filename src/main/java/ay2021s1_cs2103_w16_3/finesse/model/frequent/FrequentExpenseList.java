@@ -74,6 +74,11 @@ public class FrequentExpenseList {
         internalFrequentExpenseList.setAll(frequentExpenses);
     }
 
+    public void setFrequentExpenses(FrequentExpenseList replacement) {
+        requireNonNull(replacement);
+        internalFrequentExpenseList.setAll(replacement.internalFrequentExpenseList);
+    }
+
     public Iterator<FrequentExpense> iterator() {
         return internalFrequentExpenseList.iterator();
     }
