@@ -22,19 +22,19 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/src/main/java/ay2021s1_cs2103_w16_3/finesse/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/src/main/java/ay2021s1_cs2103_w16_3/finesse/MainApp.java). It is responsible for:
-* On app launch: Initialising the components in the correct sequence, and connecting them to each other.
-* On shut down: Shutting down the components and invoking cleanup methods where necessary.
+* on app launch - initializing the components in the correct sequence, and connecting them to each other.
+* on shut down - shutting down the components and invoking cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The App's User Interface.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-Each of the four components,
+Each of the four components:
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
@@ -64,8 +64,8 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts is
 
 The `UI` component:
 
-* Executes user commands using the `Logic` component.
-* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
 
@@ -80,7 +80,7 @@ The `UI` component:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to `Ui`.
 1. In addition, the `CommandResult` object can also instruct `Ui` to perform certain actions, such as displaying the help message to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -97,15 +97,9 @@ The `Model`:
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the finance tracker data.
-* exposes an unmodifiable `ObservableList<Transaction>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
+* exposes `MonthlySavings` and `MonthlyBudget`, which can be 'observed' e.g. the UI can be bound to the values in these classes so that the UI automatically updates when the values in the classes change.
+* exposes an unmodifiable `ObservableList<Transaction>` which can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Category` list in `FinanceTracker`, which `Transaction` references. This allows `FinanceTracker` to only require one `Category` object per unique `Category`, instead of each `Transaction` needing its own `Category` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 
 ### Storage component
 
@@ -114,6 +108,7 @@ The `Model`:
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/src/main/java/ay2021s1_cs2103_w16_3/finesse/storage/Storage.java)
 
 The `Storage` component:
+
 * can save `UserPref` objects in json format and read it back.
 * can save the finance tracker data in json format and read it back.
 
@@ -127,7 +122,38 @@ Classes used by multiple components are in the `ay2021s1_cs2103_w16_3.finesse.co
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Coming Soon
+### Find transactions
+
+The find transactions feature is implemented via `FindCommandParser`, as well as the following commands:
+
+* `FindCommand`, the base command that is returned when the command is parsed
+* `FindTransactionCommand`, to be executed when the user inputs the command on the Overview tab
+* `FindExpenseCommand`, to be executed when the user inputs the command on the Expenses tab
+* `FindIncomeCommand`, to be executed when the user inputs the command on the Incomes tab
+
+`FindCommandParser` takes in the command arguments and parses them to return a `FindCommand` containing the correct predicate for finding the transactions.
+Depending on the UI tab the user inputted the command in, a `FindXXXCommand` (`FindTransactionCommand`, `FindExpenseCommand` or `FindIncomeCommand`) will be created from the base `FindCommand`.
+When executed, the `FindXXXCommand` will set the predicate of the respective `FilteredList` in `ModelManager` so that only the transactions matching the keywords will be displayed in the list.
+
+Below is the Sequence Diagram for interactions within the `Logic` and `Model` components when the user inputs the `"find tea"` command while on the Overview tab.
+
+![Interactions Inside the Logic Component for the `find tea` Command on the Overview tab](images/FindSequenceDiagram.png)
+
+Alternatives considered:
+
+* Having separate command parsers for each tab in which the find command can be input, e.g. `FindTransactionCommandParser`, `FindExpenseCommandParser` and `FindIncomeCommandParser`.
+
+### Set monthly spending limit
+
+The monthly budgeting feature is implemented via `SetExpenseLimitCommand` as well as `MonthlyExpenseLimit`.
+
+[Coming soon]
+
+### Set monthly savings goal
+
+The monthly budgeting feature is implemented via `SetSavingsGoalCommand` as well as `MonthlySavingsGoal`.
+
+[Coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
 
