@@ -71,5 +71,16 @@
     "amount": "$1000.00",
     "date": "22/09/2020",
     "categories": [ ]
+  } ],
+  "frequentExpenses": [ {
+    "title": "Spotify Subscription",
+    "amount": "$9.90",
+    "date": "10/10/2020",
+    "categories": [ "Miscellaneous" ]
+    }, {
+    "title": "Phone Bill",
+    "amount": "$60.00",
+    "date": "08/10/2020",
+    "categories": [ "Utilities" ]
   } ]
 }

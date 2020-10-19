@@ -10,5 +10,11 @@
     "amount": "$560.00",
     "date": "not a date",
     "categories": [ "Work" ]
-  } ]
+  } ],
+  "frequentExpenses": [{
+    "title": "Phone Bill",
+    "amount": "$60.00",
+    "date": "not a date",
+    "categories": [ "Utilities" ]
+  }]
 }
