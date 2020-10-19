@@ -8,8 +8,10 @@ import static java.util.Objects.requireNonNull;
 
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.Command;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandResult;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.DuplicateFrequentExpenseException;
 
 public class AddFrequentExpenseCommand extends Command {
     public static final String COMMAND_WORD = "addfrequent-expense";
@@ -40,10 +42,14 @@ public class AddFrequentExpenseCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.addFrequentExpense(toAdd);
+        try {
+            model.addFrequentExpense(toAdd);
+        } catch (DuplicateFrequentExpenseException e) {
+            throw new CommandException(e.getMessage());
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

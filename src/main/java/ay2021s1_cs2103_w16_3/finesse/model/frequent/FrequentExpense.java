@@ -26,6 +26,21 @@ public class FrequentExpense extends Expense {
         return new Expense(title, amount, newDate, categories);
     }
 
+    /**
+     * Returns true if both frequent expenses of the same title have the same amount and same categories.
+     * This defines a weaker notion of equality between 2 frequent expenses.
+     */
+    public boolean isSameFrequentExpense(FrequentExpense otherFrequentExpense) {
+        if (otherFrequentExpense == this) {
+            return true;
+        }
+
+        return otherFrequentExpense != null
+                && otherFrequentExpense.getTitle().equals(getTitle())
+                && otherFrequentExpense.getAmount().equals(getAmount())
+                && otherFrequentExpense.getCategories().equals(getCategories());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
