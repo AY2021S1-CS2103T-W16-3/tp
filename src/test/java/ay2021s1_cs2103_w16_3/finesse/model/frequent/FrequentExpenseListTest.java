@@ -25,20 +25,20 @@ public class FrequentExpenseListTest {
 
     @Test
     public void setFrequentExpense_nullTargetFrequentExpense_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> frequentExpenseList.setFrequentExpense(null, PHONE_BILL));
+        assertThrows(NullPointerException.class, ()
+            -> frequentExpenseList.setFrequentExpense(null, PHONE_BILL));
     }
 
     @Test
     public void setFrequentExpense_nullEditedTFrequentExpense_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> frequentExpenseList.setFrequentExpense(PHONE_BILL, null));
+        assertThrows(NullPointerException.class, ()
+            -> frequentExpenseList.setFrequentExpense(PHONE_BILL, null));
     }
 
     @Test
     public void setFrequentExpense_targetFrequentExpenseNotInList_throwsTransactionNotFoundException() {
-        assertThrows(FrequentExpenseNotFoundException.class,
-                () -> frequentExpenseList.setFrequentExpense(PHONE_BILL, PHONE_BILL));
+        assertThrows(FrequentExpenseNotFoundException.class, ()
+            -> frequentExpenseList.setFrequentExpense(PHONE_BILL, PHONE_BILL));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class FrequentExpenseListTest {
     @Test
     public void setFrequentExpenses_nullFrequentExpenseList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, ()
-                -> frequentExpenseList.setFrequentExpenses((FrequentExpenseList) null));
+            -> frequentExpenseList.setFrequentExpenses((FrequentExpenseList) null));
     }
 
     @Test
@@ -105,8 +105,8 @@ public class FrequentExpenseListTest {
 
     @Test
     public void setFrequentExpenses_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> frequentExpenseList.setFrequentExpenses((List<FrequentExpense>) null));
+        assertThrows(NullPointerException.class, ()
+            -> frequentExpenseList.setFrequentExpenses((List<FrequentExpense>) null));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class FrequentExpenseListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> frequentExpenseList.asUnmodifiableObservableList().remove(0));
+            -> frequentExpenseList.asUnmodifiableObservableList().remove(0));
     }
 
 }

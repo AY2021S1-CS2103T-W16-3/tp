@@ -97,25 +97,6 @@ public class TransactionCard extends UiPart<Region> {
         cardPane.setPrefSize(newWidth, newHeight);
     }
 
-//    /**
-//     * Updates the font size of the information within the transaction card.
-//     * @param newFontSize The new font size to be applied.
-//     */
-//    public void editDetailsFontSize(int newFontSize) {
-//        String fontSize = String.valueOf(newFontSize);
-//
-//
-//        amount.setStyle("-fx-font-size: " + fontSize + "px");
-//        transaction.getCategories().stream()
-//                .sorted(Comparator.comparing(category -> category.categoryName))
-//                .forEach(category -> {
-//                    Label newCategory = new Label(category.categoryName);
-//                    newCategory.setStyle("-fx-font-family: Eczar");
-//                    newCategory.setStyle();
-//                    categories.getChildren().add(newCategory);
-//                });
-//    }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
