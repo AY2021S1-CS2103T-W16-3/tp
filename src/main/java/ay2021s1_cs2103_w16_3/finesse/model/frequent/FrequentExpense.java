@@ -14,18 +14,6 @@ public class FrequentExpense extends FrequentTransaction<Expense> {
         super(title, amount, categories);
     }
 
-    /**
-     * Converts a frequent expense to a expense with new date.
-     * @param newDate Date of when the frequent expense is converted to an expense.
-     * @return a new {@code Expense} object.
-     */
-    public Expense convertFrequentExpenseToExpense(Date newDate) {
-        Title title = super.getTitle();
-        Amount amount = super.getAmount();
-        Set<Category> categories = super.getCategories();
-        return new Expense(title, amount, newDate, categories);
-    }
-
     @Override
     public Expense convert(Date expenseDate) {
         Title title = super.getTitle();

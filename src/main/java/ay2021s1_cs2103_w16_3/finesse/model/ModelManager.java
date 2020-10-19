@@ -184,9 +184,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<FrequentExpense> getFilteredFrequentExpenseList() {
-        ObservableList<FrequentExpense> newFilteredFrequentExpenses = FXCollections.observableArrayList();
-        filteredFrequentExpenses.forEach(i -> newFilteredFrequentExpenses.add(i));
-        return FXCollections.unmodifiableObservableList(newFilteredFrequentExpenses);
+        return filteredFrequentExpenses;
     }
 
     @Override

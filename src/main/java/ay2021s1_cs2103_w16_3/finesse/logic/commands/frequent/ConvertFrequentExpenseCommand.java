@@ -53,7 +53,7 @@ public class ConvertFrequentExpenseCommand extends Command {
         }
 
         FrequentExpense frequentExpenseToBeConverted = lastShownList.get(targetIndex.getZeroBased());
-        Expense newExpenseToAdd = frequentExpenseToBeConverted.convertFrequentExpenseToExpense(date);
+        Expense newExpenseToAdd = frequentExpenseToBeConverted.convert(date);
         model.addExpense(newExpenseToAdd);
         return new CommandResult(String.format(MESSAGE_CONVERT_FREQUENT_EXPENSE_SUCCESS, newExpenseToAdd));
     }
