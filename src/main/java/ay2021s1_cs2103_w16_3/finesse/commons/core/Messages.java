@@ -9,7 +9,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_TAB_FORMAT = "'%s' command can only be used in the following tabs: %s";
     public static final String MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX =
-            "The frequent expense index provided is invalid.";
+            "The transaction index provided is invalid.";
     public static final String MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX =
             "The frequent expense index provided is invalid";
     public static final String MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX =

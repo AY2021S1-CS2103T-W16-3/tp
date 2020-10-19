@@ -27,7 +27,7 @@ public interface ReadOnlyFinanceTracker {
     ObservableList<Income> getIncomeList();
 
     /**
-     * Returns an unmodifiable view of the transactions list.
+     * Returns an unmodifiable view of the frequent expense list.
      */
     ObservableList<FrequentExpense> getFrequentExpenseList();
 }

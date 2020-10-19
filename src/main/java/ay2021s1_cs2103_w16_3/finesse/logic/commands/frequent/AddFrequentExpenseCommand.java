@@ -13,7 +13,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.DuplicateFrequentExpenseException;
 
 public class AddFrequentExpenseCommand extends Command {
-    public static final String COMMAND_WORD = "addfrequent-expense";
+    public static final String COMMAND_WORD = "add-frequent-expense";
     public static final String COMMAND_ALIAS = "addfe";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an expense to the finance tracker. "

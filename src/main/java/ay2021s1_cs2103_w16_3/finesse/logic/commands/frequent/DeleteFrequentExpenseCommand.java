@@ -13,10 +13,10 @@ import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 
 /**
- * Deletes a frequent expense identified using it's displayed index from the finance tracker.
+ * Deletes a frequent expense identified using its displayed index from the finance tracker.
  */
 public class DeleteFrequentExpenseCommand extends Command {
-    public static final String COMMAND_WORD = "deletefrequent-expense";
+    public static final String COMMAND_WORD = "delete-frequent-expense";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the frequent expense identified by the index number used in the displayed "

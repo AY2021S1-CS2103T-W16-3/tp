@@ -29,7 +29,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
  * in the expense tab.
  */
 public class EditFrequentExpenseCommand extends Command {
-    public static final String COMMAND_WORD = "editfrequent-expense";
+    public static final String COMMAND_WORD = "edit-frequent-expense";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the frequent expense identified "
             + "by the index number used in the displayed frequent expense list on the expense tab. "

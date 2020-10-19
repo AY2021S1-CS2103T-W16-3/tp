@@ -112,7 +112,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered income list. */
     ObservableList<Income> getFilteredIncomeList();
 
-    /** Returns an unmodifiable view of the filtered income list. */
+    /** Returns an unmodifiable view of the filtered frequent expense list. */
     ObservableList<FrequentExpense> getFilteredFrequentExpenseList();
 
     /**

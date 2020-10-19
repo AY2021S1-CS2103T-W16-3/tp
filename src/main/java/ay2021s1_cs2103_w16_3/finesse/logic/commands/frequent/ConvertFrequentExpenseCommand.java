@@ -19,7 +19,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
  * Converts a specified frequent expense to an expense and adds it to the finance tracker.
  */
 public class ConvertFrequentExpenseCommand extends Command {
-    public static final String COMMAND_WORD = "convertfrequent-expense";
+    public static final String COMMAND_WORD = "convert-frequent-expense";
     public static final String COMMAND_ALIAS = "convertfe";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Converts the specified frequent expense and adds"
@@ -57,8 +57,4 @@ public class ConvertFrequentExpenseCommand extends Command {
         model.addExpense(newExpenseToAdd);
         return new CommandResult(String.format(MESSAGE_CONVERT_FREQUENT_EXPENSE_SUCCESS, newExpenseToAdd));
     }
-
-
-
-
 }
