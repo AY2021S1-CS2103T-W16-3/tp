@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -16,7 +18,7 @@ import javafx.scene.layout.VBox;
 public class TransactionCard extends UiPart<Region> {
 
     private static final String FXML = "TransactionListCard.fxml";
-    private static final double PREFERRED_CARD_HEIGHT = 70.00;
+    private static final double PREFERRED_CARD_HEIGHT = 80.00;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -50,6 +52,7 @@ public class TransactionCard extends UiPart<Region> {
         cardPane.setPrefHeight(PREFERRED_CARD_HEIGHT);
         id.setText(displayedIndex + ". ");
         title.setText(transaction.getTitle().fullTitle);
+        title.setWrapText(true);
         amount.setText(transaction.getAmount().toString());
         transaction.getCategories().stream()
                 .sorted(Comparator.comparing(category -> category.categoryName))
@@ -58,43 +61,8 @@ public class TransactionCard extends UiPart<Region> {
                     newCategory.setStyle("-fx-font-family: Eczar");
                     categories.getChildren().add(newCategory);
                 });
-    }
-
-    /**
-     * Creates a {@code TransactionCard} with the given {@code Transaction} and index to display. The font size of
-     * the content is set based on the given {@code fontSize}.
-     */
-    public TransactionCard(Transaction transaction, int displayedIndex, int fontSize) {
-        super(FXML);
-        this.transaction = transaction;
-        String fontSizeParsedToString = String.valueOf(fontSize);
-        String categoriesFontSizeParsedToString = String.valueOf(fontSize - 2);
-        cardPane.setPrefHeight(PREFERRED_CARD_HEIGHT);
-
-        id.setText(displayedIndex + ". ");
-        id.setStyle(String.format("-fx-font-size: %spx", fontSizeParsedToString));
-
-        title.setText(transaction.getTitle().fullTitle);
-        title.setStyle(String.format("-fx-font-size: %spx", fontSizeParsedToString));
-
-        amount.setText(transaction.getAmount().toString());
-        amount.setStyle(String.format("-fx-font-size: %spx", fontSizeParsedToString));
-
-        transaction.getCategories().stream()
-                .sorted(Comparator.comparing(category -> category.categoryName))
-                .forEach(category -> {
-                    Label newCategory = new Label(category.categoryName);
-                    newCategory.setStyle("-fx-font-family: Eczar");
-                    newCategory.setStyle(String.format("-fx-font-size: %spx", categoriesFontSizeParsedToString));
-                    categories.getChildren().add(newCategory);
-                });
-    }
-
-    /**
-     * Edits the height and the width of the {@code cardPane} VBox with the new width and new height.
-     */
-    public void editCardSize(double newWidth, double newHeight) {
-        cardPane.setPrefSize(newWidth, newHeight);
+        categories.setRowValignment(VPos.CENTER);
+        categories.setColumnHalignment(HPos.CENTER);
     }
 
     @Override

@@ -3,7 +3,6 @@ package ay2021s1_cs2103_w16_3.finesse.logic.parser.frequentparsers;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
@@ -33,8 +32,7 @@ public class EditFrequentExpenseCommandParser implements Parser<EditFrequentExpe
      */
     public EditFrequentExpenseCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_DATE,
-                PREFIX_CATEGORY);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_CATEGORY);
 
         Index index;
 
@@ -53,9 +51,7 @@ public class EditFrequentExpenseCommandParser implements Parser<EditFrequentExpe
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             editFrequentExpenseDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
         }
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editFrequentExpenseDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
-        }
+
         parseCategoriesForEdit(argMultimap.getAllValues(PREFIX_CATEGORY))
                 .ifPresent(editFrequentExpenseDescriptor::setCategories);
 

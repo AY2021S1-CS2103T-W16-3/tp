@@ -8,10 +8,10 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
 
-public class FrequentExpense extends Expense {
+public class FrequentExpense extends FrequentTransaction<Expense> {
 
-    public FrequentExpense(Title title, Amount amount, Date date, Set<Category> categories) {
-        super(title, amount, date, categories);
+    public FrequentExpense(Title title, Amount amount, Set<Category> categories) {
+        super(title, amount, categories);
     }
 
     /**
@@ -24,6 +24,15 @@ public class FrequentExpense extends Expense {
         Amount amount = super.getAmount();
         Set<Category> categories = super.getCategories();
         return new Expense(title, amount, newDate, categories);
+    }
+
+    @Override
+    public Expense convert(Date expenseDate) {
+        Title title = super.getTitle();
+        Amount amount = super.getAmount();
+        Set<Category> categories = super.getCategories();
+
+        return new Expense(title, amount, expenseDate, categories);
     }
 
     /**
@@ -54,8 +63,6 @@ public class FrequentExpense extends Expense {
         FrequentExpense otherFrequentExpense = (FrequentExpense) other;
         return otherFrequentExpense.getTitle().equals(getTitle())
                 && otherFrequentExpense.getAmount().equals(getAmount())
-                && otherFrequentExpense.getDate().equals(getDate())
                 && otherFrequentExpense.getCategories().equals(getCategories());
     }
-
 }

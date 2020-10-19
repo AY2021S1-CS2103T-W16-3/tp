@@ -3,7 +3,6 @@ package ay2021s1_cs2103_w16_3.finesse.logic.commands.frequent;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_TITLE;
 import static ay2021s1_cs2103_w16_3.finesse.model.Model.PREDICATE_SHOW_ALL_FREQUENT_EXPENSES;
 import static java.util.Objects.requireNonNull;
@@ -23,7 +22,6 @@ import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
 
 /**
@@ -39,11 +37,9 @@ public class EditFrequentExpenseCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
-            + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_CATEGORY + "CATEGORY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_AMOUNT + "5 "
-            + PREFIX_DATE + "22/09/2020";
+            + PREFIX_AMOUNT + "5 ";
 
     public static final String MESSAGE_EDIT_FREQUENT_EXPENSE_SUCCESS = "Edited Frequent Expense: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -99,11 +95,10 @@ public class EditFrequentExpenseCommand extends Command {
 
         Title updatedTitle = editFrequentExpenseDescriptor.getTitle().orElse(frequentExpenseToEdit.getTitle());
         Amount updatedAmount = editFrequentExpenseDescriptor.getAmount().orElse(frequentExpenseToEdit.getAmount());
-        Date updatedDate = editFrequentExpenseDescriptor.getDate().orElse(frequentExpenseToEdit.getDate());
         Set<Category> updatedCategories = editFrequentExpenseDescriptor.getCategories()
                 .orElse(frequentExpenseToEdit.getCategories());
 
-        return new FrequentExpense(updatedTitle, updatedAmount, updatedDate, updatedCategories);
+        return new FrequentExpense(updatedTitle, updatedAmount, updatedCategories);
     }
 
     @Override
@@ -131,7 +126,6 @@ public class EditFrequentExpenseCommand extends Command {
     public static class EditFrequentExpenseDescriptor {
         private Title title;
         private Amount amount;
-        private Date date;
         private Set<Category> categories;
 
         public EditFrequentExpenseDescriptor() {}
@@ -143,12 +137,11 @@ public class EditFrequentExpenseCommand extends Command {
         public EditFrequentExpenseDescriptor(EditFrequentExpenseDescriptor toCopy) {
             setTitle(toCopy.title);
             setAmount(toCopy.amount);
-            setDate(toCopy.date);
             setCategories(toCopy.categories);
         }
 
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, amount, date, categories);
+            return CollectionUtil.isAnyNonNull(title, amount, categories);
         }
 
         public void setTitle(Title title) {
@@ -165,14 +158,6 @@ public class EditFrequentExpenseCommand extends Command {
 
         public Optional<Amount> getAmount() {
             return Optional.ofNullable(amount);
-        }
-
-        public void setDate(Date date) {
-            this.date = date;
-        }
-
-        public Optional<Date> getDate() {
-            return Optional.ofNullable(date);
         }
 
         /**
@@ -209,7 +194,6 @@ public class EditFrequentExpenseCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getAmount().equals(e.getAmount())
-                    && getDate().equals(e.getDate())
                     && getCategories().equals(e.getCategories());
         }
     }
