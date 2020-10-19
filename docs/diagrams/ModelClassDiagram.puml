@@ -7,7 +7,6 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Interface ReadOnlyFinanceTracker <<Interface>>
 Interface Model <<Interface>>
-Interface ObservableList <<Interface>>
 Class FinanceTracker
 Class ReadOnlyFinanceTracker
 Class Model
@@ -16,7 +15,9 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Transaction {
-Class Transaction
+Class "{abstract}\nTransaction" as Transaction
+Class Expense
+Class Income
 Class Amount
 Class Date
 Class Title
@@ -26,6 +27,16 @@ Class TransactionList
 Package Category {
 Class Category
 }
+
+Package Budget {
+Class MonthlyBudget
+Class MonthlyExpenseLimit
+}
+
+Package Savings {
+Class MonthlySavings
+Class MonthlySavingsGoal
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -34,20 +45,26 @@ HiddenOutside ..> Model
 FinanceTracker .up.|> ReadOnlyFinanceTracker
 
 ModelManager .up.|> Model
-Model .right.> ObservableList
 ModelManager o--> "1" FinanceTracker
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 FinanceTracker *--> "1" TransactionList
 TransactionList o--> "*" Transaction
-Transaction *--> Title
-Transaction *--> Amount
-Transaction *--> Date
+Expense -left-|> Transaction
+Income -right-|> Transaction
+Transaction *--> "1" Title
+Transaction *--> "1" Amount
+Transaction *--> "1" Date
 Transaction *--> "*" Category
+
+FinanceTracker *--> "1" MonthlySavings
+MonthlySavings *--> "1" MonthlySavingsGoal
+FinanceTracker *--> "1" MonthlyBudget
+MonthlyBudget *--> "1" MonthlyExpenseLimit
 
 Title -[hidden]right-> Amount
 Amount -[hidden]right-> Date
 
-ModelManager -->"1" Transaction : filtered list
+ModelManager -->"*" Transaction : filtered list
 @enduml
