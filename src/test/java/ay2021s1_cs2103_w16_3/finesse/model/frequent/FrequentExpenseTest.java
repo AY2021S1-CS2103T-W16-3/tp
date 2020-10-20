@@ -3,8 +3,8 @@ package ay2021s1_cs2103_w16_3.finesse.model.frequent;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_SPOTIFY_SUBSCRIPTION;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_FOOD_BEVERAGE;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_SPOTIFY_SUBSCRIPTION;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentTransactions.PHONE_BILL;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentTransactions.SPOTIFY_SUBSCRIPTION;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.PHONE_BILL;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.SPOTIFY_SUBSCRIPTION;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

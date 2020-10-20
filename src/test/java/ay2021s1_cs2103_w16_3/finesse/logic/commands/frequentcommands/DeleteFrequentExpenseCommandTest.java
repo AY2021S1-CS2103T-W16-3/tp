@@ -6,6 +6,7 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.asser
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showFrequentExpenseAtIndex;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_FREQUENT_EXPENSE;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_FREQUENT_EXPENSE;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -17,10 +18,9 @@ import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
 import ay2021s1_cs2103_w16_3.finesse.model.UserPrefs;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
-import ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentTransactions;
 
 public class DeleteFrequentExpenseCommandTest {
-    private Model model = new ModelManager(TypicalFrequentTransactions.getTypicalFinanceTracker(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -41,9 +41,9 @@ public class DeleteFrequentExpenseCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFrequentExpenseList().size() + 1);
-        DeleteFrequentExpenseCommand deleteRecurringCommand = new DeleteFrequentExpenseCommand(outOfBoundIndex);
+        DeleteFrequentExpenseCommand deleteFrequentExpenseCommand = new DeleteFrequentExpenseCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteRecurringCommand, model, MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteFrequentExpenseCommand, model, MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX);
     }
 
     @Test

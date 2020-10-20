@@ -11,6 +11,7 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.asser
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showFrequentExpenseAtIndex;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_FREQUENT_EXPENSE;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_FREQUENT_EXPENSE;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,11 +27,10 @@ import ay2021s1_cs2103_w16_3.finesse.model.UserPrefs;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.testutil.EditFrequentExpenseDescriptorBuilder;
 import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentTransactionBuilder;
-import ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentTransactions;
 
 public class EditFrequentExpenseCommandTest {
 
-    private Model model = new ModelManager(TypicalFrequentTransactions.getTypicalFinanceTracker(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -97,10 +97,10 @@ public class EditFrequentExpenseCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getFrequentExpenseList().size());
 
-        EditFrequentExpenseCommand editRecurringCommand = new EditFrequentExpenseCommand(outOfBoundIndex,
+        EditFrequentExpenseCommand editFrequentExpenseCommand = new EditFrequentExpenseCommand(outOfBoundIndex,
                 new EditFrequentExpenseDescriptorBuilder().withTitle(VALID_TITLE_SPOTIFY_SUBSCRIPTION).build());
 
-        assertCommandFailure(editRecurringCommand, model, MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX);
+        assertCommandFailure(editFrequentExpenseCommand, model, MESSAGE_INVALID_FREQUENT_EXPENSE_DISPLAYED_INDEX);
     }
 
     @Test

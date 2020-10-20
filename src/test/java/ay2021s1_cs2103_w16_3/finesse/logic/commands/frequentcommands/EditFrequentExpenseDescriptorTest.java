@@ -34,18 +34,18 @@ public class EditFrequentExpenseDescriptorTest {
         assertFalse(DESC_PHONE_BILL.equals(DESC_SPOTIFY_SUBSCRIPTION));
 
         // different title -> returns false
-        EditFrequentExpenseDescriptor editedAmy = new EditFrequentExpenseDescriptorBuilder(DESC_PHONE_BILL)
+        EditFrequentExpenseDescriptor editedFrequentExpense = new EditFrequentExpenseDescriptorBuilder(DESC_PHONE_BILL)
                 .withTitle(VALID_TITLE_SPOTIFY_SUBSCRIPTION).build();
-        assertFalse(DESC_PHONE_BILL.equals(editedAmy));
+        assertFalse(DESC_PHONE_BILL.equals(editedFrequentExpense));
 
         // different amount -> returns false
-        editedAmy = new EditFrequentExpenseDescriptorBuilder(DESC_PHONE_BILL)
+        editedFrequentExpense = new EditFrequentExpenseDescriptorBuilder(DESC_PHONE_BILL)
                 .withAmount(VALID_AMOUNT_SPOTIFY_SUBSCRIPTION).build();
-        assertFalse(DESC_PHONE_BILL.equals(editedAmy));
+        assertFalse(DESC_PHONE_BILL.equals(editedFrequentExpense));
 
         // different categories -> returns false
-        editedAmy = new EditFrequentExpenseDescriptorBuilder(DESC_PHONE_BILL).withCategories(VALID_CATEGORY_WORK)
-                .build();
-        assertFalse(DESC_PHONE_BILL.equals(editedAmy));
+        editedFrequentExpense = new EditFrequentExpenseDescriptorBuilder(DESC_PHONE_BILL)
+                .withCategories(VALID_CATEGORY_WORK).build();
+        assertFalse(DESC_PHONE_BILL.equals(editedFrequentExpense));
     }
 }

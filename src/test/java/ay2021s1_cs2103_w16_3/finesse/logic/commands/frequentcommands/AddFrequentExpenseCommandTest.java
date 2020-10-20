@@ -37,13 +37,13 @@ public class AddFrequentExpenseCommandTest {
     @Test
     public void execute_frequentExpenseAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingFrequentExpenseAdded modelStub = new ModelStubAcceptingFrequentExpenseAdded();
-        FrequentExpense validExpense = new FrequentTransactionBuilder().buildFrequentExpense();
+        FrequentExpense validFrequentExpense = new FrequentTransactionBuilder().buildFrequentExpense();
 
-        CommandResult commandResult = new AddFrequentExpenseCommand(validExpense).execute(modelStub);
+        CommandResult commandResult = new AddFrequentExpenseCommand(validFrequentExpense).execute(modelStub);
 
-        assertEquals(String.format(AddFrequentExpenseCommand.MESSAGE_SUCCESS, validExpense),
+        assertEquals(String.format(AddFrequentExpenseCommand.MESSAGE_SUCCESS, validFrequentExpense),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validExpense), modelStub.frequentExpensesAdded);
+        assertEquals(Arrays.asList(validFrequentExpense), modelStub.frequentExpensesAdded);
     }
 
     @Test
