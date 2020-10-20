@@ -55,11 +55,12 @@ public class CommandTestUtil {
             + VALID_AMOUNT_SPOTIFY_SUBSCRIPTION;
     public static final String DATE_DESC_BUBBLE_TEA = " " + PREFIX_DATE + VALID_DATE_BUBBLE_TEA;
     public static final String DATE_DESC_INTERNSHIP = " " + PREFIX_DATE + VALID_DATE_INTERNSHIP;
+    public static final String DATE_DESC_SPOTIFY_SUBSCRIPTION = " " + PREFIX_DATE + VALID_DATE_SPOTIFY_SUBSCRIPTION;
     public static final String CATEGORY_DESC_FOOD_BEVERAGE = " " + PREFIX_CATEGORY + VALID_CATEGORY_FOOD_BEVERAGE;
     public static final String CATEGORY_DESC_WORK = " " + PREFIX_CATEGORY + VALID_CATEGORY_WORK;
-    public static final String CATEGORY_DESC_CATEGORY_UTILITIES = " " + PREFIX_CATEGORY
+    public static final String CATEGORY_DESC_UTILITIES = " " + PREFIX_CATEGORY
             + VALID_CATEGORY_UTILITIES;
-    public static final String CATEGORY_DESC_CATEGORY_MISCELLANEOUS = " " + PREFIX_CATEGORY
+    public static final String CATEGORY_DESC_MISCELLANEOUS = " " + PREFIX_CATEGORY
             + VALID_CATEGORY_MISCELLANEOUS;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Movie\u2416"; // 'SYN' not allowed in titles

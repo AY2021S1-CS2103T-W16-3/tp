@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.DuplicateFrequentExpenseException;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.FrequentExpenseNotFoundException;
 import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentTransactionBuilder;
 
@@ -20,6 +21,18 @@ public class FrequentExpenseListTest {
     @Test
     public void add_nullFrequentExpense_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> frequentExpenseList.add(null));
+    }
+
+    @Test
+    public void add_duplicateFrequentExpense_throwsDuplicateFrequentExpenseException() {
+        FrequentExpense frequentExpense = new FrequentTransactionBuilder(PHONE_BILL)
+                .withCategories(VALID_CATEGORY_UTILITIES).buildFrequentExpense();
+
+        frequentExpenseList.add(frequentExpense);
+
+        FrequentExpense frequentExpenseCopy = new FrequentTransactionBuilder(frequentExpense).buildFrequentExpense();
+
+        assertThrows(DuplicateFrequentExpenseException.class, () -> frequentExpenseList.add(frequentExpenseCopy));
     }
 
     @Test
@@ -123,5 +136,4 @@ public class FrequentExpenseListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> frequentExpenseList.asUnmodifiableObservableList().remove(0));
     }
-
 }

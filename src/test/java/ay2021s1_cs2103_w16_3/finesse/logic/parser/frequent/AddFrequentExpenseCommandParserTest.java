@@ -3,7 +3,7 @@ package ay2021s1_cs2103_w16_3.finesse.logic.parser.frequent;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_PHONE_BILL;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_SPOTIFY_SUBSCRIPTION;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_CATEGORY_UTILITIES;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_UTILITIES;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_WORK;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
@@ -41,16 +41,16 @@ public class AddFrequentExpenseCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_PHONE_BILL + AMOUNT_DESC_PHONE_BILL
-                + CATEGORY_DESC_CATEGORY_UTILITIES, new AddFrequentExpenseCommand(expectedFrequentExpense));
+                + CATEGORY_DESC_UTILITIES, new AddFrequentExpenseCommand(expectedFrequentExpense));
 
         // multiple titles - last title accepted
         assertParseSuccess(parser, TITLE_DESC_SPOTIFY_SUBSCRIPTION + TITLE_DESC_PHONE_BILL
-                        + AMOUNT_DESC_PHONE_BILL + CATEGORY_DESC_CATEGORY_UTILITIES,
+                        + AMOUNT_DESC_PHONE_BILL + CATEGORY_DESC_UTILITIES,
                 new AddFrequentExpenseCommand(expectedFrequentExpense));
 
         // multiple amounts - last amount accepted
         assertParseSuccess(parser, TITLE_DESC_PHONE_BILL + AMOUNT_DESC_SPOTIFY_SUBSCRIPTION
-                + AMOUNT_DESC_PHONE_BILL + CATEGORY_DESC_CATEGORY_UTILITIES,
+                + AMOUNT_DESC_PHONE_BILL + CATEGORY_DESC_UTILITIES,
                 new AddFrequentExpenseCommand(expectedFrequentExpense));
 
         // multiple categories - all accepted
@@ -58,7 +58,7 @@ public class AddFrequentExpenseCommandParserTest {
                 .withCategories(VALID_CATEGORY_UTILITIES, VALID_CATEGORY_WORK).buildFrequentExpense();
 
         assertParseSuccess(parser, TITLE_DESC_PHONE_BILL + AMOUNT_DESC_PHONE_BILL
-                        + CATEGORY_DESC_CATEGORY_UTILITIES + CATEGORY_DESC_WORK,
+                        + CATEGORY_DESC_UTILITIES + CATEGORY_DESC_WORK,
                 new AddFrequentExpenseCommand(expectedExpenseMultipleCategories));
     }
 
@@ -89,15 +89,15 @@ public class AddFrequentExpenseCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid title
         assertParseFailure(parser, INVALID_TITLE_DESC + AMOUNT_DESC_PHONE_BILL
-                + CATEGORY_DESC_CATEGORY_UTILITIES + CATEGORY_DESC_WORK, Title.MESSAGE_CONSTRAINTS);
+                + CATEGORY_DESC_UTILITIES + CATEGORY_DESC_WORK, Title.MESSAGE_CONSTRAINTS);
 
         // invalid amount
         assertParseFailure(parser, TITLE_DESC_PHONE_BILL + INVALID_AMOUNT_DESC
-                + CATEGORY_DESC_CATEGORY_UTILITIES + CATEGORY_DESC_WORK, Amount.MESSAGE_CONSTRAINTS);
+                + CATEGORY_DESC_UTILITIES + CATEGORY_DESC_WORK, Amount.MESSAGE_CONSTRAINTS);
 
         // invalid category
         assertParseFailure(parser, TITLE_DESC_PHONE_BILL + AMOUNT_DESC_PHONE_BILL
-                + INVALID_CATEGORY_DESC + CATEGORY_DESC_CATEGORY_UTILITIES, Category.MESSAGE_CONSTRAINTS);
+                + INVALID_CATEGORY_DESC + CATEGORY_DESC_UTILITIES, Category.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_TITLE_DESC + AMOUNT_DESC_PHONE_BILL + INVALID_DATE_DESC,
@@ -105,7 +105,7 @@ public class AddFrequentExpenseCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_PHONE_BILL
-                        + CATEGORY_DESC_CATEGORY_UTILITIES + CATEGORY_DESC_WORK,
+                        + CATEGORY_DESC_UTILITIES + CATEGORY_DESC_WORK,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddFrequentExpenseCommand.MESSAGE_USAGE));
     }
 }

@@ -1,11 +1,10 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser.frequent;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_INTERNSHIP;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_PHONE_BILL;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_CATEGORY_MISCELLANEOUS;
-import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_CATEGORY_UTILITIES;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_FOOD_BEVERAGE;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_MISCELLANEOUS;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_UTILITIES;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_WORK;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
@@ -71,18 +70,18 @@ public class EditFrequentExpenseCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC, Title.MESSAGE_CONSTRAINTS); // invalid title
-        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC, Amount.MESSAGE_CONSTRAINTS); // invalid amoun
+        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC, Amount.MESSAGE_CONSTRAINTS); // invalid amount
         assertParseFailure(parser, "1" + INVALID_CATEGORY_DESC, Category.MESSAGE_CONSTRAINTS); // invalid category
 
         // invalid amount followed by valid category
-        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC + CATEGORY_DESC_CATEGORY_UTILITIES,
+        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC + CATEGORY_DESC_UTILITIES,
                 Amount.MESSAGE_CONSTRAINTS);
 
         // valid amount followed by invalid amount. The test case for invalid amount followed by valid amount
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + AMOUNT_DESC_INTERNSHIP + INVALID_AMOUNT_DESC, Amount.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + AMOUNT_DESC_PHONE_BILL + INVALID_AMOUNT_DESC, Amount.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_CATEGORY} alone will reset the categories of the {@code Transaction} being
+        // while parsing {@code PREFIX_CATEGORY} alone will reset the categories of the {@code FrequentExpense} being
         // edited, parsing it together with a valid category results in error
         assertParseFailure(parser, "1" + CATEGORY_DESC_FOOD_BEVERAGE + CATEGORY_DESC_WORK + CATEGORY_EMPTY,
                 Category.MESSAGE_CONSTRAINTS);
@@ -93,14 +92,14 @@ public class EditFrequentExpenseCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_AMOUNT_DESC
-                + CATEGORY_DESC_CATEGORY_UTILITIES, Title.MESSAGE_CONSTRAINTS);
+                + CATEGORY_DESC_UTILITIES, Title.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_FREQUENT_EXPENSE;
-        String userInput = targetIndex.getOneBased() + AMOUNT_DESC_PHONE_BILL + CATEGORY_DESC_CATEGORY_UTILITIES
-                + TITLE_DESC_SPOTIFY_SUBSCRIPTION + CATEGORY_DESC_CATEGORY_MISCELLANEOUS;
+        String userInput = targetIndex.getOneBased() + AMOUNT_DESC_PHONE_BILL + CATEGORY_DESC_UTILITIES
+                + TITLE_DESC_SPOTIFY_SUBSCRIPTION + CATEGORY_DESC_MISCELLANEOUS;
 
         EditFrequentExpenseCommand.EditFrequentExpenseDescriptor descriptor = new EditFrequentExpenseDescriptorBuilder()
                 .withTitle(VALID_TITLE_SPOTIFY_SUBSCRIPTION).withAmount(VALID_AMOUNT_PHONE_BILL)
@@ -139,10 +138,21 @@ public class EditFrequentExpenseCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // categories
-        userInput = targetIndex.getOneBased() + CATEGORY_DESC_CATEGORY_UTILITIES;
+        userInput = targetIndex.getOneBased() + CATEGORY_DESC_UTILITIES;
         descriptor = new EditFrequentExpenseDescriptorBuilder().withCategories(VALID_CATEGORY_UTILITIES).build();
         expectedCommand = new EditFrequentExpenseCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    @Test
+    public void parse_resetCategories_success() {
+        Index targetIndex = INDEX_THIRD_FREQUENT_EXPENSE;
+        String userInput = targetIndex.getOneBased() + CATEGORY_EMPTY;
+
+        EditFrequentExpenseCommand.EditFrequentExpenseDescriptor descriptor =
+                new EditFrequentExpenseDescriptorBuilder().withCategories().build();
+        EditFrequentExpenseCommand expectedCommand = new EditFrequentExpenseCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 }

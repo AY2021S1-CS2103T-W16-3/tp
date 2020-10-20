@@ -35,7 +35,7 @@ public class AddFrequentExpenseCommandTest {
     }
 
     @Test
-    public void execute_transactionAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_frequentExpenseAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingFrequentExpenseAdded modelStub = new ModelStubAcceptingFrequentExpenseAdded();
         FrequentExpense validExpense = new FrequentTransactionBuilder().buildFrequentExpense();
 
@@ -192,7 +192,7 @@ public class AddFrequentExpenseCommandTest {
     }
 
     /**
-     * A Model stub that always accept the transaction being added.
+     * A Model stub that always accept the frequent expense being added.
      */
     private class ModelStubAcceptingFrequentExpenseAdded extends ModelStub {
         final ArrayList<FrequentExpense> frequentExpensesAdded = new ArrayList<>();
@@ -209,4 +209,21 @@ public class AddFrequentExpenseCommandTest {
         }
     }
 
+    /**
+     * A Model stub that already contains one frequent expense.
+     */
+    private class ModelStubWithFrequentExpense extends ModelStub {
+        final ArrayList<FrequentExpense> frequentExpensesList = new ArrayList<>();
+
+        ModelStubWithFrequentExpense(FrequentExpense frequentExpense) {
+            requireNonNull(frequentExpense);
+            this.frequentExpensesList.add(frequentExpense);
+        }
+
+        @Override
+        public void addFrequentExpense(FrequentExpense expense) {
+            requireNonNull(expense);
+            frequentExpensesList.add(expense);
+        }
+    }
 }
