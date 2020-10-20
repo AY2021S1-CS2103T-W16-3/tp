@@ -22,9 +22,9 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_TRANSACTION;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_TRANSACTION;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_THIRD_TRANSACTION;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -103,7 +103,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_TRANSACTION;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + AMOUNT_DESC_INTERNSHIP + CATEGORY_DESC_WORK
                 + DATE_DESC_BUBBLE_TEA + TITLE_DESC_BUBBLE_TEA + CATEGORY_DESC_FOOD_BEVERAGE;
 
@@ -117,7 +117,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_TRANSACTION;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + AMOUNT_DESC_INTERNSHIP + DATE_DESC_BUBBLE_TEA;
 
         EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
@@ -130,7 +130,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // title
-        Index targetIndex = INDEX_THIRD_TRANSACTION;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_BUBBLE_TEA;
         EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
                 .withTitle(VALID_TITLE_BUBBLE_TEA).build();
@@ -158,7 +158,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_TRANSACTION;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + AMOUNT_DESC_BUBBLE_TEA + DATE_DESC_BUBBLE_TEA
                 + CATEGORY_DESC_FOOD_BEVERAGE + AMOUNT_DESC_BUBBLE_TEA + DATE_DESC_BUBBLE_TEA
                 + CATEGORY_DESC_FOOD_BEVERAGE + AMOUNT_DESC_INTERNSHIP + DATE_DESC_INTERNSHIP
@@ -175,7 +175,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_TRANSACTION;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_AMOUNT_DESC + AMOUNT_DESC_INTERNSHIP;
         EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
                 .withAmount(VALID_AMOUNT_INTERNSHIP).build();
@@ -192,7 +192,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetCategories_success() {
-        Index targetIndex = INDEX_THIRD_TRANSACTION;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + CATEGORY_EMPTY;
 
         EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder().withCategories().build();

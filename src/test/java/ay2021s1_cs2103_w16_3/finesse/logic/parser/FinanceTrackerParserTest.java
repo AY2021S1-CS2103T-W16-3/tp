@@ -3,7 +3,7 @@ package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_TRANSACTION;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -177,27 +177,27 @@ public class FinanceTrackerParserTest {
     @Test
     public void parseCommand_deleteWhenOverviewTab() {
         assertThrows(ParseException.class, () -> parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TRANSACTION.getOneBased(), overviewUiStateStub));
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased(), overviewUiStateStub));
     }
 
     @Test
     public void parseCommand_deleteWhenIncomeTab() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TRANSACTION.getOneBased(), incomeUiStateStub);
-        assertEquals(new DeleteCommand(INDEX_FIRST_TRANSACTION), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased(), incomeUiStateStub);
+        assertEquals(new DeleteCommand(INDEX_FIRST), command);
     }
 
     @Test
     public void parseCommand_deleteWhenExpensesTab() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TRANSACTION.getOneBased(), expensesUiStateStub);
-        assertEquals(new DeleteCommand(INDEX_FIRST_TRANSACTION), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased(), expensesUiStateStub);
+        assertEquals(new DeleteCommand(INDEX_FIRST), command);
     }
 
     @Test
     public void parseCommand_deleteWhenAnalyticsTab() {
         assertThrows(ParseException.class, () -> parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TRANSACTION.getOneBased(), analyticsUiStateStub));
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased(), analyticsUiStateStub));
     }
 
     @Test
@@ -205,7 +205,7 @@ public class FinanceTrackerParserTest {
         Expense expense = new TransactionBuilder().buildExpense();
         EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder(expense).build();
         assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_TRANSACTION.getOneBased() + " "
+                + INDEX_FIRST.getOneBased() + " "
                 + TransactionUtil.getEditTransactionDescriptorDetails(descriptor), overviewUiStateStub));
     }
 
@@ -214,9 +214,9 @@ public class FinanceTrackerParserTest {
         Income income = new TransactionBuilder().buildIncome();
         EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder(income).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_TRANSACTION.getOneBased() + " "
+                + INDEX_FIRST.getOneBased() + " "
                 + TransactionUtil.getEditTransactionDescriptorDetails(descriptor), incomeUiStateStub);
-        assertEquals(new EditCommand(INDEX_FIRST_TRANSACTION, descriptor), command);
+        assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
@@ -224,9 +224,9 @@ public class FinanceTrackerParserTest {
         Expense expense = new TransactionBuilder().buildExpense();
         EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder(expense).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_TRANSACTION.getOneBased() + " "
+                + INDEX_FIRST.getOneBased() + " "
                 + TransactionUtil.getEditTransactionDescriptorDetails(descriptor), expensesUiStateStub);
-        assertEquals(new EditCommand(INDEX_FIRST_TRANSACTION, descriptor), command);
+        assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
@@ -234,7 +234,7 @@ public class FinanceTrackerParserTest {
         Expense expense = new TransactionBuilder().buildExpense();
         EditCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder(expense).build();
         assertThrows(ParseException.class, () -> parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_TRANSACTION.getOneBased() + " "
+                + INDEX_FIRST.getOneBased() + " "
                 + TransactionUtil.getEditTransactionDescriptorDetails(descriptor), analyticsUiStateStub));
     }
 

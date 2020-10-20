@@ -9,8 +9,8 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showTransactionAtIndex;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_TRANSACTION;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_TRANSACTION;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -51,7 +51,7 @@ public class EditCommandTest {
 
         EditCommand.EditTransactionDescriptor descriptor =
                 new EditTransactionDescriptorBuilder(editedTransaction).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_TRANSACTION, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction);
 
@@ -92,8 +92,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_TRANSACTION, new EditTransactionDescriptor());
-        Transaction editedTransaction = model.getFilteredTransactionList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST, new EditTransactionDescriptor());
+        Transaction editedTransaction = model.getFilteredTransactionList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction);
 
@@ -104,10 +104,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showTransactionAtIndex(model, INDEX_FIRST_TRANSACTION);
+        showTransactionAtIndex(model, INDEX_FIRST);
 
         Transaction transactionInFilteredList = model.getFilteredTransactionList()
-                .get(INDEX_FIRST_TRANSACTION.getZeroBased());
+                .get(INDEX_FIRST.getZeroBased());
 
         TransactionBuilder editedTransactionBuilder =
                 new TransactionBuilder(transactionInFilteredList).withTitle(VALID_TITLE_INTERNSHIP);
@@ -119,7 +119,7 @@ public class EditCommandTest {
             editedTransaction = editedTransactionBuilder.buildIncome();
         }
 
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_TRANSACTION,
+        EditCommand editCommand = new EditCommand(INDEX_FIRST,
                 new EditTransactionDescriptorBuilder().withTitle(VALID_TITLE_INTERNSHIP).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction);
@@ -146,8 +146,8 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidTransactionIndexFilteredList_failure() {
-        showTransactionAtIndex(model, INDEX_FIRST_TRANSACTION);
-        Index outOfBoundIndex = INDEX_SECOND_TRANSACTION;
+        showTransactionAtIndex(model, INDEX_FIRST);
+        Index outOfBoundIndex = INDEX_SECOND;
         // Ensures that outOfBoundIndex is still within the boundaries of the finance tracker's list of transactions.
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getTransactionList().size());
 
@@ -159,11 +159,11 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_TRANSACTION, DESC_BUBBLE_TEA);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST, DESC_BUBBLE_TEA);
 
         // same values -> returns true
         EditTransactionDescriptor copyDescriptor = new EditTransactionDescriptor(DESC_BUBBLE_TEA);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_TRANSACTION, copyDescriptor);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -176,10 +176,9 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_TRANSACTION, DESC_BUBBLE_TEA)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND, DESC_BUBBLE_TEA)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_TRANSACTION, DESC_INTERNSHIP)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST, DESC_INTERNSHIP)));
     }
-
 }

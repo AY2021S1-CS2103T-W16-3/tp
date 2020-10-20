@@ -6,7 +6,7 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVAL
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_SPOTIFY_SUBSCRIPTION;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_FREQUENT_EXPENSE;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
@@ -56,7 +56,7 @@ public class ConvertFrequentExpenseCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_FREQUENT_EXPENSE;
+        Index targetIndex = INDEX_SECOND;
         Date convertedDate = new Date(VALID_DATE_SPOTIFY_SUBSCRIPTION);
 
         String userInput = targetIndex.getOneBased() + DATE_DESC_SPOTIFY_SUBSCRIPTION;

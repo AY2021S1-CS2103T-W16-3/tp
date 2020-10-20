@@ -5,8 +5,8 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showFrequentExpenseAtIndex;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_FREQUENT_EXPENSE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_FREQUENT_EXPENSE;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,10 +30,10 @@ public class ConvertFrequentExpenseCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         FrequentExpense frequentExpenseToBeConverted = model.getFinanceTracker().getFrequentExpenseList()
-                .get(INDEX_FIRST_FREQUENT_EXPENSE.getZeroBased());
+                .get(INDEX_FIRST.getZeroBased());
         Date dateOfConvertedExpense = new Date(VALID_DATE_SPOTIFY_SUBSCRIPTION);
         ConvertFrequentExpenseCommand convertFrequentExpenseCommand =
-                new ConvertFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE, dateOfConvertedExpense);
+                new ConvertFrequentExpenseCommand(INDEX_FIRST, dateOfConvertedExpense);
 
         ModelManager expectedModel = new ModelManager(model.getFinanceTracker(), new UserPrefs());
         Expense convertedExpense = frequentExpenseToBeConverted.convert(dateOfConvertedExpense);
@@ -58,14 +58,14 @@ public class ConvertFrequentExpenseCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showFrequentExpenseAtIndex(model, INDEX_FIRST_FREQUENT_EXPENSE);
+        showFrequentExpenseAtIndex(model, INDEX_FIRST);
 
         Date dateOfConvertedExpense = new Date(VALID_DATE_SPOTIFY_SUBSCRIPTION);
 
         FrequentExpense frequentExpenseToBeConverted = model.getFilteredFrequentExpenseList()
-                .get(INDEX_FIRST_FREQUENT_EXPENSE.getZeroBased());
+                .get(INDEX_FIRST.getZeroBased());
         ConvertFrequentExpenseCommand convertFrequentExpenseCommand =
-                new ConvertFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE, dateOfConvertedExpense);
+                new ConvertFrequentExpenseCommand(INDEX_FIRST, dateOfConvertedExpense);
 
         Model expectedModel = new ModelManager(model.getFinanceTracker(), new UserPrefs());
         Expense convertedExpense = frequentExpenseToBeConverted.convert(dateOfConvertedExpense);
@@ -79,11 +79,11 @@ public class ConvertFrequentExpenseCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showFrequentExpenseAtIndex(model, INDEX_FIRST_FREQUENT_EXPENSE);
+        showFrequentExpenseAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_FREQUENT_EXPENSE;
+        Index outOfBoundIndex = INDEX_SECOND;
         Date dateOfConvertedExpense = new Date(VALID_DATE_SPOTIFY_SUBSCRIPTION);
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of frequent expense list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getFrequentExpenseList().size());
 
         ConvertFrequentExpenseCommand convertFrequentExpenseCommand =
@@ -96,16 +96,16 @@ public class ConvertFrequentExpenseCommandTest {
     public void equals() {
         Date dateOfConvertedExpense = new Date(VALID_DATE_SPOTIFY_SUBSCRIPTION);
         ConvertFrequentExpenseCommand convertFirstFrequentExpenseCommand =
-                new ConvertFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE, dateOfConvertedExpense);
+                new ConvertFrequentExpenseCommand(INDEX_FIRST, dateOfConvertedExpense);
         ConvertFrequentExpenseCommand convertSecondFrequentExpenseCommand =
-                new ConvertFrequentExpenseCommand(INDEX_SECOND_FREQUENT_EXPENSE, dateOfConvertedExpense);
+                new ConvertFrequentExpenseCommand(INDEX_SECOND, dateOfConvertedExpense);
 
         // same object -> returns true
         assertTrue(convertFirstFrequentExpenseCommand.equals(convertFirstFrequentExpenseCommand));
 
         // same values -> returns true
         ConvertFrequentExpenseCommand deleteFirstCommandCopy =
-                new ConvertFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE, dateOfConvertedExpense);
+                new ConvertFrequentExpenseCommand(INDEX_FIRST, dateOfConvertedExpense);
         assertTrue(convertFirstFrequentExpenseCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -117,5 +117,4 @@ public class ConvertFrequentExpenseCommandTest {
         // different expense -> returns false
         assertFalse(convertFirstFrequentExpenseCommand.equals(convertSecondFrequentExpenseCommand));
     }
-
 }

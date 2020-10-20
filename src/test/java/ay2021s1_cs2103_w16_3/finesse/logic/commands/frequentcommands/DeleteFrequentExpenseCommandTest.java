@@ -4,8 +4,8 @@ import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALI
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showFrequentExpenseAtIndex;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_FREQUENT_EXPENSE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_FREQUENT_EXPENSE;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,9 +25,9 @@ public class DeleteFrequentExpenseCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         FrequentExpense frequentExpenseToDelete = model.getFilteredFrequentExpenseList()
-                .get(INDEX_FIRST_FREQUENT_EXPENSE.getZeroBased());
+                .get(INDEX_FIRST.getZeroBased());
         DeleteFrequentExpenseCommand deleteFrequentExpenseCommand =
-                new DeleteFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE);
+                new DeleteFrequentExpenseCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteFrequentExpenseCommand.MESSAGE_DELETE_FREQUENT_EXPENSE_SUCCESS,
                 frequentExpenseToDelete);
@@ -48,12 +48,12 @@ public class DeleteFrequentExpenseCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showFrequentExpenseAtIndex(model, INDEX_FIRST_FREQUENT_EXPENSE);
+        showFrequentExpenseAtIndex(model, INDEX_FIRST);
 
         FrequentExpense frequentExpenseToDelete = model.getFilteredFrequentExpenseList()
-                .get(INDEX_FIRST_FREQUENT_EXPENSE.getZeroBased());
+                .get(INDEX_FIRST.getZeroBased());
         DeleteFrequentExpenseCommand deleteFrequentExpenseCommand =
-                new DeleteFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE);
+                new DeleteFrequentExpenseCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteFrequentExpenseCommand.MESSAGE_DELETE_FREQUENT_EXPENSE_SUCCESS,
                 frequentExpenseToDelete);
@@ -67,10 +67,10 @@ public class DeleteFrequentExpenseCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showFrequentExpenseAtIndex(model, INDEX_FIRST_FREQUENT_EXPENSE);
+        showFrequentExpenseAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_FREQUENT_EXPENSE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        Index outOfBoundIndex = INDEX_SECOND;
+        // ensures that outOfBoundIndex is still in bounds of frequent expense list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getFrequentExpenseList().size());
 
         DeleteFrequentExpenseCommand deleteFrequentExpenseCommand = new DeleteFrequentExpenseCommand(outOfBoundIndex);
@@ -81,16 +81,16 @@ public class DeleteFrequentExpenseCommandTest {
     @Test
     public void equals() {
         DeleteFrequentExpenseCommand deleteFirstCommand =
-                new DeleteFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE);
+                new DeleteFrequentExpenseCommand(INDEX_FIRST);
         DeleteFrequentExpenseCommand deleteSecondCommand =
-                new DeleteFrequentExpenseCommand(INDEX_SECOND_FREQUENT_EXPENSE);
+                new DeleteFrequentExpenseCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
         DeleteFrequentExpenseCommand deleteFirstCommandCopy =
-                new DeleteFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE);
+                new DeleteFrequentExpenseCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

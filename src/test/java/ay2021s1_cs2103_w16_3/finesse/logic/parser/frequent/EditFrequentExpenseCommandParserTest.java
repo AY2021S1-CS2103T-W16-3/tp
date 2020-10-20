@@ -19,9 +19,9 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_FREQUENT_EXPENSE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_FREQUENT_EXPENSE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_THIRD_FREQUENT_EXPENSE;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -97,7 +97,7 @@ public class EditFrequentExpenseCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_FREQUENT_EXPENSE;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + AMOUNT_DESC_PHONE_BILL + CATEGORY_DESC_UTILITIES
                 + TITLE_DESC_SPOTIFY_SUBSCRIPTION + CATEGORY_DESC_MISCELLANEOUS;
 
@@ -111,7 +111,7 @@ public class EditFrequentExpenseCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_FREQUENT_EXPENSE;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + AMOUNT_DESC_PHONE_BILL;
 
         EditFrequentExpenseCommand.EditFrequentExpenseDescriptor descriptor = new EditFrequentExpenseDescriptorBuilder()
@@ -124,7 +124,7 @@ public class EditFrequentExpenseCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // title
-        Index targetIndex = INDEX_THIRD_FREQUENT_EXPENSE;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_SPOTIFY_SUBSCRIPTION;
         EditFrequentExpenseCommand.EditFrequentExpenseDescriptor descriptor = new EditFrequentExpenseDescriptorBuilder()
                 .withTitle(VALID_TITLE_SPOTIFY_SUBSCRIPTION).build();
@@ -146,7 +146,7 @@ public class EditFrequentExpenseCommandParserTest {
 
     @Test
     public void parse_resetCategories_success() {
-        Index targetIndex = INDEX_THIRD_FREQUENT_EXPENSE;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + CATEGORY_EMPTY;
 
         EditFrequentExpenseCommand.EditFrequentExpenseDescriptor descriptor =

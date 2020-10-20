@@ -4,8 +4,8 @@ import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALI
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showIncomeAtIndex;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_TRANSACTION;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_TRANSACTION;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,8 +29,8 @@ public class DeleteIncomeCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Income incomeToDelete = model.getFilteredIncomeList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
-        DeleteCommandStub superCommand = new DeleteCommandStub(INDEX_FIRST_TRANSACTION);
+        Income incomeToDelete = model.getFilteredIncomeList().get(INDEX_FIRST.getZeroBased());
+        DeleteCommandStub superCommand = new DeleteCommandStub(INDEX_FIRST);
         DeleteIncomeCommand deleteIncomeCommand = new DeleteIncomeCommand(superCommand);
 
         String expectedMessage = String.format(DeleteIncomeCommand.MESSAGE_DELETE_INCOME_SUCCESS, incomeToDelete);
@@ -52,10 +52,10 @@ public class DeleteIncomeCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showIncomeAtIndex(model, INDEX_FIRST_TRANSACTION);
+        showIncomeAtIndex(model, INDEX_FIRST);
 
-        Income incomeToDelete = model.getFilteredIncomeList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
-        DeleteCommandStub superCommand = new DeleteCommandStub(INDEX_FIRST_TRANSACTION);
+        Income incomeToDelete = model.getFilteredIncomeList().get(INDEX_FIRST.getZeroBased());
+        DeleteCommandStub superCommand = new DeleteCommandStub(INDEX_FIRST);
         DeleteIncomeCommand deleteIncomeCommand = new DeleteIncomeCommand(superCommand);
 
         String expectedMessage = String.format(DeleteIncomeCommand.MESSAGE_DELETE_INCOME_SUCCESS, incomeToDelete);
@@ -69,9 +69,9 @@ public class DeleteIncomeCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showIncomeAtIndex(model, INDEX_FIRST_TRANSACTION);
+        showIncomeAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_TRANSACTION;
+        Index outOfBoundIndex = INDEX_SECOND;
         // Ensures that outOfBoundIndex is still within the boundaries of the finance tracker's list of incomes.
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getIncomeList().size());
 
@@ -83,16 +83,16 @@ public class DeleteIncomeCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommandStub firstSuperCommand = new DeleteCommandStub(INDEX_FIRST_TRANSACTION);
+        DeleteCommandStub firstSuperCommand = new DeleteCommandStub(INDEX_FIRST);
         DeleteIncomeCommand firstDeleteIncomeCommand = new DeleteIncomeCommand(firstSuperCommand);
-        DeleteCommand secondSuperCommand = new DeleteCommand(INDEX_SECOND_TRANSACTION);
+        DeleteCommand secondSuperCommand = new DeleteCommand(INDEX_SECOND);
         DeleteIncomeCommand secondDeleteIncomeCommand = new DeleteIncomeCommand(secondSuperCommand);
 
         // same object -> returns true
         assertTrue(firstDeleteIncomeCommand.equals(firstDeleteIncomeCommand));
 
         // same values -> returns true
-        DeleteCommandStub firstSuperCommandCopy = new DeleteCommandStub(INDEX_FIRST_TRANSACTION);
+        DeleteCommandStub firstSuperCommandCopy = new DeleteCommandStub(INDEX_FIRST);
         DeleteIncomeCommand firstDeleteIncomeCommandCopy = new DeleteIncomeCommand(firstSuperCommandCopy);
         assertTrue(firstDeleteIncomeCommand.equals(firstDeleteIncomeCommandCopy));
 

@@ -9,8 +9,8 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showFrequentExpenseAtIndex;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_FREQUENT_EXPENSE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_FREQUENT_EXPENSE;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -38,7 +38,7 @@ public class EditFrequentExpenseCommandTest {
         EditFrequentExpenseDescriptor descriptor =
                 new EditFrequentExpenseDescriptorBuilder(editedFrequentExpense).build();
         EditFrequentExpenseCommand editFrequentExpenseCommand =
-                new EditFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE, descriptor);
+                new EditFrequentExpenseCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditFrequentExpenseCommand.MESSAGE_EDIT_FREQUENT_EXPENSE_SUCCESS,
                 editedFrequentExpense);
@@ -91,10 +91,10 @@ public class EditFrequentExpenseCommandTest {
      */
     @Test
     public void execute_invalidFrequentExpenseIndexFilteredList_failure() {
-        showFrequentExpenseAtIndex(model, INDEX_FIRST_FREQUENT_EXPENSE);
-        Index outOfBoundIndex = INDEX_SECOND_FREQUENT_EXPENSE;
+        showFrequentExpenseAtIndex(model, INDEX_FIRST);
+        Index outOfBoundIndex = INDEX_SECOND;
 
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of frequent expense list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFinanceTracker().getFrequentExpenseList().size());
 
         EditFrequentExpenseCommand editFrequentExpenseCommand = new EditFrequentExpenseCommand(outOfBoundIndex,
@@ -106,12 +106,12 @@ public class EditFrequentExpenseCommandTest {
     @Test
     public void equals() {
         final EditFrequentExpenseCommand standardCommand =
-                new EditFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE, DESC_SPOTIFY_SUBSCRIPTION);
+                new EditFrequentExpenseCommand(INDEX_FIRST, DESC_SPOTIFY_SUBSCRIPTION);
 
         // same values -> returns true
         EditFrequentExpenseDescriptor copyDescriptor = new EditFrequentExpenseDescriptor(DESC_SPOTIFY_SUBSCRIPTION);
         EditFrequentExpenseCommand commandWithSameValues =
-                new EditFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE, copyDescriptor);
+                new EditFrequentExpenseCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -122,10 +122,10 @@ public class EditFrequentExpenseCommandTest {
 
         // different index -> returns false
         assertFalse(standardCommand
-                .equals(new EditFrequentExpenseCommand(INDEX_SECOND_FREQUENT_EXPENSE, DESC_SPOTIFY_SUBSCRIPTION)));
+                .equals(new EditFrequentExpenseCommand(INDEX_SECOND, DESC_SPOTIFY_SUBSCRIPTION)));
 
         // different descriptor -> returns false
         assertFalse(standardCommand
-                .equals(new EditFrequentExpenseCommand(INDEX_FIRST_FREQUENT_EXPENSE, DESC_PHONE_BILL)));
+                .equals(new EditFrequentExpenseCommand(INDEX_FIRST, DESC_PHONE_BILL)));
     }
 }
