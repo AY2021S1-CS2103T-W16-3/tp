@@ -61,6 +61,12 @@
       <li><a href="#programmatically-switch-selected-tab" id="markdown-toc-programmatically-switch-selected-tab">Programmatically switch selected tab</a></li>
       <li><a href="#set-monthly-spending-limit" id="markdown-toc-set-monthly-spending-limit">Set monthly spending limit</a></li>
       <li><a href="#set-monthly-savings-goal" id="markdown-toc-set-monthly-savings-goal">Set monthly savings goal</a></li>
+      <li>
+<a href="#proposed-frequent-expense-feature" id="markdown-toc-proposed-frequent-expense-feature">[Proposed] Frequent Expense Feature</a>        <ul>
+          <li><a href="#proposed-implementation" id="markdown-toc-proposed-implementation">Proposed Implementation</a></li>
+          <li><a href="#convert-frequent-expense-to-expense-feature" id="markdown-toc-convert-frequent-expense-to-expense-feature">Convert Frequent Expense To Expense Feature</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li><a href="#documentation-logging-testing-configuration-dev-ops" id="markdown-toc-documentation-logging-testing-configuration-dev-ops"><strong>Documentation, logging, testing, configuration, dev-ops</strong></a></li>
@@ -333,7 +339,49 @@ This was decided against as it would result in a much tighter coupling of <code 
 
 <p>[Coming soon]</p>
 
-<hr>
+<h3 id="proposed-frequent-expense-feature">[Proposed] Frequent Expense Feature</h3>
+
+<h4 id="proposed-implementation">Proposed Implementation</h4>
+<p>The Frequent Expense feature consists of <code class="highlighter-rouge">add-frequent-expense</code>, <code class="highlighter-rouge">edit-frequent-expense</code>, <code class="highlighter-rouge">delete-frequent-expense</code>,
+<code class="highlighter-rouge">convert-frequent-expense</code>.</p>
+
+<p>Frequent expenses are expenses that the user have identified to be occurring regularly or with high frequency.
+Examples of such expenses can be phone bill, music subscription or buying bubble tea on a weekly basis.</p>
+
+<p>This feature allows users to add frequent expenses to the finance tracker. The user can then choose to convert a
+frequent expense to an expense that the user wants to add to the transaction list in the finance tracker. This is done by
+calling <code class="highlighter-rouge">Logic#execute</code> which creates an  <code class="highlighter-rouge">AddFrequentExpenseCommand</code>. This command then calls
+<code class="highlighter-rouge">ModelManager#addFrequentExpense</code>, adding the specified frequent expense into the frequent expense list.</p>
+
+<p>This feature also simplifies the deletion and editing of frequent expenses, and they work in a similar manner.</p>
+
+<h4 id="convert-frequent-expense-to-expense-feature">Convert Frequent Expense To Expense Feature</h4>
+
+<p>The purpose of this feature is to allow users to add expenses, that they add to the transaction list in the finance
+tracker on a frequent basis in a convenient manner. After adding a frequent expense into the frequent expense list in
+the finance tracker, the user can call convert-frequent-expense to the respective frequent expense to make the
+conversion.</p>
+
+<p>Given below is the proposed UML sequence diagram and explanation of an example usage scenario for
+convert-frequent-expense</p>
+
+<p><img src="/tp/images/ConvertFrequentExpenseSequenceDiagram.png" alt="Sequence Diagram of the Convert Frequent Expense To Expense Feature"></p>
+
+<ol>
+  <li>User enters the command <code class="highlighter-rouge">convert-frequent-expense 1 d/05/05/2020</code>, where <code class="highlighter-rouge">1</code> is the index of the respective frequent
+expense in the frequent expense list and <code class="highlighter-rouge">d/05/05/20</code> is the date on which the user wants to carry out the conversion,
+to add the selected frequent expense into the expense list. This command is executed by <code class="highlighter-rouge">LogicManager</code>, which will then
+call <code class="highlighter-rouge">FinanceTrackerParser#parseCommand(“convert-frequent-expense 1 d/05/05/2020”)</code>. This will create a
+<code class="highlighter-rouge">ConvertFrequentExpenseCommand</code> object and return it to the <code class="highlighter-rouge">LogicManager</code>.</li>
+  <li>The <code class="highlighter-rouge">LogicManager</code> will then call <code class="highlighter-rouge">ConvertFrequentExpenseCommand#execute</code>, which will call
+<code class="highlighter-rouge">Model#getFilteredFrequentExpenseList()</code> to retrieve the list of frequent expenses in the finance tracker.</li>
+  <li>The program will then retrieve the specified frequent expense from the list of frequent expenses. It will
+then call <code class="highlighter-rouge">FrequentExpense#convert</code> on the frequent expense together with the date the user has inputted and convert
+it to an <code class="highlighter-rouge">Expense</code> object.</li>
+  <li>After converting the <code class="highlighter-rouge">FrequentExpense</code> object to an <code class="highlighter-rouge">Expense</code> object, it will call <code class="highlighter-rouge">Model#addExpense</code> to add the
+<code class="highlighter-rouge">Expense</code> object to the expense list in the finance tracker.
+——————————————————————————————————————–</li>
+</ol>
 
 <h2 id="documentation-logging-testing-configuration-dev-ops"><strong>Documentation, logging, testing, configuration, dev-ops</strong></h2>
 
