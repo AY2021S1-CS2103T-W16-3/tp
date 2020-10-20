@@ -39,7 +39,7 @@ public class FrequentExpenseList {
      */
     public boolean contains(FrequentExpense toCheck) {
         requireNonNull(toCheck);
-        return internalFrequentExpenseList.stream().anyMatch(toCheck::isSameFrequentExpense);
+        return internalFrequentExpenseList.stream().anyMatch(toCheck::equals);
     }
 
     /**

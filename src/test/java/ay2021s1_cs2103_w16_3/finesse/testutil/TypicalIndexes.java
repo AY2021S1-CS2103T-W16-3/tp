@@ -12,4 +12,5 @@ public class TypicalIndexes {
 
     public static final Index INDEX_FIRST_FREQUENT_EXPENSE = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_FREQUENT_EXPENSE = Index.fromOneBased(2);
+    public static final Index INDEX_THIRD_FREQUENT_EXPENSE = Index.fromOneBased(3);
 }

@@ -46,12 +46,21 @@ public class CommandTestUtil {
 
     public static final String TITLE_DESC_BUBBLE_TEA = " " + PREFIX_TITLE + VALID_TITLE_BUBBLE_TEA;
     public static final String TITLE_DESC_INTERNSHIP = " " + PREFIX_TITLE + VALID_TITLE_INTERNSHIP;
+    public static final String TITLE_DESC_PHONE_BILL = " " + PREFIX_TITLE + VALID_TITLE_PHONE_BILL;
+    public static final String TITLE_DESC_SPOTIFY_SUBSCRIPTION = " " + PREFIX_TITLE + VALID_TITLE_SPOTIFY_SUBSCRIPTION;
     public static final String AMOUNT_DESC_BUBBLE_TEA = " " + PREFIX_AMOUNT + VALID_AMOUNT_BUBBLE_TEA;
     public static final String AMOUNT_DESC_INTERNSHIP = " " + PREFIX_AMOUNT + VALID_AMOUNT_INTERNSHIP;
+    public static final String AMOUNT_DESC_PHONE_BILL = " " + PREFIX_AMOUNT + VALID_AMOUNT_PHONE_BILL;
+    public static final String AMOUNT_DESC_SPOTIFY_SUBSCRIPTION = " " + PREFIX_AMOUNT
+            + VALID_AMOUNT_SPOTIFY_SUBSCRIPTION;
     public static final String DATE_DESC_BUBBLE_TEA = " " + PREFIX_DATE + VALID_DATE_BUBBLE_TEA;
     public static final String DATE_DESC_INTERNSHIP = " " + PREFIX_DATE + VALID_DATE_INTERNSHIP;
     public static final String CATEGORY_DESC_FOOD_BEVERAGE = " " + PREFIX_CATEGORY + VALID_CATEGORY_FOOD_BEVERAGE;
     public static final String CATEGORY_DESC_WORK = " " + PREFIX_CATEGORY + VALID_CATEGORY_WORK;
+    public static final String CATEGORY_DESC_CATEGORY_UTILITIES = " " + PREFIX_CATEGORY
+            + VALID_CATEGORY_UTILITIES;
+    public static final String CATEGORY_DESC_CATEGORY_MISCELLANEOUS = " " + PREFIX_CATEGORY
+            + VALID_CATEGORY_MISCELLANEOUS;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Movie\u2416"; // 'SYN' not allowed in titles
     public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "911a"; // 'a' not allowed in amounts
