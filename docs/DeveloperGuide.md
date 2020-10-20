@@ -128,6 +128,16 @@ This abstraction is maintained so that the implementation of other components (`
 the underlying Java data type choices in the `Model` component.
 </div>
 
+The `FinanceTracker` has a `TransactionList` field which stores all `Expense` and `Income` objects together.
+
+The `ModelManager` has three `FilteredList` fields which point to the same `ObservableList` obtained from `FinanceTracker::getTransactionList`.
+The `Predicate` fields in the three `FilteredList` fields are set such that:
+* `filteredTransactions` shows a view of all `Transaction` objects
+* `filteredExpenses` shows a view of all `Transaction` objects of type `Expense`
+* `filteredIncomes` shows a view of all `Transaction` objects of type `Income`
+
+The motivation behind having three lists is due to the fact that there are three tabs in the user interface, each having its own list while at the same time retrieving data from the same transaction list. 
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -138,6 +148,14 @@ The `Storage` component:
 
 * can save `UserPref` objects in json format and read it back.
 * can save the finance tracker data in json format and read it back.
+
+`JsonAdaptedExpense` and `JsonAdaptedIncome` are json-friendly adaptations of `Expense` and `Income` respectively.
+However, unlike `Expense` and `Income`, all the fields in `JsonAdaptedExpense` and `JsonAdaptedIncome` are `String` objects.
+This is so that the fields are compatible with the `JSON` format.
+
+`JsonSerializableFinanceTracker` contains two `List` fields, one containing all `JsonAdaptedExpense` objects and the other containing all `JsonAdaptedIncome` objects.
+Despite the similarities between `Expense` and `Income`, and despite the fact that objects of both types are put into the same list in `FinanceTracker`,
+the motivation behind keeping them separately is to ensure that they are separately listed in the `JSON` data file.
 
 ### Common classes
 
