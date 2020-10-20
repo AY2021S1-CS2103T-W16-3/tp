@@ -143,6 +143,26 @@ Alternatives considered:
 
 * Having separate command parsers for each tab in which the find command can be input, e.g. `FindTransactionCommandParser`, `FindExpenseCommandParser` and `FindIncomeCommandParser`.
 
+### Programmatically switch selected tab
+
+Several of the expense/income-specific commands update the list of transactions displayed in a particular tab.
+Examples of these include the `add-expense` and `add-income` commands.
+As such, on the execution of such commands, the UI has to switch to the affected tab to display the result of the command execution.
+
+The ability to programmatically update the selected tab is implemented via `CommandResult`.
+Upon the successful execution of a command, a `CommandResult` is generated and passed back to `MainWindow`.
+This `CommandResult` contains the necessary information which the `MainWindow` needs to update the user interface, such as:
+* The feedback to be displayed to the user;
+* Whether to exit the application; and
+* Whether to programmatically switch to a different tab in the user interface.
+
+![Interactions inside the Logic Component when executing commands](images/CommandResultSequenceDiagram.png)
+
+Alternatives considered:
+
+* Add a method in `MainWindow` which can be called to programmatically switch tabs in the user interface upon execution of the command.
+  This was decided against as it would result in a much tighter coupling of `Logic` and `UI` components.
+
 ### Set monthly spending limit
 
 The monthly budgeting feature is implemented via `SetExpenseLimitCommand` as well as `MonthlyExpenseLimit`.
