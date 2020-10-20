@@ -2,8 +2,8 @@ package ay2021s1_cs2103_w16_3.finesse.model.frequent;
 
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_UTILITIES;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentExpenses.PHONE_BILL;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentExpenses.SPOTIFY_SUBSCRIPTION;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentTransactions.PHONE_BILL;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentTransactions.SPOTIFY_SUBSCRIPTION;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Collections;
@@ -12,7 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.FrequentExpenseNotFoundException;
-import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentExpenseBuilder;
+import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentTransactionBuilder;
 
 public class FrequentExpenseListTest {
     private final FrequentExpenseList frequentExpenseList = new FrequentExpenseList();
@@ -52,8 +52,8 @@ public class FrequentExpenseListTest {
     @Test
     public void setFrequentExpense_editedFrequentExpenseHasSameIdentity_success() {
         frequentExpenseList.add(PHONE_BILL);
-        FrequentExpense editedPhone = new FrequentExpenseBuilder(PHONE_BILL).withCategories(VALID_CATEGORY_UTILITIES)
-                .buildFrequentExpense();
+        FrequentExpense editedPhone = new FrequentTransactionBuilder(PHONE_BILL)
+                .withCategories(VALID_CATEGORY_UTILITIES).buildFrequentExpense();
         frequentExpenseList.setFrequentExpense(PHONE_BILL, editedPhone);
         FrequentExpenseList expectedTransactionList = new FrequentExpenseList();
         expectedTransactionList.add(editedPhone);

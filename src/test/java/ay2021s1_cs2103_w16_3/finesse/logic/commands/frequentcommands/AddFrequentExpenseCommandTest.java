@@ -24,7 +24,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
-import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentExpenseBuilder;
+import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentTransactionBuilder;
 import javafx.collections.ObservableList;
 
 public class AddFrequentExpenseCommandTest {
@@ -37,7 +37,7 @@ public class AddFrequentExpenseCommandTest {
     @Test
     public void execute_transactionAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingFrequentExpenseAdded modelStub = new ModelStubAcceptingFrequentExpenseAdded();
-        FrequentExpense validExpense = new FrequentExpenseBuilder().buildFrequentExpense();
+        FrequentExpense validExpense = new FrequentTransactionBuilder().buildFrequentExpense();
 
         CommandResult commandResult = new AddFrequentExpenseCommand(validExpense).execute(modelStub);
 
@@ -48,8 +48,8 @@ public class AddFrequentExpenseCommandTest {
 
     @Test
     public void equals() {
-        FrequentExpense bubbleTea = new FrequentExpenseBuilder().withTitle("Bubble Tea").buildFrequentExpense();
-        FrequentExpense tuitionFees = new FrequentExpenseBuilder().withTitle("Tuition Fees").buildFrequentExpense();
+        FrequentExpense bubbleTea = new FrequentTransactionBuilder().withTitle("Bubble Tea").buildFrequentExpense();
+        FrequentExpense tuitionFees = new FrequentTransactionBuilder().withTitle("Tuition Fees").buildFrequentExpense();
         AddFrequentExpenseCommand addBubbleTeaCommand = new AddFrequentExpenseCommand(bubbleTea);
         AddFrequentExpenseCommand addTuitionFeesCommand = new AddFrequentExpenseCommand(tuitionFees);
 

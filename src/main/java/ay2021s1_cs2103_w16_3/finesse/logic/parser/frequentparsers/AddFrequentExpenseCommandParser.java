@@ -20,8 +20,9 @@ import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
 
-
-
+/**
+ * Parses input arguments and creates a new AddFrequentExpenseCommand object
+ */
 public class AddFrequentExpenseCommandParser implements Parser<AddFrequentExpenseCommand> {
 
     /**

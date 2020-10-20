@@ -12,7 +12,7 @@
 <VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
       <GridPane fx:id="transactionDetails" alignment="CENTER_LEFT">
           <columnConstraints>
-              <ColumnConstraints hgrow="ALWAYS" minWidth="30" prefWidth="80" />
+              <ColumnConstraints hgrow="ALWAYS" minWidth="30" prefWidth="100" />
           </columnConstraints>
           <padding>
               <Insets top="5" right="10" bottom="5" left="10" />
@@ -26,11 +26,11 @@
               <Label fx:id="title" text="\$title" styleClass="cell_big_label" wrapText="true"/>
           </HBox>
           <columnConstraints>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="220" />
+              <ColumnConstraints hgrow="ALWAYS" minWidth="20" prefWidth="160" halignment="CENTER"/>
           </columnConstraints>
           <FlowPane fx:id="categories" styleClass="cell_categories" GridPane.columnIndex="1" />
           <columnConstraints>
-              <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="100" />
+              <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="100" halignment="CENTER"/>
           </columnConstraints>
           <Label fx:id="amount" styleClass="cell_small_label" text="\$amount" GridPane.columnIndex="2" GridPane.halignment="RIGHT"/>
       </GridPane>

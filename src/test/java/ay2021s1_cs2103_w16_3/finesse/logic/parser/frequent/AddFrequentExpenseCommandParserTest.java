@@ -19,7 +19,7 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_PHONE_BILL;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentExpenses.PHONE_BILL;
+import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentTransactions.PHONE_BILL;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,14 +29,14 @@ import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
-import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentExpenseBuilder;
+import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentTransactionBuilder;
 
 public class AddFrequentExpenseCommandParserTest {
     private AddFrequentExpenseCommandParser parser = new AddFrequentExpenseCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        FrequentExpense expectedFrequentExpense = new FrequentExpenseBuilder(PHONE_BILL)
+        FrequentExpense expectedFrequentExpense = new FrequentTransactionBuilder(PHONE_BILL)
                 .withCategories(VALID_CATEGORY_UTILITIES).buildFrequentExpense();
 
         // whitespace only preamble
@@ -54,7 +54,7 @@ public class AddFrequentExpenseCommandParserTest {
                 new AddFrequentExpenseCommand(expectedFrequentExpense));
 
         // multiple categories - all accepted
-        FrequentExpense expectedExpenseMultipleCategories = new FrequentExpenseBuilder(PHONE_BILL)
+        FrequentExpense expectedExpenseMultipleCategories = new FrequentTransactionBuilder(PHONE_BILL)
                 .withCategories(VALID_CATEGORY_UTILITIES, VALID_CATEGORY_WORK).buildFrequentExpense();
 
         assertParseSuccess(parser, TITLE_DESC_PHONE_BILL + AMOUNT_DESC_PHONE_BILL
@@ -65,7 +65,7 @@ public class AddFrequentExpenseCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero categories
-        FrequentExpense expectedFrequentExpense = new FrequentExpenseBuilder(PHONE_BILL).withCategories()
+        FrequentExpense expectedFrequentExpense = new FrequentTransactionBuilder(PHONE_BILL).withCategories()
                 .buildFrequentExpense();
         assertParseSuccess(parser, TITLE_DESC_PHONE_BILL + AMOUNT_DESC_PHONE_BILL,
                 new AddFrequentExpenseCommand(expectedFrequentExpense));

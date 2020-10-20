@@ -16,9 +16,9 @@ public class FrequentExpense extends FrequentTransaction<Expense> {
 
     @Override
     public Expense convert(Date expenseDate) {
-        Title title = super.getTitle();
-        Amount amount = super.getAmount();
-        Set<Category> categories = super.getCategories();
+        Title title = getTitle();
+        Amount amount = getAmount();
+        Set<Category> categories = getCategories();
 
         return new Expense(title, amount, expenseDate, categories);
     }
@@ -34,8 +34,8 @@ public class FrequentExpense extends FrequentTransaction<Expense> {
         }
 
         FrequentExpense otherFrequentExpense = (FrequentExpense) other;
-        return otherFrequentExpense.getTitle().equals(getTitle())
-                && otherFrequentExpense.getAmount().equals(getAmount())
-                && otherFrequentExpense.getCategories().equals(getCategories());
+        return getTitle().equals(otherFrequentExpense.getTitle())
+                && getAmount().equals(otherFrequentExpense.getAmount())
+                && getCategories().equals(otherFrequentExpense.getCategories());
     }
 }

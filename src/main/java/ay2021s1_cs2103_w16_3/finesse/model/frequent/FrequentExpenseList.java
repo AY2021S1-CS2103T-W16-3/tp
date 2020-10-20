@@ -3,7 +3,6 @@ package ay2021s1_cs2103_w16_3.finesse.model.frequent;
 import static ay2021s1_cs2103_w16_3.finesse.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Iterator;
 import java.util.List;
 
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.DuplicateFrequentExpenseException;
@@ -89,10 +88,6 @@ public class FrequentExpenseList {
     public void setFrequentExpenses(FrequentExpenseList replacement) {
         requireNonNull(replacement);
         internalFrequentExpenseList.setAll(replacement.internalFrequentExpenseList);
-    }
-
-    public Iterator<FrequentExpense> iterator() {
-        return internalFrequentExpenseList.iterator();
     }
 
     @Override

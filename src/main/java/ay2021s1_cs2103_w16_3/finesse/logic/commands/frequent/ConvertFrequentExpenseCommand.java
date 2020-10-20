@@ -36,11 +36,11 @@ public class ConvertFrequentExpenseCommand extends Command {
 
     /**
      * @param targetIndex Index of the frequent expense in the filtered frequent expense list to convert.
-     * @param newDate Date of converting frequent expense to an expense and adding it to the finance tracker.
+     * @param convertDate Date of converting a frequent expense to an expense and adding it to the finance tracker.
      */
-    public ConvertFrequentExpenseCommand(Index targetIndex, Date newDate) {
+    public ConvertFrequentExpenseCommand(Index targetIndex, Date convertDate) {
         this.targetIndex = targetIndex;
-        this.date = newDate;
+        this.date = convertDate;
     }
 
     @Override
@@ -68,7 +68,8 @@ public class ConvertFrequentExpenseCommand extends Command {
             return false;
         }
 
-        ConvertFrequentExpenseCommand e = (ConvertFrequentExpenseCommand) other;
-        return targetIndex.equals(e.targetIndex) && date.equals(e.date);
+        ConvertFrequentExpenseCommand otherConvertFrequentExpenseCommand = (ConvertFrequentExpenseCommand) other;
+        return targetIndex.equals(otherConvertFrequentExpenseCommand.targetIndex)
+                && date.equals(otherConvertFrequentExpenseCommand.date);
     }
 }

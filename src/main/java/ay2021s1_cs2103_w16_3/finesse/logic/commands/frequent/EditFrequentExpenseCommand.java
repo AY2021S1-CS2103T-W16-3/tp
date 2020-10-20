@@ -59,14 +59,6 @@ public class EditFrequentExpenseCommand extends Command {
         this.editFrequentExpenseDescriptor = editFrequentExpenseDescriptor;
     }
 
-    protected Index getTargetIndex() {
-        return targetIndex;
-    }
-
-    protected EditFrequentExpenseDescriptor getEditFrequentExpenseDescriptor() {
-        return editFrequentExpenseDescriptor;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -114,9 +106,9 @@ public class EditFrequentExpenseCommand extends Command {
         }
 
         // state check
-        EditFrequentExpenseCommand e = (EditFrequentExpenseCommand) other;
-        return targetIndex.equals(e.targetIndex)
-                && editFrequentExpenseDescriptor.equals(e.editFrequentExpenseDescriptor);
+        EditFrequentExpenseCommand otherEditFrequentExpenseCommand = (EditFrequentExpenseCommand) other;
+        return targetIndex.equals(otherEditFrequentExpenseCommand.targetIndex)
+                && editFrequentExpenseDescriptor.equals(otherEditFrequentExpenseCommand.editFrequentExpenseDescriptor);
     }
 
     /**
@@ -190,13 +182,11 @@ public class EditFrequentExpenseCommand extends Command {
             }
 
             // state check
-            EditFrequentExpenseDescriptor e = (EditFrequentExpenseDescriptor) other;
+            EditFrequentExpenseDescriptor otherEditFrequentExpenseDescriptor = (EditFrequentExpenseDescriptor) other;
 
-            return getTitle().equals(e.getTitle())
-                    && getAmount().equals(e.getAmount())
-                    && getCategories().equals(e.getCategories());
+            return getTitle().equals(otherEditFrequentExpenseDescriptor.getTitle())
+                    && getAmount().equals(otherEditFrequentExpenseDescriptor.getAmount())
+                    && getCategories().equals(otherEditFrequentExpenseDescriptor.getCategories());
         }
     }
-
-
 }

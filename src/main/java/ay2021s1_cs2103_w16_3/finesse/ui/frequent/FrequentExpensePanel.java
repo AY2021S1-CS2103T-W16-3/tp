@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.core.LogsCenter;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiPart;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -38,7 +39,7 @@ public class FrequentExpensePanel extends UiPart<Region> {
                 setText(null);
                 setStyle("-fx-background-color: #2E2E36");
             } else {
-                FrequentTransactionCard frequentTransactionCard = new FrequentTransactionCard(frequentExpense,
+                FrequentTransactionCard frequentTransactionCard = new FrequentTransactionCard<Expense>(frequentExpense,
                         getIndex() + 1, 13);
                 setGraphic((Node) frequentTransactionCard.getRoot());
             }

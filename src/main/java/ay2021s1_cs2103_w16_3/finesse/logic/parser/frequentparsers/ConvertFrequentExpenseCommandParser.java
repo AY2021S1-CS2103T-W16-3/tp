@@ -21,8 +21,8 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
  */
 public class ConvertFrequentExpenseCommandParser implements Parser<ConvertFrequentExpenseCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddExpenseCommand
-     * and returns an AddExpenseCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ConvertFrequentExpenseCommand
+     * and returns an ConvertFrequentExpenseCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ConvertFrequentExpenseCommand parse(String args) throws ParseException {

@@ -11,7 +11,6 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.asser
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.showFrequentExpenseAtIndex;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST_FREQUENT_EXPENSE;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND_FREQUENT_EXPENSE;
-import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,15 +25,16 @@ import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
 import ay2021s1_cs2103_w16_3.finesse.model.UserPrefs;
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.FrequentExpense;
 import ay2021s1_cs2103_w16_3.finesse.testutil.EditFrequentExpenseDescriptorBuilder;
-import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentExpenseBuilder;
+import ay2021s1_cs2103_w16_3.finesse.testutil.FrequentTransactionBuilder;
+import ay2021s1_cs2103_w16_3.finesse.testutil.TypicalFrequentTransactions;
 
 public class EditFrequentExpenseCommandTest {
 
-    private Model model = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
+    private Model model = new ModelManager(TypicalFrequentTransactions.getTypicalFinanceTracker(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        FrequentExpense editedFrequentExpense = new FrequentExpenseBuilder().buildFrequentExpense();
+        FrequentExpense editedFrequentExpense = new FrequentTransactionBuilder().buildFrequentExpense();
         EditFrequentExpenseDescriptor descriptor =
                 new EditFrequentExpenseDescriptorBuilder(editedFrequentExpense).build();
         EditFrequentExpenseCommand editFrequentExpenseCommand =
@@ -54,7 +54,7 @@ public class EditFrequentExpenseCommandTest {
         Index indexLastExpense = Index.fromOneBased(model.getFilteredFrequentExpenseList().size());
         FrequentExpense lastExpense = model.getFilteredFrequentExpenseList().get(indexLastExpense.getZeroBased());
 
-        FrequentExpenseBuilder expenseInList = new FrequentExpenseBuilder(lastExpense);
+        FrequentTransactionBuilder expenseInList = new FrequentTransactionBuilder(lastExpense);
         FrequentExpense editedExpense = expenseInList.withTitle(VALID_TITLE_SPOTIFY_SUBSCRIPTION)
                 .withAmount(VALID_AMOUNT_SPOTIFY_SUBSCRIPTION)
                 .withCategories(VALID_CATEGORY_MISCELLANEOUS).buildFrequentExpense();

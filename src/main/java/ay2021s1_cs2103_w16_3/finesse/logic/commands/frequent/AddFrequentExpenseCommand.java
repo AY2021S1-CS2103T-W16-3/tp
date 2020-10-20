@@ -56,5 +56,4 @@ public class AddFrequentExpenseCommand extends Command {
                 || (other instanceof AddFrequentExpenseCommand // instanceof handles nulls
                 && toAdd.equals(((AddFrequentExpenseCommand) other).toAdd));
     }
-
 }

@@ -9,16 +9,14 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
+/**
+ * Represents a Frequent Transaction in the finance tracker.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public abstract class FrequentTransaction<T extends Transaction> {
     private final Title title;
     private final Amount amount;
     private final Set<Category> categories;
-
-    protected FrequentTransaction(T base) {
-        title = base.getTitle();
-        amount = base.getAmount();
-        categories = base.getCategories();
-    }
 
     protected FrequentTransaction(Title title, Amount amount, Set<Category> categories) {
         this.title = title;
@@ -46,7 +44,6 @@ public abstract class FrequentTransaction<T extends Transaction> {
         builder.append(getTitle())
                 .append(" Amount: ")
                 .append(getAmount())
-                .append(" Date: ")
                 .append(" Categories: ");
         getCategories().forEach(builder::append);
         return builder.toString();
