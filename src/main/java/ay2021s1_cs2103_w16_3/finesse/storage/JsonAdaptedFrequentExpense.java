@@ -26,7 +26,7 @@ public class JsonAdaptedFrequentExpense {
     private final List<JsonAdaptedCategory> categories = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedExpense} with the given transaction details.
+     * Constructs a {@code JsonAdaptedFrequentExpense} with the given frequent expense details.
      */
     @JsonCreator
     public JsonAdaptedFrequentExpense(@JsonProperty("title") String title, @JsonProperty("amount") String amount,

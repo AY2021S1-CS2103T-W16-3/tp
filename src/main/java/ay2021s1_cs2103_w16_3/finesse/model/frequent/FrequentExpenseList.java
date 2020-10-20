@@ -3,6 +3,7 @@ package ay2021s1_cs2103_w16_3.finesse.model.frequent;
 import static ay2021s1_cs2103_w16_3.finesse.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Iterator;
 import java.util.List;
 
 import ay2021s1_cs2103_w16_3.finesse.model.frequent.exceptions.DuplicateFrequentExpenseException;
@@ -17,7 +18,7 @@ import javafx.collections.ObservableList;
  *
  * Supports a minimal set of list operations.
  */
-public class FrequentExpenseList {
+public class FrequentExpenseList implements Iterable<FrequentExpense> {
     private final ObservableList<FrequentExpense> internalFrequentExpenseList = FXCollections.observableArrayList();
     private final ObservableList<FrequentExpense> internalUnmodifiableFrequentExpenseList =
             FXCollections.unmodifiableObservableList(internalFrequentExpenseList);
@@ -100,5 +101,10 @@ public class FrequentExpenseList {
     @Override
     public int hashCode() {
         return internalFrequentExpenseList.hashCode();
+    }
+
+    @Override
+    public Iterator<FrequentExpense> iterator() {
+        return internalFrequentExpenseList.iterator();
     }
 }
