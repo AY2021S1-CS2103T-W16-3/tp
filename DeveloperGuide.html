@@ -251,6 +251,23 @@ This abstraction is maintained so that the implementation of other components (<
 the underlying Java data type choices in the <code class="highlighter-rouge">Model</code> component.
 </div>
 
+<p>The <code class="highlighter-rouge">FinanceTracker</code> has a <code class="highlighter-rouge">TransactionList</code> field which stores all <code class="highlighter-rouge">Expense</code> and <code class="highlighter-rouge">Income</code> objects together.</p>
+
+<p>The <code class="highlighter-rouge">ModelManager</code> has three <code class="highlighter-rouge">FilteredList</code> fields which point to the same <code class="highlighter-rouge">ObservableList</code> obtained from <code class="highlighter-rouge">FinanceTracker::getTransactionList</code>.
+The <code class="highlighter-rouge">Predicate</code> fields in the three <code class="highlighter-rouge">FilteredList</code> fields are set such that:</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">filteredTransactions</code> shows a view of all <code class="highlighter-rouge">Transaction</code> objects</li>
+  <li>
+<code class="highlighter-rouge">filteredExpenses</code> shows a view of all <code class="highlighter-rouge">Transaction</code> objects of type <code class="highlighter-rouge">Expense</code>
+</li>
+  <li>
+<code class="highlighter-rouge">filteredIncomes</code> shows a view of all <code class="highlighter-rouge">Transaction</code> objects of type <code class="highlighter-rouge">Income</code>
+</li>
+</ul>
+
+<p>The motivation behind having three lists is due to the fact that there are three tabs in the user interface, each having its own list while at the same time retrieving data from the same transaction list.</p>
+
 <h3 id="storage-component">Storage component</h3>
 
 <p><img src="/tp/images/StorageClassDiagram.png" alt="Structure of the Storage Component"></p>
@@ -260,9 +277,17 @@ the underlying Java data type choices in the <code class="highlighter-rouge">Mod
 <p>The <code class="highlighter-rouge">Storage</code> component:</p>
 
 <ul>
-  <li>can save <code class="highlighter-rouge">UserPref</code> objects in json format and read it back.</li>
-  <li>can save the finance tracker data in json format and read it back.</li>
+  <li>can save <code class="highlighter-rouge">UserPref</code> objects in <code class="highlighter-rouge">JSON</code> format and read it back.</li>
+  <li>can save the finance tracker data in <code class="highlighter-rouge">JSON</code> format and read it back.</li>
 </ul>
+
+<p><code class="highlighter-rouge">JsonAdaptedExpense</code> and <code class="highlighter-rouge">JsonAdaptedIncome</code> are <code class="highlighter-rouge">JSON</code>-friendly adaptations of <code class="highlighter-rouge">Expense</code> and <code class="highlighter-rouge">Income</code> respectively.
+However, unlike <code class="highlighter-rouge">Expense</code> and <code class="highlighter-rouge">Income</code>, all the fields in <code class="highlighter-rouge">JsonAdaptedExpense</code> and <code class="highlighter-rouge">JsonAdaptedIncome</code> are <code class="highlighter-rouge">String</code> objects.
+This is so that the fields are compatible with the <code class="highlighter-rouge">JSON</code> format.</p>
+
+<p><code class="highlighter-rouge">JsonSerializableFinanceTracker</code> contains two <code class="highlighter-rouge">List</code> fields, one containing all <code class="highlighter-rouge">JsonAdaptedExpense</code> objects and the other containing all <code class="highlighter-rouge">JsonAdaptedIncome</code> objects.
+Despite the similarities between <code class="highlighter-rouge">Expense</code> and <code class="highlighter-rouge">Income</code>, and despite the fact that objects of both types are put into the same list in <code class="highlighter-rouge">FinanceTracker</code>,
+the motivation behind keeping them separately is to ensure that they are separately listed in the <code class="highlighter-rouge">JSON</code> data file.</p>
 
 <h3 id="common-classes">Common classes</h3>
 
