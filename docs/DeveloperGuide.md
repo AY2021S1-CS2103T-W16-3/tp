@@ -146,10 +146,10 @@ The motivation behind having three lists is due to the fact that there are three
 
 The `Storage` component:
 
-* can save `UserPref` objects in json format and read it back.
-* can save the finance tracker data in json format and read it back.
+* can save `UserPref` objects in `JSON` format and read it back.
+* can save the finance tracker data in `JSON` format and read it back.
 
-`JsonAdaptedExpense` and `JsonAdaptedIncome` are json-friendly adaptations of `Expense` and `Income` respectively.
+`JsonAdaptedExpense` and `JsonAdaptedIncome` are `JSON`-friendly adaptations of `Expense` and `Income` respectively.
 However, unlike `Expense` and `Income`, all the fields in `JsonAdaptedExpense` and `JsonAdaptedIncome` are `String` objects.
 This is so that the fields are compatible with the `JSON` format.
 
