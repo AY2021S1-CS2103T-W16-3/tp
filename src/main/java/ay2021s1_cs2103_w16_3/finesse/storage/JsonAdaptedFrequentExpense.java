@@ -52,7 +52,7 @@ public class JsonAdaptedFrequentExpense {
     /**
      * Converts this Jackson-friendly adapted expense object into the model's {@code Expense} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted transaction.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted frequent expense.
      */
     public FrequentExpense toModelType() throws IllegalValueException {
         final List<Category> transactionCategories = new ArrayList<>();
