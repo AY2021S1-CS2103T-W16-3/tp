@@ -58,6 +58,7 @@
   <li>
 <a href="#implementation" id="markdown-toc-implementation"><strong>Implementation</strong></a>    <ul>
       <li><a href="#find-transactions" id="markdown-toc-find-transactions">Find transactions</a></li>
+      <li><a href="#programmatically-switch-selected-tab" id="markdown-toc-programmatically-switch-selected-tab">Programmatically switch selected tab</a></li>
       <li><a href="#set-monthly-spending-limit" id="markdown-toc-set-monthly-spending-limit">Set monthly spending limit</a></li>
       <li><a href="#set-monthly-savings-goal" id="markdown-toc-set-monthly-savings-goal">Set monthly savings goal</a></li>
     </ul>
@@ -294,6 +295,30 @@ When executed, the <code class="highlighter-rouge">FindXXXCommand</code> will se
 
 <ul>
   <li>Having separate command parsers for each tab in which the find command can be input, e.g. <code class="highlighter-rouge">FindTransactionCommandParser</code>, <code class="highlighter-rouge">FindExpenseCommandParser</code> and <code class="highlighter-rouge">FindIncomeCommandParser</code>.</li>
+</ul>
+
+<h3 id="programmatically-switch-selected-tab">Programmatically switch selected tab</h3>
+
+<p>Several of the expense/income-specific commands update the list of transactions displayed in a particular tab.
+Examples of these include the <code class="highlighter-rouge">add-expense</code> and <code class="highlighter-rouge">add-income</code> commands.
+As such, on the execution of such commands, the UI has to switch to the affected tab to display the result of the command execution.</p>
+
+<p>The ability to programmatically update the selected tab is implemented via <code class="highlighter-rouge">CommandResult</code>.
+Upon the successful execution of a command, a <code class="highlighter-rouge">CommandResult</code> is generated and passed back to <code class="highlighter-rouge">MainWindow</code>.
+This <code class="highlighter-rouge">CommandResult</code> contains the necessary information which the <code class="highlighter-rouge">MainWindow</code> needs to update the user interface, such as:</p>
+<ul>
+  <li>The feedback to be displayed to the user;</li>
+  <li>Whether to exit the application; and</li>
+  <li>Whether to programmatically switch to a different tab in the user interface.</li>
+</ul>
+
+<p><img src="/tp/images/CommandResultSequenceDiagram.png" alt="Interactions inside the Logic Component when executing commands"></p>
+
+<p>Alternatives considered:</p>
+
+<ul>
+  <li>Add a method in <code class="highlighter-rouge">MainWindow</code> which can be called to programmatically switch tabs in the user interface upon execution of the command.
+This was decided against as it would result in a much tighter coupling of <code class="highlighter-rouge">Logic</code> and <code class="highlighter-rouge">UI</code> components.</li>
 </ul>
 
 <h3 id="set-monthly-spending-limit">Set monthly spending limit</h3>
