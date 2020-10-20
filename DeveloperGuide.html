@@ -189,11 +189,60 @@
 
 <ul>
   <li>stores a <code class="highlighter-rouge">UserPref</code> object that represents the user’s preferences.</li>
-  <li>stores the finance tracker data.</li>
+  <li>stores the finance tracker data in a <code class="highlighter-rouge">TransactionList</code> containing <code class="highlighter-rouge">Transaction</code>s.</li>
   <li>exposes <code class="highlighter-rouge">MonthlySavings</code> and <code class="highlighter-rouge">MonthlyBudget</code>, which can be ‘observed’ e.g. the UI can be bound to the values in these classes so that the UI automatically updates when the values in the classes change.</li>
   <li>exposes an unmodifiable <code class="highlighter-rouge">ObservableList&lt;Transaction&gt;</code> which can be ‘observed’ e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.</li>
-  <li>does not depend on any of the other three components.</li>
+  <li>does not depend on any of the other three components (<code class="highlighter-rouge">UI</code>, <code class="highlighter-rouge">Logic</code>, <code class="highlighter-rouge">Storage</code>).</li>
 </ul>
+
+<p>A <code class="highlighter-rouge">Transaction</code>:</p>
+<ul>
+  <li>represents a unit of user data within the finance tracker.</li>
+  <li>is either an <code class="highlighter-rouge">Expense</code> or an <code class="highlighter-rouge">Income</code>.</li>
+  <li>is composed of a <code class="highlighter-rouge">Title</code>, an <code class="highlighter-rouge">Amount</code>, a <code class="highlighter-rouge">Date</code>, and any number of <code class="highlighter-rouge">Category</code>s. These are known as <em>data fields</em>.</li>
+</ul>
+
+<p>The <em>data fields</em> <code class="highlighter-rouge">Title</code>, <code class="highlighter-rouge">Amount</code>, <code class="highlighter-rouge">Date</code>, and <code class="highlighter-rouge">Category</code> are encapsulations of an underlying Java data type.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Field</th>
+      <th>Underlying Java Data Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Title</code></td>
+      <td><code class="highlighter-rouge">java.lang.String</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Amount</code></td>
+      <td><code class="highlighter-rouge">java.math.BigDecimal</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Date</code></td>
+      <td><code class="highlighter-rouge">java.time.LocalDate</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Category</code></td>
+      <td><code class="highlighter-rouge">java.lang.String</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The underlying Java data types allow more operations to be done on <code class="highlighter-rouge">Transaction</code> objects, such as filtering transactions by date, or aggregating the amounts of expenses and incomes.</p>
+
+<div class="alert alert-info">
+<img class="emoji" title=":information_source:" alt=":information_source:" raw="ℹ️" src="https://github.githubassets.com/images/icons/emoji/unicode/2139.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))"><strong>Note:</strong> All data fields take in a <code class="highlighter-rouge">String</code> in their constructor, regardless of the underlying Java data type.
+Within the constructor, data validation takes place to ensure that the <code class="highlighter-rouge">String</code> correctly represents a valid data field.
+If the <code class="highlighter-rouge">String</code> given is not valid, an <code class="highlighter-rouge">IllegalArgumentException</code> will be thrown.
+Otherwise, the <code class="highlighter-rouge">String</code> is parsed into the underlying Java data type.<br><br>
+The reason for this is that when a data field object needs to be created, it is generally from a <code class="highlighter-rouge">String</code>
+(such as when a user command parsed from the <code class="highlighter-rouge">Logic</code> component, or when a transaction is loaded from the <code class="highlighter-rouge">Storage</code> component).
+This abstraction is maintained so that the implementation of other components (<code class="highlighter-rouge">Logic</code> and <code class="highlighter-rouge">Storage</code>) is independent of
+the underlying Java data type choices in the <code class="highlighter-rouge">Model</code> component.
+</div>
 
 <h3 id="storage-component">Storage component</h3>
 
