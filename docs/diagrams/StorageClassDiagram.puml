@@ -18,7 +18,7 @@ StorageManager o--> FinanceTrackerStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonFinanceTrackerStorage .left.|> FinanceTrackerStorage
-JsonFinanceTrackerStorage .down.> JsonSerializableFinanceTrackerStorage
-JsonSerializableFinanceTrackerStorage .right.> JsonAdaptedTransaction
+JsonFinanceTrackerStorage .down.> JsonSerializableFinanceTracker
+JsonSerializableFinanceTracker .right.> JsonAdaptedTransaction
 JsonAdaptedTransaction .right.> JsonAdaptedCategory
 @enduml
