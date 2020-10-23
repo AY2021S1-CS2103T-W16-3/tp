@@ -133,27 +133,10 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set the bottom anchor after the tabs have been initialized.
         AnchorPane.setBottomAnchor(tabPane, 0.0);
-    }
 
-    /**
-     * Sets up all the action handlers for the tabs on the tab pane.
-     */
-    public void setActionHandlers() {
-        overviewTab.setOnSelectionChanged(event -> {
-            handleOverview();
-        });
-
-        incomeTab.setOnSelectionChanged(event -> {
-            handleIncome();
-        });
-
-        expenseTab.setOnSelectionChanged(event -> {
-            handleExpense();
-        });
-
-        analyticsTab.setOnSelectionChanged(event -> {
-            handleAnalytics();
-        });
+        // Update UI state on tab change.
+        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldTabIndex, newTabIndex) ->
+                uiState.setCurrentTab(UiState.Tab.values()[newTabIndex.intValue()]));
     }
 
     /**
@@ -174,38 +157,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleHelp() {
         resultDisplay.setFeedbackToUser(HELP_MESSAGE);
-    }
-
-    /**
-     * Opens the income window.
-     */
-    @FXML
-    private void handleIncome() {
-        uiState.setCurrentTab(UiState.Tab.INCOME);
-    }
-
-    /**
-     * Opens the overview window.
-     */
-    @FXML
-    private void handleOverview() {
-        uiState.setCurrentTab(UiState.Tab.OVERVIEW);
-    }
-
-    /**
-     * Opens the analytics window.
-     */
-    @FXML
-    private void handleAnalytics() {
-        uiState.setCurrentTab(UiState.Tab.ANALYTICS);
-    }
-
-    /**
-     * Opens the expense window.
-     */
-    @FXML
-    private void handleExpense() {
-        uiState.setCurrentTab(UiState.Tab.EXPENSES);
     }
 
     void show() {
@@ -261,6 +212,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void switchTabs(UiState.Tab tab) {
         requireNonNull(tab);
-        tabPane.getSelectionModel().select(tab.getTabIndex());
+        tabPane.getSelectionModel().select(tab.getTabIndex().getZeroBased());
     }
 }

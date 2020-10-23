@@ -10,10 +10,10 @@ import ay2021s1_cs2103_w16_3.finesse.ui.UiState.Tab;
 public class UiStateTest {
     @Test
     public void getTabEnumIndex_returnsCorrectIndex() {
-        assertEquals(1, Tab.OVERVIEW.getTabIndex());
-        assertEquals(2, Tab.INCOME.getTabIndex());
-        assertEquals(3, Tab.EXPENSES.getTabIndex());
-        assertEquals(4, Tab.ANALYTICS.getTabIndex());
+        assertEquals(1, Tab.OVERVIEW.getTabIndex().getOneBased());
+        assertEquals(2, Tab.INCOME.getTabIndex().getOneBased());
+        assertEquals(3, Tab.EXPENSES.getTabIndex().getOneBased());
+        assertEquals(4, Tab.ANALYTICS.getTabIndex().getOneBased());
     }
 
     @Test

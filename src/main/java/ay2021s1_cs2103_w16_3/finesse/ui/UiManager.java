@@ -46,8 +46,6 @@ public class UiManager implements Ui {
             mainWindow.disableStageResizing();
             mainWindow.fillInnerParts();
             mainWindow.initializeTabs();
-            mainWindow.setActionHandlers();
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);

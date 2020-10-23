@@ -2,6 +2,8 @@ package ay2021s1_cs2103_w16_3.finesse.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import ay2021s1_cs2103_w16_3.finesse.commons.core.index.Index;
+
 /**
  * Represents the state of the current UI.
  */
@@ -16,7 +18,7 @@ public class UiState {
         ANALYTICS(4);
 
         /** The index of the tab in the {@code TabPane}. */
-        private final int tabIndex;
+        private final Index tabIndex;
 
         /**
          * Constructs a new {@code Tab} enum with the specified tab index.
@@ -24,7 +26,7 @@ public class UiState {
          * @param tabIndex The index of the tab in the {@code TabPane}.
          */
         Tab(int tabIndex) {
-            this.tabIndex = tabIndex;
+            this.tabIndex = Index.fromOneBased(tabIndex);
         }
 
         /**
@@ -32,7 +34,7 @@ public class UiState {
          *
          * @return The index of the tab in the {@code TabPane}.
          */
-        public int getTabIndex() {
+        public Index getTabIndex() {
             return tabIndex;
         }
 
