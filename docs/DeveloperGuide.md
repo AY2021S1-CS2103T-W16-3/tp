@@ -136,7 +136,7 @@ The `Predicate` fields in the three `FilteredList` fields are set such that:
 * `filteredExpenses` shows a view of all `Transaction` objects of type `Expense`
 * `filteredIncomes` shows a view of all `Transaction` objects of type `Income`
 
-The motivation behind having three lists is due to the fact that there are three tabs in the user interface, each having its own list while at the same time retrieving data from the same transaction list. 
+The motivation behind having three lists is due to the fact that there are three tabs in the user interface, each having its own list while at the same time retrieving data from the same transaction list.
 
 ### Storage component
 
