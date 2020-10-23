@@ -45,6 +45,7 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.disableStageResizing();
             mainWindow.fillInnerParts();
+            mainWindow.initializeTabs();
             mainWindow.setActionHandlers();
 
         } catch (Throwable e) {

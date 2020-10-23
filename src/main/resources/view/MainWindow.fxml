@@ -5,7 +5,6 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
@@ -21,31 +20,12 @@
 
       <VBox>
         <TabPane fx:id="tabPane" VBox.vgrow="NEVER" styleClass="tab-pane" tabMinHeight="30">
-          <Tab fx:id="menuHelpTab" text="Help" closable="false" />
-          <Tab fx:id="menuOverviewTab" text="Overview" closable="false" />
-          <Tab fx:id="menuIncomeTab" text="Incomes" closable="false" />
-          <Tab fx:id="menuExpenseTab" text="Expenses" closable="false" />
-          <Tab fx:id="menuAnalyticsTab" text="Analytics" closable="false" />
+          <Tab fx:id="helpTab" text="Help" closable="false" />
+          <Tab fx:id="overviewTab" text="Overview" closable="false" />
+          <Tab fx:id="incomeTab" text="Incomes" closable="false" />
+          <Tab fx:id="expenseTab" text="Expenses" closable="false" />
+          <Tab fx:id="analyticsTab" text="Analytics" closable="false" />
         </TabPane>
-
-        <HBox VBox.vgrow="ALWAYS">
-            <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="CENTER">
-              <Label fx:id="panelLabel" text="Overview" styleClass="panel-label"/>
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <StackPane fx:id="transactionListPanelPlaceholder" maxWidth="Infinity" minWidth="400"
-                         HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-            </VBox>
-            <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" alignment="CENTER">
-              <Label fx:id="rightPanelLabel" text="Savings Summary" styleClass="panel-label"/>
-              <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
-              </padding>
-              <StackPane fx:id="savingsGoalPlaceholder" maxWidth="Infinity" minWidth="100" prefWidth="150"
-                         HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-            </VBox>
-        </HBox>
 
         <StackPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" fx:id="resultDisplayPlaceholder"
                    styleClass="pane-with-border" minHeight="100" prefHeight="100" maxHeight="100">

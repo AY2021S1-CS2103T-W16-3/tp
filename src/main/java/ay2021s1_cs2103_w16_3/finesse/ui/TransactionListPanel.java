@@ -1,8 +1,5 @@
 package ay2021s1_cs2103_w16_3.finesse.ui;
 
-import java.util.logging.Logger;
-
-import ay2021s1_cs2103_w16_3.finesse.commons.core.LogsCenter;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,7 +12,6 @@ import javafx.scene.layout.Region;
  */
 public class TransactionListPanel extends UiPart<Region> {
     private static final String FXML = "TransactionListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TransactionListPanel.class);
 
     @FXML
     private ListView<Transaction> transactionListView;
