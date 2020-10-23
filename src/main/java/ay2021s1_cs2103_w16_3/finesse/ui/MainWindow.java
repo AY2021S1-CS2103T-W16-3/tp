@@ -109,8 +109,6 @@ public class MainWindow extends UiPart<Stage> {
 
         SelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         selectionModel.select(overviewTab);
-
-        onOverview();
     }
 
     /**
@@ -189,7 +187,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleIncome() {
-        onIncome();
         uiState.setCurrentTab(UiState.Tab.INCOME);
     }
 
@@ -198,7 +195,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleOverview() {
-        onOverview();
         uiState.setCurrentTab(UiState.Tab.OVERVIEW);
     }
 
@@ -207,7 +203,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleAnalytics() {
-        onAnalytics();
         uiState.setCurrentTab(UiState.Tab.ANALYTICS);
     }
 
@@ -216,7 +211,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExpense() {
-        onExpense();
         uiState.setCurrentTab(UiState.Tab.EXPENSES);
     }
 
@@ -274,49 +268,5 @@ public class MainWindow extends UiPart<Stage> {
     private void switchTabs(UiState.Tab tab) {
         requireNonNull(tab);
         tabPane.getSelectionModel().select(tab.getTabIndex());
-    }
-
-    /**
-     * Changes the text color of the overview tab to white while the rest remains grey
-     */
-    private void onOverview() {
-        overviewTab.setStyle("-tab-text-color: white");
-        incomeTab.setStyle("-tab-text-color: #888888");
-        expenseTab.setStyle("-tab-text-color: #888888");
-        analyticsTab.setStyle("-tab-text-color: #888888");
-        helpTab.setStyle("-tab-text-color: #888888");
-    }
-
-    /**
-     * Changes the text color of the income tab to white while the rest remains grey.
-     */
-    private void onIncome() {
-        overviewTab.setStyle("-tab-text-color: #888888");
-        incomeTab.setStyle("-tab-text-color: white");
-        expenseTab.setStyle("-tab-text-color: #888888");
-        analyticsTab.setStyle("-tab-text-color: #888888");
-        helpTab.setStyle("-tab-text-color: #888888");
-    }
-
-    /**
-     * Changes the text color of the expense tab to white while the rest remains grey.
-     */
-    private void onExpense() {
-        overviewTab.setStyle("-tab-text-color: #888888");
-        incomeTab.setStyle("-tab-text-color: #888888");
-        expenseTab.setStyle("-tab-text-color: white");
-        analyticsTab.setStyle("-tab-text-color: #888888");
-        helpTab.setStyle("-tab-text-color: #888888");
-    }
-
-    /**
-     * Changes the text color of the analytics tab to white while the rest remains grey.
-     */
-    private void onAnalytics() {
-        overviewTab.setStyle("-tab-text-color: #888888");
-        incomeTab.setStyle("-tab-text-color: #888888");
-        expenseTab.setStyle("-tab-text-color: #888888");
-        analyticsTab.setStyle("-tab-text-color: white");
-        helpTab.setStyle("-tab-text-color: #888888");
     }
 }

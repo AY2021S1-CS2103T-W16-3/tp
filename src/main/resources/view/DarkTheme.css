@@ -256,6 +256,11 @@
 .tab {
     -fx-background-color: #2E2E36;
     -fx-border-color: #2E2E36;
+    -fx-text-fill: #888888;
+    -fx-padding: 20, 0, 0, 0;
+}
+
+.tab:selected .tab-label {
     -fx-text-fill: white;
 }
 
@@ -263,11 +268,6 @@
     -fx-font-size: 18pt;
     -fx-font-family: "Roboto Condensed";
     -fx-text-fill: white;
-}
-
-.tab {
-    -fx-padding: 20, 0, 0, 0;
-    -fx-border-color: #2E2E36;
 }
 
 .command-box-label {
