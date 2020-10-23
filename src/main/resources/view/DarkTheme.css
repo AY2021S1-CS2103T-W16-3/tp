@@ -264,6 +264,10 @@
     -fx-text-fill: white;
 }
 
+.tab:hover .tab-label {
+    -fx-text-fill: white;
+}
+
 .tab-pane .label {
     -fx-font-size: 18pt;
     -fx-font-family: "Roboto Condensed";
