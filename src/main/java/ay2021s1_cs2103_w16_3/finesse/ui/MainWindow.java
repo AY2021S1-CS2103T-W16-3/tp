@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -52,11 +53,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Button commandBoxButton;
     @FXML
+    private Button helpButton;
+    @FXML
     private StackPane resultDisplayPlaceholder;
     @FXML
     private StackPane statusbarPlaceholder;
-    @FXML
-    private Tab helpTab;
     @FXML
     private Tab overviewTab;
     @FXML
@@ -129,6 +130,9 @@ public class MainWindow extends UiPart<Stage> {
 
         SelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         selectionModel.select(overviewTab);
+
+        // Set the bottom anchor after the tabs have been initialized.
+        AnchorPane.setBottomAnchor(tabPane, 0.0);
     }
 
     /**
@@ -137,10 +141,6 @@ public class MainWindow extends UiPart<Stage> {
     public void setActionHandlers() {
         overviewTab.setOnSelectionChanged(event -> {
             handleOverview();
-        });
-
-        helpTab.setOnSelectionChanged(event -> {
-            handleTabHelp();
         });
 
         incomeTab.setOnSelectionChanged(event -> {
@@ -169,16 +169,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Displays the help message in the result display.
      */
     @FXML
-    public void handleTabHelp() {
-        if (helpTab.isSelected()) {
-            resultDisplay.setFeedbackToUser(HELP_MESSAGE);
-        }
-    }
-
-    @FXML void handleCommandHelp() {
+    public void handleHelp() {
         resultDisplay.setFeedbackToUser(HELP_MESSAGE);
     }
 
@@ -241,7 +235,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
-                handleCommandHelp();
+                handleHelp();
             }
 
             if (commandResult.isExit()) {
