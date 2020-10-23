@@ -8,7 +8,7 @@
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="CENTER">
-    <Label fx:id="mainPanelLabel" text="Overview" styleClass="panel-label" />
+    <Label fx:id="mainPanelLabel" styleClass="panel-label" />
     <padding>
       <Insets top="10" right="10" bottom="10" left="10" />
     </padding>
@@ -16,7 +16,7 @@
                HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
   </VBox>
   <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" alignment="CENTER">
-    <Label fx:id="sidePanelLabel" text="Savings Summary" styleClass="panel-label" />
+    <Label fx:id="sidePanelLabel" styleClass="panel-label" />
     <padding>
       <Insets bottom="10" left="10" right="10" top="10" />
     </padding>

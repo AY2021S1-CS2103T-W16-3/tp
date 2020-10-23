@@ -106,9 +106,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        SelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-        selectionModel.select(overviewTab);
     }
 
     /**
@@ -129,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
 
         AnalyticsTabPane analyticsTabPane = new AnalyticsTabPane();
         analyticsTab.setContent(analyticsTabPane.getRoot());
+
+        SelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+        selectionModel.select(overviewTab);
     }
 
     /**
