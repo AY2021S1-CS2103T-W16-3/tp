@@ -3,7 +3,6 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="placeHolder" styleClass="result-container" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1" >
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" text="How may I help you today?"/>
+<StackPane styleClass="result-container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+  <TextArea fx:id="resultDisplay" editable="false" wrapText="true" styleClass="result-display" />
 </StackPane>
