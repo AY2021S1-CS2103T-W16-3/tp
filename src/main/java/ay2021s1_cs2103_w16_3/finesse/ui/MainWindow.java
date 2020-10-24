@@ -71,6 +71,12 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Text expenseLimit;
 
+    // Window size and position information when application is not fullscreen.
+    private double windowWidth;
+    private double windowHeight;
+    private int xPosition;
+    private int yPosition;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage}, {@code Logic} and {@code UiState}.
      */
@@ -84,6 +90,9 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+
+        // Keep track of window size and position when application is not fullscreen.
+        initializeWindowListeners();
     }
 
     public Stage getPrimaryStage() {
@@ -139,12 +148,45 @@ public class MainWindow extends UiPart<Stage> {
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
-        primaryStage.setHeight(guiSettings.getWindowHeight());
-        primaryStage.setWidth(guiSettings.getWindowWidth());
+        windowHeight = guiSettings.getWindowHeight();
+        windowWidth = guiSettings.getWindowWidth();
+        xPosition = (int) guiSettings.getWindowCoordinates().getX();
+        yPosition = (int) guiSettings.getWindowCoordinates().getY();
+        primaryStage.setHeight(windowHeight);
+        primaryStage.setWidth(windowWidth);
         if (guiSettings.getWindowCoordinates() != null) {
-            primaryStage.setX(guiSettings.getWindowCoordinates().getX());
-            primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+            primaryStage.setX(xPosition);
+            primaryStage.setY(yPosition);
         }
+        primaryStage.setMaximized(guiSettings.isFullscreen());
+    }
+
+    /**
+     * Initializes listeners for the window size and position.
+     */
+    private void initializeWindowListeners() {
+        primaryStage.widthProperty().addListener(((observableValue, oldWidth, newWidth) -> {
+            if (!primaryStage.isMaximized()) {
+                windowWidth = newWidth.doubleValue();
+            }
+        }));
+        primaryStage.heightProperty().addListener((observableValue, oldHeight, newHeight) -> {
+            if (!primaryStage.isMaximized()) {
+                windowHeight = newHeight.doubleValue();
+            }
+        });
+        // The x and y properties are set before the application is considered maximised.
+        // Hence, we check whether they are non-negative values instead when setting.
+        primaryStage.xProperty().addListener((observableValue, oldX, newX) -> {
+            if (newX.intValue() >= 0) {
+                xPosition = newX.intValue();
+            }
+        });
+        primaryStage.yProperty().addListener((observableValue, oldY, newY) -> {
+            if (newY.intValue() >= 0) {
+                yPosition = newY.intValue();
+            }
+        });
     }
 
     /**
@@ -164,8 +206,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+        GuiSettings guiSettings =
+                new GuiSettings(windowWidth, windowHeight, xPosition, yPosition, primaryStage.isMaximized());
         logic.setGuiSettings(guiSettings);
         primaryStage.hide();
     }

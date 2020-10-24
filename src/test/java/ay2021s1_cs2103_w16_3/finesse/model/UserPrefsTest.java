@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import ay2021s1_cs2103_w16_3.finesse.commons.core.GuiSettings;
 
 public class UserPrefsTest {
-    private final GuiSettings guiSettings = new GuiSettings(1200, 800, 100, 100);
+    private final GuiSettings guiSettings = new GuiSettings(1200, 800, 100, 100, false);
 
     @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
@@ -27,7 +27,7 @@ public class UserPrefsTest {
     @Test
     public void equals_sameUserPrefs_returnsTrue() {
         UserPrefs userPrefs = new UserPrefs();
-        GuiSettings guiSettings = new GuiSettings(1200, 800, 100, 100);
+        GuiSettings guiSettings = new GuiSettings(1200, 800, 100, 100, false);
         userPrefs.setGuiSettings(guiSettings);
         assertEquals(userPrefs, userPrefs);
     }

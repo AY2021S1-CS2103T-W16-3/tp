@@ -134,7 +134,7 @@ public class LogicManagerTest {
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
-        GuiSettings guiSettings = new GuiSettings(800, 1200, 100, 100);
+        GuiSettings guiSettings = new GuiSettings(800, 1200, 100, 100, false);
         logic.setGuiSettings(guiSettings);
         assertEquals(guiSettings, logic.getGuiSettings());
     }
