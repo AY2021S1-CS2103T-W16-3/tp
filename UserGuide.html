@@ -44,7 +44,8 @@
   </header>
 
   <div class="post-content">
-    <ul id="markdown-toc">
+    <div class="toc-no-bullet-points">
+<ul id="markdown-toc">
   <li>
 <a href="#1-introduction" id="markdown-toc-1-introduction">1. Introduction</a>    <ul>
       <li><a href="#11-about-finee" id="markdown-toc-11-about-finee">1.1 About Fine$$e</a></li>
@@ -53,7 +54,14 @@
   </li>
   <li>
 <a href="#2-quick-start" id="markdown-toc-2-quick-start">2. Quick start</a>    <ul>
-      <li><a href="#21-layout-of-finees-interface" id="markdown-toc-21-layout-of-finees-interface">2.1 Layout of Fine$$e’s Interface</a></li>
+      <li>
+<a href="#21-layout-of-finees-interface" id="markdown-toc-21-layout-of-finees-interface">2.1 Layout of Fine$$e’s Interface</a>        <ul>
+          <li><a href="#211-overview-tab" id="markdown-toc-211-overview-tab">2.1.1 Overview Tab</a></li>
+          <li><a href="#212-incomes-tab" id="markdown-toc-212-incomes-tab">2.1.2 Incomes Tab</a></li>
+          <li><a href="#213-expenses-tab" id="markdown-toc-213-expenses-tab">2.1.3 Expenses Tab</a></li>
+          <li><a href="#214-analytics-tab" id="markdown-toc-214-analytics-tab">2.1.4 Analytics Tab</a></li>
+        </ul>
+      </li>
       <li><a href="#22-installation" id="markdown-toc-22-installation">2.2 Installation</a></li>
     </ul>
   </li>
@@ -63,7 +71,7 @@
       <li><a href="#41-viewing-help" id="markdown-toc-41-viewing-help">4.1 Viewing Help</a></li>
       <li>
 <a href="#42-tabs" id="markdown-toc-42-tabs">4.2 Tabs</a>        <ul>
-          <li><a href="#421-switch-tab" id="markdown-toc-421-switch-tab">4.2.1 Switch Tab</a></li>
+          <li><a href="#421-switch-tabs" id="markdown-toc-421-switch-tabs">4.2.1 Switch Tabs</a></li>
         </ul>
       </li>
       <li>
@@ -120,10 +128,13 @@
   <li><a href="#7-faq" id="markdown-toc-7-faq">7. FAQ</a></li>
 </ul>
 
+</div>
+
 <hr>
 <h2 id="1-introduction">1. Introduction</h2>
 
 <h3 id="11-about-finee">1.1 About Fine$$e</h3>
+
 <p>Welcome to Fine$$e!</p>
 
 <p>Looking for an all-in-one solution to help you develop good financial habits? Look no further!</p>
@@ -140,6 +151,7 @@ Fine$$e is optimized for users who are fast typists and are comfortable working 
 <p>Explore our User Guide to find out more about Fine$$e’s amazing features.</p>
 
 <h3 id="12-navigating-the-user-guide">1.2 Navigating the User Guide</h3>
+
 <p>The aim of the User Guide is to provide you with all of the necessary information required for you to utilize Fine$$e.
 We understand that a Command Line Interface (CLI) might not be the easiest to use, hence we have ensured that the information provided is concise and easily readable.</p>
 
@@ -155,13 +167,42 @@ We understand that a Command Line Interface (CLI) might not be the easiest to us
 
 <hr>
 <h2 id="2-quick-start">2. Quick start</h2>
+
 <p>This section will show you the various components that make up Fine<span>$</span><span>$</span>e’s user interface.
 You can also follow our step-by-step guide on how to install Fine<span>$</span><span>$</span>e and get it to work on your computer.
 Let’s get started!</p>
 
 <h3 id="21-layout-of-finees-interface">2.1 Layout of Fine$$e’s Interface</h3>
 
-<p>[To be added]</p>
+<p>The user interface of Fine$$e is divided into 4 tabs, each serving a specific purpose.</p>
+
+<h4 id="211-overview-tab">2.1.1 Overview Tab</h4>
+
+<p>Displays a list of all recent transactions (<a href="#44-income">incomes</a>/<a href="#43-expense">expenses</a>), along with a summary of the current <a href="#48-savings-goal">savings goals</a>.
+This tab provides you with an overview of your most recent activities and allows you to track your savings.</p>
+
+<p><img src="/tp/images/userguide/OverviewTab.png" alt="Overview Tab"></p>
+
+<h4 id="212-incomes-tab">2.1.2 Incomes Tab</h4>
+
+<p>Displays a list of <a href="#44-income">incomes</a> and <a href="#46-frequent-income">bookmarked incomes</a>.
+This tab allows you to keep track of all your sources of income.</p>
+
+<p><img src="/tp/images/userguide/IncomesTab.png" alt="Incomes Tab"></p>
+
+<h4 id="213-expenses-tab">2.1.3 Expenses Tab</h4>
+
+<p>Displays a list of <a href="#43-expense">expenses</a> and <a href="#45-frequent-expense">bookmarked expenses</a>.
+This tab allows you to keep track of all your sources of expenditure.</p>
+
+<p><img src="/tp/images/userguide/ExpensesTab.png" alt="Expenses Tab"></p>
+
+<h4 id="214-analytics-tab">2.1.4 Analytics Tab</h4>
+
+<p>Displays visualizations of your financial habits.
+This tab allows you analyze your spending and saving habits through charts.</p>
+
+<p><img src="/tp/images/userguide/AnalyticsTab.png" alt="Analytics Tab"></p>
 
 <h3 id="22-installation">2.2 Installation</h3>
 
@@ -210,11 +251,15 @@ Adds an expense with the title <code class="highlighter-rouge">Bubble Tea</code>
 </blockquote>
 
 <hr>
+
 <h2 id="3-overview-of-features">3. Overview of Features</h2>
+
 <p>[To be added]</p>
 
 <hr>
+
 <h2 id="4-features">4. Features</h2>
+
 <p>This section aims to provide you with in-depth details on Fine$$e’s unique features, as well as provide you with example usages of the features.</p>
 
 <div class="alert alert-info">
@@ -243,6 +288,7 @@ e.g. if the command specifies <code class="highlighter-rouge">t/TITLE a/AMOUNT</
 </div>
 
 <h3 id="41-viewing-help">4.1 Viewing Help</h3>
+
 <p>Shows a message with instructions on how to access the user guide.</p>
 
 <p>Format: <code class="highlighter-rouge">help</code></p>
@@ -255,10 +301,19 @@ e.g. if the command specifies <code class="highlighter-rouge">t/TITLE a/AMOUNT</
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Refer to the user guide: https://ay2021s1-cs2103t-w16-3.github.io/tp/UserGuide.html.
 Please copy the url and paste it in your favourite browser to view all valid commands.
 </code></pre></div></div>
-<h3 id="42-tabs">4.2 Tabs</h3>
-<p>[Brief Overview of this feature]</p>
 
-<h4 id="421-switch-tab">4.2.1 Switch Tab</h4>
+<h3 id="42-tabs">4.2 Tabs</h3>
+
+<p>Fine$$e consists of the following 4 tabs, each of which serves a different purpose:</p>
+<ul>
+  <li><a href="#211-overview-tab">Overview Tab</a></li>
+  <li><a href="#212-incomes-tab">Incomes Tab</a></li>
+  <li><a href="#213-expenses-tab">Expenses Tab</a></li>
+  <li><a href="#214-analytics-tab">Analytics Tab</a></li>
+</ul>
+
+<h4 id="421-switch-tabs">4.2.1 Switch Tabs</h4>
+
 <p>Switches the current tab on Fine$$e.</p>
 
 <p>Format: <code class="highlighter-rouge">tab INDEX</code></p>
@@ -288,6 +343,7 @@ Please copy the url and paste it in your favourite browser to view all valid com
 </code></pre></div></div>
 
 <h3 id="43-expense">4.3 Expense</h3>
+
 <p>An <strong>expense</strong> represents you <em>paying for something</em>.
 It could be textbooks for the new semester, that cup of bubble tea you drank the other day, or even just taking public transport.</p>
 
@@ -323,7 +379,7 @@ Each category name should consist of <abbr title="Alphanumeric characters, space
 and cannot begin with a space.</li>
 </ul>
 
-<p>Shortcut: <code class="highlighter-rouge">adde</code>, (when on the <a href="#">Expenses tab</a>) <code class="highlighter-rouge">add</code></p>
+<p>Shortcut: <code class="highlighter-rouge">adde</code>, (when on the <a href="#213-expenses-tab">Expenses tab</a>) <code class="highlighter-rouge">add</code></p>
 
 <p>Examples:</p>
 <ul>
@@ -347,7 +403,7 @@ adds a new expense titled <code class="highlighter-rouge">Taxi Home from School<
 
 <p>Edits an expense in the finance tracker.</p>
 
-<p>Format: (when on the <a href="#">Expenses tab</a>) <code class="highlighter-rouge">edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY]...</code></p>
+<p>Format: (when on the <a href="#213-expenses-tab">Expenses tab</a>) <code class="highlighter-rouge">edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY]...</code></p>
 
 <ul>
   <li>
@@ -387,17 +443,26 @@ The rest of the expense information remains unchanged.</li>
 
 <p>Deletes the specified expense from the finance tracker.</p>
 
-<p>Format:</p>
+<p>Format: (when on the <a href="#213-expenses-tab">Expenses tab</a>) <code class="highlighter-rouge">delete INDEX</code></p>
 
-<p>Shortcut:</p>
-
-<p>[Description of parameters]</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">INDEX</code> allows you to choose which expense to delete by specifying its position in the expenses list.</li>
+</ul>
 
 <p>Examples:</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">delete 3</code> deletes the third expense in the expenses list.</li>
+</ul>
 
 <p>Example Usage:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>delete 3
+</code></pre></div></div>
 
 <p>Expected Outcome:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deleted Expense: Bubble Tea Amount: $4.80 Date: 14/10/2020 Categories: [Food &amp; Beverage]
+</code></pre></div></div>
 
 <h4 id="434-list-expense">4.3.4 List Expense</h4>
 
@@ -487,7 +552,7 @@ Each category name should consist of <abbr title="Alphanumeric characters, space
 and cannot begin with a space.</li>
 </ul>
 
-<p>Shortcut: <code class="highlighter-rouge">addi</code>, (when on the <a href="#">Income tab</a>) <code class="highlighter-rouge">add</code></p>
+<p>Shortcut: <code class="highlighter-rouge">addi</code>, (when on the <a href="#212-incomes-tab">Income tab</a>) <code class="highlighter-rouge">add</code></p>
 
 <p>Examples:</p>
 <ul>
@@ -511,7 +576,7 @@ adds a new income titled <code class="highlighter-rouge">Angpao money</code>, wi
 
 <p>Edits an expense in the finance tracker.</p>
 
-<p>Format: (when on the <a href="#">Income tab</a>) <code class="highlighter-rouge">edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY]...</code></p>
+<p>Format: (when on the <a href="#212-incomes-tab">Income tab</a>) <code class="highlighter-rouge">edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY]...</code></p>
 
 <ul>
   <li>
@@ -551,9 +616,26 @@ The rest of the income information remains unchanged.</li>
 
 <p>Deletes the specified income from the finance tracker.</p>
 
-<p>Format:</p>
+<p>Format: (when on the <a href="#212-incomes-tab">Incomes tab</a>) <code class="highlighter-rouge">delete INDEX</code></p>
 
-<p>Shortcut:</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">INDEX</code> allows you to choose which income to delete by specifying its position in the incomes list.</li>
+</ul>
+
+<p>Examples:</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">delete 3</code> deletes the third income in the incomes list.</li>
+</ul>
+
+<p>Example Usage:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>delete 3
+</code></pre></div></div>
+
+<p>Expected Outcome:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deleted Income: Teaching Assistant Amount: $1920.00 Date: 18/10/2020 Categories: [CS2103T][CS1101S]
+</code></pre></div></div>
 
 <h4 id="444-list-income">4.4.4 List Income</h4>
 
@@ -825,6 +907,7 @@ Once the savings goal is set, it will be visible on the Overview tab along with 
 There is no need to save manually.</p>
 
 <hr>
+
 <h2 id="5-command-summary">5. Command Summary</h2>
 
 <table>
@@ -897,11 +980,13 @@ There is no need to save manually.</p>
 </table>
 
 <hr>
+
 <h2 id="6-glossary">6. Glossary</h2>
 
 <p>[To be added]</p>
 
 <hr>
+
 <h2 id="7-faq">7. FAQ</h2>
 
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
