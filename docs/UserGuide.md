@@ -159,7 +159,11 @@ Please copy the url and paste it in your favourite browser to view all valid com
 
 ### 4.2 Tabs
 
-[To be added]
+Fine$$e consists of the following 4 tabs, each of which serves a different purpose:
+* [Overview Tab](#211-overview-tab)
+* [Incomes Tab](#212-incomes-tab)
+* [Expenses Tab](#213-expenses-tab)
+* [Analytics Tab](#214-analytics-tab)
 
 #### 4.2.1 Switch Tabs
 
