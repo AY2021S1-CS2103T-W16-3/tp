@@ -2,13 +2,17 @@
 
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 
-<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="pane-with-border">
 
-    <HBox fx:id="expenseAnalyticsBox"/>
+    <HBox fx:id="expenseAnalyticsBox" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="CENTER_LEFT"/>
 
-    <HBox fx:id="incomeAnalyticsBox"/>
 
-    <HBox fx:id="savingsAnalyticsBox"/>
+
+    <HBox fx:id="incomeAnalyticsBox" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="CENTER"/>
+
+    <HBox fx:id="savingsAnalyticsBox" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="CENTER_RIGHT"/>
 
 </StackPane>

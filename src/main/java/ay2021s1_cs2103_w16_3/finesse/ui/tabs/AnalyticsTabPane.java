@@ -44,23 +44,22 @@ public class AnalyticsTabPane extends UiPart<Canvas> {
     public AnalyticsTabPane(MonthlyBudget monthlyBudget) {
         super(FXML);
 
-        initialize();
-    }
-
-    private void initialize() {
-        initializeBarChart(expenseAnalytics);
-        initializeBarChart(incomeAnalytics);
-        initializeBarChart(savingsAnalytics);
-
+        Axis<String> expenseAnalyticsStringAxis = new CategoryAxis();
+        Axis<Number> expenseAnalyticsNumberAxis = new NumberAxis();
+        expenseAnalytics = new BarChart<>(expenseAnalyticsStringAxis, expenseAnalyticsNumberAxis);
         expenseAnalyticsBox.getChildren().add(expenseAnalytics);
-        incomeAnalyticsBox.getChildren().add(incomeAnalytics);
-        savingsAnalyticsBox.getChildren().add(savingsAnalytics);
-    }
 
-    private void initializeBarChart(BarChart<String, Number> barChart) {
-        Axis<String> stringAxis = new CategoryAxis();
-        Axis<Number> numberAxis = new NumberAxis();
-        barChart = new BarChart<>(stringAxis, numberAxis);
+        Axis<String> incomeAnalyticsStringAxis = new CategoryAxis();
+        Axis<Number> incomeAnalyticsNumberAxis = new NumberAxis();
+        incomeAnalytics = new BarChart<>(incomeAnalyticsStringAxis, incomeAnalyticsNumberAxis);
+        incomeAnalyticsBox.getChildren().add(incomeAnalytics);
+
+        Axis<String> savingsAnalyticsStringAxis = new CategoryAxis();
+        Axis<Number> savingsAnalyticsNumberAxis = new NumberAxis();
+        savingsAnalytics = new BarChart<>(savingsAnalyticsStringAxis, savingsAnalyticsNumberAxis);
+        savingsAnalyticsBox.getChildren().add(savingsAnalytics);
+
+        populateDataIn(expenseAnalytics, List.of("hello", "bye"), List.of(1, 5));
     }
 
     private void populateData() {
