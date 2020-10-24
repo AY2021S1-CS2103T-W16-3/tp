@@ -148,10 +148,17 @@ public class MainWindow extends UiPart<Stage> {
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
+        // Set minimum window size.
+        primaryStage.setMinHeight(650.0);
+        primaryStage.setMinWidth(900.0);
+
+        // Retrieve window size and position from previous session.
         windowHeight = guiSettings.getWindowHeight();
         windowWidth = guiSettings.getWindowWidth();
         xPosition = (int) guiSettings.getWindowCoordinates().getX();
         yPosition = (int) guiSettings.getWindowCoordinates().getY();
+
+        // Restore window size and position from previous session.
         primaryStage.setHeight(windowHeight);
         primaryStage.setWidth(windowWidth);
         if (guiSettings.getWindowCoordinates() != null) {
