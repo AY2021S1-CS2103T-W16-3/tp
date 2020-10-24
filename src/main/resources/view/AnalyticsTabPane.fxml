@@ -7,29 +7,25 @@
 <?import javafx.geometry.Insets?>
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="pane-with-border">
-
-    <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
-        <Label fx:id="expenseAnalyticsLabel" styleClass="panel-label"/>
-        <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-        </padding>
-        <StackPane fx:id="expenseAnalyticsPane" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-    </VBox>
-
-    <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
-        <Label fx:id="incomeAnalyticsLabel" styleClass="panel-label"/>
-        <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-        </padding>
-        <StackPane fx:id="incomeAnalyticsPane" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-    </VBox>
-
-    <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
-        <Label fx:id="savingsAnalyticsLabel" styleClass="panel-label"/>
-        <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-        </padding>
-        <StackPane fx:id="savingsAnalyticsPane" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-    </VBox>
-
+  <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
+    <Label fx:id="expenseAnalyticsLabel" styleClass="panel-label"/>
+      <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+      </padding>
+      <StackPane fx:id="expenseAnalyticsPane" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+  </VBox>
+  <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
+    <Label fx:id="incomeAnalyticsLabel" styleClass="panel-label"/>
+      <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+      </padding>
+      <StackPane fx:id="incomeAnalyticsPane" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+  </VBox>
+  <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" alignment="TOP_CENTER">
+    <Label fx:id="savingsAnalyticsLabel" styleClass="panel-label"/>
+      <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+      </padding>
+      <StackPane fx:id="savingsAnalyticsPane" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+  </VBox>
 </HBox>

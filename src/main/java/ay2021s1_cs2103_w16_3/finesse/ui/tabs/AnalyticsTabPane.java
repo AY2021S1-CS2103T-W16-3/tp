@@ -1,5 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.ui.tabs;
 
+import java.util.List;
+
 import ay2021s1_cs2103_w16_3.finesse.model.budget.MonthlyBudget;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiPart;
 import javafx.fxml.FXML;
@@ -11,8 +13,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-
-import java.util.List;
 
 /**
  * Tab pane that displays analytics.
@@ -90,12 +90,13 @@ public class AnalyticsTabPane extends UiPart<Canvas> {
         populateDataIn(savingsAnalyticsBarChart, monthlyBudget.getMonths(), monthlyBudget.getMonthlySavings());
     }
 
-    private void populateDataIn(BarChart<String, Number> barChart, List<String> strings, List<? extends Number> values) {
+    private void populateDataIn(BarChart<String, Number> barChart, List<String> strings,
+                                List<? extends Number> values) {
         assert strings.size() == values.size();
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
-        for(int i = 0; i < strings.size(); i++) {
+        for (int i = 0; i < strings.size(); i++) {
             series.getData().add(new XYChart.Data<>(strings.get(i), values.get(i)));
         }
 
