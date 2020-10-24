@@ -284,7 +284,7 @@ Deleted Expense: Bubble Tea Amount: $4.80 Date: 14/10/2020 Categories: [Food & B
 #### 4.3.4 List Expense
 
 Shows a list of all the expenses in the finance tracker.
-This effectively resets any current filtering of the list, such as those made by `find`.
+This effectively resets any current filtering of the expense list, such as those made by `find`.
 
 Format: (when on the  [Expenses tab](#)) `list`
 
@@ -421,7 +421,7 @@ Deleted Income: Teaching Assistant Amount: $1920.00 Date: 18/10/2020 Categories:
 #### 4.4.4 List Income
 
 Shows a list of all the incomes in the finance tracker.
-This effectively resets any current filtering of the list, such as those made by `find`.
+This effectively resets any current filtering of the income list, such as those made by `find`.
 
 Format: (when on the  [Income tab](#)) `list`
 
