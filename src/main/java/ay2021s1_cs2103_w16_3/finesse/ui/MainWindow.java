@@ -90,10 +90,6 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
-    public void disableStageResizing() {
-        this.primaryStage.setResizable(false);
-    }
-
     /**
      * Fills up all the placeholders of this window.
      */

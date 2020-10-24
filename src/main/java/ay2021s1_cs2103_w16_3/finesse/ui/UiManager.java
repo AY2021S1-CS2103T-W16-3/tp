@@ -42,8 +42,7 @@ public class UiManager implements Ui {
         try {
             loadCustomFonts();
             mainWindow = new MainWindow(primaryStage, logic, uiState);
-            mainWindow.show(); //This should be called before creating other UI parts
-            mainWindow.disableStageResizing();
+            mainWindow.show(); // This should be called before creating other UI parts.
             mainWindow.fillInnerParts();
             mainWindow.initializeTabs();
         } catch (Throwable e) {
