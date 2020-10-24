@@ -57,31 +57,37 @@ public class AnalyticsTabPane extends UiPart<Canvas> {
         Axis<String> expenseAnalyticsStringAxis = new CategoryAxis();
         Axis<Number> expenseAnalyticsNumberAxis = new NumberAxis();
         expenseAnalyticsBarChart = new BarChart<>(expenseAnalyticsStringAxis, expenseAnalyticsNumberAxis);
-        expenseAnalyticsBarChart.setVisible(false);
+        expenseAnalyticsBarChart.setLegendVisible(false);
+        expenseAnalyticsBarChart.setVerticalGridLinesVisible(false);
+        expenseAnalyticsBarChart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
         expenseAnalyticsPane.getChildren().add(expenseAnalyticsBarChart);
         expenseAnalyticsLabel.setText("EXPENSE");
 
         Axis<String> incomeAnalyticsStringAxis = new CategoryAxis();
         Axis<Number> incomeAnalyticsNumberAxis = new NumberAxis();
         incomeAnalyticsBarChart = new BarChart<>(incomeAnalyticsStringAxis, incomeAnalyticsNumberAxis);
-        incomeAnalyticsBarChart.setVisible(false);
+        incomeAnalyticsBarChart.setLegendVisible(false);
+        incomeAnalyticsBarChart.setVerticalGridLinesVisible(false);
+        incomeAnalyticsBarChart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
         incomeAnalyticsPane.getChildren().add(incomeAnalyticsBarChart);
         incomeAnalyticsLabel.setText("INCOME");
 
         Axis<String> savingsAnalyticsStringAxis = new CategoryAxis();
         Axis<Number> savingsAnalyticsNumberAxis = new NumberAxis();
         savingsAnalyticsBarChart = new BarChart<>(savingsAnalyticsStringAxis, savingsAnalyticsNumberAxis);
-        savingsAnalyticsBarChart.setVisible(false);
+        savingsAnalyticsBarChart.setLegendVisible(false);
+        savingsAnalyticsBarChart.setVerticalGridLinesVisible(false);
+        savingsAnalyticsBarChart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
         savingsAnalyticsPane.getChildren().add(savingsAnalyticsBarChart);
         savingsAnalyticsLabel.setText("SAVINGS");
 
-        populateDataIn(expenseAnalyticsBarChart, List.of("hello", "bye"), List.of(1, 5));
+        populateData(monthlyBudget);
     }
 
-    private void populateData() {
-        //populateDataIn(expenseAnalytics);
-        //populateDataIn(incomeAnalytics);
-        //populateDataIn(savingsAnalytics);
+    private void populateData(MonthlyBudget monthlyBudget) {
+        populateDataIn(expenseAnalyticsBarChart, monthlyBudget.getMonths(), monthlyBudget.getMonthlyExpenses());
+        populateDataIn(incomeAnalyticsBarChart, monthlyBudget.getMonths(), monthlyBudget.getMonthlyIncomes());
+        populateDataIn(savingsAnalyticsBarChart, monthlyBudget.getMonths(), monthlyBudget.getMonthlySavings());
     }
 
     private void populateDataIn(BarChart<String, Number> barChart, List<String> strings, List<? extends Number> values) {
