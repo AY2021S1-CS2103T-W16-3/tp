@@ -8,6 +8,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -18,10 +19,22 @@ public class AnalyticsTabPane extends UiPart<Canvas> {
     private static final String FXML = "AnalyticsTabPane.fxml";
 
     @FXML
-    private StackPane pane;
+    private HBox expenseAnalyticsBox;
 
     @FXML
-    private BarChart<String,Number> analytics;
+    private HBox incomeAnalyticsBox;
+
+    @FXML
+    private HBox savingsAnalyticsBox;
+
+    @FXML
+    private BarChart<String,Number> expenseAnalytics;
+
+    @FXML
+    private BarChart<String,Number> incomeAnalytics;
+
+    @FXML
+    private BarChart<String,Number> savingsAnalytics;
 
     /**
      * Creates an {@code AnalyticsTabPane}.
@@ -32,17 +45,19 @@ public class AnalyticsTabPane extends UiPart<Canvas> {
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
 
-        analytics = new BarChart<>(xAxis, yAxis);
+        expenseAnalytics = new BarChart<>(xAxis, yAxis);
 
         XYChart.Series<String,Number> series = new XYChart.Series<>();
         series.getData().add(new XYChart.Data<>("cat", 1));
 
-        analytics.getData().add(series);
+        expenseAnalytics.getData().add(series);
 
-        pane.getChildren().add(analytics);
+        expenseAnalyticsBox.getChildren().add(expenseAnalytics);
     }
 
     // TODO: Add visualizations.
 
-
+    private void populateData() {
+        
+    }
 }
