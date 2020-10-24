@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
  * Tab pane that displays analytics.
  */
 public class AnalyticsTabPane extends UiPart<Canvas> {
+
     private static final String FXML = "AnalyticsTabPane.fxml";
 
     @FXML
