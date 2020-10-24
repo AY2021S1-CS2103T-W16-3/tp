@@ -29,8 +29,7 @@ If you want to better manage your finances while cultivating good financial habi
 Explore our User Guide to find out more about Fine\$\$e’s amazing features.
 
 ### 1.2 Navigating the User Guide
-
-The aim of the User Guide is to provide you with all of the necessary information required for you to utilize Fine$$e.
+The aim of the User Guide is to provide you with all the necessary information required for you to utilize Fine$$e.
 We understand that a Command Line Interface (CLI) might not be the easiest to use, hence we have ensured that the information provided is concise and easily readable.
 
 If you require help on setting up Fine$$e, you can go to [Section 2. "Quick Start"](#2-quick-start).
@@ -285,19 +284,19 @@ Deleted Expense: Bubble Tea Amount: $4.80 Date: 14/10/2020 Categories: [Food & B
 #### 4.3.4 List Expense
 
 Shows a list of all the expenses in the finance tracker.
+This effectively resets any current filtering of the list, such as those made by the Find Command.
 
-Format:
-
-Shortcut:
-
-[Description of parameters]
-
-Examples:
+Format: (when on the  [Expenses tab](#)) `list`
 
 Example Usage:
+```
+list
+```
 
 Expected Outcome:
-
+```
+Listed all expenses.
+```
 
 #### 4.3.5 Find Expense
 
@@ -422,18 +421,20 @@ Deleted Income: Teaching Assistant Amount: $1920.00 Date: 18/10/2020 Categories:
 #### 4.4.4 List Income
 
 Shows a list of all the incomes in the finance tracker.
+This effectively resets any current filtering of the list, such as those made by the Find Command.
 
-Format:
-
-Shortcut:
-
-[Description of parameters]
-
-Examples:
+Format: (when on the  [Income tab](#)) `list`
 
 Example Usage:
+```
+list
+```
 
 Expected Outcome:
+```
+Listed all incomes.
+```
+
 
 #### 4.4.5 Find Income
 
