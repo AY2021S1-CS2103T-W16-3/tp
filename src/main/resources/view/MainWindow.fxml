@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
@@ -20,36 +21,42 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
-        <AnchorPane>
-          <!-- Bottom anchor of AnchorPane has to be set programmatically after tabs are initialized. -->
-          <TabPane fx:id="tabPane" VBox.vgrow="NEVER" styleClass="tab-pane" tabMinHeight="30" AnchorPane.topAnchor="0.0"
-                   AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0">
-            <Tab fx:id="overviewTab" text="Overview" closable="false" />
-            <Tab fx:id="incomeTab" text="Incomes" closable="false" />
-            <Tab fx:id="expenseTab" text="Expenses" closable="false" />
-            <Tab fx:id="analyticsTab" text="Analytics" closable="false" />
-          </TabPane>
-          <Button fx:id="helpButton" text="Help" onMouseClicked="#handleHelp" AnchorPane.rightAnchor="0.0" />
-        </AnchorPane>
+      <BorderPane>
+        <center>
+          <AnchorPane>
+            <!-- Bottom anchor of AnchorPane has to be set programmatically after tabs are initialized. -->
+            <TabPane fx:id="tabPane" VBox.vgrow="NEVER" styleClass="tab-pane" tabMinHeight="30" AnchorPane.topAnchor="0.0"
+                     AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0">
+              <Tab fx:id="overviewTab" text="Overview" closable="false" />
+              <Tab fx:id="incomeTab" text="Incomes" closable="false" />
+              <Tab fx:id="expenseTab" text="Expenses" closable="false" />
+              <Tab fx:id="analyticsTab" text="Analytics" closable="false" />
+            </TabPane>
+            <Button fx:id="helpButton" text="Help" onMouseClicked="#handleHelp" AnchorPane.rightAnchor="0.0" />
+          </AnchorPane>
+        </center>
 
-        <StackPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" fx:id="resultDisplayPlaceholder"
-                   styleClass="pane-with-border" minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="15" bottom="5" left="15" />
-          </padding>
-        </StackPane>
-
-          <HBox styleClass="command-pane" alignment="CENTER">
-            <StackPane VBox.vgrow="NEVER" HBox.hgrow="SOMETIMES" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <bottom>
+          <VBox>
+            <StackPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" fx:id="resultDisplayPlaceholder"
+                       styleClass="pane-with-border" minHeight="100" prefHeight="100" maxHeight="100">
               <padding>
-                <Insets top="5" right="10" bottom="5" left="10" />
+                <Insets top="5" right="15" bottom="5" left="15" />
               </padding>
             </StackPane>
-          </HBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
+            <HBox styleClass="command-pane" alignment="CENTER">
+              <StackPane VBox.vgrow="NEVER" HBox.hgrow="SOMETIMES" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                <padding>
+                  <Insets top="5" right="10" bottom="5" left="10" />
+                </padding>
+              </StackPane>
+            </HBox>
+
+            <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+          </VBox>
+        </bottom>
+      </BorderPane>
     </Scene>
   </scene>
 </fx:root>
