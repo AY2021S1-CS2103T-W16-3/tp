@@ -658,9 +658,17 @@ New monthly savings goal set: $50.00
 
 ### 4.9 Analytics
 
-[Summary of feature]
+Want to see your spending/saving trends?
+The Analytics feature will allow you to view a variety of trends based on the incomes/expenses you have entered into the Finance Tracker.
+These analytics will give you a better overview and help you better understand your incomes/expenses and make the targeted changes to your habits if need be.
 
-[Sub section for your commands]
+There are three bar charts that show the following data over the past three months:
+* Total monthly expenses
+* Total monthly incomes
+* Total monthly savings
+
+The data in the bar charts are automatically updated to include any recent modifications you have made in the Finance Tracker every time you access Analytics.
+This will ensure that you will always see the latest information about your spending and saving trends.
 
 ### 4.10 Exiting the Program
 Exits the program.
@@ -698,5 +706,6 @@ Exit | `exit`
 
 ## 7. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another Computer?
+
 **A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Fine$$e finance tracker in the home folder.
