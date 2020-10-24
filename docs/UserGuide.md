@@ -170,30 +170,20 @@ and cannot begin with a space.
 
 Shortcut: `adde`, (when on the [Expenses tab](#)) `add`
 
-Example Usage 1:
+Examples:
+- `add-expense t/Bubble Tea a/5 d/03/10/2020 c/Food & Beverage`
+adds a new expense titled `Bubble Tea`, with amount `$5.00`, date `03/10/2020`, and a single category `Food & Beverage`.
+- `adde t/Taxi Home from School a/$13.50 d/10/10/2020 c/Transport c/School`
+adds a new expense titled `Taxi Home from School`, with amount `$13.50`, date `10/10/2020`, and two categories `Transport` and `School`.
+
+Example Usage:
 ```
 add-expense t/Bubble Tea a/5 d/03/10/2020 c/Food & Beverage
 ```
 
-Expected Outcome 1:
-
-This adds a new expense titled `Bubble Tea`, with amount `$5.00`, date `03/10/2020`, and a single category `Food & Beverage`.
-Command-line output:
+Expected Outcome:
 ```
 New expense added: Bubble Tea Amount: $5.00 Date: 03/10/2020 Categories: [Food & Beverage]
-```
-
-Example Usage 2:
-```
-adde t/Taxi Home from School a/$13.50 d/10/10/2020 c/Transport c/School
-```
-
-Expected Outcome 2:
-
-This adds a new expense titled `Taxi Home from School`, with amount `$13.50`, date `10/10/2020`, and two categories `Transport` and `School`.
-Command-line output:
-```
-New expense added: Taxi Home from School Amount: $13.50 Date: 10/10/2020 Categories: [School][Transport]
 ```
 
 #### 4.3.2 Edit Expense
@@ -209,15 +199,18 @@ Format: (when on the [Expenses tab](#)) `edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE
 
 > :bulb: To specify an edit that removes all categories, use the parameter `c/` with no category name.
 
+Examples:
+- `edit 1 a/5 d/22/09/2020` edits the first expense in the expenses list to have amount `$5.00` and date `22/09/2020`.
+The rest of the expense information remains unchanged.
+- `edit 3 a/$2000 c/` edits the third expense in the expenses list to have amount `$2000.00` and no categories.
+The rest of the expense information remains unchanged.
+
 Example Usage:
 ```
 edit 1 a/5 d/22/09/2020
 ``` 
 
 Expected Outcome:
-
-This edits the first expense in the expenses list (in this case, a textbook titled `Artificial Intelligence: A Modern Approach`) to have amount `$5.00` and date `22/09/2020`.
-The rest of the expense information remains unchanged. Command-line output:
 ```
 Edited Expense: Artificial Intelligence: A Modern Approach Amount: $5.00 Date: 22/09/2020 Categories: [Textbook]
 ```
@@ -309,30 +302,20 @@ and cannot begin with a space.
 
 Shortcut: `addi`, (when on the [Income tab](#)) `add`
 
-Example Usage 1:
+Examples:
+- `add-income t/Internship a/560 d/03/10/2020 c/Work`
+adds a new income titled `Internship`, with amount `$560.00`, date `03/10/2020`, and a single category `Work`.
+- `addi t/Angpao money a/$20 d/25/01/2020 c/CNY c/Gift`
+adds a new income titled `Angpao money`, with amount `$20.00`, date `25/01/2020`, and two categories `CNY` and `Gift`.
+
+Example Usage:
 ```
 add-income t/Internship a/560 d/03/10/2020 c/Work
 ```
 
-Expected Outcome 1:
-
-This adds a new income titled `Internship`, with amount `$560.00`, date `03/10/2020`, and a single category `Work`.
-Command-line output:
+Expected Outcome:
 ```
 New income added: Internship Amount: $560.00 Date: 03/10/2020 Categories: [Work]
-```
-
-Example Usage 2:
-```
-addi t/Angpao money a/$20 d/25/01/2020 c/CNY c/Gift
-```
-
-Expected Outcome 2:
-
-This adds a new income titled `Angpao money`, with amount `$20.00`, date `25/01/2020`, and two categories `CNY` and `Gift`.
-Command-line output:
-```
-New income added: Angpao money Amount: $20.00 Date: 25/01/2020 Categories: [Gift][CNY]
 ```
 
 #### 4.4.2 Edit Income
@@ -348,15 +331,18 @@ Format: (when on the [Income tab](#)) `edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] 
 
 > :bulb: To specify an edit that removes all categories, use the parameter `c/` with no category name.
 
+Examples:
+- `edit 3 a/$2000 c/` edits the third income in the incomes list to have amount `$2000.00` and no categories.
+The rest of the income information remains unchanged.
+- `edit 1 a/5 d/22/09/2020` edits the first income in the incomes list to have amount `$5.00` and date `22/09/2020`.
+The rest of the income information remains unchanged. 
+
 Example Usage:
 ```
 edit 3 a/$2000 c/
 ``` 
 
 Expected Outcome:
-
-This edits the first expense in the expenses list (in this case, an income titled `Teaching Assistant`) to have amount `$2000.00` and no categories.
-The rest of the income information remains unchanged. Command-line output:
 ```
 Edited Income: Teaching Assistant Amount: $2000.00 Date: 18/10/2020 Categories:
 ```
