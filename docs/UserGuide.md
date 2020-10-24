@@ -146,7 +146,7 @@ Switched to overview tab.
 
 ### 4.3 Expense
 An **expense** represents you *paying for something*.
-It could be textbooks for the new semester, that cup of bubble tea you drank the other day, or even just taking public transport. 
+It could be textbooks for the new semester, that cup of bubble tea you drank the other day, or even just taking public transport.
 
 To help you manage your finances, Fine\$\$e records the following information about each of your expenses:
 1. **Title**: A descriptive title, to remind you what the expense was about.
@@ -188,7 +188,7 @@ New expense added: Bubble Tea Amount: $5.00 Date: 03/10/2020 Categories: [Food &
 
 #### 4.3.2 Edit Expense
 
-Edits an expense in the finance tracker. 
+Edits an expense in the finance tracker.
 
 Format: (when on the [Expenses tab](#)) `edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY]...`
 
@@ -208,7 +208,7 @@ The rest of the expense information remains unchanged.
 Example Usage:
 ```
 edit 1 a/5 d/22/09/2020
-``` 
+```
 
 Expected Outcome:
 ```
@@ -278,7 +278,7 @@ Expected Outcome:
 ### 4.4 Income
 
 An **income** represents *you being paid for something*.
-It could be your internship allowance, prize money you won from a pitching competition, even just red packets that you receive over Chinese New Year. 
+It could be your internship allowance, prize money you won from a pitching competition, even just red packets that you receive over Chinese New Year.
 
 To help you manage your finances, Fine\$\$e records the following information about each of your incomes:
 1. **Title**: A descriptive title, to remind you what the income was about.
@@ -320,7 +320,7 @@ New income added: Internship Amount: $560.00 Date: 03/10/2020 Categories: [Work]
 
 #### 4.4.2 Edit Income
 
-Edits an expense in the finance tracker. 
+Edits an expense in the finance tracker.
 
 Format: (when on the [Income tab](#)) `edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY]...`
 
@@ -335,12 +335,12 @@ Examples:
 - `edit 3 a/$2000 c/` edits the third income in the incomes list to have amount `$2000.00` and no categories.
 The rest of the income information remains unchanged.
 - `edit 1 a/5 d/22/09/2020` edits the first income in the incomes list to have amount `$5.00` and date `22/09/2020`.
-The rest of the income information remains unchanged. 
+The rest of the income information remains unchanged.
 
 Example Usage:
 ```
 edit 3 a/$2000 c/
-``` 
+```
 
 Expected Outcome:
 ```
