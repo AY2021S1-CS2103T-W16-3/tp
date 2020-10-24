@@ -23,28 +23,20 @@ public class AnalyticsTabPane extends UiPart<Canvas> {
 
     @FXML
     private Pane expenseAnalyticsPane;
-
     @FXML
     private Pane incomeAnalyticsPane;
-
     @FXML
     private Pane savingsAnalyticsPane;
-
     @FXML
     private Label expenseAnalyticsLabel;
-
     @FXML
     private Label incomeAnalyticsLabel;
-
     @FXML
     private Label savingsAnalyticsLabel;
-
     @FXML
     private BarChart<String, Number> expenseAnalyticsBarChart;
-
     @FXML
     private BarChart<String, Number> incomeAnalyticsBarChart;
-
     @FXML
     private BarChart<String, Number> savingsAnalyticsBarChart;
 
