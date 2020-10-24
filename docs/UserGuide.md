@@ -265,17 +265,22 @@ Edited Expense: Artificial Intelligence: A Modern Approach Amount: $5.00 Date: 2
 
 Deletes the specified expense from the finance tracker.
 
-Format:
+Format: (when on the [Expenses tab](#213-expenses-tab)) `delete INDEX`
 
-Shortcut:
-
-[Description of parameters]
+* `INDEX` allows you to choose which expense to delete by specifying its position in the expenses list.
 
 Examples:
+* `delete 3` deletes the third expense in the expenses list.
 
 Example Usage:
+```
+delete 3
+```
 
 Expected Outcome:
+```
+Deleted Expense: Bubble Tea Amount: $4.80 Date: 14/10/2020 Categories: [Food & Beverage]
+```
 
 #### 4.3.4 List Expense
 
@@ -397,9 +402,22 @@ Edited Income: Teaching Assistant Amount: $2000.00 Date: 18/10/2020 Categories:
 
 Deletes the specified income from the finance tracker.
 
-Format:
+Format: (when on the [Incomes tab](#212-incomes-tab)) `delete INDEX`
 
-Shortcut:
+* `INDEX` allows you to choose which income to delete by specifying its position in the incomes list.
+
+Examples:
+* `delete 3` deletes the third income in the incomes list.
+
+Example Usage:
+```
+delete 3
+```
+
+Expected Outcome:
+```
+Deleted Income: Teaching Assistant Amount: $1920.00 Date: 18/10/2020 Categories: [CS2103T][CS1101S]
+```
 
 #### 4.4.4 List Income
 
