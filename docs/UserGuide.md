@@ -667,7 +667,7 @@ There are three bar charts that show the following data over the past three mont
 * Total monthly incomes
 * Total monthly savings
 
-The data in the bar charts are automatically updated to include any recent modifications you have made in the Finance Tracker every time you access Analytics.
+The data in the bar charts are automatically updated to include any recent modifications you have made in the Finance Tracker every time you switch to the [Analytics Tab]().
 This will ensure that you will always see the latest information about your spending and saving trends.
 
 ### 4.10 Exiting the Program
