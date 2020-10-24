@@ -137,7 +137,6 @@ public class MonthlyBudget {
 
         for (Transaction transaction: transactions) {
             int monthsBeforeToday = (int) ChronoUnit.MONTHS.between(YearMonth.from(transaction.getDateValue()), today);
-            System.out.println(monthsBeforeToday);
             if (monthsBeforeToday < numOfMonths) {
                 if (transaction instanceof Expense) {
                     monthlyExpenses[numOfMonths - 1 - monthsBeforeToday] =
