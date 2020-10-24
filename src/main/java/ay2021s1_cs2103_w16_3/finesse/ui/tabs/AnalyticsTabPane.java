@@ -4,14 +4,15 @@ import ay2021s1_cs2103_w16_3.finesse.model.budget.MonthlyBudget;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.chart.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.chart.Axis;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
-import java.math.BigDecimal;
-import java.time.Month;
-import java.time.format.TextStyle;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Tab pane that displays analytics.
@@ -21,22 +22,31 @@ public class AnalyticsTabPane extends UiPart<Canvas> {
     private static final String FXML = "AnalyticsTabPane.fxml";
 
     @FXML
-    private HBox expenseAnalyticsBox;
+    private Pane expenseAnalyticsPane;
 
     @FXML
-    private HBox incomeAnalyticsBox;
+    private Pane incomeAnalyticsPane;
 
     @FXML
-    private HBox savingsAnalyticsBox;
+    private Pane savingsAnalyticsPane;
 
     @FXML
-    private BarChart<String, Number> expenseAnalytics;
+    private Label expenseAnalyticsLabel;
 
     @FXML
-    private BarChart<String, Number> incomeAnalytics;
+    private Label incomeAnalyticsLabel;
 
     @FXML
-    private BarChart<String, Number> savingsAnalytics;
+    private Label savingsAnalyticsLabel;
+
+    @FXML
+    private BarChart<String, Number> expenseAnalyticsBarChart;
+
+    @FXML
+    private BarChart<String, Number> incomeAnalyticsBarChart;
+
+    @FXML
+    private BarChart<String, Number> savingsAnalyticsBarChart;
 
     /**
      * Creates an {@code AnalyticsTabPane}.
@@ -46,20 +56,26 @@ public class AnalyticsTabPane extends UiPart<Canvas> {
 
         Axis<String> expenseAnalyticsStringAxis = new CategoryAxis();
         Axis<Number> expenseAnalyticsNumberAxis = new NumberAxis();
-        expenseAnalytics = new BarChart<>(expenseAnalyticsStringAxis, expenseAnalyticsNumberAxis);
-        expenseAnalyticsBox.getChildren().add(expenseAnalytics);
+        expenseAnalyticsBarChart = new BarChart<>(expenseAnalyticsStringAxis, expenseAnalyticsNumberAxis);
+        expenseAnalyticsBarChart.setVisible(false);
+        expenseAnalyticsPane.getChildren().add(expenseAnalyticsBarChart);
+        expenseAnalyticsLabel.setText("EXPENSE");
 
         Axis<String> incomeAnalyticsStringAxis = new CategoryAxis();
         Axis<Number> incomeAnalyticsNumberAxis = new NumberAxis();
-        incomeAnalytics = new BarChart<>(incomeAnalyticsStringAxis, incomeAnalyticsNumberAxis);
-        incomeAnalyticsBox.getChildren().add(incomeAnalytics);
+        incomeAnalyticsBarChart = new BarChart<>(incomeAnalyticsStringAxis, incomeAnalyticsNumberAxis);
+        incomeAnalyticsBarChart.setVisible(false);
+        incomeAnalyticsPane.getChildren().add(incomeAnalyticsBarChart);
+        incomeAnalyticsLabel.setText("INCOME");
 
         Axis<String> savingsAnalyticsStringAxis = new CategoryAxis();
         Axis<Number> savingsAnalyticsNumberAxis = new NumberAxis();
-        savingsAnalytics = new BarChart<>(savingsAnalyticsStringAxis, savingsAnalyticsNumberAxis);
-        savingsAnalyticsBox.getChildren().add(savingsAnalytics);
+        savingsAnalyticsBarChart = new BarChart<>(savingsAnalyticsStringAxis, savingsAnalyticsNumberAxis);
+        savingsAnalyticsBarChart.setVisible(false);
+        savingsAnalyticsPane.getChildren().add(savingsAnalyticsBarChart);
+        savingsAnalyticsLabel.setText("SAVINGS");
 
-        populateDataIn(expenseAnalytics, List.of("hello", "bye"), List.of(1, 5));
+        populateDataIn(expenseAnalyticsBarChart, List.of("hello", "bye"), List.of(1, 5));
     }
 
     private void populateData() {
@@ -68,10 +84,10 @@ public class AnalyticsTabPane extends UiPart<Canvas> {
         //populateDataIn(savingsAnalytics);
     }
 
-    private void populateDataIn(BarChart<String,Number> barChart, List<String> strings, List<? extends Number> values) {
+    private void populateDataIn(BarChart<String, Number> barChart, List<String> strings, List<? extends Number> values) {
         assert strings.size() == values.size();
 
-        XYChart.Series<String,Number> series = new XYChart.Series<>();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         for(int i = 0; i < strings.size(); i++) {
             series.getData().add(new XYChart.Data<>(strings.get(i), values.get(i)));
