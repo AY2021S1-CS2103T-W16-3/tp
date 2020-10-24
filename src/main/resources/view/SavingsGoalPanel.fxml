@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER"
       styleClass="right-panel">
+  <padding>
+    <Insets left="10" top="10" bottom="15" />
+  </padding>
+  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
     <padding>
-        <Insets left="10" top="10" bottom="15" />
+      <Insets bottom="10" top="20"/>
     </padding>
-    <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets bottom="10" top="20"/>
-        </padding>
-        <Label fx:id="monthlyExpenseLimit" styleClass="right-panel-content"/>
-    </HBox>
-    <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets bottom="10" top="10"/>
-        </padding>
-        <Label fx:id="monthlySavingsGoal" wrapText="true" styleClass="right-panel-content"/>
-    </HBox>
-    <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets bottom="10" top="10"/>
-        </padding>
-        <Label fx:id="remainingBudget" wrapText="true" styleClass="right-panel-content"/>
-    </HBox>
-    <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets bottom="10" top="10"/>
-        </padding>
-        <Label fx:id="currentSavings" wrapText="true" styleClass="right-panel-content"/>
-    </HBox>
-    <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets bottom="10" top="10"/>
-        </padding>
-        <Label fx:id="budgetDeficit" wrapText="true" styleClass="right-panel-content"/>
-    </HBox>
-    <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-        <padding>
-            <Insets bottom="10" top="10"/>
-        </padding>
-        <Label fx:id="savingsDeficit" wrapText="true" styleClass="right-panel-content"/>
-    </HBox>
-    <Region VBox.vgrow="ALWAYS"/>
-    <ImageView fx:id="savingsPicture" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+    <Label fx:id="monthlyExpenseLimit" styleClass="right-panel-content"/>
+  </HBox>
+  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+  <padding>
+      <Insets bottom="10" top="10"/>
+  </padding>
+  <Label fx:id="monthlySavingsGoal" wrapText="true" styleClass="right-panel-content"/>
+  </HBox>
+  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+    <padding>
+      <Insets bottom="10" top="10"/>
+    </padding>
+    <Label fx:id="remainingBudget" wrapText="true" styleClass="right-panel-content"/>
+  </HBox>
+  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+    <padding>
+      <Insets bottom="10" top="10"/>
+    </padding>
+    <Label fx:id="currentSavings" wrapText="true" styleClass="right-panel-content"/>
+  </HBox>
+  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+    <padding>
+      <Insets bottom="10" top="10"/>
+    </padding>
+    <Label fx:id="budgetDeficit" wrapText="true" styleClass="right-panel-content"/>
+  </HBox>
+  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+    <padding>
+      <Insets bottom="10" top="10"/>
+    </padding>
+    <Label fx:id="savingsDeficit" wrapText="true" styleClass="right-panel-content"/>
+  </HBox>
+  <Region VBox.vgrow="ALWAYS"/>
+  <ImageView fx:id="savingsPicture" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
 </VBox>

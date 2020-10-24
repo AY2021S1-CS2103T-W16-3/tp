@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.geometry.Insets?>
 
 <?import javafx.scene.control.Label?>
 <HBox fx:id="commandBoxContainer" styleClass="stack-pane" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER_LEFT">
-    <Label fx:id="commandBoxLabel" styleClass="command-box-label" text="Enter Command: " />
-    <TextField fx:id="commandTextField" onAction="#handleCommandEntered" prefWidth="330" HBox.hgrow="ALWAYS"
-               promptText="Enter command here..." styleClass="command-box"/>
-    <Button fx:id="commandBoxButton" styleClass="command-box-button" prefWidth="100" text="Enter"
-            onAction="#handleCommandEntered"/>
+  <Label fx:id="commandBoxLabel" styleClass="command-box-label" text="Enter Command: " />
+  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" prefWidth="330" HBox.hgrow="ALWAYS"
+             promptText="Enter command here..." styleClass="command-box"/>
+  <Button fx:id="commandBoxButton" styleClass="command-box-button" prefWidth="100" text="Enter"
+          onAction="#handleCommandEntered"/>
 </HBox>
 

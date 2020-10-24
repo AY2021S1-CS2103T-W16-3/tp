@@ -92,7 +92,7 @@
 }
 
 .list-cell {
-    -fx-padding: 10px;
+    -fx-padding: 8px;
     -fx-background-color: transparent, -fx-background ;
     -fx-background-insets: 0px, 2px;
 }
