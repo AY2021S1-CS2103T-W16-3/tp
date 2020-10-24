@@ -288,7 +288,20 @@ Please copy the url and paste it in your favourite browser to view all valid com
 </code></pre></div></div>
 
 <h3 id="43-expense">4.3 Expense</h3>
-<p>[Overview of feature]</p>
+<p>An <strong>expense</strong> represents you <em>paying for something</em>.
+It could be textbooks for the new semester, that cup of bubble tea you drank the other day, or even just taking public transport.</p>
+
+<p>To help you manage your finances, Fine$$e records the following information about each of your expenses:</p>
+<ol>
+  <li>
+<strong>Title</strong>: A descriptive title, to remind you what the expense was about.</li>
+  <li>
+<strong>Amount</strong>: How much money you paid, to calculate how much you have spent in total.</li>
+  <li>
+<strong>Date</strong>: The date the payment took place, to track your spending over periods of time.</li>
+  <li>
+<strong>Categories</strong>: Any number of categories, to help you group related expenses together.</li>
+</ol>
 
 <h4 id="431-add-expense">4.3.1 Add Expense</h4>
 
@@ -296,42 +309,79 @@ Please copy the url and paste it in your favourite browser to view all valid com
 
 <p>Format: <code class="highlighter-rouge">add-expense t/TITLE a/AMOUNT d/DATE [c/CATEGORY]...</code></p>
 
-<p>Shortcut: <code class="highlighter-rouge">adde t/TITLE a/AMOUNT d/DATE [c/CATEGORY]...</code></p>
-
 <ul>
+  <li>
+<code class="highlighter-rouge">TITLE</code> should consist of <abbr title="Alphanumeric characters, space, and the special characters !&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{\|}~">printable ASCII characters</abbr>,
+and cannot begin with a space.</li>
   <li>
 <code class="highlighter-rouge">AMOUNT</code> should be a number with 0 or 2 decimal places, with an optional <code class="highlighter-rouge">$</code> in front.</li>
   <li>
-<code class="highlighter-rouge">DATE</code> should be in <code class="highlighter-rouge">dd/mm/yyyy</code> format.</li>
+<code class="highlighter-rouge">DATE</code> should be in <code class="highlighter-rouge">dd/mm/yyyy</code> format, and cannot be later than the current date.</li>
+  <li>
+<code class="highlighter-rouge">CATEGORY</code> is optional. Multiple <code class="highlighter-rouge">c/</code> prefixes can be used to specify multiple categories.
+Each category name should consist of <abbr title="Alphanumeric characters, space, and the special characters !&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{\|}~">printable ASCII characters</abbr>,
+and cannot begin with a space.</li>
 </ul>
+
+<p>Shortcut: <code class="highlighter-rouge">adde</code>, (when on the <a href="#">Expenses tab</a>) <code class="highlighter-rouge">add</code></p>
 
 <p>Examples:</p>
 <ul>
   <li>
-<code class="highlighter-rouge">add-expense t/Bubble Tea a/5 d/03/10/2020 c/Food &amp; Beverage</code> adds an expense with the title <code class="highlighter-rouge">Bubble Tea</code>, amount <code class="highlighter-rouge">$5.00</code>, date <code class="highlighter-rouge">03/10/2020</code> and category <code class="highlighter-rouge">Food &amp; Beverage</code> to the finance tracker.</li>
+<code class="highlighter-rouge">add-expense t/Bubble Tea a/5 d/03/10/2020 c/Food &amp; Beverage</code>
+adds a new expense titled <code class="highlighter-rouge">Bubble Tea</code>, with amount <code class="highlighter-rouge">$5.00</code>, date <code class="highlighter-rouge">03/10/2020</code>, and a single category <code class="highlighter-rouge">Food &amp; Beverage</code>.</li>
   <li>
-<code class="highlighter-rouge">adde t/Taxi home from school a/$13.50 d/10/10/2020 c/Transport c/School</code> adds an expense with the title <code class="highlighter-rouge">Taxi home from school</code>, amount <code class="highlighter-rouge">$13.50</code>, date <code class="highlighter-rouge">03/10/2020</code> and categories <code class="highlighter-rouge">Transport</code> and <code class="highlighter-rouge">School</code> to the finance tracker.</li>
+<code class="highlighter-rouge">adde t/Taxi Home from School a/$13.50 d/10/10/2020 c/Transport c/School</code>
+adds a new expense titled <code class="highlighter-rouge">Taxi Home from School</code>, with amount <code class="highlighter-rouge">$13.50</code>, date <code class="highlighter-rouge">10/10/2020</code>, and two categories <code class="highlighter-rouge">Transport</code> and <code class="highlighter-rouge">School</code>.</li>
 </ul>
 
 <p>Example Usage:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add-expense t/Bubble Tea a/5 d/03/10/2020 c/Food &amp; Beverage
+</code></pre></div></div>
 
 <p>Expected Outcome:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New expense added: Bubble Tea Amount: $5.00 Date: 03/10/2020 Categories: [Food &amp; Beverage]
+</code></pre></div></div>
 
 <h4 id="432-edit-expense">4.3.2 Edit Expense</h4>
 
 <p>Edits an expense in the finance tracker.</p>
 
-<p>Format:</p>
+<p>Format: (when on the <a href="#">Expenses tab</a>) <code class="highlighter-rouge">edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY]...</code></p>
 
-<p>Shortcut:</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">INDEX</code> allows you to choose which expense to edit by specifying its position in the expenses list.</li>
+  <li>
+<code class="highlighter-rouge">TITLE</code>, <code class="highlighter-rouge">AMOUNT</code>, <code class="highlighter-rouge">DATE</code>, <code class="highlighter-rouge">CATEGORY</code> allow you to specify the updated expense information. None of them are mandatory, but at least one must be specified.
+For parameters that have been omitted, the value will remain unchanged.
+    <ul>
+      <li>The restrictions on the input values are identical to the <a href="#431-add-expense">Add Expense</a> feature above.</li>
+    </ul>
+  </li>
+</ul>
 
-<p>[Description of parameters]</p>
+<blockquote>
+  <p><img class="emoji" title=":bulb:" alt=":bulb:" raw="💡" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))">To specify an edit that removes all categories, use the parameter <code class="highlighter-rouge">c/</code> with no category name.</p>
+</blockquote>
 
 <p>Examples:</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">edit 1 a/5 d/22/09/2020</code> edits the first expense in the expenses list to have amount <code class="highlighter-rouge">$5.00</code> and date <code class="highlighter-rouge">22/09/2020</code>.
+The rest of the expense information remains unchanged.</li>
+  <li>
+<code class="highlighter-rouge">edit 3 a/$2000 c/</code> edits the third expense in the expenses list to have amount <code class="highlighter-rouge">$2000.00</code> and no categories.
+The rest of the expense information remains unchanged.</li>
+</ul>
 
 <p>Example Usage:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>edit 1 a/5 d/22/09/2020
+</code></pre></div></div>
 
 <p>Expected Outcome:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Edited Expense: Artificial Intelligence: A Modern Approach Amount: $5.00 Date: 22/09/2020 Categories: [Textbook]
+</code></pre></div></div>
 
 <h4 id="433-delete-expense">4.3.3 Delete Expense</h4>
 
@@ -402,7 +452,20 @@ e.g. <code class="highlighter-rouge">Tea Coffee</code> will return <code class="
 
 <h3 id="44-income">4.4 Income</h3>
 
-<p>[Summary of feature]</p>
+<p>An <strong>income</strong> represents <em>you being paid for something</em>.
+It could be your internship allowance, prize money you won from a pitching competition, even just red packets that you receive over Chinese New Year.</p>
+
+<p>To help you manage your finances, Fine$$e records the following information about each of your incomes:</p>
+<ol>
+  <li>
+<strong>Title</strong>: A descriptive title, to remind you what the income was about.</li>
+  <li>
+<strong>Amount</strong>: How much money you earned, to calculate how much you have earned in total.</li>
+  <li>
+<strong>Date</strong>: The date you were paid, to track your income over periods of time.</li>
+  <li>
+<strong>Categories</strong>: Any number of categories, to help you group related incomes together.</li>
+</ol>
 
 <h4 id="441-add-income">4.4.1 Add Income</h4>
 
@@ -410,42 +473,79 @@ e.g. <code class="highlighter-rouge">Tea Coffee</code> will return <code class="
 
 <p>Format: <code class="highlighter-rouge">add-income t/TITLE a/AMOUNT d/DATE [c/CATEGORY]...</code></p>
 
-<p>Shortcut: <code class="highlighter-rouge">addi t/TITLE a/AMOUNT d/DATE [c/CATEGORY]...</code></p>
-
 <ul>
+  <li>
+<code class="highlighter-rouge">TITLE</code> should consist of <abbr title="Alphanumeric characters, space, and the special characters !&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{\|}~">printable ASCII characters</abbr>,
+and cannot begin with a space.</li>
   <li>
 <code class="highlighter-rouge">AMOUNT</code> should be a number with 0 or 2 decimal places, with an optional <code class="highlighter-rouge">$</code> in front.</li>
   <li>
-<code class="highlighter-rouge">DATE</code> should be in <code class="highlighter-rouge">dd/mm/yyyy</code> format.</li>
+<code class="highlighter-rouge">DATE</code> should be in <code class="highlighter-rouge">dd/mm/yyyy</code> format, and cannot be later than the current date.</li>
+  <li>
+<code class="highlighter-rouge">CATEGORY</code> is optional. Multiple <code class="highlighter-rouge">c/</code> prefixes can be used to specify multiple categories.
+Each category name should consist of <abbr title="Alphanumeric characters, space, and the special characters !&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{\|}~">printable ASCII characters</abbr>,
+and cannot begin with a space.</li>
 </ul>
+
+<p>Shortcut: <code class="highlighter-rouge">addi</code>, (when on the <a href="#">Income tab</a>) <code class="highlighter-rouge">add</code></p>
 
 <p>Examples:</p>
 <ul>
   <li>
-<code class="highlighter-rouge">add-income t/Internship a/560 d/03/10/2020 c/Work</code> adds an income with the title <code class="highlighter-rouge">Internship</code>, amount <code class="highlighter-rouge">$560.00</code>, date <code class="highlighter-rouge">03/10/2020</code> and category <code class="highlighter-rouge">Work</code> to the finance tracker.</li>
+<code class="highlighter-rouge">add-income t/Internship a/560 d/03/10/2020 c/Work</code>
+adds a new income titled <code class="highlighter-rouge">Internship</code>, with amount <code class="highlighter-rouge">$560.00</code>, date <code class="highlighter-rouge">03/10/2020</code>, and a single category <code class="highlighter-rouge">Work</code>.</li>
   <li>
-<code class="highlighter-rouge">addi t/Angpao money a/$20 d/25/01/2020 c/CNY c/Gift</code> adds an income with the title <code class="highlighter-rouge">Angpao money</code>, amount <code class="highlighter-rouge">$20.00</code>, date <code class="highlighter-rouge">25/01/2020</code> and categories <code class="highlighter-rouge">CNY</code> and <code class="highlighter-rouge">Gift</code> to the finance tracker.</li>
+<code class="highlighter-rouge">addi t/Angpao money a/$20 d/25/01/2020 c/CNY c/Gift</code>
+adds a new income titled <code class="highlighter-rouge">Angpao money</code>, with amount <code class="highlighter-rouge">$20.00</code>, date <code class="highlighter-rouge">25/01/2020</code>, and two categories <code class="highlighter-rouge">CNY</code> and <code class="highlighter-rouge">Gift</code>.</li>
 </ul>
 
 <p>Example Usage:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add-income t/Internship a/560 d/03/10/2020 c/Work
+</code></pre></div></div>
 
 <p>Expected Outcome:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New income added: Internship Amount: $560.00 Date: 03/10/2020 Categories: [Work]
+</code></pre></div></div>
 
 <h4 id="442-edit-income">4.4.2 Edit Income</h4>
 
-<p>Edits an income in the finance tracker.</p>
+<p>Edits an expense in the finance tracker.</p>
 
-<p>Format:</p>
+<p>Format: (when on the <a href="#">Income tab</a>) <code class="highlighter-rouge">edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY]...</code></p>
 
-<p>Shortcut:</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">INDEX</code> allows you to choose which income to edit by specifying its position in the incomes list.</li>
+  <li>
+<code class="highlighter-rouge">TITLE</code>, <code class="highlighter-rouge">AMOUNT</code>, <code class="highlighter-rouge">DATE</code>, <code class="highlighter-rouge">CATEGORY</code> allow you to specify the updated income information. None of them are mandatory, but at least one must be specified.
+For parameters that have been omitted, the value will remain unchanged.
+    <ul>
+      <li>The restrictions on the input values are identical to the <a href="#441-add-income">Add Income</a> feature above.</li>
+    </ul>
+  </li>
+</ul>
 
-<p>[Description of parameters]</p>
+<blockquote>
+  <p><img class="emoji" title=":bulb:" alt=":bulb:" raw="💡" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))">To specify an edit that removes all categories, use the parameter <code class="highlighter-rouge">c/</code> with no category name.</p>
+</blockquote>
 
 <p>Examples:</p>
+<ul>
+  <li>
+<code class="highlighter-rouge">edit 3 a/$2000 c/</code> edits the third income in the incomes list to have amount <code class="highlighter-rouge">$2000.00</code> and no categories.
+The rest of the income information remains unchanged.</li>
+  <li>
+<code class="highlighter-rouge">edit 1 a/5 d/22/09/2020</code> edits the first income in the incomes list to have amount <code class="highlighter-rouge">$5.00</code> and date <code class="highlighter-rouge">22/09/2020</code>.
+The rest of the income information remains unchanged.</li>
+</ul>
 
 <p>Example Usage:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>edit 3 a/$2000 c/
+</code></pre></div></div>
 
 <p>Expected Outcome:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Edited Income: Teaching Assistant Amount: $2000.00 Date: 18/10/2020 Categories:
+</code></pre></div></div>
 
 <h4 id="443-delete-income">4.4.3 Delete Income</h4>
 
