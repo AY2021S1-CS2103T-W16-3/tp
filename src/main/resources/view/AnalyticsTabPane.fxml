@@ -2,6 +2,6 @@
 
 <?import javafx.scene.canvas.Canvas?>
 
-<Canvas xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Canvas fx:id="baseCanvas" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
 </Canvas>
