@@ -276,8 +276,7 @@
     -fx-padding: 20, 0, 0, 0;
 }
 
-#userGuideButton:hover {
-    -fx-background-color: transparent;
+#userGuideButton:hover, #userGuideButton:selected {
     -fx-text-fill: white;
 }
 

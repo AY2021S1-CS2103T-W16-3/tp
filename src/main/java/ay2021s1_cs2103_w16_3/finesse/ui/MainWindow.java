@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -68,7 +69,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Tab userGuideTab;
     @FXML
-    private Button userGuideButton;
+    private ToggleButton userGuideButton;
     @FXML
     private TabPane tabPane;
     @FXML
@@ -153,6 +154,9 @@ public class MainWindow extends UiPart<Stage> {
 
             // Disable the user guide tab when not selected to prevent the user from clicking the invisible tab.
             userGuideTab.setDisable(newTabIndex.intValue() != UiState.Tab.USER_GUIDE.getTabIndex().getZeroBased());
+
+            // Set the user guide button to be unselected.
+            userGuideButton.setSelected(false);
         });
     }
 
@@ -209,11 +213,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Switches to the hidden user guide tab.
+     * Switches to the hidden user guide tab and sets the user guide button to be selected.
      */
     @FXML
     public void switchToUserGuideTab() {
         tabPane.getSelectionModel().select(userGuideTab);
+        userGuideButton.setSelected(true);
     }
 
     void show() {
