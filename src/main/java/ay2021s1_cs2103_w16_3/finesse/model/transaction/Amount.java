@@ -68,5 +68,5 @@ public class Amount implements Comparable<Amount> {
     public int hashCode() {
         return value.hashCode();
     }
-
+    
 }
