@@ -147,9 +147,13 @@ public class MainWindow extends UiPart<Stage> {
         // Set the bottom anchor after the tabs have been initialized.
         AnchorPane.setBottomAnchor(tabPane, 0.0);
 
-        // Update UI state on tab change.
-        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldTabIndex, newTabIndex) ->
-                uiState.setCurrentTab(UiState.Tab.values()[newTabIndex.intValue()]));
+        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldTabIndex, newTabIndex) -> {
+            // Update UI state on tab change.
+            uiState.setCurrentTab(UiState.Tab.values()[newTabIndex.intValue()]);
+
+            // Disable the user guide tab when not selected to prevent the user from clicking the invisible tab.
+            userGuideTab.setDisable(newTabIndex.intValue() != UiState.Tab.USER_GUIDE.getTabIndex().getZeroBased());
+        });
     }
 
     /**
