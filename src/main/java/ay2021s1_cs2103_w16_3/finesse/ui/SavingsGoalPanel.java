@@ -1,13 +1,16 @@
 package ay2021s1_cs2103_w16_3.finesse.ui;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import ay2021s1_cs2103_w16_3.finesse.model.budget.MonthlyBudget;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
-
+import javafx.scene.paint.Color;
 
 public class SavingsGoalPanel extends UiPart<Region> {
     private static final String FXML = "SavingsGoalPanel.fxml";
@@ -19,54 +22,63 @@ public class SavingsGoalPanel extends UiPart<Region> {
     @FXML
     private Label monthlySavingsGoal;
     @FXML
-    private Label remainingBudget;
+    private Label budgetStatus;
     @FXML
-    private Label currentSavings;
-    @FXML
-    private Label budgetDeficit;
-    @FXML
-    private Label savingsDeficit;
+    private Label savingsStatus;
 
     /**
      * Constructor of SavingsGoalPanel.
      */
     public SavingsGoalPanel(MonthlyBudget monthlyBudget) {
         super(FXML);
+
+        AtomicBoolean isBudgetDeficit = new AtomicBoolean();
+        AtomicBoolean isSavingsDeficit = new AtomicBoolean();
+
         StringBinding expenseLimitBinding = Bindings.createStringBinding(() ->
                         String.format(
                                 "Monthly Expense Limit: %s",
                                 monthlyBudget.getMonthlyExpenseLimit().getAmount().toString()),
                 monthlyBudget.getMonthlyExpenseLimit().getObservableAmount());
+
         StringBinding savingsGoalBinding = Bindings.createStringBinding(() ->
                         String.format(
                                 "Monthly Savings Goal: %s",
                                 monthlyBudget.getMonthlySavingsGoal().getAmount().toString()),
                 monthlyBudget.getMonthlySavingsGoal().getObservableAmount());
-        StringBinding monthlyBudgetBinding = Bindings.createStringBinding(() ->
-                        String.format(
-                                "Remaining Budget: %s",
-                                monthlyBudget.getRemainingBudget().getAmount().toString()),
-                monthlyBudget.getRemainingBudget().getObservableAmount());
-        StringBinding currentSavingsBinding = Bindings.createStringBinding(() ->
-                        String.format(
-                                "Current Savings: %s",
-                                monthlyBudget.getCurrentSavings().getAmount().toString()),
-                monthlyBudget.getCurrentSavings().getObservableAmount());
-        StringBinding budgetDeficitBinding = Bindings.createStringBinding(() ->
-                        String.format(
-                                "Budget Deficit: %s",
-                                monthlyBudget.getBudgetDeficit().getAmount().toString()),
-                monthlyBudget.getBudgetDeficit().getObservableAmount());
-        StringBinding savingsDeficitBinding = Bindings.createStringBinding(() ->
-                        String.format(
-                                "Savings Deficit: %s",
-                                monthlyBudget.getSavingsDeficit().getAmount().toString()),
-                monthlyBudget.getSavingsDeficit().getObservableAmount());
+
+        StringBinding budgetStatusBinding = Bindings.createStringBinding(() -> {
+            Amount budgetDeficitAmount = monthlyBudget.getBudgetDeficit().getAmount();
+            if (budgetDeficitAmount.compareTo(new Amount("0")) > 0) {
+                isBudgetDeficit.set(true);
+                return String.format("Budget Deficit: %s", budgetDeficitAmount.toString());
+            } else {
+                return String.format("Remaining Budget: %s",
+                        monthlyBudget.getRemainingBudget().getAmount().toString());
+            }
+        });
+
+        StringBinding savingsStatusBinding = Bindings.createStringBinding(() -> {
+            Amount savingsDeficitAmount = monthlyBudget.getSavingsDeficit().getAmount();
+            if (savingsDeficitAmount.compareTo(new Amount("0")) > 0) {
+                isSavingsDeficit.set(true);
+                return String.format("Savings Deficit: %s", savingsDeficitAmount.toString());
+            } else {
+                return String.format("Current Savings: %s",
+                monthlyBudget.getCurrentSavings().getAmount().toString());
+            }
+        });
+
         monthlyExpenseLimit.textProperty().bind(expenseLimitBinding);
         monthlySavingsGoal.textProperty().bind(savingsGoalBinding);
-        remainingBudget.textProperty().bind(monthlyBudgetBinding);
-        currentSavings.textProperty().bind(currentSavingsBinding);
-        budgetDeficit.textProperty().bind(budgetDeficitBinding);
-        savingsDeficit.textProperty().bind(savingsDeficitBinding);
+        budgetStatus.textProperty().bind(budgetStatusBinding);
+        savingsStatus.textProperty().bind(savingsStatusBinding);
+
+        if (isBudgetDeficit.get()) {
+            budgetStatus.setTextFill(Color.RED);
+        }
+        if (isSavingsDeficit.get()) {
+            savingsStatus.setTextFill(Color.RED);
+        }
     }
 }
