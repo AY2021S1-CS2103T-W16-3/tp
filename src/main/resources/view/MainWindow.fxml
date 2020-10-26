@@ -31,8 +31,9 @@
               <Tab fx:id="incomeTab" text="Incomes" closable="false" />
               <Tab fx:id="expenseTab" text="Expenses" closable="false" />
               <Tab fx:id="analyticsTab" text="Analytics" closable="false" />
+              <Tab fx:id="userGuideTab" text="" closable="false" />
             </TabPane>
-            <Button fx:id="helpButton" text="Help" onMouseClicked="#handleHelp" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="userGuideButton" text="User Guide" onMouseClicked="#switchToUserGuideTab" AnchorPane.rightAnchor="0.0" />
           </AnchorPane>
         </center>
 

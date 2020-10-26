@@ -15,7 +15,8 @@ public class UiState {
         OVERVIEW(1),
         INCOME(2),
         EXPENSES(3),
-        ANALYTICS(4);
+        ANALYTICS(4),
+        USER_GUIDE(5);
 
         /** The index of the tab in the {@code TabPane}. */
         private final Index tabIndex;

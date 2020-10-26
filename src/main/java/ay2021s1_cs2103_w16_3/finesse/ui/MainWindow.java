@@ -15,6 +15,7 @@ import ay2021s1_cs2103_w16_3.finesse.ui.tabs.AnalyticsTabPane;
 import ay2021s1_cs2103_w16_3.finesse.ui.tabs.ExpenseTabPane;
 import ay2021s1_cs2103_w16_3.finesse.ui.tabs.IncomeTabPane;
 import ay2021s1_cs2103_w16_3.finesse.ui.tabs.OverviewTabPane;
+import ay2021s1_cs2103_w16_3.finesse.ui.tabs.UserGuideTabPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionModel;
@@ -53,8 +54,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Button commandBoxButton;
     @FXML
-    private Button helpButton;
-    @FXML
     private StackPane resultDisplayPlaceholder;
     @FXML
     private StackPane statusbarPlaceholder;
@@ -66,6 +65,10 @@ public class MainWindow extends UiPart<Stage> {
     private Tab expenseTab;
     @FXML
     private Tab analyticsTab;
+    @FXML
+    private Tab userGuideTab;
+    @FXML
+    private Button userGuideButton;
     @FXML
     private TabPane tabPane;
     @FXML
@@ -118,6 +121,7 @@ public class MainWindow extends UiPart<Stage> {
      * Initialize the contents of each tab.
      */
     public void initializeTabs() {
+        // Set up tab contents.
         OverviewTabPane overviewTabPane =
                 new OverviewTabPane(logic.getFilteredTransactionList(), logic.getMonthlyBudget());
         overviewTab.setContent(overviewTabPane.getRoot());
@@ -133,6 +137,10 @@ public class MainWindow extends UiPart<Stage> {
         AnalyticsTabPane analyticsTabPane = new AnalyticsTabPane(logic.getMonthlyBudget());
         analyticsTab.setContent(analyticsTabPane.getRoot());
 
+        UserGuideTabPane userGuideTabPane = new UserGuideTabPane();
+        userGuideTab.setContent(userGuideTabPane.getRoot());
+
+        // Set default selection.
         SelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         selectionModel.select(overviewTab);
 
@@ -197,11 +205,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Displays the help message in the result display.
+     * Switches to the hidden user guide tab.
      */
     @FXML
-    public void handleHelp() {
-        resultDisplay.setFeedbackToUser(HELP_MESSAGE);
+    public void switchToUserGuideTab() {
+        tabPane.getSelectionModel().select(userGuideTab);
     }
 
     void show() {
@@ -231,7 +239,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
-                handleHelp();
+                switchToUserGuideTab();
             }
 
             if (commandResult.isExit()) {
