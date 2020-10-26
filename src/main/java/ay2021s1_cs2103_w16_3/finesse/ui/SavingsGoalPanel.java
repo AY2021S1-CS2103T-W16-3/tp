@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 
 public class SavingsGoalPanel extends UiPart<Region> {
     private static final String FXML = "SavingsGoalPanel.fxml";
@@ -75,10 +74,10 @@ public class SavingsGoalPanel extends UiPart<Region> {
         savingsStatus.textProperty().bind(savingsStatusBinding);
 
         if (isBudgetDeficit.get()) {
-            budgetStatus.setTextFill(Color.RED);
+            budgetStatus.setStyle("-fx-text-fill: red");
         }
         if (isSavingsDeficit.get()) {
-            savingsStatus.setTextFill(Color.RED);
+            savingsStatus.setStyle("-fx-text-fill: red");
         }
     }
 }
