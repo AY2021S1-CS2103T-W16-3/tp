@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * Represents a Transaction's amount in the finance tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidAmount(String)}
  */
-public class Amount {
+public class Amount implements Comparable<Amount> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -65,4 +65,8 @@ public class Amount {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Amount amount) {
+        return this.value.compareTo(amount.value);
+    }
 }
