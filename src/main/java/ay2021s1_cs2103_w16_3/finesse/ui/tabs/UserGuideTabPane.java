@@ -49,6 +49,9 @@ public class UserGuideTabPane extends UiPart<StackPane> {
      * Initializes the {@code WebEngine} that is backing the {@code WebView}.
      */
     private void initializeUserGuide() {
+        // Disable right click.
+        webView.setContextMenuEnabled(false);
+
         WebEngine webEngine = webView.getEngine();
 
         webEngine.locationProperty().addListener((observableValue, oldUrl, newUrl) -> {
