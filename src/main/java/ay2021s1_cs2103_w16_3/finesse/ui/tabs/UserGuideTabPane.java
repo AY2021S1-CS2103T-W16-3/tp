@@ -22,9 +22,8 @@ public class UserGuideTabPane extends UiPart<StackPane> {
     // Links
     private static final String GITHUB_PAGES_DOMAIN = "https://ay2021s1-cs2103t-w16-3.github.io";
     private static final String USER_GUIDE_URL = "https://ay2021s1-cs2103t-w16-3.github.io/tp/UserGuide.html";
-    // Note: Does not work if '.html' is appended for some reason.
     private static final String NO_EXTERNAL_SITE_PAGE_URL =
-            "https://ay2021s1-cs2103t-w16-3.github.io/tp/NoExternalSite";
+            "https://ay2021s1-cs2103t-w16-3.github.io/tp/NoExternalSite.html";
 
     // Constants
     private static final double REFRESH_TIMEOUT_DELAY = 10000.0;
