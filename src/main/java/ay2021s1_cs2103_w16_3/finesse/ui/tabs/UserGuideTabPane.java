@@ -4,11 +4,14 @@ import java.util.logging.Logger;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.core.LogsCenter;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiPart;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 
 /**
  * Tab pane that displays the user guide.
@@ -22,6 +25,9 @@ public class UserGuideTabPane extends UiPart<StackPane> {
     // Note: Does not work if '.html' is appended for some reason.
     private static final String NO_EXTERNAL_SITE_PAGE_URL =
             "https://ay2021s1-cs2103t-w16-3.github.io/tp/NoExternalSite";
+
+    // Constants
+    private static final double REFRESH_TIMEOUT_DELAY = 10000.0;
 
     // Logging messages
     private static final String WEB_ENGINE_EXTERNAL_SITE_REQUEST_BLOCKED =
@@ -66,14 +72,23 @@ public class UserGuideTabPane extends UiPart<StackPane> {
             }
         });
 
+        // Initialize refresh task.
+        Timeline refreshTask = new Timeline(new KeyFrame(Duration.millis(REFRESH_TIMEOUT_DELAY),
+            actionEvent -> refreshPage()));
+
         webEngine.getLoadWorker().stateProperty().addListener((observableValue, oldState, newState) -> {
             String location = webEngine.getLocation();
+
+            // Stop the refresh task to prevent multiple tasks running.
+            refreshTask.stop();
+
             switch (newState) {
             case CANCELLED:
                 logger.info(WEB_ENGINE_WORKER_STATE_CANCELLED + location);
                 break;
             case FAILED:
                 logger.warning(WEB_ENGINE_WORKER_STATE_FAILED + location);
+                refreshTask.playFromStart();
                 break;
             case RUNNING:
                 logger.info(WEB_ENGINE_WORKER_STATE_RUNNING + location);
