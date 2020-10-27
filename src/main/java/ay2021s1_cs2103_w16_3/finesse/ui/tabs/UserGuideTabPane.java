@@ -87,4 +87,14 @@ public class UserGuideTabPane extends UiPart<StackPane> {
 
         webEngine.load(USER_GUIDE_URL);
     }
+
+    /**
+     * Refreshes the WebView.
+     */
+    public void refreshPage() {
+        // Cannot simply reload the page because if the page has not loaded a single time,
+        // reloading does not work.
+        String currentPage = webView.getEngine().getLocation();
+        webView.getEngine().load(currentPage);
+    }
 }
