@@ -15,7 +15,9 @@ public class UserGuideTabPane extends UiPart<StackPane> {
 
     private static final String GITHUB_PAGES_DOMAIN = "https://ay2021s1-cs2103t-w16-3.github.io";
     private static final String USER_GUIDE_URL = "https://ay2021s1-cs2103t-w16-3.github.io/tp/UserGuide.html";
-    private static final String ERROR_PAGE_URL = "https://ay2021s1-cs2103t-w16-3.github.io";
+    // Note: Does not work if '.html' is appended for some reason.
+    private static final String NO_EXTERNAL_SITE_PAGE_URL =
+            "https://ay2021s1-cs2103t-w16-3.github.io/tp/NoExternalSite";
 
     @FXML
     private WebView webView;
@@ -35,11 +37,11 @@ public class UserGuideTabPane extends UiPart<StackPane> {
         WebEngine webEngine = webView.getEngine();
 
         webEngine.locationProperty().addListener((observableValue, oldUrl, newUrl) -> {
-            if (!newUrl.contains(GITHUB_PAGES_DOMAIN)) {
+            if (!newUrl.startsWith(GITHUB_PAGES_DOMAIN)) {
                 // Block requests to external sites.
                 Platform.runLater(() -> {
-                    // Load the error page.
-                    webEngine.load(ERROR_PAGE_URL);
+                    // Load the 'No External Site' page.
+                    webEngine.load(NO_EXTERNAL_SITE_PAGE_URL);
                 });
             }
         });
