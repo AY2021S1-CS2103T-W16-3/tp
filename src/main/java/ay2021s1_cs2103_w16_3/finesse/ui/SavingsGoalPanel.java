@@ -9,6 +9,7 @@ import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 
 public class SavingsGoalPanel extends UiPart<Region> {
@@ -24,6 +25,8 @@ public class SavingsGoalPanel extends UiPart<Region> {
     private Label budgetStatus;
     @FXML
     private Label savingsStatus;
+    @FXML
+    private ImageView savingsPicture;
 
     /**
      * Constructor of SavingsGoalPanel.
@@ -79,5 +82,7 @@ public class SavingsGoalPanel extends UiPart<Region> {
         if (isSavingsDeficit.get()) {
             savingsStatus.setStyle("-fx-text-fill: red");
         }
+
+        savingsPicture.setImage(savingsPanelPicture);
     }
 }
