@@ -33,7 +33,8 @@
               <Tab fx:id="analyticsTab" text="Analytics" closable="false" />
               <Tab fx:id="userGuideTab" text="" closable="false" />
             </TabPane>
-            <ToggleButton fx:id="userGuideButton" text="User Guide" onMouseClicked="#switchToUserGuideTab" AnchorPane.rightAnchor="0.0" />
+            <ToggleButton fx:id="userGuideButton" text="User Guide" onMouseClicked="#switchToUserGuideTab"
+                          AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" />
           </AnchorPane>
         </center>
 
