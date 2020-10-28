@@ -1,41 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER"
-      styleClass="right-panel" maxHeight="500">
-  <padding>
-    <Insets left="10" top="20" bottom="50"/>
-  </padding>
-  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" maxHeight="20.0">
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER">
     <padding>
-      <Insets bottom="10" top="10"/>
+        <Insets top="7.0"/>
     </padding>
-    <Label fx:id="monthlyExpenseLimit" wrapText="true" styleClass="right-panel-content"/>
-  </HBox>
-  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" maxHeight="20.0">
-  <padding>
-      <Insets bottom="10" top="10"/>
-  </padding>
-  <Label fx:id="monthlySavingsGoal" wrapText="true" styleClass="right-panel-content"/>
-  </HBox>
-  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" maxHeight="20.0">
-    <padding>
-      <Insets bottom="10" top="10"/>
-    </padding>
-    <Label fx:id="budgetStatus" wrapText="true" styleClass="right-panel-content"/>
-  </HBox>
-  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" maxHeight="20.0">
-    <padding>
-      <Insets bottom="10" top="10"/>
-    </padding>
-    <Label fx:id="savingsStatus" wrapText="true" styleClass="right-panel-content"/>
-  </HBox>
-  <Region VBox.vgrow="ALWAYS"/>
-  <ImageView fx:id="savingsPicture" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+    <StackPane fx:id="savingsGoalDataPane"/>
+    <Region VBox.vgrow="ALWAYS"/>
 </VBox>
