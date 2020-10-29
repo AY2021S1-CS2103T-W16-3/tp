@@ -7,6 +7,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -32,6 +33,8 @@ public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Regio
     private HBox categories;
     @FXML
     private GridPane transactionDetails;
+    @FXML
+    private ScrollPane scrollPane;
 
     /**
      * Creates a {@code BookmarkTransactionCard} with the given {@code BookmarkTransaction} and index to display.
@@ -61,6 +64,21 @@ public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Regio
                     newCategory.setStyle(String.format("-fx-font-size: %spx", categoriesFontSizeParsedToString));
                     categories.getChildren().add(newCategory);
                 });
+
+        // Hijack scroll wheel for horizontal scrolling instead of vertical scrolling.
+        scrollPane.setOnScroll(scrollEvent -> {
+            if (scrollEvent.getDeltaY() != 0) {
+                scrollPane.setHvalue(scrollPane.getHvalue() - scrollEvent.getDeltaY() / categories.getWidth());
+                // Do not pass scroll event up to parent.
+                scrollEvent.consume();
+            }
+        });
+
+        // Hijack scroll events on category labels and pass on to scroll pane.
+        categories.setOnScroll(scrollEvent -> {
+            scrollPane.fireEvent(scrollEvent);
+            scrollEvent.consume();
+        });
     }
 
     @Override

@@ -385,7 +385,7 @@
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 4 1 4 1;
+    -fx-padding: 4 0 4 0;
 }
 
 #cardPane {

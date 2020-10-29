@@ -24,7 +24,7 @@
     <GridPane>
       <children>
         <Label fx:id="title" GridPane.rowIndex="0" text="\$title" styleClass="cell-big-label" />
-        <ScrollPane styleClass="cell-categories-scrollpane" GridPane.rowIndex="1" vbarPolicy="NEVER">
+        <ScrollPane fx:id="scrollPane" styleClass="cell-categories-scrollpane" GridPane.rowIndex="1" vbarPolicy="NEVER">
           <HBox fx:id="categories" styleClass="cell-categories" spacing="5" />
         </ScrollPane>
       </children>

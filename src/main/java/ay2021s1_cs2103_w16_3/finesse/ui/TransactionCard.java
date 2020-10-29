@@ -6,6 +6,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -40,6 +41,8 @@ public class TransactionCard extends UiPart<Region> {
     private Label date;
     @FXML
     private HBox categories;
+    @FXML
+    private ScrollPane scrollPane;
 
     /**
      * Creates a {@code TransactionCard} with the given {@code Transaction} and index to display.
@@ -61,6 +64,21 @@ public class TransactionCard extends UiPart<Region> {
                     categories.getChildren().add(newCategory);
                 });
         date.setText(transaction.getDate().toString());
+
+        // Hijack scroll wheel for horizontal scrolling instead of vertical scrolling.
+        scrollPane.setOnScroll(scrollEvent -> {
+            if (scrollEvent.getDeltaY() != 0) {
+                scrollPane.setHvalue(scrollPane.getHvalue() - scrollEvent.getDeltaY() / categories.getWidth());
+                // Do not pass scroll event up to parent.
+                scrollEvent.consume();
+            }
+        });
+
+        // Hijack scroll events on category labels and pass on to scroll pane.
+        categories.setOnScroll(scrollEvent -> {
+            scrollPane.fireEvent(scrollEvent);
+            scrollEvent.consume();
+        });
     }
 
     @Override
