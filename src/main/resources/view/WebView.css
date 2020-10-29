@@ -1,0 +1,15 @@
+/**
+ * WebView is unable to load '-apple-system', and 'San Francisco' (the default macOS
+ * font) cannot be called by name. Thus, we call '.SFNSText-Regular' on failure.
+ */
+body {
+    font-family: -apple-system,
+                 ".SFNSText-Regular",
+                 "San Francisco",
+                 "Roboto",
+                 "Segoe UI",
+                 "Helvetica Neue",
+                 "Lucida Grande",
+                 sans-serif
+                 !important;
+}

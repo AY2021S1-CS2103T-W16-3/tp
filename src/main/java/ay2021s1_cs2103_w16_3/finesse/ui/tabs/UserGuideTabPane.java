@@ -59,6 +59,12 @@ public class UserGuideTabPane extends UiPart<StackPane> {
 
         WebEngine webEngine = webView.getEngine();
 
+        // Override fonts to call the default macOS system font without using '-apple-system'.
+        webEngine.setUserStyleSheetLocation(getClass().getResource("/view/WebView.css").toString());
+
+        // Log user agent.
+        logger.info(webEngine.getUserAgent());
+
         webEngine.locationProperty().addListener((observableValue, oldUrl, newUrl) -> {
             if (!newUrl.startsWith(GITHUB_PAGES_DOMAIN)) {
                 logger.info(WEB_ENGINE_EXTERNAL_SITE_REQUEST_BLOCKED);
