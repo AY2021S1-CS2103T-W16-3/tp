@@ -51,32 +51,34 @@ public class SavingsGoalCard extends UiPart<Region> {
                                 monthlyBudget.getMonthlySavingsGoal().getAmount().toString()),
                 monthlyBudget.getMonthlySavingsGoal().getObservableAmount());
 
-        StringBinding budgetStatusBinding = Bindings.createStringBinding(() ->
-                        String.format(monthlyBudget.getRemainingBudget().getAmount().isNonNegative()
-                                        ? "Remaining Budget: %s"
-                                        : "Budget Deficit: %s",
-                                monthlyBudget.getRemainingBudget().getAmount().toString()),
-                monthlyBudget.getRemainingBudget().getObservableAmount());
+        StringBinding budgetStatusBinding = Bindings.createStringBinding(() -> {
+            if (monthlyBudget.getRemainingBudget().getAmount().isNonNegative()) {
+                budgetStatus.setStyle("-fx-text-fill: white");
+                return String.format("Remaining Budget: %s",
+                        monthlyBudget.getRemainingBudget().getAmount().toString());
+            } else {
+                budgetStatus.setStyle("-fx-text-fill: red");
+                return String.format("Budget Deficit: %s",
+                        monthlyBudget.getRemainingBudget().getAmount().toString());
+            }
+        }, monthlyBudget.getRemainingBudget().getObservableAmount());
 
-        StringBinding savingsStatusBinding = Bindings.createStringBinding(() ->
-                        String.format(monthlyBudget.getCurrentSavings().getAmount().isNonNegative()
-                                        ? "Current Savings: %s"
-                                        : "Savings Deficit: %s",
-                                monthlyBudget.getCurrentSavings().getAmount().toString()),
-                monthlyBudget.getCurrentSavings().getObservableAmount());
+        StringBinding savingsStatusBinding = Bindings.createStringBinding(() -> {
+            if (monthlyBudget.getCurrentSavings().getAmount().isNonNegative()) {
+                savingsStatus.setStyle("-fx-text-fill: white");
+                return String.format("Current Savings: %s",
+                        monthlyBudget.getCurrentSavings().getAmount().toString());
+            } else {
+                savingsStatus.setStyle("-fx-text-fill: red");
+                return String.format("Savings Deficit: %s",
+                        monthlyBudget.getCurrentSavings().getAmount().toString());
+            }
+        }, monthlyBudget.getCurrentSavings().getObservableAmount());
 
         monthlyExpenseLimit.textProperty().bind(expenseLimitBinding);
         monthlySavingsGoal.textProperty().bind(savingsGoalBinding);
         budgetStatus.textProperty().bind(budgetStatusBinding);
         savingsStatus.textProperty().bind(savingsStatusBinding);
-
-        if (!monthlyBudget.getRemainingBudget().getAmount().isNonNegative()) {
-            budgetStatus.setStyle("-fx-text-fill: red");
-        }
-        if (!monthlyBudget.getCurrentSavings().getAmount().isNonNegative()) {
-            savingsStatus.setStyle("-fx-text-fill: red");
-        }
-
         savingsPicture.setImage(savingsPanelPicture);
     }
 }
