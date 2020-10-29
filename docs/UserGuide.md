@@ -61,8 +61,9 @@ Do take note of the following symbols and formatting used throughout this docume
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start
 
-This section will show you the various components that make up Fine\\$\\$e's user interface.
-You can also follow our step-by-step guide on how to install Fine\\$\\$e and get it to work on your computer.
+This section contains a step-by-step guide on how to install Fine\\$\\$e and get it to work on your computer.
+It also shows the various components that make up Fine\\$\\$e's user interface.
+
 
 Let's get started!
 
@@ -76,6 +77,7 @@ Let's get started!
 
 1. Double-click the file to start the app.
 The Fine$$e GUI should appear in a few seconds, with sample data included, similar to the below image.
+
    ![Ui](images/Ui.png)
 
 1. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will bring up this user guide.
@@ -265,7 +267,7 @@ Format: (when on the [Expenses tab](#223-expenses-tab)) `edit INDEX [t/TITLE] [a
 > :bulb: &nbsp; To remove all categories from an expense, simply use `c/` with no category name following it.
 
 Examples:
-* `edit 2 t/Shoppee Internship d/24/10/2020`
+* `edit 2 t/Shopee Internship d/24/10/2020`
 * `edit 3 a/$2000 c/`
 
 Example Usage:
@@ -396,14 +398,14 @@ Examples:
 
 Example Usage:
 ```
-add-income t/Shoppee Internship a/560 d/03/10/2020 c/Work
+add-income t/Shopee Internship a/560 d/03/10/2020 c/Work
 ```
 
 Expected Outcome:
 ```
-New income added: Shoppee Internship Amount: $560.00 Date: 03/10/2020 Categories: [Internship]
+New income added: Shopee Internship Amount: $560.00 Date: 03/10/2020 Categories: [Internship]
 ```
-Adds a new income titled `Shoppee Internship`, with amount `$560.00`, date `03/10/2020`, and a single category `Internship`.
+Adds a new income titled `Shopee Internship`, with amount `$560.00`, date `03/10/2020`, and a single category `Internship`.
 
 #### 4.4.2 Edit Income: `edit`
 
