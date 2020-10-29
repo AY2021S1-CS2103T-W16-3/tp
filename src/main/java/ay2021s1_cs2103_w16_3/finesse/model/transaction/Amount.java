@@ -29,19 +29,20 @@ public class Amount implements Comparable<Amount> {
     }
 
     /**
-     * Constructs an {@code Amount} from a BigDecimal value.
+     * Constructs an {@code Amount} from a BigDecimal value
      *
-     * @param value
+     * @param value A {@code BigDecimal} value
      */
     private Amount(BigDecimal value) {
+        assert value.scale() <= 2;
         this.value = value;
     }
 
     /**
-     * Constructs an {@code Amount} from a BigDecimal value.
+     * Constructs an {@code Amount} from a BigDecimal value
      *
-     * @param value
-     * @return {@code Amount} with the specified value.
+     * @param value A {@code BigDecimal} value
+     * @return {@code Amount} with the specified value
      */
     public static Amount of(BigDecimal value) {
         return new Amount(value);
