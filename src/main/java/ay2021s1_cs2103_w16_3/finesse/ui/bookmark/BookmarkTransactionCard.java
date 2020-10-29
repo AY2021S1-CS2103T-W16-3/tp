@@ -9,10 +9,10 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 
 public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Region> {
 
@@ -23,7 +23,7 @@ public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Regio
     public final BookmarkTransaction<T> bookmarkTransaction;
 
     @FXML
-    private VBox cardPane;
+    private BorderPane cardPane;
     @FXML
     private Label title;
     @FXML

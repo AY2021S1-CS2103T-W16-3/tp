@@ -130,18 +130,18 @@
     -fx-text-fill: white;
 }
 
-.cell_big_label {
+.cell-big-label {
     -fx-font-family: "Eczar";
     -fx-font-size: 14px;
     -fx-text-fill: #010504;
 }
 
-.cell_categories {
+.cell-categories {
     -fx-font-size: 14px;
     -fx-text-fill: #010504;
 }
 
-.cell_small_label {
+.cell-small-label {
     -fx-font-family: "Eczar";
     -fx-font-size: 14px;
     -fx-text-fill: #010504;

@@ -2,36 +2,43 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
-  <GridPane fx:id="transactionDetails" alignment="CENTER_LEFT">
-    <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" minWidth="30" prefWidth="150" />
-    </columnConstraints>
-    <padding>
-      <Insets top="5" right="10" bottom="5" left="10" />
-    </padding>
-    <HBox GridPane.columnIndex="0" GridPane.halignment="LEFT">
-      <Label fx:id="id" styleClass="cell_big_label">
-        <minWidth>
-          <Region fx:constant="USE_PREF_SIZE" />
-        </minWidth>
-      </Label>
-      <Label fx:id="title" text="\$title" styleClass="cell_big_label" wrapText="true"/>
+<BorderPane id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <left>
+    <GridPane>
+      <children>
+        <Label fx:id="id" GridPane.rowIndex="0" styleClass="cell-big-label" />
+      </children>
+      <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" percentHeight="50.0" />
+        <RowConstraints vgrow="ALWAYS" percentHeight="50.0" />
+      </rowConstraints>
+    </GridPane>
+  </left>
+  <center>
+    <GridPane>
+      <children>
+        <Label fx:id="title" GridPane.rowIndex="0" text="\$title" styleClass="cell-big-label" textOverrun="ELLIPSIS"/>
+        <FlowPane fx:id="categories" GridPane.rowIndex="1" styleClass="cell-categories" />
+      </children>
+      <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" percentHeight="50.0" />
+        <RowConstraints vgrow="ALWAYS" percentHeight="50.0" />
+      </rowConstraints>
+    </GridPane>
+  </center>
+  <right>
+    <HBox alignment="CENTER">
+      <Label fx:id="amount" styleClass="cell-small-label" text="\$amount" />
+      <Label fx:id="date" styleClass="cell-small-label" style="-fx-padding: 0 10 0 30;" text="\$date" />
     </HBox>
-    <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" minWidth="20" prefWidth="160" halignment="CENTER"/>
-    </columnConstraints>
-    <FlowPane fx:id="categories" styleClass="cell_categories" GridPane.columnIndex="1" />
-    <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" minWidth="20" prefWidth="100" halignment="CENTER"/>
-    </columnConstraints>
-    <Label fx:id="amount" styleClass="cell_small_label" text="\$amount" GridPane.columnIndex="2" GridPane.halignment="RIGHT"/>
-  </GridPane>
-</VBox>
+  </right>
+  <padding>
+    <Insets top="5" right="10" bottom="5" left="10" />
+  </padding>
+</BorderPane>

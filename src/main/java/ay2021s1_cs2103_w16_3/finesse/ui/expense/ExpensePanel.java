@@ -38,7 +38,8 @@ public class ExpensePanel extends UiPart<Region> {
                 setText(null);
                 setStyle("-fx-background-color: #2E2E36");
             } else {
-                setGraphic(new TransactionCard(expense, getIndex() + 1).getRoot());
+                setGraphic(new TransactionCard(expense, getIndex() + 1,
+                        expenseListView.widthProperty()).getRoot());
             }
         }
     }

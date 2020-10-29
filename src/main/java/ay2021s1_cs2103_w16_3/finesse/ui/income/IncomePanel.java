@@ -38,7 +38,8 @@ public class IncomePanel extends UiPart<Region> {
                 setText(null);
                 setStyle("-fx-background-color: #2E2E36");
             } else {
-                setGraphic(new TransactionCard(income, getIndex() + 1).getRoot());
+                setGraphic(new TransactionCard(income, getIndex() + 1,
+                        incomeListView.widthProperty()).getRoot());
             }
         }
     }

@@ -38,7 +38,8 @@ public class TransactionListPanel extends UiPart<Region> {
                 setText(null);
                 setStyle("-fx-background-color: #2E2E36");
             } else {
-                setGraphic(new TransactionCard(transaction, getIndex() + 1).getRoot());
+                setGraphic(new TransactionCard(transaction, getIndex() + 1,
+                        transactionListView.widthProperty()).getRoot());
             }
         }
     }
