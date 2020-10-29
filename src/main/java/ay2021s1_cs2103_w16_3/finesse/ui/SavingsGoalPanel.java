@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Panel containing {@code SavingsGoalCard}.
+ */
 public class SavingsGoalPanel extends UiPart<Region> {
 
     private static final String FXML = "SavingsGoalPanel.fxml";
@@ -13,7 +16,7 @@ public class SavingsGoalPanel extends UiPart<Region> {
     private StackPane savingsGoalDataPane;
 
     /**
-     * Constructor of {@code SavingsGoalPanel}
+     * Creates a {@code SavingsGoalPanel}.
      */
     public SavingsGoalPanel(MonthlyBudget monthlyBudget) {
         super(FXML);

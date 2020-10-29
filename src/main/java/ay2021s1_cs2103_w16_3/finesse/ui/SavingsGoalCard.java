@@ -11,6 +11,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 
+/**
+ * A UI component displaying all the information from monthly budget.
+ */
 public class SavingsGoalCard extends UiPart<Region> {
     private static final String FXML = "SavingsGoalCard.fxml";
     private final Image savingsPanelPicture = new Image(this.getClass()
@@ -28,7 +31,7 @@ public class SavingsGoalCard extends UiPart<Region> {
     private ImageView savingsPicture;
 
     /**
-     * Constructor of SavingsGoalCard.
+     * Creates a {@code }SavingsGoalCard} using the information from the given {@code MonthlyBudget}.
      */
     public SavingsGoalCard(MonthlyBudget monthlyBudget) {
         super(FXML);
