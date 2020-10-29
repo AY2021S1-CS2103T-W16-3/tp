@@ -173,7 +173,7 @@ Unless stated otherwise, only one input per parameter is allowed for each comman
 
 </div>
 
-### 4.1 Viewing Help
+### 4.1 Viewing Help: `help`
 
 Brings up the user guide.
 
@@ -190,7 +190,7 @@ Opened help window.
 ```
 The user guide is shown in the application.
 
-### 4.2 Switch Tabs
+### 4.2 Switch Tabs: `tab`
 
 Switches the current tab on Fine$$e.
 
@@ -477,7 +477,7 @@ Listed all incomes.
 ```
 Lists all incomes in the finance tracker.
 
-#### 4.4.5 Find Income
+#### 4.4.5 Find Income: `find`
 
 Finds incomes that match any of the given keywords, and displays the list of matching incomes.
 
@@ -821,7 +821,8 @@ There are three bar charts that show the following data over the past three mont
 The data in the bar charts is automatically updated to include any recent modifications you have made in the finance tracker every time you switch to the [Analytics Tab](#224-analytics-tab).
 This ensures that you will always see the latest information about your spending and saving trends.
 
-### 4.10 Exiting the Program
+### 4.10 Exiting the Program: `exit`
+
 Exits the program.
 
 Format: `exit`
