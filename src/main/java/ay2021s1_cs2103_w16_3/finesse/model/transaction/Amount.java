@@ -17,7 +17,7 @@ public class Amount implements Comparable<Amount> {
     private final BigDecimal value;
 
     /**
-     * Constructs a {@code Amount}.
+     * Constructs an {@code Amount} from a string.
      *
      * @param amount A valid amount.
      */
@@ -26,6 +26,25 @@ public class Amount implements Comparable<Amount> {
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
         value = new BigDecimal(amount.replaceFirst("^\\$", ""));
         assert value.compareTo(BigDecimal.ZERO) >= 0; // amount should be non-negative
+    }
+
+    /**
+     * Constructs an {@code Amount} from a BigDecimal value.
+     *
+     * @param value
+     */
+    private Amount(BigDecimal value) {
+        this.value = value;
+    }
+
+    /**
+     * Constructs an {@code Amount} from a BigDecimal value.
+     *
+     * @param value
+     * @return {@code Amount} with the specified value.
+     */
+    public static Amount of(BigDecimal value) {
+        return new Amount(value);
     }
 
     /**
@@ -44,12 +63,19 @@ public class Amount implements Comparable<Amount> {
     }
 
     /**
+     * Returns true if the {@code Amount} has a non-negative value
+     */
+    public boolean isNonNegative() {
+        return value.compareTo(BigDecimal.valueOf(0)) >= 0;
+    }
+
+    /**
      * Returns a String representation of this Amount that can be used to construct an identical Amount.
      * @return A String representation of this Amount.
      */
     @Override
     public String toString() {
-        return String.format("$%.2f", value);
+        return String.format("$%.2f", value.abs());
     }
 
     @Override

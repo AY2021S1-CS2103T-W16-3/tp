@@ -25,8 +25,6 @@ public class MonthlyBudget {
     private ObservableAmount monthlySavingsGoal;
     private ObservableAmount remainingBudget;
     private ObservableAmount currentSavings;
-    private ObservableAmount budgetDeficit;
-    private ObservableAmount savingsDeficit;
     private ObservableList<BigDecimal> monthlyExpenses;
     private ObservableList<BigDecimal> monthlyIncomes;
     private ObservableList<BigDecimal> monthlySavings;
@@ -40,8 +38,6 @@ public class MonthlyBudget {
         monthlySavingsGoal = new ObservableAmount();
         remainingBudget = new ObservableAmount();
         currentSavings = new ObservableAmount();
-        budgetDeficit = new ObservableAmount();
-        savingsDeficit = new ObservableAmount();
         monthlyExpenses = FXCollections.observableArrayList();
         monthlyIncomes = FXCollections.observableArrayList();
         monthlySavings = FXCollections.observableArrayList();
@@ -78,22 +74,6 @@ public class MonthlyBudget {
 
     public void setCurrentSavings(Amount savings) {
         currentSavings.setValue(savings);
-    }
-
-    public ObservableAmount getBudgetDeficit() {
-        return budgetDeficit;
-    }
-
-    public void setBudgetDeficit(Amount deficit) {
-        budgetDeficit.setValue(deficit);
-    }
-
-    public ObservableAmount getSavingsDeficit() {
-        return savingsDeficit;
-    }
-
-    public void setSavingsDeficit(Amount deficit) {
-        savingsDeficit.setValue(deficit);
     }
 
     public ObservableList<BigDecimal> getMonthlyExpenses() {
@@ -171,13 +151,7 @@ public class MonthlyBudget {
     public void calculateBudget() {
         BigDecimal expenseLimit = monthlyExpenseLimit.getAmount().getValue();
         BigDecimal remainingBudget = expenseLimit.subtract(monthlyExpenses.get(monthlyExpenses.size() - 1));
-        if (remainingBudget.signum() < 0) {
-            setRemainingBudget(ZERO_AMOUNT);
-            setBudgetDeficit(new Amount(remainingBudget.negate().toString()));
-        } else {
-            setRemainingBudget(new Amount(remainingBudget.toString()));
-            setBudgetDeficit(ZERO_AMOUNT);
-        }
+        setRemainingBudget(Amount.of(remainingBudget));
     }
 
     /**
@@ -193,13 +167,7 @@ public class MonthlyBudget {
             monthlySavings.add(savings);
         }
         BigDecimal thisMonthSavings = monthlySavings.get(monthlyIncomes.size() - 1);
-        if (thisMonthSavings.signum() < 0) {
-            setCurrentSavings(ZERO_AMOUNT);
-            setSavingsDeficit(new Amount(thisMonthSavings.negate().toString()));
-        } else {
-            setCurrentSavings(new Amount(thisMonthSavings.toString()));
-            setSavingsDeficit(ZERO_AMOUNT);
-        }
+        setCurrentSavings(Amount.of(thisMonthSavings));
     }
 
     @Override
