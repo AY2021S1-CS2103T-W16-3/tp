@@ -11,11 +11,11 @@ import javafx.collections.ObservableList;
  */
 public class IncomeTabPane extends TwoColumnTabPane {
     private static final String MAIN_PANEL_LABEL = "Incomes";
-    private static final String SIDE_PANEL_LABEL = "Bookmarked Incomes";
+    private static final String SIDE_PANEL_LABEL = "Bookmark Incomes";
 
     /**
      * Constructs an {@code IncomeTabPane} that displays the specified list of incomes
-     * and bookmarked incomes.
+     * and bookmark incomes.
      *
      * @param incomeList The list of incomes to be displayed.
      * @param bookmarkIncomeList The list of bookmark incomes to be displayed.

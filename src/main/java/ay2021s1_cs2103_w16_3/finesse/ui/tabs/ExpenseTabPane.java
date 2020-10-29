@@ -11,11 +11,11 @@ import javafx.collections.ObservableList;
  */
 public class ExpenseTabPane extends TwoColumnTabPane {
     private static final String MAIN_PANEL_LABEL = "Expenses";
-    private static final String SIDE_PANEL_LABEL = "Bookmarked Expenses";
+    private static final String SIDE_PANEL_LABEL = "Bookmark Expenses";
 
     /**
      * Constructs an {@code ExpenseTabPane} that displays the specified list of expenses
-     * and bookmarked expenses.
+     * and bookmark expenses.
      *
      * @param expenseList The list of expenses to be displayed.
      * @param bookmarkExpenseList The list of bookmark expenses to be displayed.
