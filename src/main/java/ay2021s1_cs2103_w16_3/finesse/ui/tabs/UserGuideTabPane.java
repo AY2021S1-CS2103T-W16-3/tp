@@ -63,7 +63,7 @@ public class UserGuideTabPane extends UiPart<StackPane> {
         webEngine.setUserStyleSheetLocation(getClass().getResource("/view/WebView.css").toString());
 
         // Log user agent.
-        logger.info(webEngine.getUserAgent());
+        logger.info("User Agent: " + webEngine.getUserAgent());
 
         webEngine.locationProperty().addListener((observableValue, oldUrl, newUrl) -> {
             if (!newUrl.startsWith(GITHUB_PAGES_DOMAIN)) {
