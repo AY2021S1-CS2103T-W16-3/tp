@@ -168,8 +168,10 @@ public class MainWindow extends UiPart<Stage> {
         // Retrieve window size and position from previous session.
         windowHeight = guiSettings.getWindowHeight();
         windowWidth = guiSettings.getWindowWidth();
-        xPosition = (int) guiSettings.getWindowCoordinates().getX();
-        yPosition = (int) guiSettings.getWindowCoordinates().getY();
+        if (guiSettings.getWindowCoordinates() != null) {
+            xPosition = (int) guiSettings.getWindowCoordinates().getX();
+            yPosition = (int) guiSettings.getWindowCoordinates().getY();
+        }
 
         // Restore window size and position from previous session.
         primaryStage.setHeight(windowHeight);
