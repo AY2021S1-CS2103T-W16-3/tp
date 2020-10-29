@@ -859,12 +859,12 @@ Exit | `exit`
 
 ## 6. Glossary
 
-* Expense: A one-time transaction that results in the amount of money you have decreasing.
-* Income: A one-time transaction that results in the amount of money you have increasing.
+* Expense: A one-time transaction that results in a decrease in the amount of money you have.
+* Income: A one-time transaction that results in an increase in the amount of money you have.
 * ASCII: Characters that are recognised by a computer.
 * Current date: The system date on the computer on which Fine$$e is set up.
-* Bookmark Expense: A template of an expense, which can be used to create expenses and add them to the finance tracker.
-* Bookmark Income: A template of an income, which can be used to create incomes and add them to the finance tracker.
+* Bookmark Expense: A template for an expense, which can be used to create expenses and add them to the finance tracker.
+* Bookmark Income: A template for an income, which can be used to create incomes and add them to the finance tracker.
 
 --------------------------------------------------------------------------------------------------------------------
 
