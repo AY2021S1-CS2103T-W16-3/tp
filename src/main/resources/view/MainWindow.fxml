@@ -54,8 +54,6 @@
                 </padding>
               </StackPane>
             </HBox>
-
-            <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
           </VBox>
         </bottom>
       </BorderPane>
