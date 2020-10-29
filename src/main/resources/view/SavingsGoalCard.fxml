@@ -10,7 +10,7 @@
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER"
       styleClass="right-panel">
   <padding>
-    <Insets left="10" top="10" right="10" />
+    <Insets left="10" top="5" right="10" bottom="10" />
   </padding>
   <HBox alignment="CENTER" VBox.vgrow="ALWAYS" maxHeight="20.0">
     <padding>
@@ -32,7 +32,7 @@
   </HBox>
   <HBox alignment="CENTER" VBox.vgrow="ALWAYS" maxHeight="20.0">
     <padding>
-      <Insets bottom="5" top="5" />
+      <Insets bottom="8" top="5" />
     </padding>
     <Label fx:id="savingsStatus" wrapText="true" styleClass="right-panel-content" />
   </HBox>
