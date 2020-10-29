@@ -141,6 +141,11 @@
     -fx-text-fill: #010504;
 }
 
+.cell-categories-scrollpane {
+    -fx-background: #3B3B44;
+    -fx-background-color: transparent;
+}
+
 .cell-small-label {
     -fx-font-family: "Eczar";
     -fx-font-size: 14px;
@@ -380,7 +385,7 @@
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+    -fx-padding: 4 1 4 1;
 }
 
 #cardPane {

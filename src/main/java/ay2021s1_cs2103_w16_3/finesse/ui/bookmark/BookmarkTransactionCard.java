@@ -6,12 +6,10 @@ import ay2021s1_cs2103_w16_3.finesse.model.bookmark.BookmarkTransaction;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiPart;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Region> {
@@ -31,7 +29,7 @@ public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Regio
     @FXML
     private Label amount;
     @FXML
-    private FlowPane categories;
+    private HBox categories;
     @FXML
     private GridPane transactionDetails;
 
@@ -64,8 +62,6 @@ public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Regio
                     newCategory.setStyle(String.format("-fx-font-size: %spx", categoriesFontSizeParsedToString));
                     categories.getChildren().add(newCategory);
                 });
-        categories.setColumnHalignment(HPos.CENTER);
-        categories.setRowValignment(VPos.CENTER);
     }
 
     @Override

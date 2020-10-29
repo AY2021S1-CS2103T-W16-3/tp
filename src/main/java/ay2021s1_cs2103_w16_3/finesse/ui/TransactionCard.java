@@ -5,11 +5,9 @@ import java.util.Comparator;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
@@ -41,7 +39,7 @@ public class TransactionCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
-    private FlowPane categories;
+    private HBox categories;
 
     /**
      * Creates a {@code TransactionCard} with the given {@code Transaction} and index to display.
@@ -63,8 +61,6 @@ public class TransactionCard extends UiPart<Region> {
                     newCategory.setStyle("-fx-font-family: Eczar");
                     categories.getChildren().add(newCategory);
                 });
-        categories.setRowValignment(VPos.CENTER);
-        categories.setColumnHalignment(HPos.CENTER);
         date.setText(transaction.getDate().toString());
     }
 
