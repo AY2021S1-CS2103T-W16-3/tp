@@ -58,7 +58,6 @@ public class TransactionCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(category -> category.getCategoryName()))
                 .forEach(category -> {
                     Label newCategory = new Label(category.getCategoryName());
-                    newCategory.setStyle("-fx-font-family: Eczar");
                     categories.getChildren().add(newCategory);
                 });
         date.setText(transaction.getDate().toString());
