@@ -39,7 +39,8 @@ public class BookmarkExpensePanel extends UiPart<Region> {
                 setStyle("-fx-background-color: #2E2E36");
             } else {
                 BookmarkTransactionCard<Expense> bookmarkTransactionCard =
-                        new BookmarkTransactionCard<>(bookmarkExpense, getIndex() + 1, 12);
+                        new BookmarkTransactionCard<>(bookmarkExpense, getIndex() + 1,
+                                bookmarkTransactionList.widthProperty());
                 setGraphic(bookmarkTransactionCard.getRoot());
             }
         }

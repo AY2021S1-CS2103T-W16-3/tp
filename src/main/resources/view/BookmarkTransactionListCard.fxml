@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <left>
+    <GridPane>
+      <children>
+        <Label fx:id="id" GridPane.rowIndex="0" styleClass="cell-big-label" />
+      </children>
+      <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" percentHeight="50.0" />
+        <RowConstraints vgrow="ALWAYS" percentHeight="50.0" />
+      </rowConstraints>
+    </GridPane>
+  </left>
+  <center>
+    <GridPane>
+      <children>
+        <Label fx:id="title" GridPane.rowIndex="0" text="\$title" styleClass="cell-big-label" />
+        <ScrollPane fx:id="scrollPane" styleClass="cell-categories-scrollpane" GridPane.rowIndex="1" vbarPolicy="NEVER">
+          <HBox fx:id="categories" styleClass="cell-categories" spacing="5" />
+        </ScrollPane>
+      </children>
+      <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" percentHeight="50.0" />
+        <RowConstraints vgrow="ALWAYS" percentHeight="50.0" />
+      </rowConstraints>
+    </GridPane>
+  </center>
+  <right>
+    <HBox alignment="CENTER">
+      <Label fx:id="amount" styleClass="cell-small-label" style="-fx-padding: 0 10 0 20;" text="\$amount" />
+    </HBox>
+  </right>
+  <padding>
+    <Insets top="5" right="10" bottom="5" left="10" />
+  </padding>
+</BorderPane>

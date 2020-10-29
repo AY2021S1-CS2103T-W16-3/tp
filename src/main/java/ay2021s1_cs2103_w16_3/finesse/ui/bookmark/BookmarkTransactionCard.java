@@ -5,6 +5,7 @@ import java.util.Comparator;
 import ay2021s1_cs2103_w16_3.finesse.model.bookmark.BookmarkTransaction;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiPart;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -15,9 +16,7 @@ import javafx.scene.layout.Region;
 
 public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Region> {
 
-    private static final String FXML = "TransactionListCard.fxml";
-    private static final double PREFERRED_CARD_HEIGHT = 60.00;
-    private static final double PREFERRED_CARD_WIDTH = 100.00;
+    private static final String FXML = "BookmarkTransactionListCard.fxml";
 
     public final BookmarkTransaction<T> bookmarkTransaction;
 
@@ -38,30 +37,22 @@ public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Regio
 
     /**
      * Creates a {@code BookmarkTransactionCard} with the given {@code BookmarkTransaction} and index to display.
-     * The font size of the content is set based on the given {@code fontSize}.
+     * Binds the width of the {@code BookmarkTransactionCard} to that of its containing list.
      */
-    public BookmarkTransactionCard(BookmarkTransaction<T> bookmarkTransaction, int displayedIndex, int fontSize) {
+    public BookmarkTransactionCard(BookmarkTransaction<T> bookmarkTransaction, int displayedIndex,
+                                   ReadOnlyDoubleProperty width) {
         super(FXML);
         this.bookmarkTransaction = bookmarkTransaction;
-        String fontSizeParsedToString = String.valueOf(fontSize);
-        String categoriesFontSizeParsedToString = String.valueOf(fontSize - 2);
-        cardPane.setPrefHeight(PREFERRED_CARD_HEIGHT);
-        cardPane.setPrefWidth(PREFERRED_CARD_WIDTH);
+        cardPane.maxWidthProperty().bind(width.subtract(32));
 
         id.setText(displayedIndex + ". ");
-        id.setStyle(String.format("-fx-font-size: %spx", fontSizeParsedToString));
-
         title.setText(bookmarkTransaction.getTitle().toString());
-        title.setStyle(String.format("-fx-font-size: %spx", fontSizeParsedToString));
-
         amount.setText(bookmarkTransaction.getAmount().toString());
-        amount.setStyle(String.format("-fx-font-size: %spx", fontSizeParsedToString));
 
         bookmarkTransaction.getCategories().stream()
                 .sorted(Comparator.comparing(category -> category.getCategoryName()))
                 .forEach(category -> {
                     Label newCategory = new Label(category.getCategoryName());
-                    newCategory.setStyle(String.format("-fx-font-size: %spx", categoriesFontSizeParsedToString));
                     categories.getChildren().add(newCategory);
                 });
 
