@@ -53,7 +53,6 @@ public class TransactionCard extends UiPart<Region> {
         cardPane.maxWidthProperty().bind(width.subtract(32));
         id.setText(displayedIndex + ". ");
         title.setText(transaction.getTitle().toString());
-        title.setWrapText(true);
         amount.setText(transaction.getAmount().toString());
         transaction.getCategories().stream()
                 .sorted(Comparator.comparing(category -> category.getCategoryName()))

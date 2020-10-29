@@ -41,16 +41,16 @@
         <bottom>
           <VBox>
             <StackPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" fx:id="resultDisplayPlaceholder"
-                       styleClass="pane-with-border" minHeight="100" prefHeight="100" maxHeight="100">
+                       styleClass="pane-with-border" minHeight="150" prefHeight="150" maxHeight="150">
               <padding>
-                <Insets top="5" right="15" bottom="5" left="15" />
+                <Insets right="15" left="15" />
               </padding>
             </StackPane>
 
             <HBox styleClass="command-pane" alignment="CENTER">
               <StackPane VBox.vgrow="NEVER" HBox.hgrow="SOMETIMES" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
                 <padding>
-                  <Insets top="5" right="10" bottom="5" left="10" />
+                  <Insets top="5" right="10" bottom="10" left="10" />
                 </padding>
               </StackPane>
             </HBox>
