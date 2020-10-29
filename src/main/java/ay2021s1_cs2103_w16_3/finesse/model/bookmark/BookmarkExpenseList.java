@@ -35,11 +35,11 @@ public class BookmarkExpenseList implements Iterable<BookmarkExpense> {
     }
 
     /**
-     * Returns true if the bookmark expense list contains an equivalent bookmark expense as the given argument.
+     * Returns true if the bookmark expense list contains a bookmark expense with the same title as the given argument.
      */
     public boolean contains(BookmarkExpense toCheck) {
         requireNonNull(toCheck);
-        return internalBookmarkExpenseList.stream().anyMatch(toCheck::equals);
+        return internalBookmarkExpenseList.stream().anyMatch(toCheck::hasSameTitle);
     }
 
     /**

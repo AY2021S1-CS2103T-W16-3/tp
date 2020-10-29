@@ -35,11 +35,11 @@ public class BookmarkIncomeList implements Iterable<BookmarkIncome> {
     }
 
     /**
-     * Returns true if the bookmark income list contains an equivalent bookmark income as the given argument.
+     * Returns true if the bookmark income list contains a bookmark income with the same title as the given argument.
      */
     public boolean contains(BookmarkIncome toCheck) {
         requireNonNull(toCheck);
-        return internalBookmarkIncomeList.stream().anyMatch(toCheck::equals);
+        return internalBookmarkIncomeList.stream().anyMatch(toCheck::hasSameTitle);
     }
 
     /**

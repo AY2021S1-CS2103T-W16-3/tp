@@ -14,6 +14,13 @@ public class BookmarkExpense extends BookmarkTransaction<Expense> {
         super(title, amount, categories);
     }
 
+    /**
+     * Returns true if the titles of both bookmark expenses are the same.
+     */
+    public boolean hasSameTitle(Object other) {
+        return other instanceof BookmarkExpense && getTitle().equals(((BookmarkExpense) other).getTitle());
+    }
+
     @Override
     public Expense convert(Date expenseDate) {
         Title title = getTitle();
