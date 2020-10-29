@@ -67,7 +67,7 @@ public class Amount implements Comparable<Amount> {
      * Returns true if the {@code Amount} has a non-negative value.
      */
     public boolean isNonNegative() {
-        return value.compareTo(BigDecimal.valueOf(0)) >= 0;
+        return value.compareTo(BigDecimal.ZERO) >= 0;
     }
 
     /**
