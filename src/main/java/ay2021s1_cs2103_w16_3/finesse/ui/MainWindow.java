@@ -16,12 +16,14 @@ import ay2021s1_cs2103_w16_3.finesse.ui.tabs.ExpenseTabPane;
 import ay2021s1_cs2103_w16_3.finesse.ui.tabs.IncomeTabPane;
 import ay2021s1_cs2103_w16_3.finesse.ui.tabs.OverviewTabPane;
 import ay2021s1_cs2103_w16_3.finesse.ui.tabs.UserGuideTabPane;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -155,6 +157,9 @@ public class MainWindow extends UiPart<Stage> {
             // Set the user guide button to be unselected.
             userGuideButton.setSelected(false);
         });
+
+        // Disable tab scrolling using arrow keys.
+        tabPane.addEventFilter(KeyEvent.ANY, Event::consume);
     }
 
     /**
