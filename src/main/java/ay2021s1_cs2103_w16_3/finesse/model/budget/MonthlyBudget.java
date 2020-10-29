@@ -17,7 +17,6 @@ import javafx.collections.ObservableList;
  * Represents the monthly budget in the finance tracker.
  */
 public class MonthlyBudget {
-    private static final Amount ZERO_AMOUNT = new Amount("0");
     private static final String[] MONTHS = new DateFormatSymbols().getMonths();
     private static final int NUM_OF_MONTHS = 12;
 
