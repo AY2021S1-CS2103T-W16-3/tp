@@ -4,38 +4,40 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_CENTER"
-      styleClass="right-panel" maxHeight="500">
+      styleClass="right-panel">
   <padding>
-    <Insets left="10" top="20" bottom="50"/>
+    <Insets left="10" top="10" right="10" />
   </padding>
-  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" maxHeight="20.0">
+  <HBox alignment="CENTER" VBox.vgrow="ALWAYS" maxHeight="20.0">
     <padding>
-      <Insets bottom="10" top="10"/>
+      <Insets bottom="5" top="5" />
     </padding>
-    <Label fx:id="monthlyExpenseLimit" wrapText="true" styleClass="right-panel-content"/>
+    <Label fx:id="monthlyExpenseLimit" wrapText="true" styleClass="right-panel-content" />
   </HBox>
-  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" maxHeight="20.0">
-  <padding>
-      <Insets bottom="10" top="10"/>
-  </padding>
-  <Label fx:id="monthlySavingsGoal" wrapText="true" styleClass="right-panel-content"/>
-  </HBox>
-  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" maxHeight="20.0">
+  <HBox alignment="CENTER" VBox.vgrow="ALWAYS" maxHeight="20.0">
     <padding>
-      <Insets bottom="10" top="10"/>
+      <Insets bottom="5" top="5" />
     </padding>
-    <Label fx:id="budgetStatus" wrapText="true" styleClass="right-panel-content"/>
+  <Label fx:id="monthlySavingsGoal" wrapText="true" styleClass="right-panel-content" />
   </HBox>
-  <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" maxHeight="20.0">
+  <HBox alignment="CENTER" VBox.vgrow="ALWAYS" maxHeight="20.0">
     <padding>
-      <Insets bottom="10" top="10"/>
+      <Insets bottom="5" top="5" />
     </padding>
-    <Label fx:id="savingsStatus" wrapText="true" styleClass="right-panel-content"/>
+    <Label fx:id="budgetStatus" wrapText="true" styleClass="right-panel-content" />
   </HBox>
-  <Region VBox.vgrow="ALWAYS" minHeight="30.0"/>
-  <ImageView fx:id="savingsPicture" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+  <HBox alignment="CENTER" VBox.vgrow="ALWAYS" maxHeight="20.0">
+    <padding>
+      <Insets bottom="5" top="5" />
+    </padding>
+    <Label fx:id="savingsStatus" wrapText="true" styleClass="right-panel-content" />
+  </HBox>
+  <Pane fx:id="imageContainer" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+    <ImageView fx:id="savingsPicture" fitHeight="${imageContainer.height}" fitWidth="${imageContainer.width}"
+               pickOnBounds="true" preserveRatio="true" />
+  </Pane>
 </VBox>

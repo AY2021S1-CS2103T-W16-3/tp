@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 
 /**
@@ -27,6 +28,8 @@ public class SavingsGoalCard extends UiPart<Region> {
     private Label budgetStatus;
     @FXML
     private Label savingsStatus;
+    @FXML
+    private Pane imageContainer;
     @FXML
     private ImageView savingsPicture;
 
@@ -80,5 +83,8 @@ public class SavingsGoalCard extends UiPart<Region> {
         budgetStatus.textProperty().bind(budgetStatusBinding);
         savingsStatus.textProperty().bind(savingsStatusBinding);
         savingsPicture.setImage(savingsPanelPicture);
+        savingsPicture.layoutXProperty().bind(imageContainer.widthProperty()
+                .subtract(Bindings.min(savingsPicture.fitHeightProperty(), savingsPicture.fitWidthProperty()))
+                .divide(2));
     }
 }
