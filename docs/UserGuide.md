@@ -98,7 +98,7 @@ The user interface of Fine$$e is divided into 4 tabs, each serving a specific pu
 
 #### 2.2.1 Overview Tab
 
-Displays a list of all recent transactions ([incomes](#44-income)/[expenses](#43-expense)), along with your [expense limit](#47-expense-limit), remaining budget, [savings goal](#48-savings-goal) and savings.
+Displays a list of all recent transactions ([incomes](#44-income)/[expenses](#43-expense)), along with your [expense limit](#47-expense-limit), [savings goal](#48-savings-goal), remaining budget and current savings.
 
 ![Overview Tab](images/userguide/OverviewTab.png)
 
@@ -190,6 +190,9 @@ Expected Outcome:
 ```
 Opened help window.
 ```
+
+![User Guide](images/userguide/UserGuide.png)
+
 The user guide is shown in the application.
 
 ### 4.2 Switch Tabs: `tab`
