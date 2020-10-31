@@ -86,10 +86,10 @@ The Fine$$e GUI should appear in a few seconds, with sample data included, simil
    Adds an expense with the title `Bubble Tea`, amount `$5.00`, date `03/10/2020` and category `Food & Beverage` to the finance tracker.
 
    * `tab 3`: Switches to the [Expenses Tab](#223-expenses-tab).
-   
+
    * `delete 3`: Deletes the 3rd transaction shown in the current list.
       Note that this command only works in the [Expenses Tab](#223-expenses-tab) and the [Incomes Tab](#222-incomes-tab).
-   
+
    * `exit`: Exits the app.
 
 ### 2.2 Layout of Fine$$e's Interface
@@ -605,7 +605,7 @@ Format: `edit-bookmark INDEX [t/TITLE] [a/AMOUNT] [c/CATEGORY...]`
 * `INDEX` allows you to choose which bookmark expense to edit by specifying its position in the bookmark expenses list.
 * `TITLE`, `AMOUNT` and `CATEGORY` allow you to specify the updated bookmark expense information.
   None of them are mandatory, but at least one must be specified.
-  If any `CAEGORY` is specified, it will replace all of the bookmark expense's existing categories. 
+  If any `CAEGORY` is specified, it will replace all of the bookmark expense's existing categories.
   For parameters that have been omitted, the value will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from a bookmark expense, simply use `c/` with no category name following it.
