@@ -533,6 +533,7 @@ The user will be then be able to edit, delete and convert a bookmarked expense t
 
 ![Bookmark Expense Overview](images/userguide/bookmark/AnnotatedBookmarkExpenseOverview.png)
 
+{:.image-caption}
 Bookmark Expenses List Panel in the Expenses Tab
 
 #### 4.5.1 Add Bookmark Expense: `add-bookmark-expense`
@@ -661,6 +662,7 @@ The user will then be able to edit, delete and convert a bookmark income to conv
 
 ![Overview Bookmark Income Panel](images/userguide/bookmark/AnnotatedBookmarkIncomeOverview.png)
 
+{:.image-caption}
 Bookmark Incomes List Panel in the Incomes tab
 
 #### 4.6.1 Add Bookmark Income: `add-bookmark-income`
