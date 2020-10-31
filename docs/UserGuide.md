@@ -267,7 +267,7 @@ Format: (when on the [Expenses tab](#223-expenses-tab)) `edit INDEX [t/TITLE] [a
 
 * `INDEX` allows you to choose which expense to edit by specifying its position in the currently displayed expenses list.
 * `TITLE`, `AMOUNT`, `DATE` and `CATEGORY` allow you to specify the expense information to update. None of them are mandatory, but at least one must be specified.
-  If any `CATEGORY` is specified, it will replace all the existing categories of the expense.
+  If any `CATEGORY` is specified, it will replace all the expense's existing categories.
   For parameters that have been omitted, their values will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from an expense, simply use `c/` with no category name following it.
@@ -336,7 +336,7 @@ Lists all expenses in the finance tracker.
 
 Finds expenses that match any of the given keywords, and displays the list of matching expenses.
 
-Format: (when on the [Expenses tab](#223-expenses-tab)) `find [t/TITLE_KEYWORD]`
+Format: (when on the [Expenses tab](#223-expenses-tab)) `find [t/TITLE_KEYPHRASE...] [a/AMOUNT] [d/DATE] [c/CATEGORY...] [af/AMOUNT_FROM] [at/AMOUNT_TO] [df/DATE_FROM] [dt/DATE_TO]`
 
 > :bulb: &nbsp; When on the [Overview tab](#221-overview-tab), you can use `find` to search for all transactions (expenses and incomes).
 
@@ -421,7 +421,7 @@ Format: (when on the [Income tab](#222-incomes-tab)) `edit INDEX [t/TITLE] [a/AM
 
 * `INDEX` allows you to choose which income to edit by specifying its position in the currently displayed incomes list.
 * `TITLE`, `AMOUNT`, `DATE` and `CATEGORY` allow you to specify the updated income information. None of them are mandatory, but at least one must be specified.
-  If any `CATEGORY` is specified, it will replace all the existing categories of the income.
+  If any `CATEGORY` is specified, it will replace all the income's existing categories.
   For parameters that have been omitted, the value will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from an income, simply use `c/` with no category name following it.
@@ -490,7 +490,7 @@ Lists all incomes in the finance tracker.
 
 Finds incomes that match any of the given keywords, and displays the list of matching incomes.
 
-Format: (when on the [Incomes tab](#222-incomes-tab)) `find KEYWORD [MORE_KEYWORDS...]`
+Format: (when on the [Incomes tab](#222-incomes-tab)) `find [t/TITLE_KEYPHRASE...] [a/AMOUNT] [d/DATE] [c/CATEGORY...] [af/AMOUNT_FROM] [at/AMOUNT_TO] [df/DATE_FROM] [dt/DATE_TO]`
 
 > :bulb: &nbsp; When on the [Overview tab](#221-overview-tab), you can use `find` to search for all transactions (expenses and incomes).
 
@@ -532,12 +532,12 @@ Lists all incomes with the category `prize` and/or `gift`, with amounts between 
 
 ### 4.5 Bookmark Expense
 
-Fine<span>$</span><span>$</span>e's Bookmark Expense feature are templates to create expenses that the user frequently makes such as paying of monthly phone bills or buying bubble tea weekly.
-The user will be then be able to edit, delete and convert a bookmark expense to conveniently add it into Fine<span>$</span><span>$</span>e's expense list.
+A **bookmark expense** is a template that allows you to create expenses that you make frequently, such as paying phone bills monthly or buying bubble tea weekly.
+You can convert a bookmark expense repeatedly to create as many expenses as you want, and the created expenses will automatically be added to Fine<span>$</span><span>$</span>e's expenses list.
 
 Fine\$\$e records the following information about each of your bookmark expenses:
-1. **Title**: A descriptive title, to remind you what the bookmark expense was about.
-1. **Amount**: How much money you would spend each time you convert the bookmark expense to an expense.
+1. **Title**: A descriptive title, to remind you what the bookmark expense is about.
+1. **Amount**: How much money you will spend each time you convert the bookmark expense to an expense.
 1. **Categories**: Any number of categories, to help you group related bookmark expenses together.
 
 #### 4.5.1 Add Bookmark Expense: `add-bookmark-expense`
@@ -652,12 +652,12 @@ specified bookmark expense and date `10/10/2020`, and adds it to the finance tra
 
 ### 4.6 Bookmark Income
 
-Fine<span>$</span><span>$</span>e's Bookmark Income feature is used to store incomes that the user receives frequently, such as monthly salary or stipend for being a teaching assistant.
-The user will then be able to edit, delete and convert a bookmark income to conveniently add it into Fine<span>$</span><span>$</span>e's incomes list.
+A **bookmark income** is a template that allows you to create incomes that you make frequently, such as receiving monthly internship allowance.
+You can convert a bookmark income repeatedly to create as many incomes as you want, and the created incomes will automatically be added to Fine<span>$</span><span>$</span>e's incomes list.
 
 Fine\$\$e records the following information about each of your bookmark incomes:
-1. **Title**: A descriptive title, to remind you what the bookmark income was about.
-1. **Amount**: How much money you would receive each time you convert the bookmark income to an income.
+1. **Title**: A descriptive title, to remind you what the bookmark income is about.
+1. **Amount**: How much money you will receive each time you convert the bookmark income to an income.
 1. **Categories**: Any number of categories, to help you group related bookmark incomes together.
 
 #### 4.6.1 Add Bookmark Income: `add-bookmark-income`
