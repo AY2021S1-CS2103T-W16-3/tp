@@ -173,7 +173,8 @@ The formats of the parameters used in the rest of the document are as follows:
 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkl
 mnopqrstuvwxyz !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
   ```
-* `AMOUNT`, `AMOUNT_FROM` and `AMOUNT_TO` should be non-negative numbers up to 8 digits with 0 or 2 decimal places, with an optional `$` in front.
+* `AMOUNT`, `AMOUNT_FROM` and `AMOUNT_TO` should be non-negative numbers with up to 8 digits before the decimal point and with 0 or 2 decimal places.
+  An optional `$` may be included in front as well.
 * `DATE`, `DATE_FROM` and `DATE_TO` should be a valid calendar date in `dd/mm/yyyy` format, representing day, month, and year respectively.
   * Valid ranges for days and months are governed by the rules of the [Gregorian Calendar](https://en.wikipedia.org/wiki/Gregorian_calendar#Description).
     * Months should only range from 1 to 12 (inclusive), representing the 12 months of a year.
