@@ -49,6 +49,8 @@ public class CategoryTest {
         // 'at least one non-whitespace printable ASCII character' restriction.
         assertTrue(Category.isValidCategoryName(categoryNamePrefix));
 
+        // Each character is its own equivalence partition.
+
         // Check that the ASCII control characters (char codes 0 to 31 inclusive) are invalid.
         IntStream.range(0, 32).forEach(i ->
                 assertFalse(Category.isValidCategoryName(categoryNamePrefix + getCharFromCharCode(i))));
