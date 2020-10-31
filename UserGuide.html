@@ -118,7 +118,8 @@
       </li>
       <li><a href="#49-analytics" id="markdown-toc-49-analytics">4.9 Analytics</a></li>
       <li><a href="#410-exiting-the-program-exit" id="markdown-toc-410-exiting-the-program-exit">4.10 Exiting the Program: <code class="highlighter-rouge">exit</code></a></li>
-      <li><a href="#411-saving-the-data" id="markdown-toc-411-saving-the-data">4.11 Saving the data</a></li>
+      <li><a href="#411-command-history" id="markdown-toc-411-command-history">4.11 Command History</a></li>
+      <li><a href="#412-saving-the-data" id="markdown-toc-412-saving-the-data">4.12 Saving the Data</a></li>
     </ul>
   </li>
   <li><a href="#5-command-summary" id="markdown-toc-5-command-summary">5. Command Summary</a></li>
@@ -1103,7 +1104,7 @@ Once the expense limit is set, it will be visible on the Overview tab along with
 
 <h3 id="48-savings-goal">4.8 Savings Goal</h3>
 
-<p>Want to save up for the new PS5 but can’t seem to no matter what? Fine$$e has you covered!
+<p>Want to save up for the new PlayStation 5 but can’t seem to no matter what? Fine$$e has you covered!
 The savings goal feature allows you to save consistently by setting a monthly savings goal, so that you can save up bit by bit and build good financial habits.
 Once the savings goal is set, it will be visible on the Overview tab along with your current savings for this month.</p>
 
@@ -1153,7 +1154,33 @@ This ensures that you will always see the latest information about your spending
 
 <p>Format: <code class="highlighter-rouge">exit</code></p>
 
-<h3 id="411-saving-the-data">4.11 Saving the data</h3>
+<h3 id="411-command-history">4.11 Command History</h3>
+
+<p>Accidentally entered the wrong command and wish to modify it without typing it out again fully?
+Simply press the ↑ or ↓ arrow keys on your keyboard to navigate through your command history.</p>
+
+<ul>
+  <li>The command history keeps track of the latest 50 commands entered.</li>
+  <li>The command input box must be focused on, i.e. ensure that the text cursor is blinking in the command input box.</li>
+  <li>Press the ↑ arrow key to retrieve the previous commands.
+    <ul>
+      <li>Each press of the ↑ arrow key retrieves the command immediately preceding the current command.</li>
+      <li>If the current command is the earliest command that is being tracked, then pressing the ↑ arrow key does nothing.</li>
+    </ul>
+  </li>
+  <li>Press the ↓ arrow key to retrieve the next commands.
+    <ul>
+      <li>Each press of the ↓ arrow key retrieves the command immediately succeeding the current command.</li>
+      <li>If the current command is the latest command that has been entered, then the command input box will be cleared upon pressing the ↓ arrow key.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p><img class="emoji" title=":warning:" alt=":warning:" raw="⚠️" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))">  Pressing either the ↑ or ↓ arrow keys will cause whatever text is currently in the command box to be overwritten.</p>
+</blockquote>
+
+<h3 id="412-saving-the-data">4.12 Saving the Data</h3>
 
 <p>Fine$$e data is saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.</p>
@@ -1302,12 +1329,13 @@ There is no need to save manually.</p>
 <h2 id="6-glossary">6. Glossary</h2>
 
 <ul>
-  <li>Expense: A one-time transaction that results in a decrease in the amount of money you have.</li>
-  <li>Income: A one-time transaction that results in an increase in the amount of money you have.</li>
   <li>ASCII: Characters that are recognised by a computer.</li>
-  <li>Current date: The system date on the computer on which Fine$$e is set up.</li>
   <li>Bookmark Expense: A template for an expense, which can be used to create expenses and add them to the finance tracker.</li>
   <li>Bookmark Income: A template for an income, which can be used to create incomes and add them to the finance tracker.</li>
+  <li>Current date: The system date on the computer on which Fine$$e is set up.</li>
+  <li>Expense: A one-time transaction that results in a decrease in the amount of money you have.</li>
+  <li>Income: A one-time transaction that results in an increase in the amount of money you have.</li>
+  <li>Text cursor: A blinking vertical line that indicates where text will be placed when entered.</li>
 </ul>
 
 <hr>
