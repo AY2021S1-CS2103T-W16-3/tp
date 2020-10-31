@@ -64,8 +64,19 @@ public class TransactionCard extends UiPart<Region> {
 
         // Hijack scroll wheel for horizontal scrolling instead of vertical scrolling.
         scrollPane.setOnScroll(scrollEvent -> {
-            if (scrollEvent.getDeltaY() != 0) {
-                scrollPane.setHvalue(scrollPane.getHvalue() - scrollEvent.getDeltaY() / categories.getWidth());
+            // If no scrollbar, pass scroll event up to parent.
+            if (categories.getWidth() <= scrollPane.getWidth()) {
+                return;
+            }
+
+            double oldHvalue = scrollPane.getHvalue();
+            double newHvalue = scrollPane.getHvalue() - scrollEvent.getDeltaY() / categories.getWidth();
+            // Bound the values of 'newHvalue' to [0, 1].
+            newHvalue = Math.max(0.0, Math.min(1.0, newHvalue));
+
+            // If there is a change in the Hvalue, consume the scroll event.
+            if (oldHvalue != newHvalue) {
+                scrollPane.setHvalue(newHvalue);
                 // Do not pass scroll event up to parent.
                 scrollEvent.consume();
             }
