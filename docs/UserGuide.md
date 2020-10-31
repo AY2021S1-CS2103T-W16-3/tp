@@ -167,7 +167,12 @@ This section aims to provide you with in-depth details on Fine\$\$e's unique fea
 
 The formats of the parameters used in the rest of the document are as follows:
 * `TITLE` and `CATEGORY` should consist of printable ASCII characters, and cannot begin with a space.
-  * Printable ASCII characters consist of alphanumeric characters `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`, space, and the special characters ``!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~``.
+  * The set of printable ASCII characters consists of alphanumeric characters, space, and several special characters.
+    Below is an exhaustive list of printable ASCII characters (excluding line breaks):
+  ```
+0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkl
+mnopqrstuvwxyz !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+  ```
 * `AMOUNT`, `AMOUNT_FROM` and `AMOUNT_TO` should be non-negative numbers up to 8 digits with 0 or 2 decimal places, with an optional `$` in front.
 * `DATE`, `DATE_FROM` and `DATE_TO` should be in `dd/mm/yyyy` format, and cannot be later than the current date.
 * `INDEX` should be a positive integer.
