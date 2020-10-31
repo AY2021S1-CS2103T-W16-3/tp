@@ -324,7 +324,17 @@ e.g. if the command specifies <code class="highlighter-rouge">t/TITLE a/AMOUNT</
   <p>The formats of the parameters used in the rest of the document are as follows:</p>
   <ul>
     <li>
-<code class="highlighter-rouge">TITLE</code> and <code class="highlighter-rouge">CATEGORY</code> should consist of <abbr title="Alphanumeric characters, space, and the special characters !&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{\|}~">printable ASCII characters</abbr>, and cannot begin with a space.</li>
+<code class="highlighter-rouge">TITLE</code> and <code class="highlighter-rouge">CATEGORY</code> should consist of printable ASCII characters, and cannot begin with a space.
+      <ul>
+        <li>The set of printable ASCII characters consists of alphanumeric characters, space, and several special characters.
+Below is an exhaustive list of printable ASCII characters (excluding line breaks):
+          <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkl
+mnopqrstuvwxyz !"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~
+</code></pre></div>          </div>
+        </li>
+      </ul>
+    </li>
     <li>
 <code class="highlighter-rouge">AMOUNT</code>, <code class="highlighter-rouge">AMOUNT_FROM</code> and <code class="highlighter-rouge">AMOUNT_TO</code> should be non-negative numbers up to 8 digits with 0 or 2 decimal places, with an optional <code class="highlighter-rouge">$</code> in front.</li>
     <li>
@@ -793,7 +803,7 @@ e.g. <code class="highlighter-rouge">allowance prize</code> will return <code cl
 
 <h3 id="45-bookmark-expense">4.5 Bookmark Expense</h3>
 
-<p>Fine$$e’s Bookmark Expense feature is used to store frequent expenses that the user makes such as paying of monthly phone bills or buying bubble tea weekly.
+<p>Fine\$\$e’s Bookmark Expense feature is used to store frequent expenses that the user makes such as paying of monthly phone bills or buying bubble tea weekly.
 The user will be then be able to edit, delete and convert a bookmarked expense to conveniently add it into Fine<span>$</span><span>$</span>e’s expense list.</p>
 
 <p><img src="/tp/images/userguide/bookmark/AnnotatedBookmarkExpenseOverview.png" alt="Bookmark Expense Overview"></p>
@@ -948,7 +958,7 @@ specified bookmark expense and date <code class="highlighter-rouge">10/08/2020</
 <h3 id="46-bookmark-income">4.6 Bookmark Income</h3>
 
 <p>Fine<span>$</span><span>$</span>e’s Bookmark Income feature is used to store incomes that the user receives frequently, such as monthly salary or stipend for being a teaching assistant.
-The user will then be able to edit, delete and convert a bookmark income to conveniently add it into Fine$$e’s incomes list.</p>
+The user will then be able to edit, delete and convert a bookmark income to conveniently add it into Fine\$\$e’s incomes list.</p>
 
 <p><img src="/tp/images/userguide/bookmark/AnnotatedBookmarkIncomeOverview.png" alt="Overview Bookmark Income Panel"></p>
 
