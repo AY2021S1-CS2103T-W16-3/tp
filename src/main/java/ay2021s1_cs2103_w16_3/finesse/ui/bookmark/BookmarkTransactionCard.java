@@ -56,6 +56,14 @@ public class BookmarkTransactionCard<T extends Transaction> extends UiPart<Regio
                     categories.getChildren().add(newCategory);
                 });
 
+        // 'categories' HBox cannot be scrolled down on when empty.
+        if (categories.getChildren().size() == 0) {
+            // Add an invisible label when there are no categories.
+            Label placeholderLabel = new Label("");
+            placeholderLabel.setVisible(false);
+            categories.getChildren().add(placeholderLabel);
+        }
+
         // Hijack scroll wheel for horizontal scrolling instead of vertical scrolling.
         scrollPane.setOnScroll(scrollEvent -> {
             // If no scrollbar, pass scroll event up to parent.
