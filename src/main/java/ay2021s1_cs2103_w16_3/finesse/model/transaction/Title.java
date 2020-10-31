@@ -10,7 +10,8 @@ import static java.util.Objects.requireNonNull;
 public class Title implements Comparable<Title> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Titles should contain at least one non-whitespace printable ASCII character.";
+            "Titles should contain at least one non-whitespace printable ASCII character "
+            + "and cannot contain any characters that are not printable ASCII characters.";
     public static final String VALIDATION_REGEX = "\\p{Graph}\\p{Print}*";
 
     private final String fullTitle;
