@@ -168,7 +168,8 @@ This section aims to provide you with in-depth details on Fine\$\$e's unique fea
 
 The formats of the parameters used in the rest of the document are as follows:
 * `TITLE` and `CATEGORY` should consist of <abbr title="Alphanumeric characters, space, and the special characters !&quot;#$%&'()*+,-./:;&lt;=&gt;?@[\]^_`{\|}~">printable ASCII characters</abbr>, and cannot begin with a space.
-* `AMOUNT`, `AMOUNT_FROM` and `AMOUNT_TO` should be non-negative numbers with up to 8 digits before the decimal point and with 0 or 2 decimal places. An optional `$` may be included in front as well.
+* `AMOUNT`, `AMOUNT_FROM` and `AMOUNT_TO` should be non-negative numbers with up to 8 digits before the decimal point and with 0 or 2 decimal places.
+  An optional `$` may be included in front as well.
 * `DATE`, `DATE_FROM` and `DATE_TO` should be in `dd/mm/yyyy` format, and cannot be later than the current date.
 * `INDEX` should be a positive integer.
 
@@ -421,7 +422,7 @@ Format: (when on the [Income tab](#222-incomes-tab)) `edit INDEX [t/TITLE] [a/AM
 * `INDEX` allows you to choose which income to edit by specifying its position in the currently displayed incomes list.
 * `TITLE`, `AMOUNT`, `DATE` and `CATEGORY` allow you to specify the updated income information. None of them are mandatory, but at least one must be specified.
   If any `CATEGORY` is specified, it will replace all the existing categories of the income.
-    For parameters that have been omitted, the value will remain unchanged.
+  For parameters that have been omitted, the value will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from an income, simply use `c/` with no category name following it.
 
