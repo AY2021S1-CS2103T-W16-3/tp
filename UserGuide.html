@@ -824,6 +824,14 @@ The user will be then be able to edit, delete and convert a bookmarked expense t
 <code class="highlighter-rouge">CATEGORY</code> is optional. Multiple <code class="highlighter-rouge">c/</code> prefixes can be used to specify multiple categories.</li>
 </ul>
 
+<blockquote>
+  <p><img class="emoji" title=":warning:" alt=":warning:" raw="⚠️" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))">  Adding of duplicate bookmark expenses is not allowed.
+Bookmark expenses with the same title are considered to be duplicates of each other.
+Contiguous whitespace characters between words in the title will be treated as a single whitespace character.</p>
+
+  <p>For example: <code class="highlighter-rouge">Phone Bill</code> and <code class="highlighter-rouge">Phone  Bill</code> are considered to be the same title while <code class="highlighter-rouge">Phone Bill</code> and <code class="highlighter-rouge">PhoneBill</code> are not considered to be the same title.</p>
+</blockquote>
+
 <p>Examples:</p>
 <ul>
   <li><code class="highlighter-rouge">add-bookmark-expense t/Phone Bill a/60 c/Utilities c/Personal</code></li>
@@ -957,8 +965,8 @@ specified bookmark expense and date <code class="highlighter-rouge">10/08/2020</
 
 <h3 id="46-bookmark-income">4.6 Bookmark Income</h3>
 
-<p>Fine<span>$</span><span>$</span>e’s Bookmark Income feature is used to store incomes that the user receives frequently, such as monthly salary or stipend for being a teaching assistant.
-The user will then be able to edit, delete and convert a bookmark income to conveniently add it into Fine\$\$e’s incomes list.</p>
+<p>Fine<span>$<span><span>$<span>e’s Bookmark Income feature is used to store incomes that the user receives frequently, such as monthly salary or stipend for being a teaching assistant.
+The user will then be able to edit, delete and convert a bookmark income to conveniently add it into Fine\$\$e’s incomes list.</span></span></span></span></p>
 
 <p><img src="/tp/images/userguide/bookmark/AnnotatedBookmarkIncomeOverview.png" alt="Overview Bookmark Income Panel"></p>
 
@@ -977,6 +985,14 @@ The user will then be able to edit, delete and convert a bookmark income to conv
   <li>
 <code class="highlighter-rouge">CATEGORY</code> is optional. Multiple <code class="highlighter-rouge">c/</code> prefixes can be used to specify multiple categories.</li>
 </ul>
+
+<blockquote>
+  <p><img class="emoji" title=":warning:" alt=":warning:" raw="⚠️" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" style="vertical-align: middle; display: inline; max-width: 1em; visibility: hidden;" onload="this.style.visibility='visible'" onerror="this.replaceWith(this.getAttribute('raw'))">  Adding of duplicate bookmark incomes is not allowed.
+Bookmark incomes with the same title are considered to be duplicates of each other.
+Contiguous whitespace characters between words in the title will be treated as a single whitespace character.</p>
+
+  <p>For example: <code class="highlighter-rouge">Part Time</code> and <code class="highlighter-rouge">Part  Time</code> are considered to be the same title while <code class="highlighter-rouge">Part Time</code> and <code class="highlighter-rouge">PartTime</code> are not considered to be the same title.</p>
+</blockquote>
 
 <p>Examples:</p>
 <ul>
@@ -1196,7 +1212,7 @@ This ensures that you will always see the latest information about your spending
 Simply press the ↑ or ↓ arrow keys on your keyboard to navigate through your command history.</p>
 
 <ul>
-  <li>The command history keeps track of the latest 50 commands entered.</li>
+  <li>The command history keeps track of the latest 50 commands entered in the current session.</li>
   <li>The command input box must be focused on, i.e. ensure that the text cursor is blinking in the command input box.</li>
   <li>Press the ↑ arrow key to retrieve the previous commands.
     <ul>
