@@ -42,8 +42,6 @@ A list of the terms used in this user guide as well as their definitions is avai
 
 If you have any questions regarding Fine$$e, do check out [Section 7. FAQ](#7-faq).
 
-Do take note of the following symbols and formatting used throughout this document:
-
 <div markdown="block" class="alert alert-info">
 
 Do take note of the following symbols and formatting used throughout this document:
@@ -63,7 +61,6 @@ Do take note of the following symbols and formatting used throughout this docume
 
 This section contains a step-by-step guide on how to install Fine\\$\\$e and get it to work on your computer.
 It also shows the various components that make up Fine\\$\\$e's user interface.
-
 
 Let's get started!
 
@@ -88,8 +85,11 @@ The Fine$$e GUI should appear in a few seconds, with sample data included, simil
    * `add-expense t/Bubble Tea a/5 d/03/10/2020 c/Food & Beverage`:
    Adds an expense with the title `Bubble Tea`, amount `$5.00`, date `03/10/2020` and category `Food & Beverage` to the finance tracker.
 
+   * `tab 3`: Switches to the [Expenses Tab](#223-expenses-tab).
+   
    * `delete 3`: Deletes the 3rd transaction shown in the current list.
-
+      Note that this command only works in the [Expenses Tab](#223-expenses-tab) and the [Incomes Tab](#222-incomes-tab).
+   
    * `exit`: Exits the app.
 
 ### 2.2 Layout of Fine$$e's Interface
@@ -98,7 +98,7 @@ The user interface of Fine$$e is divided into 4 tabs, each serving a specific pu
 
 #### 2.2.1 Overview Tab
 
-Displays a list of all recent transactions ([incomes](#44-income)/[expenses](#43-expense)), along with your [expense limit](#47-expense-limit), [savings goal](#48-savings-goal), remaining budget and current savings.
+Displays a list of all recent transactions (both [incomes](#44-income) and [expenses](#43-expense)), along with your [expense limit](#47-expense-limit), [savings goal](#48-savings-goal), remaining budget and current savings.
 
 ![Overview Tab](images/userguide/OverviewTab.png)
 
@@ -129,8 +129,8 @@ This section will provide you with a brief overview of Fine\\$\\$e, so that you 
   * Track incomes/expenses by entering their details e.g title, amount, date
   * Categorize your incomes and expenses to better organize your finances
   * Search for incomes/expenses easily by keywords
-1. Add bookmarked transactions
-  * Save transactions that occur regularly so that frequent expenses/incomes can be added to the finance tracker more conveniently
+1. Add bookmark transactions
+  * Create templates for transactions that occur regularly so that frequent expenses/incomes can be added to the finance tracker more conveniently
 1. Budgeting
   * Set a monthly expense limit to track your remaining budget for the month
   * Set a monthly savings goal to cultivate good saving habits
@@ -278,7 +278,9 @@ Edits an expense in the finance tracker.
 Format: (when on the [Expenses tab](#223-expenses-tab)) `edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY...]`
 
 * `INDEX` allows you to choose which expense to edit by specifying its position in the currently displayed expenses list.
-* `TITLE`, `AMOUNT`, `DATE` and `CATEGORY` allow you to specify the expense information to update. None of them are mandatory, but at least one must be specified.
+* `TITLE`, `AMOUNT`, `DATE` and `CATEGORY` allow you to specify the expense information to update.
+  None of them are mandatory, but at least one must be specified.
+  If any `CATEGORY` is specified, it will replace all of the expense's categories.
   For parameters that have been omitted, the value will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from an expense, simply use `c/` with no category name following it.
@@ -345,20 +347,20 @@ Lists all expenses in the finance tracker.
 
 #### 4.3.5 Find Expense: `find`
 
-Finds expenses that match any of the given keywords, and displays the list of matching expenses.
+Finds expenses that match any of the given parameters, and displays the list of matching expenses.
 
-Format: (when on the [Expenses tab](#223-expenses-tab)) `find KEYWORD [MORE_KEYWORDS...]`
+Format: (when on the [Expenses tab](#223-expenses-tab)) `find [t/TITLE_KEYPHRASE...] [a/AMOUNT] [d/DATE] [c/CATEGORY...] [af/AMOUNT_FROM] [at/AMOUNT_TO] [df/DATE_FROM] [dt/DATE_TO]`
 
 > :bulb: &nbsp; When on the [Overview tab](#221-overview-tab), you can use `find` to search for all transactions (expenses and incomes).
 
-The available keywords and their uses are as follows:
+The available parameters and their uses are as follows:
 
-* `t/TITLE`: Searches for all expenses with titles containing the specified `TITLE` keyword.
+* `t/TITLE_KEYPHRASE`: Searches for all expenses with titles containing the specified `TITLE_KEYPHRASE` keyphrase.
   * The search is case-insensitive. e.g `taxi` will match `Taxi`
-  * More than one keyword can be given.
-  * The order of the keywords does not matter. e.g. `Bus Train` will match `Train Bus`
+  * More than one keyphrase can be given.
+  * The order of the keyphrases does not matter. e.g. `Bus Train` will match `Train Bus`
   * Only full words will be matched. e.g. `Snack` will not match `Snacks`
-  * Titles matching at least one keyword will be returned (i.e. `OR` search).
+  * Titles matching at least one keyphrase will be returned (i.e. `OR` search).
     e.g. `Tea Coffee` will return `Bubble Tea`, `Starbucks Coffee`
 * `a/AMOUNT`: Searches for all expenses with the specified amount.
 * `d/DATE`: Searches for all expenses that occurred on the specified date.
@@ -370,7 +372,7 @@ The available keywords and their uses are as follows:
 * `df/DATE_FROM`: Searches for all expenses that occurred on or later than the specified date.
 * `dt/DATE_TO`: Searches for all expenses that occurred on or before the specified date.
 
-None of the keywords are mandatory, but at least one must be specified.
+None of the parameters are mandatory, but at least one must be specified.
 
 Examples:
 * `find t/tea d/22/09/2000`
@@ -431,7 +433,9 @@ Edits an expense in the finance tracker.
 Format: (when on the [Income tab](#222-incomes-tab)) `edit INDEX [t/TITLE] [a/AMOUNT] [d/DATE] [c/CATEGORY...]`
 
 * `INDEX` allows you to choose which income to edit by specifying its position in the currently displayed incomes list.
-* `TITLE`, `AMOUNT`, `DATE` and `CATEGORY` allow you to specify the updated income information. None of them are mandatory, but at least one must be specified.
+* `TITLE`, `AMOUNT`, `DATE` and `CATEGORY` allow you to specify the updated income information.
+  None of them are mandatory, but at least one must be specified.
+  If any `CATEGORY` is specified, it will replace all of the income's existing categories.
   For parameters that have been omitted, the value will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from an income, simply use `c/` with no category name following it.
@@ -498,20 +502,20 @@ Lists all incomes in the finance tracker.
 
 #### 4.4.5 Find Income: `find`
 
-Finds incomes that match any of the given keywords, and displays the list of matching incomes.
+Finds incomes that match any of the given parameters, and displays the list of matching incomes.
 
-Format: (when on the [Incomes tab](#222-incomes-tab)) `find KEYWORD [MORE_KEYWORDS...]`
+Format: (when on the [Incomes tab](#222-incomes-tab)) `find [t/TITLE_KEYPHRASE...] [a/AMOUNT] [d/DATE] [c/CATEGORY...] [af/AMOUNT_FROM] [at/AMOUNT_TO] [df/DATE_FROM] [dt/DATE_TO]`
 
 > :bulb: &nbsp; When on the [Overview tab](#221-overview-tab), you can use `find` to search for all transactions (expenses and incomes).
 
-The available keywords and their uses are as follows:
+The available parameters and their uses are as follows:
 
-* `t/TITLE`: Searches for all incomes with titles containing the specified `TITLE` keyword.
+* `t/TITLE_KEYPHRASE`: Searches for all incomes with titles containing the specified `TITLE_KEYPHRASE` keyphrase.
   * The search is case-insensitive. e.g `work` will match `Work`
-  * More than one keyword can be given.
-  * The order of the keywords does not matter. e.g. `TA part-time` will match `part-time TA`
+  * More than one keyphrase can be given.
+  * The order of the keyphrases does not matter. e.g. `TA part-time` will match `part-time TA`
   * Only full words will be matched. e.g. `intern` will not match `internship`
-  * Titles matching at least one keyword will be returned (i.e. `OR` search).
+  * Titles matching at least one keyphrase will be returned (i.e. `OR` search).
     e.g. `allowance prize` will return `Laptop Allowance`, `Hackathon Prize`
 * `a/AMOUNT`: Searches for all incomes with the specified amount.
 * `d/DATE`: Searches for all incomes that occurred on the specified date.
@@ -542,8 +546,13 @@ Lists all incomes with the category `prize` and/or `gift`, with amounts between 
 
 ### 4.5 Bookmark Expense
 
-Fine\\$\\$e's Bookmark Expense feature is used to store frequent expenses that the user makes such as paying of monthly phone bills or buying bubble tea weekly.
-The user will be then be able to edit, delete and convert a bookmarked expense to conveniently add it into Fine<span>$</span><span>$</span>e's expense list.
+A **bookmark expense** is a template that allows you to create expenses that you make frequently, such as paying phone bills monthly or buying bubble tea weekly.
+You can convert a bookmark expense repeatedly to create as many expenses as you want, and the created expenses will automatically be added to Fine<span>$</span><span>$</span>e's expenses list.
+
+To help you manage your finances, Fine\$\$e records the following information about each of your bookmark expenses:
+1. **Title**: A descriptive title, to remind you what the bookmark expense is about.
+1. **Amount**: How much money you will spend each time you convert the bookmark expense into an expense.
+1. **Categories**: Any number of categories, to help you group related incomes together.
 
 ![Bookmark Expense Overview](images/userguide/bookmark/AnnotatedBookmarkExpenseOverview.png)
 
@@ -594,7 +603,9 @@ Edits a bookmark expense in the finance tracker.
 Format: `edit-bookmark INDEX [t/TITLE] [a/AMOUNT] [c/CATEGORY...]`
 
 * `INDEX` allows you to choose which bookmark expense to edit by specifying its position in the bookmark expenses list.
-* `TITLE`, `AMOUNT` and `CATEGORY` allow you to specify the updated bookmark expense information. None of them are mandatory, but at least one must be specified.
+* `TITLE`, `AMOUNT` and `CATEGORY` allow you to specify the updated bookmark expense information.
+  None of them are mandatory, but at least one must be specified.
+  If any `CAEGORY` is specified, it will replace all of the bookmark expense's existing categories. 
   For parameters that have been omitted, the value will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from a bookmark expense, simply use `c/` with no category name following it.
@@ -676,8 +687,13 @@ specified bookmark expense and date `10/08/2020`, and adds it to the expenses li
 
 ### 4.6 Bookmark Income
 
-Fine<span>$<span><span>$<span>e's Bookmark Income feature is used to store incomes that the user receives frequently, such as monthly salary or stipend for being a teaching assistant.
-The user will then be able to edit, delete and convert a bookmark income to conveniently add it into Fine\\$\\$e's incomes list.
+A **bookmark income** is a template that allows you to create incomes that you make frequently, such as monthly salary or stipend for being a teaching assistant.
+You can convert a bookmark income repeatedly to create as many incomes as you want, and the created incomes will automatically be added to Fine<span>$</span><span>$</span>e's incomes list.
+
+To help you manage your finances, Fine\$\$e records the following information about each of your bookmark incomes:
+1. **Title**: A descriptive title, to remind you what the bookmark income is about.
+1. **Amount**: How much money you will receive each time you convert the bookmark income into an income.
+1. **Categories**: Any number of categories, to help you group related incomes together.
 
 ![Overview Bookmark Income Panel](images/userguide/bookmark/AnnotatedBookmarkIncomeOverview.png)
 
@@ -728,7 +744,9 @@ Edits a bookmark income in the finance tracker.
 Format: `edit-bookmark INDEX [t/TITLE] [a/AMOUNT] [c/CATEGORY...]`
 
 * `INDEX` allows you to choose which bookmark income to edit by specifying its position in the bookmark incomes list.
-* `TITLE`, `AMOUNT` and `CATEGORY` allow you to specify the updated bookmark income information. None of them are mandatory, but at least one must be specified.
+* `TITLE`, `AMOUNT` and `CATEGORY` allow you to specify the updated bookmark income information.
+ None of them are mandatory, but at least one must be specified.
+ If any `CATEGORY` is specified, it will replace all of the bookmark income's existing categories.
  For parameters that have been omitted, the value will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from a bookmark income, simply use `c/` with no category name following it.
