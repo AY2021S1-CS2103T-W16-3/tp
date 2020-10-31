@@ -42,8 +42,6 @@ A list of the terms used in this user guide as well as their definitions is avai
 
 If you have any questions regarding Fine$$e, do check out [Section 7. FAQ](#7-faq).
 
-Do take note of the following symbols and formatting used throughout this document:
-
 <div markdown="block" class="alert alert-info">
 
 Do take note of the following symbols and formatting used throughout this document:
@@ -88,7 +86,10 @@ The Fine$$e GUI should appear in a few seconds, with sample data included, simil
    * `add-expense t/Bubble Tea a/5 d/03/10/2020 c/Food & Beverage`:
    Adds an expense with the title `Bubble Tea`, amount `$5.00`, date `03/10/2020` and category `Food & Beverage` to the finance tracker.
 
+   * `tab 3`: Switches to the [Expenses Tab](#223-expenses-tab).
+   
    * `delete 3`: Deletes the 3rd transaction shown in the current list.
+   Note that this command only works in the [Expenses Tab](#223-expenses-tab) and the [Incomes Tab](#222-incomes-tab).
 
    * `exit`: Exits the app.
 
@@ -98,7 +99,7 @@ The user interface of Fine$$e is divided into 4 tabs, each serving a specific pu
 
 #### 2.2.1 Overview Tab
 
-Displays a list of all recent transactions ([incomes](#44-income)/[expenses](#43-expense)), along with your [expense limit](#47-expense-limit), [savings goal](#48-savings-goal), remaining budget and current savings.
+Displays a list of all recent transactions (both [incomes](#44-income) and [expenses](#43-expense)), along with your [expense limit](#47-expense-limit), [savings goal](#48-savings-goal), remaining budget and current savings.
 
 ![Overview Tab](images/userguide/OverviewTab.png)
 
@@ -129,8 +130,8 @@ This section will provide you with a brief overview of Fine\\$\\$e, so that you 
   * Track incomes/expenses by entering their details e.g title, amount, date
   * Categorize your incomes and expenses to better organize your finances
   * Search for incomes/expenses easily by keywords
-1. Add bookmarked transactions
-  * Save transactions that occur regularly so that frequent expenses/incomes can be added to the finance tracker more conveniently
+1. Add bookmark transactions
+  * Create templates for transactions that occur regularly so that frequent expenses/incomes can be added to the finance tracker more conveniently
 1. Budgeting
   * Set a monthly expense limit to track your remaining budget for the month
   * Set a monthly savings goal to cultivate good saving habits
@@ -167,7 +168,7 @@ This section aims to provide you with in-depth details on Fine\$\$e's unique fea
 
 The formats of the parameters used in the rest of the document are as follows:
 * `TITLE` and `CATEGORY` should consist of <abbr title="Alphanumeric characters, space, and the special characters !&quot;#$%&'()*+,-./:;&lt;=&gt;?@[\]^_`{\|}~">printable ASCII characters</abbr>, and cannot begin with a space.
-* `AMOUNT`, `AMOUNT_FROM` and `AMOUNT_TO` should be non-negative numbers up to 8 digits with 0 or 2 decimal places, with an optional `$` in front.
+* `AMOUNT`, `AMOUNT_FROM` and `AMOUNT_TO` should be non-negative numbers with up to 8 digits before the decimal point and with 0 or 2 decimal places. An optional `$` may be included in front as well.
 * `DATE`, `DATE_FROM` and `DATE_TO` should be in `dd/mm/yyyy` format, and cannot be later than the current date.
 * `INDEX` should be a positive integer.
 
@@ -265,7 +266,8 @@ Format: (when on the [Expenses tab](#223-expenses-tab)) `edit INDEX [t/TITLE] [a
 
 * `INDEX` allows you to choose which expense to edit by specifying its position in the currently displayed expenses list.
 * `TITLE`, `AMOUNT`, `DATE` and `CATEGORY` allow you to specify the expense information to update. None of them are mandatory, but at least one must be specified.
-  For parameters that have been omitted, the value will remain unchanged.
+  If any `CATEGORY` is specified, it will replace all the existing categories of the expense.
+  For parameters that have been omitted, their values will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from an expense, simply use `c/` with no category name following it.
 
@@ -333,7 +335,7 @@ Lists all expenses in the finance tracker.
 
 Finds expenses that match any of the given keywords, and displays the list of matching expenses.
 
-Format: (when on the [Expenses tab](#223-expenses-tab)) `find KEYWORD [MORE_KEYWORDS...]`
+Format: (when on the [Expenses tab](#223-expenses-tab)) `find [t/TITLE_KEYWORD]`
 
 > :bulb: &nbsp; When on the [Overview tab](#221-overview-tab), you can use `find` to search for all transactions (expenses and incomes).
 
@@ -418,7 +420,8 @@ Format: (when on the [Income tab](#222-incomes-tab)) `edit INDEX [t/TITLE] [a/AM
 
 * `INDEX` allows you to choose which income to edit by specifying its position in the currently displayed incomes list.
 * `TITLE`, `AMOUNT`, `DATE` and `CATEGORY` allow you to specify the updated income information. None of them are mandatory, but at least one must be specified.
-  For parameters that have been omitted, the value will remain unchanged.
+  If any `CATEGORY` is specified, it will replace all the existing categories of the income.
+    For parameters that have been omitted, the value will remain unchanged.
 
 > :bulb: &nbsp; To remove all categories from an income, simply use `c/` with no category name following it.
 
@@ -528,8 +531,13 @@ Lists all incomes with the category `prize` and/or `gift`, with amounts between 
 
 ### 4.5 Bookmark Expense
 
-Fine<span>$</span><span>$</span>e's Bookmark Expense feature is used to store frequent expenses that the user makes such as paying of monthly phone bills or buying bubble tea weekly.
-The user will be then be able to edit, delete and convert a bookmarked expense to conveniently add it into Fine<span>$</span><span>$</span>e's expense list.
+Fine<span>$</span><span>$</span>e's Bookmark Expense feature are templates to create expenses that the user frequently makes such as paying of monthly phone bills or buying bubble tea weekly.
+The user will be then be able to edit, delete and convert a bookmark expense to conveniently add it into Fine<span>$</span><span>$</span>e's expense list.
+
+Fine\$\$e records the following information about each of your bookmark expenses:
+1. **Title**: A descriptive title, to remind you what the bookmark expense was about.
+1. **Amount**: How much money you would spend each time you convert the bookmark expense to an expense.
+1. **Categories**: Any number of categories, to help you group related bookmark expenses together.
 
 #### 4.5.1 Add Bookmark Expense: `add-bookmark-expense`
 
@@ -556,7 +564,7 @@ Expected Outcome:
 ```
 New bookmark expense added: Phone Bill Amount: $60.00 Categories: [Personal][Utilities]
 ```
-Adds a bookmark expense titled `Phone Bill` with amount `$65.00` and two categories `Utilities` and `Personal`.
+Adds a bookmark expense titled `Phone Bill` with amount `$60.00` and two categories `Personal` and `Utilities`.
 
 #### 4.5.2 Edit Bookmark Expense: `edit-bookmark`
 
@@ -645,6 +653,11 @@ specified bookmark expense and date `10/10/2020`, and adds it to the finance tra
 
 Fine<span>$</span><span>$</span>e's Bookmark Income feature is used to store incomes that the user receives frequently, such as monthly salary or stipend for being a teaching assistant.
 The user will then be able to edit, delete and convert a bookmark income to conveniently add it into Fine<span>$</span><span>$</span>e's incomes list.
+
+Fine\$\$e records the following information about each of your bookmark incomes:
+1. **Title**: A descriptive title, to remind you what the bookmark income was about.
+1. **Amount**: How much money you would receive each time you convert the bookmark income to an income.
+1. **Categories**: Any number of categories, to help you group related bookmark incomes together.
 
 #### 4.6.1 Add Bookmark Income: `add-bookmark-income`
 
