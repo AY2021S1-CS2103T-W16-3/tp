@@ -951,13 +951,15 @@ Exit | `exit`
 
 ## 6. Glossary
 
-* ASCII: Characters that are recognised by a computer.
-* Bookmark Expense: A template for an expense, which can be used to create expenses and add them to the finance tracker.
-* Bookmark Income: A template for an income, which can be used to create incomes and add them to the finance tracker.
-* Current date: The system date on the computer on which Fine$$e is set up.
-* Expense: A one-time transaction that results in a decrease in the amount of money you have.
-* Income: A one-time transaction that results in an increase in the amount of money you have.
-* Text cursor: A blinking vertical line that indicates where text will be placed when entered.
+Term | Definition
+-----|-----------
+ASCII | Characters that are recognised by a computer.
+Bookmark Expense | A template for an expense, which can be used to create expenses and add them to the finance tracker.
+Bookmark Income | A template for an income, which can be used to create incomes and add them to the finance tracker.
+Current date | The system date on the computer on which Fine$$e is set up.
+Expense | A one-time transaction that results in a decrease in the amount of money you have.
+Income | A one-time transaction that results in an increase in the amount of money you have.
+Text cursor | A blinking vertical line that indicates where text will be placed when entered.
 
 --------------------------------------------------------------------------------------------------------------------
 
