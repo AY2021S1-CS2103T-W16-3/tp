@@ -80,7 +80,10 @@ public class FinanceTrackerParser {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public Command parseCommand(String userInput, UiState uiState) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        // Replace non-breaking spaces with regular spaces and trim.
+        String trimmedUserInput = userInput.replaceAll("\u00A0", " ").trim();
+
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(trimmedUserInput);
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
