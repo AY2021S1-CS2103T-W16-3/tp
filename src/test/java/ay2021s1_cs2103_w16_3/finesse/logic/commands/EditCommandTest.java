@@ -1,5 +1,6 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_METHOD_SHOULD_NOT_BE_CALLED;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BUBBLE_TEA;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_INTERNSHIP;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -26,7 +27,7 @@ public class EditCommandTest {
     @Test
     public void execute_throwsCommandExcepion() {
         assertCommandFailure(new EditCommand(INDEX_FIRST, new EditTransactionDescriptor()), model,
-                "This method should not be called.");
+                MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
     }
 
     @Test

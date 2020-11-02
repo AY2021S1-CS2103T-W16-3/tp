@@ -1,6 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_METHOD_SHOULD_NOT_BE_CALLED;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
@@ -545,12 +546,12 @@ public class FinanceTrackerParserTest {
     private static class UiStateStub extends UiState {
         @Override
         public Tab getCurrentTab() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
 
         @Override
         public void setCurrentTab(Tab currentTab) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
         }
     }
 

@@ -1,5 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs;
 
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_METHOD_SHOULD_NOT_BE_CALLED;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -33,11 +35,11 @@ public class FindCommandStub extends FindCommand {
 
     @Override
     public CommandResult execute(Model model) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
     }
 
     @Override
     public boolean equals(Object other) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
     }
 }

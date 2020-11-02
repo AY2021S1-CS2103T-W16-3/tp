@@ -1,5 +1,6 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_METHOD_SHOULD_NOT_BE_CALLED;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.getTypicalFinanceTracker;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -30,7 +31,7 @@ public class FindCommandTest {
     @Test
     public void execute_throwsCommandException() {
         assertCommandFailure(new FindCommand(List.of(preparePredicate(""))), model,
-                "This method should not be called.");
+                MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_METHOD_SHOULD_NOT_BE_CALLED;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
@@ -23,7 +24,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_throwsCommandException() {
-        assertCommandFailure(new DeleteCommand(INDEX_FIRST), model, "This method should not be called.");
+        assertCommandFailure(new DeleteCommand(INDEX_FIRST), model, MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
     }
 
     @Test
