@@ -18,10 +18,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
 /**
  * Edits the details of an existing transaction using its displayed index from the finance tracker
@@ -80,28 +77,6 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         throw new CommandException("This method should not be called.");
-    }
-
-    /**
-     * Creates and returns a {@code Transaction} with the details of {@code transactionToEdit}
-     * edited with {@code editTransactionDescriptor}.
-     */
-    private static Transaction createEditedTransaction(Transaction transactionToEdit,
-                                                       EditTransactionDescriptor editTransactionDescriptor) {
-        assert transactionToEdit != null;
-
-        Title updatedTitle = editTransactionDescriptor.getTitle().orElse(transactionToEdit.getTitle());
-        Amount updatedAmount = editTransactionDescriptor.getAmount().orElse(transactionToEdit.getAmount());
-        Date updatedDate = editTransactionDescriptor.getDate().orElse(transactionToEdit.getDate());
-        Set<Category> updatedCategories = editTransactionDescriptor.getCategories()
-                .orElse(transactionToEdit.getCategories());
-
-        if (transactionToEdit instanceof Expense) {
-            return new Expense(updatedTitle, updatedAmount, updatedDate, updatedCategories);
-        } else {
-            assert transactionToEdit instanceof Income;
-            return new Income(updatedTitle, updatedAmount, updatedDate, updatedCategories);
-        }
     }
 
     @Override
