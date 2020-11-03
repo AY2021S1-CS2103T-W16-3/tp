@@ -1,14 +1,8 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 
-import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import ay2021s1_cs2103_w16_3.finesse.commons.core.index.Index;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
 /**
  * Deletes a transaction identified using its displayed index from the finance tracker
@@ -42,16 +36,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Transaction> lastShownList = model.getFilteredTransactionList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
-        }
-
-        Transaction transactionToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteTransaction(transactionToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_TRANSACTION_SUCCESS, transactionToDelete));
+        throw new CommandException("This method should not be called.");
     }
 
     @Override
