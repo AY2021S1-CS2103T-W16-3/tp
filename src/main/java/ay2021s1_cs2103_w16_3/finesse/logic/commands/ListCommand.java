@@ -14,7 +14,6 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all transactions";
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         throw new CommandException(MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);

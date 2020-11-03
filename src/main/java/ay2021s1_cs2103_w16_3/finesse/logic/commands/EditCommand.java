@@ -45,7 +45,6 @@ public class EditCommand extends Command {
             + PREFIX_AMOUNT + "5 "
             + PREFIX_DATE + "22/09/2020";
 
-    public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Transaction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index targetIndex;
