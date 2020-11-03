@@ -25,11 +25,10 @@ import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
 
     @Test
     public void execute_throwsCommandException() {
+        Model model = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
         assertCommandFailure(new FindCommand(List.of(preparePredicate(""))), model,
                 MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
     }

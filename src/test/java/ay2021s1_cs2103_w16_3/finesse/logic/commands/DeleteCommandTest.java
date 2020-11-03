@@ -20,10 +20,9 @@ import ay2021s1_cs2103_w16_3.finesse.model.UserPrefs;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
-
     @Test
     public void execute_throwsCommandException() {
+        Model model = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
         assertCommandFailure(new DeleteCommand(INDEX_FIRST), model, MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
     }
 
