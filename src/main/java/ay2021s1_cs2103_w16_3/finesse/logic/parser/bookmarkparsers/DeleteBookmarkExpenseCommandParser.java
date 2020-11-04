@@ -9,7 +9,7 @@ import ay2021s1_cs2103_w16_3.finesse.logic.parser.ParserUtil;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
 
 /**
- * Parser input arguments and creates a new DeleteBookmarkExpenseCommand object
+ * Parses input arguments and creates a new DeleteBookmarkExpenseCommand object
  */
 public class DeleteBookmarkExpenseCommandParser implements Parser<DeleteBookmarkExpenseCommand> {
     /**

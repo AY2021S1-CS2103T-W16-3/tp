@@ -18,7 +18,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
 /**
- * Parser input arguments and creates a new ConvertBookmarkIncomeCommand object
+ * Parses input arguments and creates a new ConvertBookmarkIncomeCommand object
  */
 public class ConvertBookmarkIncomeCommandParser implements Parser<ConvertBookmarkIncomeCommand> {
     /**

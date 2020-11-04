@@ -2,7 +2,9 @@ package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_TAB_FORMAT;
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_NO_ARGUMENTS_COMMAND_FORMAT;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static java.util.Objects.requireNonNull;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -179,6 +181,7 @@ public class FinanceTrackerParser {
             }
 
         case ClearCommand.COMMAND_WORD:
+            enforceNoArguments(ClearCommand.COMMAND_WORD, arguments);
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
@@ -203,6 +206,7 @@ public class FinanceTrackerParser {
             return new SetSavingsGoalCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
+            enforceNoArguments(ListCommand.COMMAND_WORD, arguments);
             switch (uiCurrentTab) {
             case OVERVIEW:
                 return new ListTransactionCommand();
@@ -217,20 +221,25 @@ public class FinanceTrackerParser {
 
         case ListTransactionCommand.COMMAND_WORD:
         case ListTransactionCommand.COMMAND_ALIAS:
+            enforceNoArguments(ListTransactionCommand.COMMAND_WORD, arguments);
             return new ListTransactionCommand();
 
         case ListExpenseCommand.COMMAND_WORD:
         case ListExpenseCommand.COMMAND_ALIAS:
+            enforceNoArguments(ListExpenseCommand.COMMAND_WORD, arguments);
             return new ListExpenseCommand();
 
         case ListIncomeCommand.COMMAND_WORD:
         case ListIncomeCommand.COMMAND_ALIAS:
+            enforceNoArguments(ListIncomeCommand.COMMAND_WORD, arguments);
             return new ListIncomeCommand();
 
         case ExitCommand.COMMAND_WORD:
+            enforceNoArguments(ExitCommand.COMMAND_WORD, arguments);
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+            enforceNoArguments(HelpCommand.COMMAND_WORD, arguments);
             return new HelpCommand();
 
         case TabCommand.COMMAND_WORD:
@@ -252,4 +261,18 @@ public class FinanceTrackerParser {
                 Stream.of(tabs).map(Tab::toString).collect(Collectors.joining(", ")));
     }
 
+    /**
+     * Enforces that no arguments are input for commands that take in no arguments.
+     *
+     * @param command The command word that was used.
+     * @param args The arguments that the user input.
+     * @throws ParseException If {@code args} is not the empty string.
+     */
+    private void enforceNoArguments(String command, String args) throws ParseException {
+        requireNonNull(command);
+        requireNonNull(args);
+        if (!args.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_NO_ARGUMENTS_COMMAND_FORMAT, command));
+        }
+    }
 }
