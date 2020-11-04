@@ -165,6 +165,8 @@ This section aims to provide you with in-depth details on Fine\$\$e's unique fea
 * Parameters can be in any order.<br>
   e.g. if the command specifies `t/TITLE a/AMOUNT`, `a/AMOUNT t/TITLE` is also acceptable.
 
+* Any leading/trailing whitespaces for the user input as a whole will be ignored. e.g. `   find t/Bubble Tea   ` will be treated as `find t/Bubble Tea`.
+
 </div>
 
 <div markdown="block" class="alert alert-info">

@@ -12,7 +12,7 @@ Fine$$e is a desktop finance tracker that allows tertiary students to better man
 ### Summary of Contributions
 
 * **New feature**: Overhauled the validation rules for data models.
-  * What it does: Transforms the data model from the base Address Book project to one that is more suitable for the needs of Fine\$\$e. 
+  * What it does: Transforms the data model from the base Address Book project to one that is more suitable for the needs of Fine\$\$e.
   * Justification: Previously, the project contained data models such as `Name` and `Email`.
   In the initial stages of the project, to minimize the amount of development work needed we decided to map some of the existing models over to Fine\$\$e.
   However, the existing models had some existing validation rules which do not make sense in Fine\$\$e.
@@ -20,7 +20,7 @@ Fine$$e is a desktop finance tracker that allows tertiary students to better man
   However, a layer of abstraction is maintained such that other components do not need to depend on the underlying data types.
   This includes converting the internal data from `public` to `private`, and using accessors to retrieve the data.
 
-* **New feature**: Drafted the initial design for UI-dependent commands. 
+* **New feature**: Drafted the initial design for UI-dependent commands.
   * What it does: Allows the user to use commands with different behavior based on the current state of the user interface (in particular, which tab is currently active).
   * Justification: This streamlines the user experience, as they only need to remember a small set of intuitive commands.
   * Highlights: The existing commands were reused as much as possible, while complying with the standard OOP principles.
@@ -47,7 +47,7 @@ Fine$$e is a desktop finance tracker that allows tertiary students to better man
     * Fixed some user guide bugs between v1.3 and v1.3.1. (Pull request [#206](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/206))
   * Developer Guide:
     * Elaborated on the `Model` component documentation, and added Pitest to the DevOps guide. (Pull request [#140](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/140))
-  
+
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
   [#123](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/123),
@@ -63,4 +63,4 @@ Fine$$e is a desktop finance tracker that allows tertiary students to better man
   * Updated Gradle from `5.2.1` to `6.6.1`. (Pull request [#3](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/3))
   * Set up [PIT mutation testing](http://pitest.org/) as a test coverage tool, as an alternative to JaCoCo and CodeCov.
   (Pull request [#6](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/6))
-  
+
