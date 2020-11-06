@@ -436,3 +436,15 @@
     -fx-background-radius: 5;
     -fx-font-size: 13;
 }
+
+.temporal-label {
+    -fx-font-size: 30px;
+    -fx-text-fill: white;
+    -fx-padding: 20px;
+}
+
+.credits-label {
+    -fx-font-size: 10px;
+    -fx-text-fill: white;
+    -fx-padding: 20px;
+}

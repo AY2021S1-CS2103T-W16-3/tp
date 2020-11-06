@@ -240,6 +240,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Disables the application and displays a fullscreen error message.
+     */
+    private void disableApplication() {
+        DisabledWindow disabledWindow = new DisabledWindow();
+        // Cannot setScene directly as the new scene will not be sized correctly.
+        primaryStage.getScene().setRoot(disabledWindow.getRoot());
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see ay2021s1_cs2103_w16_3.finesse.logic.Logic#execute(String, UiState)
@@ -269,6 +278,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (TemporalException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
+            disableApplication();
             throw e;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
