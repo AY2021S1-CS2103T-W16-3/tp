@@ -6,6 +6,7 @@ import ay2021s1_cs2103_w16_3.finesse.commons.core.GuiSettings;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandResult;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
+import ay2021s1_cs2103_w16_3.finesse.logic.time.exceptions.TemporalException;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.bookmark.BookmarkExpense;
 import ay2021s1_cs2103_w16_3.finesse.model.bookmark.BookmarkIncome;
@@ -28,8 +29,10 @@ public interface Logic {
      * @return The result of the command execution.
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
+     * @throws TemporalException If irregularities in the system time are detected.
      */
-    CommandResult execute(String commandText, UiState uiState) throws CommandException, ParseException;
+    CommandResult execute(String commandText, UiState uiState)
+            throws CommandException, ParseException, TemporalException;
 
     /** Calculates the budget information in the finance tracker. */
     void calculateBudgetInfo();

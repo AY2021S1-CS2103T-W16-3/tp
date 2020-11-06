@@ -11,6 +11,7 @@ import ay2021s1_cs2103_w16_3.finesse.logic.Logic;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandResult;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
+import ay2021s1_cs2103_w16_3.finesse.logic.time.exceptions.TemporalException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.ui.tabs.AnalyticsTabPane;
 import ay2021s1_cs2103_w16_3.finesse.ui.tabs.ExpenseTabPane;
@@ -243,7 +244,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see ay2021s1_cs2103_w16_3.finesse.logic.Logic#execute(String, UiState)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException, TemporalException {
         try {
             CommandResult commandResult = logic.execute(commandText, uiState);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -265,6 +267,9 @@ public class MainWindow extends UiPart<Stage> {
             tabToSwitchTo.ifPresent(this::switchTabs);
 
             return commandResult;
+        } catch (TemporalException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

@@ -11,6 +11,8 @@ import ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandResult;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.FinanceTrackerParser;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
+import ay2021s1_cs2103_w16_3.finesse.logic.time.Timekeeper;
+import ay2021s1_cs2103_w16_3.finesse.logic.time.exceptions.TemporalException;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.bookmark.BookmarkExpense;
@@ -33,6 +35,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final FinanceTrackerParser financeTrackerParser;
+    private final Timekeeper timekeeper;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -41,11 +44,15 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         financeTrackerParser = new FinanceTrackerParser();
+        timekeeper = new Timekeeper();
     }
 
     @Override
-    public CommandResult execute(String commandText, UiState uiState) throws CommandException, ParseException {
+    public CommandResult execute(String commandText, UiState uiState)
+            throws CommandException, ParseException, TemporalException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        timekeeper.checkIn();
 
         CommandResult commandResult;
         Command command = financeTrackerParser.parseCommand(commandText, uiState);

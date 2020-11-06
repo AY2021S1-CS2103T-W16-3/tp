@@ -3,6 +3,7 @@ package ay2021s1_cs2103_w16_3.finesse.ui;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandResult;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
+import ay2021s1_cs2103_w16_3.finesse.logic.time.exceptions.TemporalException;
 import ay2021s1_cs2103_w16_3.finesse.model.command.history.CommandHistory;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
@@ -94,7 +95,7 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.clear();
 
             commandExecutor.execute(userInput);
-        } catch (CommandException | ParseException ignored) {
+        } catch (CommandException | ParseException | TemporalException ignored) {
             // Do nothing.
         }
     }
@@ -107,9 +108,9 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see ay2021s1_cs2103_w16_3.finesse.logic.Logic#execute(String)
+         * @see ay2021s1_cs2103_w16_3.finesse.logic.Logic#execute(String, UiState)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, ParseException, TemporalException;
     }
 
 }
