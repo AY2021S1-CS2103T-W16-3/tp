@@ -20,7 +20,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.predicates.TitleContainsKeyphrasesPredicate;
 import ay2021s1_cs2103_w16_3.finesse.testutil.FinanceTrackerBuilder;
-import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 import javafx.collections.ObservableList;
 
 public class ModelManagerTest {

@@ -55,7 +55,6 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.predicates.TitleContainsK
 import ay2021s1_cs2103_w16_3.finesse.testutil.BookmarkTransactionUtil;
 import ay2021s1_cs2103_w16_3.finesse.testutil.EditBookmarkTransactionDescriptorBuilder;
 import ay2021s1_cs2103_w16_3.finesse.testutil.EditTransactionDescriptorBuilder;
-import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionUtil;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiState;
 

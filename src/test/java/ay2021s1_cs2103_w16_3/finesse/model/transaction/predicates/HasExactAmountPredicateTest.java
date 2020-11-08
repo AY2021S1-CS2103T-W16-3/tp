@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
-import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 
 public class HasExactAmountPredicateTest {
 

@@ -34,7 +34,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.storage.JsonFinanceTrackerStorage;
 import ay2021s1_cs2103_w16_3.finesse.storage.JsonUserPrefsStorage;
 import ay2021s1_cs2103_w16_3.finesse.storage.StorageManager;
-import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

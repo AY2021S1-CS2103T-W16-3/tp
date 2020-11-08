@@ -8,7 +8,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
-import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 
 public class InDateRangePredicateTest {
 

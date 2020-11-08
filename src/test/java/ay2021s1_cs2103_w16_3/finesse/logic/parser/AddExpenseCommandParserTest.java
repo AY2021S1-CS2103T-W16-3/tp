@@ -37,7 +37,6 @@ import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
-import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
 
 public class AddExpenseCommandParserTest {
     private static final String CURRENT_DATE = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));

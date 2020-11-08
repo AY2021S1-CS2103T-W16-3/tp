@@ -15,7 +15,7 @@ import ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs.ModelStub;
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
-import ay2021s1_cs2103_w16_3.finesse.testutil.TransactionBuilder;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiState.Tab;
 
 public class AddExpenseCommandTest {

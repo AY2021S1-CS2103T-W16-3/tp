@@ -1,8 +1,9 @@
-package ay2021s1_cs2103_w16_3.finesse.testutil;
+package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.bookmarkparsers.BookmarkTransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
@@ -25,6 +26,17 @@ public class TransactionBuilder {
     private Amount amount;
     private Date date;
     private Set<Category> categories;
+
+    /**
+     * Creates a {@code TransactionBuilder} with the given {@code Title}, {@code Amount}, {@code Date} and
+     * {@code Category}.
+     */
+    public TransactionBuilder(Title title, Amount amount, Date date, Set<Category> categories) {
+        this.title = title;
+        this.amount = amount;
+        this.date = date;
+        this.categories = categories;
+    }
 
     /**
      * Creates a {@code TransactionBuilder} with the default details.
@@ -85,6 +97,25 @@ public class TransactionBuilder {
 
     public Expense buildExpense() {
         return new Expense(title, amount, date, categories);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // Short circuit if same object.
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls.
+        if (!(other instanceof TransactionBuilder)) {
+            return false;
+        }
+
+        TransactionBuilder otherTransactionBuilder = (TransactionBuilder) other;
+        return title.equals(otherTransactionBuilder.title)
+                && amount.equals(otherTransactionBuilder.amount)
+                && date.equals(otherTransactionBuilder.date)
+                && categories.equals(otherTransactionBuilder.categories);
     }
 
 }

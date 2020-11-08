@@ -16,6 +16,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.util.SampleDataUtil;
  * A utility class to help with building BookmarkExpense and BookmarkIncome objects.
  */
 public class BookmarkTransactionBuilder {
+
     public static final String DEFAULT_TITLE = "Phone Bill";
     public static final String DEFAULT_AMOUNT = "$60.00";
 
