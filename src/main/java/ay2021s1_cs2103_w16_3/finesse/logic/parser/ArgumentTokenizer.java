@@ -23,17 +23,33 @@ public class ArgumentTokenizer {
 
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
-     * respective argument values. Only the given prefixes will be recognized in the arguments string.
+     * respective argument values. All prefixes from {@code CliSyntax} are recognized, but only the specified
+     * {@param prefixes} are considered valid. The other prefixes not specified are considered invalid and, if detected,
+     * will throw {@code ParseException}
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Prefixes to tokenize the arguments string with
+     * @param prefixes   Valid prefixes from the set of prefixes in {@code CliSyntax} to tokenize the arguments with
      * @return           ArgumentMultimap object that maps prefixes to their arguments
+     * @throws           ParseException
      */
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes)
             throws ParseException {
         return tokenize(argsString, CliSyntax.getAllPrefixes(), prefixes);
     }
 
+    /**
+     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
+     * respective argument values. All prefixes from {@param prefixFullSet} are recognized, but only the specified
+     * {@param prefixes} are considered valid. The other prefixes from {@param prefixFullSet} that are not specified are
+     * considered invalid and, if detected, will throw {@code ParseException}
+     *
+     * @param argsString    Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param prefixFullSet Set of all prefixes to tokenize the arguments with
+     * @param prefixes      Subset of prefixFullSet that are considered valid. Any other prefixes is invalid and
+     *                      thus should throw ParseException
+     * @return              ArgumentMultimap object that maps prefixes to their arguments
+     * @throws              ParseException
+     */
     protected static ArgumentMultimap tokenize(String argsString, Prefix[] prefixFullSet, Prefix... prefixes)
             throws ParseException {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixFullSet);
