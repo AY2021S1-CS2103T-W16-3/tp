@@ -234,9 +234,16 @@ The alternative implementations considered, as well as the rationale behind our 
 
 #### Programmatically switch selected tab
 
-Several of the expense/income-specific commands update the list of transactions displayed in a particular tab.
-Examples of these include the `add-expense` and `add-income` commands.
-As such, on the execution of such commands, the UI has to switch to the affected tab to display the result of the command execution.
+Fine$$e supports the ability to switch tabs programmatically.
+The following is a list of commands that utilise this ability:
+* `help` - Opens the [user guide](UserGuide.md).
+* `tab` - Switches to the tab corresponding to the index entered by the user.
+* `add-expense` - Adds an expense to the finance tracker and switches to the Expenses tab.
+* `ls-expense` - Shows a list of all expenses in the finance tracker by switching to the Expenses tab.
+* `add-income` - Adds an income to the finance tracker and switches to the Incomes tab.
+* `ls-income` - Shows a list of all incomes in the finance tracker by switching to the Incomes tab.
+* `add-bookmark-expense` - Adds a bookmark expense to the finance tracker and switches to the Expenses tab.
+* `add-bookmark-income` - Adds a bookmark income to the finance tracker and switches to the Incomes tab.
 
 The ability to programmatically update the selected tab is implemented via `CommandResult`.
 Upon the successful execution of a command, a `CommandResult` is generated and passed back to `MainWindow`.
