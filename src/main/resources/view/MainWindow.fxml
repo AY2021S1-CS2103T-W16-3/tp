@@ -21,7 +21,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <BorderPane>
+      <BorderPane styleClass="background">
         <center>
           <AnchorPane>
             <!-- Bottom anchor of AnchorPane has to be set programmatically after tabs are initialized. -->
