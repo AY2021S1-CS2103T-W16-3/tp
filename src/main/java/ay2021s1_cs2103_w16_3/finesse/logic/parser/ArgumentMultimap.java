@@ -59,6 +59,10 @@ public class ArgumentMultimap {
         return Stream.of(prefixes).allMatch(prefix -> getValue(prefix).isPresent());
     }
 
+    public boolean areAnyPrefixesPresent(Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> getValue(prefix).isPresent());
+    }
+
     /**
      * Returns true if the prefix contains more than one value.
      */

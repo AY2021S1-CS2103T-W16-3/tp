@@ -32,6 +32,10 @@ public class ArgumentTokenizer {
         return extractArguments(argsString, positions);
     }
 
+    public static ArgumentMultimap tokenizeAll(String argsString) {
+        return tokenize(argsString, CliSyntax.getAllPrefixes());
+    }
+
     /**
      * Finds all zero-based prefix positions in the given arguments string.
      *

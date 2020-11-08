@@ -119,6 +119,6 @@ public class AddBookmarkIncomeCommandParserTest {
         // date field present
         assertParseFailure(parser, TITLE_DESC_PHONE_BILL + AMOUNT_DESC_PHONE_BILL
                 + DATE_DESC_SPOTIFY_SUBSCRIPTION + CATEGORY_DESC_UTILITIES,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookmarkTransaction.MESSAGE_CANNOT_CONTAIN_DATE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookmarkIncomeCommand.MESSAGE_USAGE));
     }
 }

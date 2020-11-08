@@ -3,8 +3,12 @@ package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ay2021s1_cs2103_w16_3.finesse.commons.util.StringUtil.isEmptyString;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_AMOUNT_FROM;
+import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_AMOUNT_TO;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE;
+import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE_FROM;
+import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE_TO;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_TITLE;
 import static ay2021s1_cs2103_w16_3.finesse.model.category.Category.MESSAGE_EMPTY_CATEGORY;
 import static ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount.MESSAGE_EMPTY_AMOUNT;
@@ -164,19 +168,22 @@ public class ParserUtil {
     /**
      * Parses {@code String args} into a {@code BookmarkTransactionBuilder}.
      *
-     * @throws ParseException if the given {@code arge} does not adhere to the format of a bookmark transaction.
+     * @throws ParseException if the given {@code args} do not adhere to the format of a bookmark transaction.
      */
     public static BookmarkTransactionBuilder parseBookmarkTransactionBuilder(String args, String exceptionMessage)
             throws ParseException {
         requireNonNull(args);
         requireNonNull(exceptionMessage);
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_CATEGORY);
+        Prefix[] mandatoryPrefixes = new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT};
+        Prefix[] invalidPrefixes = new Prefix[] {PREFIX_DATE, PREFIX_AMOUNT_FROM, PREFIX_AMOUNT_TO, PREFIX_DATE_FROM,
+                PREFIX_DATE_TO};
 
-        if (!argMultimap.arePrefixesPresent(PREFIX_TITLE, PREFIX_AMOUNT) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    exceptionMessage));
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAll(args);
+
+        if (!argMultimap.getPreamble().isEmpty() || !argMultimap.arePrefixesPresent(mandatoryPrefixes)
+                || argMultimap.areAnyPrefixesPresent(invalidPrefixes)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage));
         }
 
         if (argMultimap.moreThanOneValuePresent(PREFIX_TITLE)) {
@@ -189,16 +196,13 @@ public class ParserUtil {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookmarkTransaction.MESSAGE_AMOUNT_CONSTRAINTS));
         }
 
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookmarkTransaction.MESSAGE_CANNOT_CONTAIN_DATE));
-        }
-
         Title title = ParserUtil.parseTitleAndTrimBetweenWords(argMultimap.getValue(PREFIX_TITLE).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         Set<Category> categoryList = ParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
 
         return new BookmarkTransactionBuilder(title, amount, categoryList);
     }
+
+
 
 }
