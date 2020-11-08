@@ -12,10 +12,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs.ModelStub;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
-import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.ui.UiState.Tab;
 
 public class AddIncomeCommandTest {

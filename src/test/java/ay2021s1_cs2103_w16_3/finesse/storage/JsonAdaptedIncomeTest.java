@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.exceptions.IllegalValueException;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
-import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 
 public class JsonAdaptedIncomeTest {
     private static final String INVALID_TITLE = "R\u2416chel";

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 
 public class OnExactDatePredicateTest {
 

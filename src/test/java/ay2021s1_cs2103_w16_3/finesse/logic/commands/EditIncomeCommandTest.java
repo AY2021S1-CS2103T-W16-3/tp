@@ -20,13 +20,13 @@ import org.junit.jupiter.api.Test;
 import ay2021s1_cs2103_w16_3.finesse.commons.core.index.Index;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.EditCommand.EditTransactionDescriptor;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs.EditCommandStub;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
 import ay2021s1_cs2103_w16_3.finesse.model.UserPrefs;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.testutil.EditTransactionDescriptorBuilder;
-import ay2021s1_cs2103_w16_3.finesse.logic.parser.TransactionBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditIncomeCommand.
