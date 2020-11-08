@@ -265,6 +265,8 @@ To help you manage your finances, Fine\$\$e records the following information ab
 
 Adds an expense to the finance tracker.
 
+> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Expenses tab](#223-expenses-tab).
+
 Format: `add-expense t/TITLE a/AMOUNT [d/DATE] [c/CATEGORY...]`
 
 * `DATE` is optional; if `DATE` is not given, the current date is used.
@@ -286,8 +288,6 @@ Expected Outcome:
 New expense added: Bubble Tea Amount: $5.00 Date: 03/10/2020 Categories: [Food & Beverage]
 ```
 Adds a new expense titled `Bubble Tea`, with amount `$5.00`, date `03/10/2020`, and a single category `Food & Beverage`.
-
-> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Expenses tab](#223-expenses-tab).
 
 #### 4.3.2 Edit Expense: `edit`
 
@@ -345,6 +345,8 @@ Deletes the third expense in the currently displayed expenses list.
 
 Shows a list of all expenses in the finance tracker.
 This effectively resets any current filtering of the expenses list, such as those made by `find`.
+
+> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Expenses tab](#223-expenses-tab).
 
 Format: `ls-expense`
 
@@ -422,6 +424,8 @@ To help you manage your finances, Fine\$\$e records the following information ab
 
 Adds an income to the finance tracker.
 
+> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Incomes tab](#222-incomes-tab).
+
 Format: `add-income t/TITLE a/AMOUNT d/DATE [c/CATEGORY...]`
 
 * `DATE` is optional; if `DATE` is not given, the current date is used.
@@ -443,8 +447,6 @@ Expected Outcome:
 New income added: Shopee Internship Amount: $560.00 Date: 03/10/2020 Categories: [Internship]
 ```
 Adds a new income titled `Shopee Internship`, with amount `$560.00`, date `03/10/2020`, and a single category `Internship`.
-
-> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Incomes tab](#222-incomes-tab).
 
 #### 4.4.2 Edit Income: `edit`
 
@@ -502,6 +504,8 @@ Deletes the second income in the currently displayed incomes list.
 
 Shows a list of all the incomes in the finance tracker.
 This effectively resets any current filtering of the incomes list, such as those made by `find`.
+
+> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Incomes tab](#222-incomes-tab).
 
 Format: `ls-income`
 
@@ -582,6 +586,8 @@ Bookmark Expenses List Panel in the Expenses Tab
 #### 4.5.1 Add Bookmark Expense: `add-bookmark-expense`
 
 Adds a bookmark expense to the finance tracker.
+
+> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Expenses tab](#223-expenses-tab).
 
 Format: `add-bookmark-expense t/TITLE a/AMOUNT [c/CATEGORY...]`
 
@@ -729,6 +735,8 @@ Bookmark Incomes List Panel in the Incomes tab
 
 Adds a bookmark income to the finance tracker.
 
+> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Incomes tab](#222-incomes-tab).
+
 Format: `add-bookmark-income t/TITLE a/AMOUNT [c/CATEGORY...]`
 
 Shortcut: `addbi t/TITLE a/AMOUNT [c/CATEGORY...]`
@@ -866,6 +874,8 @@ Once the expense limit is set, it will be visible on the Overview tab along with
 
 Sets the monthly expense limit in the finance tracker.
 
+> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Overview tab](#221-overview-tab).
+
 Format: `set-expense-limit a/AMOUNT`
 
 Shortcut: `setel a/AMOUNT`
@@ -884,8 +894,6 @@ New monthly expense limit set: $400.00
 ```
 Sets the monthly expense limit in the finance tracker to be `$400.00`.
 
-> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Overview tab](#221-overview-tab).
-
 ### 4.8 Savings Goal
 
 Want to save up for the new PlayStation 5 but can't seem to no matter what? Fine$$e has you covered!
@@ -895,6 +903,8 @@ Once the savings goal is set, it will be visible on the Overview tab along with 
 #### 4.8.1 Set Savings Goal: `set-savings-goal`
 
 Sets the monthly savings goal in the finance tracker.
+
+> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Overview tab](#221-overview-tab).
 
 Format: `set-savings-goal a/AMOUNT`
 
@@ -913,8 +923,6 @@ Expected Outcome:
 New monthly savings goal set: $50.00
 ```
 Sets the monthly savings goal in the finance tracker to be `$50.00`.
-
-> :information_source: &nbsp; After executing this command, the UI will automatically switch to the [Overview tab](#221-overview-tab).
 
 ### 4.9 Analytics
 
