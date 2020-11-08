@@ -1,5 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
  * E.g. 't/' in 'add James t/ friend'.
@@ -7,7 +9,14 @@ package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 public class Prefix {
     private final String prefix;
 
+    /**
+     * Constructs a new {@code Prefix} object with the specified prefix.
+     * Note that the prefix cannot be {@code null}.
+     *
+     * @param prefix The specified prefix.
+     */
     public Prefix(String prefix) {
+        requireNonNull(prefix);
         this.prefix = prefix;
     }
 
@@ -21,7 +30,7 @@ public class Prefix {
 
     @Override
     public int hashCode() {
-        return prefix == null ? 0 : prefix.hashCode();
+        return prefix.hashCode();
     }
 
     @Override

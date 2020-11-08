@@ -15,4 +15,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE_FROM = new Prefix("df/");
     public static final Prefix PREFIX_DATE_TO = new Prefix("dt/");
 
+    /**
+     * Prevents instantiation of this class.
+     */
+    private CliSyntax() {}
 }

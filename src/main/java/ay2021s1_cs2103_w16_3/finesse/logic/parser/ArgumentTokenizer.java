@@ -14,6 +14,10 @@ import java.util.stream.Collectors;
  *    in the above example.<br>
  */
 public class ArgumentTokenizer {
+    /**
+     * Prevents instantiation of this class.
+     */
+    private ArgumentTokenizer() {}
 
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their

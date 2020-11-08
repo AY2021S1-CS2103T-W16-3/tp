@@ -83,4 +83,21 @@ public class BookmarkTransactionBuilder {
         return new BookmarkIncome(title, amount, categories);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // Short circuit if same object.
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls.
+        if (!(other instanceof BookmarkTransactionBuilder)) {
+            return false;
+        }
+
+        BookmarkTransactionBuilder otherBookmarkTransactionBuilder = (BookmarkTransactionBuilder) other;
+        return title.equals(otherBookmarkTransactionBuilder.title)
+                && amount.equals(otherBookmarkTransactionBuilder.amount)
+                && categories.equals(otherBookmarkTransactionBuilder.categories);
+    }
 }
