@@ -1,9 +1,13 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
@@ -17,7 +21,7 @@ public class ArgumentTokenizer {
     /**
      * Prevents instantiation of this class.
      */
-    private ArgumentTokenizer() {}
+    protected ArgumentTokenizer() {}
 
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
@@ -27,13 +31,24 @@ public class ArgumentTokenizer {
      * @param prefixes   Prefixes to tokenize the arguments string with
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      */
-    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
-        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
-        return extractArguments(argsString, positions);
+    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes)
+            throws ParseException {
+        return tokenize(argsString, CliSyntax.getAllPrefixes(), prefixes);
     }
 
-    public static ArgumentMultimap tokenizeAll(String argsString) {
-        return tokenize(argsString, CliSyntax.getAllPrefixes());
+    protected static ArgumentMultimap tokenize(String argsString, Prefix[] prefixFullSet, Prefix... prefixes)
+            throws ParseException {
+        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixFullSet);
+        ArgumentMultimap argumentMultimap = extractArguments(argsString, positions);
+
+        List<Prefix> prefixComplementList = Arrays.stream(prefixFullSet).collect(Collectors.toList());
+        List<Prefix> prefixSubList = Arrays.stream(prefixes).collect(Collectors.toList());
+        prefixComplementList.removeAll(prefixSubList);
+
+        if (argumentMultimap.areAnyPrefixesPresent(prefixComplementList.toArray(new Prefix[0]))) {
+            throw new ParseException("This is an exception message.");
+        }
+        return argumentMultimap;
     }
 
     /**

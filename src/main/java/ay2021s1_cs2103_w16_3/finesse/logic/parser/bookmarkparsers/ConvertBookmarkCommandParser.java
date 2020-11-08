@@ -34,25 +34,20 @@ public class ConvertBookmarkCommandParser implements Parser<ConvertBookmarkComma
      */
     public ConvertBookmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAll(args);
 
-        Prefix[] invalidPrefixes = new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_CATEGORY, PREFIX_AMOUNT_FROM,
-            PREFIX_AMOUNT_TO, PREFIX_DATE_FROM, PREFIX_DATE_TO};
-        if (argMultimap.areAnyPrefixesPresent(invalidPrefixes)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ConvertBookmarkCommand.MESSAGE_USAGE));
-        }
-        if (argMultimap.moreThanOneValuePresent(PREFIX_DATE)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    Transaction.MESSAGE_DATE_CONSTRAINTS));
-        }
-
+        ArgumentMultimap argMultimap;
         Index index;
         try {
+            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE);
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ConvertBookmarkCommand.MESSAGE_USAGE), pe);
+        }
+
+        if (argMultimap.moreThanOneValuePresent(PREFIX_DATE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Transaction.MESSAGE_DATE_CONSTRAINTS));
         }
 
         Date date;

@@ -23,9 +23,15 @@ public class SetExpenseLimitCommandParser implements Parser<SetExpenseLimitComma
      * @throws ParseException if the user input does not conform the expected format
      */
     public SetExpenseLimitCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT);
-        if (!argMultimap.arePrefixesPresent(PREFIX_AMOUNT)
-                || !argMultimap.getPreamble().isEmpty()) {
+        ArgumentMultimap argMultimap;
+        try {
+            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SetExpenseLimitCommand.MESSAGE_USAGE), pe);
+        }
+
+        if (!argMultimap.arePrefixesPresent(PREFIX_AMOUNT) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetExpenseLimitCommand.MESSAGE_USAGE));
         }

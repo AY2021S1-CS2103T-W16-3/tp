@@ -97,10 +97,10 @@ public class EditBookmarkCommandParserTest {
     }
 
     @Test
-    public void parse_dateFieldPresent_failure() {
+    public void parse_invalidFieldPresent_failure() {
         assertParseFailure(parser, "1" + TITLE_DESC_SPOTIFY_SUBSCRIPTION + AMOUNT_DESC_SPOTIFY_SUBSCRIPTION
                 + DATE_DESC_SPOTIFY_SUBSCRIPTION,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookmarkTransaction.MESSAGE_CANNOT_CONTAIN_DATE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookmarkCommand.MESSAGE_USAGE));
     }
 
     @Test

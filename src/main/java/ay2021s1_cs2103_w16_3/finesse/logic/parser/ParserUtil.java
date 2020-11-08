@@ -176,14 +176,14 @@ public class ParserUtil {
         requireNonNull(args);
         requireNonNull(exceptionMessage);
 
-        Prefix[] mandatoryPrefixes = new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT};
-        Prefix[] invalidPrefixes = new Prefix[] {PREFIX_DATE, PREFIX_AMOUNT_FROM, PREFIX_AMOUNT_TO, PREFIX_DATE_FROM,
-            PREFIX_DATE_TO};
+        ArgumentMultimap argMultimap;
+        try {
+            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_CATEGORY);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage), pe);
+        }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAll(args);
-
-        if (!argMultimap.getPreamble().isEmpty() || !argMultimap.arePrefixesPresent(mandatoryPrefixes)
-                || argMultimap.areAnyPrefixesPresent(invalidPrefixes)) {
+        if (!argMultimap.getPreamble().isEmpty() || !argMultimap.arePrefixesPresent(PREFIX_TITLE, PREFIX_AMOUNT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage));
         }
 
@@ -214,14 +214,14 @@ public class ParserUtil {
         requireNonNull(args);
         requireNonNull(exceptionMessage);
 
-        Prefix[] mandatoryPrefixes = new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT};
-        Prefix[] invalidPrefixes = new Prefix[] {PREFIX_AMOUNT_FROM, PREFIX_AMOUNT_TO, PREFIX_DATE_FROM,
-            PREFIX_DATE_TO};
+        ArgumentMultimap argMultimap;
+        try {
+            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_CATEGORY);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage), pe);
+        }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAll(args);
-
-        if (!argMultimap.getPreamble().isEmpty() || !argMultimap.arePrefixesPresent(mandatoryPrefixes)
-                || argMultimap.areAnyPrefixesPresent(invalidPrefixes)) {
+        if (!argMultimap.getPreamble().isEmpty() || !argMultimap.arePrefixesPresent(PREFIX_TITLE, PREFIX_AMOUNT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage));
         }
 

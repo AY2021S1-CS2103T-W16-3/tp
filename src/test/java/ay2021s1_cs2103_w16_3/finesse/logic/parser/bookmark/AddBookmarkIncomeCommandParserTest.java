@@ -116,6 +116,7 @@ public class AddBookmarkIncomeCommandParserTest {
 
     @Test
     public void parse_dateFieldPresent_failure() {
+        int i = 0;
         // date field present
         assertParseFailure(parser, TITLE_DESC_PHONE_BILL + AMOUNT_DESC_PHONE_BILL
                 + DATE_DESC_SPOTIFY_SUBSCRIPTION + CATEGORY_DESC_UTILITIES,

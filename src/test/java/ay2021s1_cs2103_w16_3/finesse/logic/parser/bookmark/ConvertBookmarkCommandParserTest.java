@@ -59,7 +59,7 @@ public class ConvertBookmarkCommandParserTest {
         // multiple dates
         assertParseFailure(parser, INDEX_SECOND + DATE_DESC_SPOTIFY_SUBSCRIPTION
                         + DATE_DESC_BUBBLE_TEA,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Transaction.MESSAGE_DATE_CONSTRAINTS));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ConvertBookmarkCommand.MESSAGE_USAGE));
     }
 
     @Test
