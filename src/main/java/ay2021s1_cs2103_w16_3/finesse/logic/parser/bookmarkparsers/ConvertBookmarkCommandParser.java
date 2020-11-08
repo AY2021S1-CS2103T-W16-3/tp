@@ -16,8 +16,8 @@ import ay2021s1_cs2103_w16_3.finesse.logic.commands.bookmark.ConvertBookmarkComm
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.ArgumentMultimap;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.ArgumentTokenizer;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.Parser;
-import ay2021s1_cs2103_w16_3.finesse.logic.parser.Prefix;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.ParserUtil;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.Prefix;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
@@ -37,7 +37,7 @@ public class ConvertBookmarkCommandParser implements Parser<ConvertBookmarkComma
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAll(args);
 
         Prefix[] invalidPrefixes = new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_CATEGORY, PREFIX_AMOUNT_FROM,
-                PREFIX_AMOUNT_TO, PREFIX_DATE_FROM, PREFIX_DATE_TO};
+            PREFIX_AMOUNT_TO, PREFIX_DATE_FROM, PREFIX_DATE_TO};
         if (argMultimap.areAnyPrefixesPresent(invalidPrefixes)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ConvertBookmarkCommand.MESSAGE_USAGE));

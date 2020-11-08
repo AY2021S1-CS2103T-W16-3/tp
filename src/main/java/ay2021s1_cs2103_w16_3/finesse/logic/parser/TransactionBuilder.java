@@ -3,7 +3,6 @@ package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 import java.util.HashSet;
 import java.util.Set;
 
-import ay2021s1_cs2103_w16_3.finesse.logic.parser.bookmarkparsers.BookmarkTransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;

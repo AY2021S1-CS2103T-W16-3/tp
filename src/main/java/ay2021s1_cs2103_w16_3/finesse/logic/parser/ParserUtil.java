@@ -31,6 +31,7 @@ import ay2021s1_cs2103_w16_3.finesse.model.category.Category;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Title;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -177,7 +178,7 @@ public class ParserUtil {
 
         Prefix[] mandatoryPrefixes = new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT};
         Prefix[] invalidPrefixes = new Prefix[] {PREFIX_DATE, PREFIX_AMOUNT_FROM, PREFIX_AMOUNT_TO, PREFIX_DATE_FROM,
-                PREFIX_DATE_TO};
+            PREFIX_DATE_TO};
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAll(args);
 
@@ -203,6 +204,54 @@ public class ParserUtil {
         return new BookmarkTransactionBuilder(title, amount, categoryList);
     }
 
+    /**
+     * Parses {@code String args} into a {@code TransactionBuilder}.
+     *
+     * @throws ParseException if the given {@code args} do not adhere to the format of a transaction.
+     */
+    public static TransactionBuilder parseTransactionBuilder(String args, String exceptionMessage)
+            throws ParseException {
+        requireNonNull(args);
+        requireNonNull(exceptionMessage);
 
+        Prefix[] mandatoryPrefixes = new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT};
+        Prefix[] invalidPrefixes = new Prefix[] {PREFIX_AMOUNT_FROM, PREFIX_AMOUNT_TO, PREFIX_DATE_FROM,
+            PREFIX_DATE_TO};
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAll(args);
+
+        if (!argMultimap.getPreamble().isEmpty() || !argMultimap.arePrefixesPresent(mandatoryPrefixes)
+                || argMultimap.areAnyPrefixesPresent(invalidPrefixes)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage));
+        }
+
+        if (argMultimap.moreThanOneValuePresent(PREFIX_TITLE)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, Transaction.MESSAGE_TITLE_CONSTRAINTS));
+        }
+
+        if (argMultimap.moreThanOneValuePresent(PREFIX_AMOUNT)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, Transaction.MESSAGE_AMOUNT_CONSTRAINTS));
+        }
+
+        if (argMultimap.moreThanOneValuePresent(PREFIX_DATE)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, Transaction.MESSAGE_DATE_CONSTRAINTS));
+        }
+
+        Title title = ParserUtil.parseTitleAndTrimBetweenWords(argMultimap.getValue(PREFIX_TITLE).get());
+        Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
+        Set<Category> categoryList = ParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
+
+        Date date;
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        } else {
+            date = Date.getCurrentDate();
+        }
+
+        return new TransactionBuilder(title, amount, date, categoryList);
+    }
 
 }

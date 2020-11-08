@@ -1,8 +1,5 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -29,7 +26,7 @@ public class CliSyntax {
      * @return List of all prefixes
      */
     public static Prefix[] getAllPrefixes() {
-        return new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_CATEGORY, PREFIX_AMOUNT_FROM, PREFIX_AMOUNT_TO,
-                PREFIX_DATE_FROM, PREFIX_DATE_TO};
+        return new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_CATEGORY, PREFIX_AMOUNT_FROM,
+            PREFIX_AMOUNT_TO, PREFIX_DATE_FROM, PREFIX_DATE_TO};
     }
 }
