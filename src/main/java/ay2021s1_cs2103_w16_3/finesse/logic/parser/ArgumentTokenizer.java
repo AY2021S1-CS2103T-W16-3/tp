@@ -1,13 +1,11 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
-import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>

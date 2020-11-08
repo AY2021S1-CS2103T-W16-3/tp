@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
 import org.junit.jupiter.api.Test;
+
+import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
 
 public class ArgumentTokenizerTest {
 
