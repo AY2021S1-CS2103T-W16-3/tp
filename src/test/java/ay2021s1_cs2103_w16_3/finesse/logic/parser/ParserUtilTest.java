@@ -3,6 +3,7 @@ package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE;
+import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE_FROM;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_TITLE;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.Assert.assertThrows;
@@ -242,7 +243,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseBookmarkTransactionBuilder_datePresent_throwsParseException() {
+    public void parseBookmarkTransactionBuilder_invalidPrefixPresent_throwsParseException() {
         String args = " " + PREFIX_TITLE + VALID_TITLE + " " + PREFIX_AMOUNT + VALID_AMOUNT
                 + " " + PREFIX_DATE + VALID_DATE;
         assertThrows(ParseException.class, () ->
@@ -259,5 +260,74 @@ public class ParserUtilTest {
         categorySet.add(new Category(VALID_CATEGORY_1));
         assertEquals(new BookmarkTransactionBuilder(title, amount, categorySet),
                 ParserUtil.parseBookmarkTransactionBuilder(args, EXCEPTION_MESSAGE));
+    }
+
+    @Test
+    public void parseTransactionBuilder_missingTitle_throwsParseException() {
+        String args = " " + PREFIX_AMOUNT + VALID_AMOUNT;
+        assertThrows(ParseException.class, () -> ParserUtil.parseTransactionBuilder(args, EXCEPTION_MESSAGE));
+    }
+
+    @Test
+    public void parseTransactionBuilder_missingAmount_throwsParseException() {
+        String args = " " + PREFIX_TITLE + VALID_TITLE;
+        assertThrows(ParseException.class, () -> ParserUtil.parseTransactionBuilder(args, EXCEPTION_MESSAGE));
+    }
+
+    @Test
+    public void parseTransactionBuilder_nonEmptyPreamble_throwsParseException() {
+        String args = "hello " + PREFIX_TITLE + VALID_TITLE + " " + PREFIX_AMOUNT + VALID_AMOUNT;
+        assertThrows(ParseException.class, () -> ParserUtil.parseTransactionBuilder(args, EXCEPTION_MESSAGE));
+    }
+
+    @Test
+    public void parseTransactionBuilder_moreThanOneTitle_throwsParseException() {
+        String args = " " + PREFIX_TITLE + VALID_TITLE + " " + PREFIX_TITLE + VALID_TITLE;
+        assertThrows(ParseException.class, () -> ParserUtil.parseTransactionBuilder(args, EXCEPTION_MESSAGE));
+    }
+
+    @Test
+    public void parseTransactionBuilder_moreThanOneAmount_throwsParseException() {
+        String args = " " + PREFIX_AMOUNT + VALID_AMOUNT + " " + PREFIX_AMOUNT + VALID_AMOUNT;
+        assertThrows(ParseException.class, () -> ParserUtil.parseTransactionBuilder(args, EXCEPTION_MESSAGE));
+    }
+
+    @Test
+    public void parseTransactionBuilder_moreThanOneDate_throwsParseException() {
+        String args = " " + PREFIX_DATE + VALID_DATE + " " + PREFIX_DATE + VALID_DATE;
+        assertThrows(ParseException.class, () -> ParserUtil.parseTransactionBuilder(args, EXCEPTION_MESSAGE));
+    }
+
+    @Test
+    public void parseTransactionBuilder_invalidPrefixPresent_throwsParseException() {
+        String args = " " + PREFIX_TITLE + VALID_TITLE + " " + PREFIX_AMOUNT + VALID_AMOUNT
+                + " " + PREFIX_DATE_FROM + VALID_DATE;
+        assertThrows(ParseException.class, () -> ParserUtil.parseTransactionBuilder(args, EXCEPTION_MESSAGE));
+    }
+
+    @Test
+    public void parseTransactionBuilder_validInputsWithoutDate_returnsTransactionBuilder() throws ParseException {
+        String args = " " + PREFIX_TITLE + VALID_TITLE + " " + PREFIX_AMOUNT + VALID_AMOUNT
+                + " " + PREFIX_CATEGORY + VALID_CATEGORY_1;
+        Title title = new Title(VALID_TITLE);
+        Amount amount = new Amount(VALID_AMOUNT);
+        Set<Category> categorySet = new HashSet<>();
+        categorySet.add(new Category(VALID_CATEGORY_1));
+        Date date = Date.getCurrentDate();
+        assertEquals(new TransactionBuilder(title, amount, date, categorySet),
+                ParserUtil.parseTransactionBuilder(args, EXCEPTION_MESSAGE));
+    }
+
+    @Test
+    public void parseTransactionBuilder_validInputsWithDate_returnsTransactionBuilder() throws ParseException {
+        String args = " " + PREFIX_TITLE + VALID_TITLE + " " + PREFIX_AMOUNT + VALID_AMOUNT
+                + " " + PREFIX_DATE + VALID_DATE + " " + PREFIX_CATEGORY + VALID_CATEGORY_1;
+        Title title = new Title(VALID_TITLE);
+        Amount amount = new Amount(VALID_AMOUNT);
+        Set<Category> categorySet = new HashSet<>();
+        categorySet.add(new Category(VALID_CATEGORY_1));
+        Date date = new Date(VALID_DATE);
+        assertEquals(new TransactionBuilder(title, amount, date, categorySet),
+                ParserUtil.parseTransactionBuilder(args, EXCEPTION_MESSAGE));
     }
 }
