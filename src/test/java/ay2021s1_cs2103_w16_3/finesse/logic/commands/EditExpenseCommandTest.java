@@ -170,9 +170,11 @@ public class EditExpenseCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_SECOND, DESC_BUBBLE_TEA)));
+        assertFalse(standardCommand.equals(new EditExpenseCommand(
+                new EditCommandStub(INDEX_SECOND, DESC_BUBBLE_TEA))));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_FIRST, DESC_INTERNSHIP)));
+        assertFalse(standardCommand.equals(new EditExpenseCommand(
+                new EditCommandStub(INDEX_FIRST, DESC_INTERNSHIP))));
     }
 }

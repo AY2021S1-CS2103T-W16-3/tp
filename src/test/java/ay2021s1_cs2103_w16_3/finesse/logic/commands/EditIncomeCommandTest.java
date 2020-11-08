@@ -163,10 +163,12 @@ public class EditIncomeCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_SECOND, DESC_BUBBLE_TEA)));
+        assertFalse(standardCommand.equals(new EditIncomeCommand(
+                new EditCommandStub(INDEX_SECOND, DESC_BUBBLE_TEA))));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommandStub(INDEX_FIRST, DESC_INTERNSHIP)));
+        assertFalse(standardCommand.equals(new EditIncomeCommand(
+                new EditCommandStub(INDEX_FIRST, DESC_INTERNSHIP))));
     }
 
 }

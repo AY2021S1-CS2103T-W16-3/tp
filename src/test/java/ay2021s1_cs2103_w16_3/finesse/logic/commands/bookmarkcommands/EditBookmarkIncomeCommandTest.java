@@ -132,7 +132,7 @@ public class EditBookmarkIncomeCommandTest {
         final EditBookmarkIncomeCommand standardCommand =
                 new EditBookmarkIncomeCommand(superCommand);
 
-        // same values -> returns true
+        // Same values -> returns true
         EditBookmarkTransactionDescriptor copyDescriptor =
                 new EditBookmarkTransactionDescriptor(DESC_SPOTIFY_SUBSCRIPTION);
         EditBookmarkCommandStub superCommandWithSameValues = new EditBookmarkCommandStub(INDEX_FIRST, copyDescriptor);
@@ -140,19 +140,21 @@ public class EditBookmarkIncomeCommandTest {
                 new EditBookmarkIncomeCommand(superCommandWithSameValues);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
-        // same object -> returns true
+        // Same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
 
         // null -> returns false
         assertFalse(standardCommand.equals(null));
 
-        // different index -> returns false
+        // Different index -> returns false
         assertFalse(standardCommand
-                .equals(new EditBookmarkCommandStub(INDEX_SECOND, DESC_SPOTIFY_SUBSCRIPTION)));
+                .equals(new EditBookmarkIncomeCommand(
+                        new EditBookmarkCommandStub(INDEX_SECOND, DESC_SPOTIFY_SUBSCRIPTION))));
 
-        // different descriptor -> returns false
+        // Different descriptor -> returns false
         assertFalse(standardCommand
-                .equals(new EditBookmarkCommandStub(INDEX_FIRST, DESC_PHONE_BILL)));
+                .equals(new EditBookmarkIncomeCommand(
+                        new EditBookmarkCommandStub(INDEX_FIRST, DESC_PHONE_BILL))));
     }
 
 }

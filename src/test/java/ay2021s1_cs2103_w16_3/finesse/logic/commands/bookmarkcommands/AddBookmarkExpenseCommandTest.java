@@ -13,11 +13,13 @@ import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandResult;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.bookmark.AddBookmarkExpenseCommand;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs.ModelStub;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.bookmarkparsers.BookmarkTransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.bookmark.BookmarkExpense;
+import ay2021s1_cs2103_w16_3.finesse.model.bookmark.exceptions.DuplicateBookmarkTransactionException;
 
 public class AddBookmarkExpenseCommandTest {
 
@@ -36,6 +38,14 @@ public class AddBookmarkExpenseCommandTest {
         assertEquals(String.format(AddBookmarkExpenseCommand.MESSAGE_SUCCESS, validBookmarkExpense),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBookmarkExpense), modelStub.bookmarkExpensesAdded);
+    }
+
+    @Test
+    public void execute_duplicateBookmarkExpense_throwsDuplicateBookmarkTransactionException() {
+        ModelStubRejectingDuplicateBookmarkExpense modelStub = new ModelStubRejectingDuplicateBookmarkExpense();
+        BookmarkExpense validBookmarkExpense = new BookmarkTransactionBuilder().buildBookmarkExpense();
+        AddBookmarkExpenseCommand addBookmarkExpenseCommand = new AddBookmarkExpenseCommand(validBookmarkExpense);
+        assertThrows(CommandException.class, () -> addBookmarkExpenseCommand.execute(modelStub));
     }
 
     @Test
@@ -63,7 +73,7 @@ public class AddBookmarkExpenseCommandTest {
     }
 
     /**
-     * A Model stub that always accepts the frequent expense being added.
+     * A model stub that always accepts the bookmark expense being added.
      */
     private class ModelStubAcceptingBookmarkExpenseAdded extends ModelStub {
         final ArrayList<BookmarkExpense> bookmarkExpensesAdded = new ArrayList<>();
@@ -80,4 +90,14 @@ public class AddBookmarkExpenseCommandTest {
         }
     }
 
+    /**
+     * A model stub that always throws a {@code DuplicateBookmarkTransactionException}
+     * when a {@code BookmarkExpense} is added.
+     */
+    private class ModelStubRejectingDuplicateBookmarkExpense extends ModelStub {
+        @Override
+        public void addBookmarkExpense(BookmarkExpense bookmarkExpense) {
+            throw new DuplicateBookmarkTransactionException("Cannot add duplicate bookmark expense.");
+        }
+    }
 }

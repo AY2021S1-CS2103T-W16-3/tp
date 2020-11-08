@@ -3,6 +3,8 @@ package ay2021s1_cs2103_w16_3.finesse.logic.commands;
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_METHOD_SHOULD_NOT_BE_CALLED;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_BUBBLE_TEA;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DESC_INTERNSHIP;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_AMOUNT_BUBBLE_TEA;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_BUBBLE_TEA;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
@@ -16,6 +18,8 @@ import ay2021s1_cs2103_w16_3.finesse.logic.commands.EditCommand.EditTransactionD
 import ay2021s1_cs2103_w16_3.finesse.model.Model;
 import ay2021s1_cs2103_w16_3.finesse.model.ModelManager;
 import ay2021s1_cs2103_w16_3.finesse.model.UserPrefs;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Amount;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Date;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -27,6 +31,28 @@ public class EditCommandTest {
         Model model = new ModelManager(getTypicalFinanceTracker(), new UserPrefs());
         assertCommandFailure(new EditCommand(INDEX_FIRST, new EditTransactionDescriptor()), model,
                 MESSAGE_METHOD_SHOULD_NOT_BE_CALLED);
+    }
+
+    @Test
+    public void isAmountOrDateEdited() {
+        Amount amount = new Amount(VALID_AMOUNT_BUBBLE_TEA);
+        Date date = new Date(VALID_DATE_BUBBLE_TEA);
+
+        EditTransactionDescriptor uneditedEditTransactionDescriptor = new EditTransactionDescriptor();
+        assertFalse(uneditedEditTransactionDescriptor.isAmountOrDateEdited());
+
+        EditTransactionDescriptor amountEditedEditTransactionDescriptor = new EditTransactionDescriptor();
+        amountEditedEditTransactionDescriptor.setAmount(amount);
+        assertTrue(amountEditedEditTransactionDescriptor.isAmountOrDateEdited());
+
+        EditTransactionDescriptor dateEditedEditTransactionDescriptor = new EditTransactionDescriptor();
+        dateEditedEditTransactionDescriptor.setDate(date);
+        assertTrue(dateEditedEditTransactionDescriptor.isAmountOrDateEdited());
+
+        EditTransactionDescriptor bothEditedEditTransactionDescriptor = new EditTransactionDescriptor();
+        bothEditedEditTransactionDescriptor.setAmount(amount);
+        bothEditedEditTransactionDescriptor.setDate(date);
+        assertTrue(bothEditedEditTransactionDescriptor.isAmountOrDateEdited());
     }
 
     @Test

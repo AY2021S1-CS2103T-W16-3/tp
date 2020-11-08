@@ -13,11 +13,13 @@ import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandResult;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.bookmark.AddBookmarkIncomeCommand;
+import ay2021s1_cs2103_w16_3.finesse.logic.commands.exceptions.CommandException;
 import ay2021s1_cs2103_w16_3.finesse.logic.commands.stubs.ModelStub;
 import ay2021s1_cs2103_w16_3.finesse.logic.parser.bookmarkparsers.BookmarkTransactionBuilder;
 import ay2021s1_cs2103_w16_3.finesse.model.FinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.ReadOnlyFinanceTracker;
 import ay2021s1_cs2103_w16_3.finesse.model.bookmark.BookmarkIncome;
+import ay2021s1_cs2103_w16_3.finesse.model.bookmark.exceptions.DuplicateBookmarkTransactionException;
 
 public class AddBookmarkIncomeCommandTest {
 
@@ -36,6 +38,14 @@ public class AddBookmarkIncomeCommandTest {
         assertEquals(String.format(AddBookmarkIncomeCommand.MESSAGE_SUCCESS, validBookmarkIncome),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBookmarkIncome), modelStub.bookmarkIncomesAdded);
+    }
+
+    @Test
+    public void execute_duplicateBookmarkIncome_throwsDuplicateBookmarkTransactionException() {
+        ModelStubRejectingDuplicateBookmarkIncome modelStub = new ModelStubRejectingDuplicateBookmarkIncome();
+        BookmarkIncome validBookmarkIncome = new BookmarkTransactionBuilder().buildBookmarkIncome();
+        AddBookmarkIncomeCommand addBookmarkIncomeCommand = new AddBookmarkIncomeCommand(validBookmarkIncome);
+        assertThrows(CommandException.class, () -> addBookmarkIncomeCommand.execute(modelStub));
     }
 
     @Test
@@ -63,7 +73,7 @@ public class AddBookmarkIncomeCommandTest {
     }
 
     /**
-     * A Model stub that always accepts the frequent income being added.
+     * A model stub that always accepts the bookmark income being added.
      */
     private class ModelStubAcceptingBookmarkIncomeAdded extends ModelStub {
         final ArrayList<BookmarkIncome> bookmarkIncomesAdded = new ArrayList<>();
@@ -80,4 +90,14 @@ public class AddBookmarkIncomeCommandTest {
         }
     }
 
+    /**
+     * A model stub that always throws a {@code DuplicateBookmarkTransactionException}
+     * when a {@code BookmarkIncome} is added.
+     */
+    private class ModelStubRejectingDuplicateBookmarkIncome extends ModelStub {
+        @Override
+        public void addBookmarkIncome(BookmarkIncome bookmarkIncome) {
+            throw new DuplicateBookmarkTransactionException("Cannot add duplicate bookmark income.");
+        }
+    }
 }

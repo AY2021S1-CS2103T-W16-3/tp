@@ -47,26 +47,28 @@ public class FindTransactionCommandTest {
         List<Predicate<Transaction>> secondPredicateList = new ArrayList<>();
         secondPredicateList.add(secondPredicate);
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicateList);
-        FindCommand findSecondCommand = new FindCommand(secondPredicateList);
+        FindCommand firstSuperCommand = new FindCommand(firstPredicateList);
+        FindTransactionCommand firstFindTransactionCommand = new FindTransactionCommand(firstSuperCommand);
+        FindCommand secondSuperCommand = new FindCommand(secondPredicateList);
+        FindTransactionCommand secondFindTransactionCommand = new FindTransactionCommand(secondSuperCommand);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(firstFindTransactionCommand.equals(firstFindTransactionCommand));
 
         List<Predicate<Transaction>> firstPredicateListCopy = new ArrayList<>();
         firstPredicateListCopy.add(firstPredicate);
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicateListCopy);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FindTransactionCommand firstFindTransactionCommandCopy = new FindTransactionCommand(firstSuperCommand);
+        assertTrue(firstFindTransactionCommand.equals(firstFindTransactionCommandCopy));
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertFalse(firstFindTransactionCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertFalse(firstFindTransactionCommand.equals(null));
 
         // different predicates -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertFalse(firstFindTransactionCommand.equals(secondFindTransactionCommand));
     }
 
     @Test

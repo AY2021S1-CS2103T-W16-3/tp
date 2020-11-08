@@ -14,6 +14,12 @@ import ay2021s1_cs2103_w16_3.finesse.logic.commands.bookmark.EditBookmarkTransac
 import ay2021s1_cs2103_w16_3.finesse.testutil.EditBookmarkTransactionDescriptorBuilder;
 
 public class EditBookmarkTransactionDescriptorTest {
+    @Test
+    public void setCategories_nullSet_doesNotThrowNullPointerException() {
+        EditBookmarkTransactionDescriptor editBookmarkTransactionDescriptor = new EditBookmarkTransactionDescriptor();
+        editBookmarkTransactionDescriptor.setCategories(null);
+        assertTrue(editBookmarkTransactionDescriptor.getCategories().isEmpty());
+    }
 
     @Test
     public void equals() {

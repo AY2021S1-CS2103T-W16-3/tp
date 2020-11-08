@@ -1,6 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.commands.bookmarkcommands;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_BOOKMARK_INCOME_DISPLAYED_INDEX;
+import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_BUBBLE_TEA;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_SPOTIFY_SUBSCRIPTION;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -112,23 +113,30 @@ public class ConvertBookmarkIncomeCommandTest {
         ConvertBookmarkIncomeCommand secondConvertBookmarkIncomeCommand =
                 new ConvertBookmarkIncomeCommand(secondSuperCommand);
 
-        // same object -> returns true
+        // Same object -> returns true
         assertTrue(firstConvertBookmarkIncomeCommand.equals(firstConvertBookmarkIncomeCommand));
 
-        // same values -> returns true
+        // Same values -> returns true
         ConvertBookmarkCommandStub firstCopySuperCommand =
                 new ConvertBookmarkCommandStub(INDEX_FIRST, dateOfConvertedIncome);
         ConvertBookmarkIncomeCommand deleteFirstCommandCopy =
                 new ConvertBookmarkIncomeCommand(firstCopySuperCommand);
         assertTrue(firstConvertBookmarkIncomeCommand.equals(deleteFirstCommandCopy));
 
-        // different types -> returns false
+        // Different types -> returns false
         assertFalse(firstConvertBookmarkIncomeCommand.equals(1));
 
         // null -> returns false
         assertFalse(firstConvertBookmarkIncomeCommand.equals(null));
 
-        // different income -> returns false
+        // Different income -> returns false
         assertFalse(firstConvertBookmarkIncomeCommand.equals(secondConvertBookmarkIncomeCommand));
+
+        // Different dates -> returns false
+        ConvertBookmarkCommandStub thirdSuperCommand =
+                new ConvertBookmarkCommandStub(INDEX_FIRST, new Date(VALID_DATE_BUBBLE_TEA));
+        ConvertBookmarkIncomeCommand thirdConvertBookmarkIncomeCommand =
+                new ConvertBookmarkIncomeCommand(thirdSuperCommand);
+        assertFalse(firstConvertBookmarkIncomeCommand.equals(thirdConvertBookmarkIncomeCommand));
     }
 }
