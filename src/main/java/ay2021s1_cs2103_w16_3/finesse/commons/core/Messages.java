@@ -21,5 +21,6 @@ public class Messages {
     public static final String MESSAGE_INCOMES_LISTED_OVERVIEW = "%1$d incomes listed!";
     public static final String MESSAGE_METHOD_SHOULD_NOT_BE_CALLED = "This method should not be called.";
     public static final String MESSAGE_NO_ARGUMENTS_COMMAND_FORMAT = "'%s' command cannot have any arguments.";
+    public static final String MESSAGE_INVALID_PREFIX_PRESENT_HEADER = "These prefixes should not be used:";
 
 }

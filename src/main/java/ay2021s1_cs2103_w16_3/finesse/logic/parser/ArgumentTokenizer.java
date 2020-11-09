@@ -1,6 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_PREFIX_PRESENT_HEADER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import ay2021s1_cs2103_w16_3.finesse.logic.parser.exceptions.ParseException;
  *    in the above example.<br>
  */
 public class ArgumentTokenizer {
+
     /**
      * Prevents instantiation of this class.
      */
@@ -64,7 +66,7 @@ public class ArgumentTokenizer {
                 prefixComplementList.toArray(new Prefix[0]));
 
         if (!presentInvalidPrefixes.isEmpty()) {
-            StringBuilder invalidPrefixesMessage = new StringBuilder("These prefixes should not be used:");
+            StringBuilder invalidPrefixesMessage = new StringBuilder(MESSAGE_INVALID_PREFIX_PRESENT_HEADER);
             presentInvalidPrefixes.forEach(prefix -> invalidPrefixesMessage.append(" ").append(prefix.toString()));
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     invalidPrefixesMessage.toString() + "\n" + exceptionMessage));
