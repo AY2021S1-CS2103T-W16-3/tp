@@ -2,6 +2,8 @@ package ay2021s1_cs2103_w16_3.finesse.ui;
 
 import java.util.Comparator;
 
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Expense;
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Income;
 import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.fxml.FXML;
@@ -95,6 +97,29 @@ public class TransactionCard extends UiPart<Region> {
             scrollPane.fireEvent(scrollEvent);
             scrollEvent.consume();
         });
+    }
+
+    /**
+     * Creates a {@code TransactionCard} with the given {@code Transaction} and index to display.
+     * Binds the width of the {@code TransactionCard} to that of its containing list.
+     * Displays the '+' sign beside the {@code Amount} if the transaction is an income, and the
+     * '-' sign if the transaction is an expense.
+     */
+    public TransactionCard(Transaction transaction, int displayedIndex, boolean displaySign,
+            ReadOnlyDoubleProperty width) {
+        this(transaction, displayedIndex, width);
+        if (displaySign) {
+            boolean isIncome = transaction instanceof Income;
+            boolean isExpense = transaction instanceof Expense;
+            assert isIncome != isExpense;
+            if (isIncome) {
+                amount.setText("+" + amount.getText());
+            }
+            if (isExpense) {
+                amount.setText("-" + amount.getText());
+                amount.setStyle("-fx-text-fill: red");
+            }
+        }
     }
 
     @Override

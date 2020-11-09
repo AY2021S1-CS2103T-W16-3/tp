@@ -18,6 +18,8 @@ public class TransactionListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code TransactionListPanel} with the given {@code ObservableList}.
+     *
+     * @param transactionList The list of transactions.
      */
     public TransactionListPanel(ObservableList<Transaction> transactionList) {
         super(FXML);
@@ -38,7 +40,7 @@ public class TransactionListPanel extends UiPart<Region> {
                 setText(null);
                 setStyle("-fx-background-color: #2E2E36");
             } else {
-                setGraphic(new TransactionCard(transaction, getIndex() + 1,
+                setGraphic(new TransactionCard(transaction, getIndex() + 1, true,
                         transactionListView.widthProperty()).getRoot());
             }
         }
