@@ -356,13 +356,16 @@ Based on the current transaction lists, the total monthly expenses, incomes and 
 
 ![Object diagram for Analytics feature](images/AnalyticsTabObjectDiagram.png)
 
-The `AnalyticsTabPane` is constructed as such:
-1. `AnalyticsTabPane` takes in a `MonthlyBudget` object from `Model`
-1. The following fields from `MonthlyBudget` are accessed:
+When the constructor for `AnalyticsTabPane` is called:
+1. `AnalyticsTabPane` constructor takes in a `MonthlyBudget` object from `Model`
+1. The `BarChart` objects (`expenseAnalyticsBarChart`, `incomeAnalyticsBarChart` and `savingsAnalyticsBarChart`) are constructed and `Axis` objects are added to them.
+1. The method `AnalyticsTabPane#populateData` is called and takes in the `MonthlyBudget` object.
+   The following fields from `MonthlyBudget` are accessed:
    * `ObservableList<CalculatedAmount>` fields: `monthlyExpenses`, `monthlyIncomes` and `monthlySavings`
    * `ObservableList<String>` field: `months`
-1. The `BarChart` objects (`expenseAnalyticsBarChart`, `incomeAnalyticsBarChart` and `savingsAnalyticsBarChart`) are constructed and `Axis` objects are added to them.
-1. The values from the above fields in *step 2* are accessed to construct `XY.Data` objects.
+   
+   The method `AnalyticsTabPane#populateDataIn` is called for each `BarChart` object.
+1. In the method `AnalyticsTabPane#populateDataIn`, the values from the above fields in *step 3* are accessed to construct `XY.Data` objects.
 1. The `XY.Data` objects are added to the `BarChart` objects.
 
 #### Design considerations
