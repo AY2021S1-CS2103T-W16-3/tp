@@ -85,7 +85,13 @@
           <li><a href="#convert-frequent-expense-to-expense-feature" id="markdown-toc-convert-frequent-expense-to-expense-feature">Convert Frequent Expense To Expense Feature</a></li>
         </ul>
       </li>
-      <li><a href="#analytics" id="markdown-toc-analytics">Analytics</a></li>
+      <li>
+<a href="#analytics" id="markdown-toc-analytics">Analytics</a>        <ul>
+          <li><a href="#overview-2" id="markdown-toc-overview-2">Overview</a></li>
+          <li><a href="#implementation-of-feature-2" id="markdown-toc-implementation-of-feature-2">Implementation of feature</a></li>
+          <li><a href="#design-considerations-2" id="markdown-toc-design-considerations-2">Design considerations</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li><a href="#appendix-a-product-scope" id="markdown-toc-appendix-a-product-scope"><strong>Appendix A: Product scope</strong></a></li>
@@ -562,7 +568,42 @@ it to an <code class="highlighter-rouge">Expense</code> object.</li>
 
 <h3 id="analytics">Analytics</h3>
 
-<p>[Coming soon]</p>
+<h5 id="overview-2">Overview</h5>
+
+<p>The Analytics feature allows the user to view their spending and saving trends over a period of time.
+Based on the current transaction lists, the total monthly expenses, incomes and savings over the past three months are calculated and displayed in the Analytics Tab in the form of bar charts.</p>
+
+<h5 id="implementation-of-feature-2">Implementation of feature</h5>
+
+<p><img src="/tp/images/AnalyticsTabObjectDiagram.png" alt="Object diagram for Analytics feature"></p>
+
+<p>When the constructor for <code class="highlighter-rouge">AnalyticsTabPane</code> is called:</p>
+<ol>
+  <li>
+<code class="highlighter-rouge">AnalyticsTabPane</code> constructor takes in a <code class="highlighter-rouge">MonthlyBudget</code> object from <code class="highlighter-rouge">Model</code>.</li>
+  <li>The <code class="highlighter-rouge">BarChart</code> objects (<code class="highlighter-rouge">expenseAnalyticsBarChart</code>, <code class="highlighter-rouge">incomeAnalyticsBarChart</code> and <code class="highlighter-rouge">savingsAnalyticsBarChart</code>) are constructed and <code class="highlighter-rouge">Axis</code> objects are added to them.</li>
+  <li>The method <code class="highlighter-rouge">AnalyticsTabPane#populateData</code> is called and takes in the <code class="highlighter-rouge">MonthlyBudget</code> object.
+The following fields from <code class="highlighter-rouge">MonthlyBudget</code> are accessed:
+    <ul>
+      <li>
+<code class="highlighter-rouge">ObservableList&lt;CalculatedAmount&gt;</code> fields: <code class="highlighter-rouge">monthlyExpenses</code>, <code class="highlighter-rouge">monthlyIncomes</code> and <code class="highlighter-rouge">monthlySavings</code>
+</li>
+      <li>
+<code class="highlighter-rouge">ObservableList&lt;String&gt;</code> field: <code class="highlighter-rouge">months</code>
+</li>
+    </ul>
+
+    <p>The method <code class="highlighter-rouge">AnalyticsTabPane#populateDataIn</code> is called for each <code class="highlighter-rouge">BarChart</code> object.</p>
+  </li>
+  <li>In the method <code class="highlighter-rouge">AnalyticsTabPane#populateDataIn</code>, the values from the above fields in <em>step 3</em> are accessed to construct <code class="highlighter-rouge">XY.Data</code> objects.</li>
+  <li>The <code class="highlighter-rouge">XY.Data</code> objects are added to the <code class="highlighter-rouge">BarChart</code> objects.</li>
+</ol>
+
+<h5 id="design-considerations-2">Design considerations</h5>
+
+<ul>
+  <li>An external library, <a href="https://data2viz.io/">Data2Viz</a>, was considered, rather than <em>JavaFX Charts</em>, but the former was rejected due to difficulty in implementation.</li>
+</ul>
 
 <hr>
 
