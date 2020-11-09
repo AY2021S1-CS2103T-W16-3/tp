@@ -1,10 +1,10 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
+
+import org.junit.jupiter.api.Test;
 
 public class TransactionBuilderTest {
     @Test
