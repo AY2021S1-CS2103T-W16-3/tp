@@ -117,7 +117,7 @@ public class TransactionCard extends UiPart<Region> {
             }
             if (isExpense) {
                 amount.setText("-" + amount.getText());
-                amount.setStyle("-fx-text-fill: red");
+                amount.setStyle("-fx-text-fill: #FF4D4D");
             }
         }
     }

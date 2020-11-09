@@ -60,7 +60,7 @@ public class SavingsGoalCard extends UiPart<Region> {
                 return String.format("Remaining Budget: %s",
                         monthlyBudget.getRemainingBudget().get().toString());
             } else {
-                budgetStatus.setStyle("-fx-text-fill: red");
+                budgetStatus.setStyle("-fx-text-fill: #FF4D4D");
                 return String.format("Budget Deficit: %s",
                         monthlyBudget.getRemainingBudget().get().toString());
             }
@@ -72,7 +72,7 @@ public class SavingsGoalCard extends UiPart<Region> {
                 return String.format("Current Savings: %s",
                         monthlyBudget.getCurrentSavings().get().toString());
             } else {
-                savingsStatus.setStyle("-fx-text-fill: red");
+                savingsStatus.setStyle("-fx-text-fill: #FF4D4D");
                 return String.format("Savings Deficit: %s",
                         monthlyBudget.getCurrentSavings().get().toString());
             }
