@@ -381,6 +381,53 @@ it to an `Expense` object.
 In order to fully replicate the Command Line Interface (CLI) experience, Fine$$e features the ability to navigate through the last 50 commands entered.
 This is done by pressing the ↑ or ↓ arrow keys on the keyboard while focused on the command input box.
 
+The class diagram below depicts the components involved in the command history feature.
+
+![Class diagram for command history feature](images/CommandHistoryClassDiagram.png)
+
+##### Implementation of feature
+
+The command history feature is implemented via `CommandHistory`.
+Whenever the user inputs a command, the command is added to the `CommandHistory` so as to be tracked.
+Note that for this section on the command history, all mentions of 'command' refer to the user input, and not the various `Command`s present in the codebase.
+
+`CommandHistory` is backed by an `EvictingStack`, a data structure that works similarly to a normal Last In First Out (LIFO) stack.
+However, when the `EvictingStack` is full, the bottom-most element of the stack is removed (or in other words, evicted).
+This behaviour is achieved by maintaining a doubly-linked list made out of `Node`s.
+
+Each `Node` keeps track of the following information:
+* Its value, which corresponds to a command in this context.
+* A reference to the next `Node` in the linked list.
+* A reference to the previous `Node` in the linked list.
+
+For the `EvictingStack`, it keeps track of not only the `Node` at the top of the stack, but also the `Node` at the bottom.
+This is so that the bottom-most element can be removed in Θ(1) time.
+Due to the linked list being doubly-linked, we can then also find the next bottom-most element of the `EvictingStack` in constant time.
+
+In addition, `CommandHistory` maintains an internal navigation state that gets reset whenever a new command is entered.
+This internal navigation state keeps track of the current position while traversing the command history using the ↑ and ↓ arrow keys, much like a typical CLI.
+
+##### Navigating the command history
+
+When the ↑ arrow key is pressed, there are two possible scenarios:
+1. The current command in the navigation state is the earliest tracked command.
+  * Nothing happens.
+1. The current command in the navigation state is not the earliest tracked command.
+  * The command immediately preceding the current command is retrieved.
+
+The following activity diagram summarizes what happens when the user presses the ↑ arrow key.
+
+![Activity diagram for pressing the ↑ arrow key](images/CommandHistoryUpActivityDiagram.png)
+
+Similarly, when the ↓ arrow key is pressed, there are two possible scenarios:
+1. The current command in the navigation state is the latest tracked command.
+  * The command input box is cleared.
+1. The current command in the navigation state is not the latest tracked command.
+  * The command immediately succeeding the current command is retrieved.
+
+The following activity diagram summarizes what happens when the user presses the ↓ arrow key.
+
+![Activity diagram for pressing the ↓ arrow key](images/CommandHistoryDownActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
