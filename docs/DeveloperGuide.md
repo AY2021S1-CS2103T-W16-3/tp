@@ -363,7 +363,7 @@ The `AnalyticsTabPane` is constructed as such:
    * `ObservableList<String>` field: `months`
 1. The `BarChart` objects (`expenseAnalyticsBarChart`, `incomeAnalyticsBarChart` and `savingsAnalyticsBarChart`) are constructed and `Axis` objects are added to them.
 1. The values from the above fields in *step 2* are accessed to construct `XY.Data` objects.
-1. The `XY.Data` Objects are added to the `BarChart`s.
+1. The `XY.Data` objects are added to the `BarChart` objects.
 
 #### Design considerations
 
