@@ -158,7 +158,8 @@ public class ArgumentTokenizerTest {
 
         public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes)
                 throws ParseException {
-            return ArgumentTokenizer.tokenize(argsString, new Prefix[] {unknownPrefix, pSlash, dashT, hatQ}, prefixes);
+            return ArgumentTokenizer.tokenize(argsString, new Prefix[] {unknownPrefix, pSlash, dashT, hatQ},
+                    "This is an exception message.", prefixes);
         }
     }
 

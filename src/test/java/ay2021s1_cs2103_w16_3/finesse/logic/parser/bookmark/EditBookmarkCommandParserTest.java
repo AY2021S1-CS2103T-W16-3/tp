@@ -1,6 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser.bookmark;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_PREFIX_PRESENT_HEADER;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_PHONE_BILL;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_SPOTIFY_SUBSCRIPTION;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_FOOD_BEVERAGE;
@@ -19,6 +20,7 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_PHONE_BILL;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_SPOTIFY_SUBSCRIPTION;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_FIRST;
@@ -100,7 +102,8 @@ public class EditBookmarkCommandParserTest {
     public void parse_invalidFieldPresent_failure() {
         assertParseFailure(parser, "1" + TITLE_DESC_SPOTIFY_SUBSCRIPTION + AMOUNT_DESC_SPOTIFY_SUBSCRIPTION
                 + DATE_DESC_SPOTIFY_SUBSCRIPTION,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookmarkCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_PREFIX_PRESENT_HEADER + " " + PREFIX_DATE
+                        + "\n" + EditBookmarkCommand.MESSAGE_USAGE));
     }
 
     @Test

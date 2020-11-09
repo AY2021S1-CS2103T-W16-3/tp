@@ -1,6 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser.bookmark;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_PREFIX_PRESENT_HEADER;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_PART_TIME;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.AMOUNT_DESC_PHONE_BILL;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.CATEGORY_DESC_UTILITIES;
@@ -17,6 +18,7 @@ import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_UTILITIES;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_CATEGORY_WORK;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_TITLE_PART_TIME;
+import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalTransactions.PART_TIME;
@@ -119,6 +121,7 @@ public class AddBookmarkIncomeCommandParserTest {
         // date field present
         assertParseFailure(parser, TITLE_DESC_PHONE_BILL + AMOUNT_DESC_PHONE_BILL
                 + DATE_DESC_SPOTIFY_SUBSCRIPTION + CATEGORY_DESC_UTILITIES,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookmarkIncomeCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_PREFIX_PRESENT_HEADER + " " + PREFIX_DATE
+                        + "\n" + AddBookmarkIncomeCommand.MESSAGE_USAGE));
     }
 }
