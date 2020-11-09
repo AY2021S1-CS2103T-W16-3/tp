@@ -33,20 +33,25 @@ Fine$$e is a desktop finance tracker that allows tertiary students to better man
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ianyong&tabRepo=AY2021S1-CS2103T-W16-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed release `v1.4` (1 release) on GitHub.
+  * Updated GitHub Pages to display meeting minutes and Gantt chart.
 
 * **Enhancements to existing features**:
   * Refactored the user interface to be more extensible. (Pull request [#161](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/161))
   * Updated the user interface to be resizable and scalable. (Pull requests [#174](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/174), [#226](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/226))
 
 * **Documentation**:
-  * User Guide:
-    * Updated user guide to give an overview of the various tabs in Fine$$e. (Pull request [#179](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179))
-  * Developer Guide:
+  * User Guide (Pull requests [#179](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179), [#235](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/235)):
+    * Updated user guide to give an overview of the various tabs in Fine$$e.
+    * Added section on command history.
+  * Developer Guide (Pull requests [#141](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/141), [#318](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/318)):
+    * Added implementation details for tab switching.
+    * Added implementation details for command history.
+    * Added implementation details for data integrity safeguards.
+    * Updated design details for UI component.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [#39](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/39), [#75](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/75), [#123](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/123), [#232](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/232), [#264](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/264), [#265](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/265)
-  * Helped classmates in forum discussions. (Examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/14), [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/117), [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/191), [4](https://github.com/nus-cs2103-AY2021S1/forum/issues/200), [5](https://github.com/nus-cs2103-AY2021S1/forum/issues/249), [6](https://github.com/nus-cs2103-AY2021S1/forum/issues/262), [7](https://github.com/nus-cs2103-AY2021S1/forum/issues/269), [8](https://github.com/nus-cs2103-AY2021S1/forum/issues/276))
+  * PRs reviewed (with non-trivial review comments): [#39](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/39), [#75](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/75), [#123](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/123), [#232](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/232), [#264](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/264), [#265](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/265), [#285](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/285)
+  * Helped classmates in forum discussions. (Examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/14), [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/117), [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/191), [4](https://github.com/nus-cs2103-AY2021S1/forum/issues/200), [5](https://github.com/nus-cs2103-AY2021S1/forum/issues/249), [6](https://github.com/nus-cs2103-AY2021S1/forum/issues/262), [7](https://github.com/nus-cs2103-AY2021S1/forum/issues/269), [8](https://github.com/nus-cs2103-AY2021S1/forum/issues/276), [9](https://github.com/nus-cs2103-AY2021S1/forum/issues/386))
   * Solution for removing bullet points from the table of contents of user guide was [adopted by several other classmates](https://github.com/nus-cs2103-AY2021S1/forum/issues/361).
 
 * **Tools**:
