@@ -29,12 +29,12 @@ public class ArgumentTokenizer {
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. All prefixes from {@code CliSyntax} are recognized, but only the specified
      * {@param prefixes} are considered valid. The other prefixes not specified are considered invalid and, if detected,
-     * will throw {@code ParseException}
+     * will throw {@code ParseException}.
      *
-     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Valid prefixes from the set of prefixes in {@code CliSyntax} to tokenize the arguments with
-     * @return           ArgumentMultimap object that maps prefixes to their arguments
-     * @throws           ParseException
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}.
+     * @param prefixes   Valid prefixes from the set of prefixes in {@code CliSyntax} to tokenize the arguments with.
+     * @return           ArgumentMultimap object that maps prefixes to their arguments.
+     * @throws           ParseException if any invalid prefixes are detected.
      */
     public static ArgumentMultimap tokenize(String argsString, String exceptionMessage, Prefix... prefixes)
             throws ParseException {
@@ -45,14 +45,14 @@ public class ArgumentTokenizer {
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. All prefixes from {@param prefixFullSet} are recognized, but only the specified
      * {@param prefixes} are considered valid. The other prefixes from {@param prefixFullSet} that are not specified are
-     * considered invalid and, if detected, will throw {@code ParseException}
+     * considered invalid and, if detected, will throw {@code ParseException}.
      *
-     * @param argsString    Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixFullSet Set of all prefixes to tokenize the arguments with
-     * @param prefixes      Subset of prefixFullSet that are considered valid. Any other prefixes is invalid and
-     *                      thus should throw ParseException
-     * @return              ArgumentMultimap object that maps prefixes to their arguments
-     * @throws              ParseException
+     * @param argsString    Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}.
+     * @param prefixFullSet Set of all prefixes to tokenize the arguments with.
+     * @param prefixes      Subset of prefixFullSet that are considered valid. Any other prefixes is invalid and.
+     *                      thus should throw ParseException.
+     * @return              ArgumentMultimap object that maps prefixes to their arguments.
+     * @throws              ParseException if any invalid prefixes are detected.
      */
     protected static ArgumentMultimap tokenize(String argsString, Prefix[] prefixFullSet, String exceptionMessage,
             Prefix... prefixes) throws ParseException {
@@ -77,9 +77,9 @@ public class ArgumentTokenizer {
     /**
      * Finds all zero-based prefix positions in the given arguments string.
      *
-     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Prefixes to find in the arguments string
-     * @return           List of zero-based prefix positions in the given arguments string
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}.
+     * @param prefixes   Prefixes to find in the arguments string.
+     * @return           List of zero-based prefix positions in the given arguments string.
      */
     private static List<PrefixPosition> findAllPrefixPositions(String argsString, Prefix... prefixes) {
         return Arrays.stream(prefixes)
@@ -126,9 +126,9 @@ public class ArgumentTokenizer {
      * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
      * {@code argsString}.
      *
-     * @param argsString      Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
-     * @return                ArgumentMultimap object that maps prefixes to their arguments
+     * @param argsString      Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}.
+     * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}.
+     * @return                ArgumentMultimap object that maps prefixes to their arguments.
      */
     private static ArgumentMultimap extractArguments(String argsString, List<PrefixPosition> prefixPositions) {
 

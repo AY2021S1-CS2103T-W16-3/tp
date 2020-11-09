@@ -23,7 +23,7 @@ public class CliSyntax {
     /**
      * Retrieves a list containing all prefixes.
      *
-     * @return List of all prefixes
+     * @return List of all prefixes.
      */
     public static Prefix[] getAllPrefixes() {
         return new Prefix[] {PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_CATEGORY, PREFIX_AMOUNT_FROM,
