@@ -13,6 +13,7 @@ import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import ay2021s1_cs2103_w16_3.finesse.model.transaction.Transaction;
 import org.junit.jupiter.api.Test;
 
 import ay2021s1_cs2103_w16_3.finesse.commons.core.index.Index;
@@ -89,7 +90,15 @@ public class ConvertBookmarkCommandParserTest {
     }
 
     @Test
-    public void parse_invalidFieldSpecified_throwsParseException() {
+    public void parse_moreThanOneDateFieldSpecified_throwParseException() {
+        Index targetIndex = INDEX_SECOND;
+        String userInput = targetIndex.getOneBased() + DATE_DESC_SPOTIFY_SUBSCRIPTION + DATE_DESC_SPOTIFY_SUBSCRIPTION;
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Transaction.MESSAGE_DATE_CONSTRAINTS));
+    }
+
+    @Test
+    public void parse_invalidFieldSpecified_throwParseException() {
         Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + PREFIX_DATE_TO.toString() + VALID_DATE_SPOTIFY_SUBSCRIPTION;
         assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
