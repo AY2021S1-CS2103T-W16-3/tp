@@ -429,6 +429,32 @@ The following activity diagram summarizes what happens when the user presses the
 
 ![Activity diagram for pressing the ↓ arrow key](images/CommandHistoryDownActivityDiagram.png)
 
+### Data integrity safeguards
+
+##### Overview
+
+Since Fine$$e is an offline desktop application, it is reliant on the system time to perform date validations.
+This makes it vulnerable to changes in the system time while it is running.
+In particular, if the system time were to be changed to an earlier time, the existing data might get corrupted.
+
+##### Implementation of feature
+
+To safeguard against potential loss or corruption of data, Fine$$e tracks the system time across actions via `Timekeeper`, which keeps track of the last observed time.
+Upon launching the application, `Timekeeper` is instantiated with the current system time.
+Subsequently, every time a command is entered by the user, the last observed time in `Timekeeper` is validated against the current system time.
+
+If the current system time is earlier than the last observed time, Fine\$\$e disables itself to prevent data loss.
+A prompt is shown to the user to ensure that their system time is correct before restarting Fine$$e in order to continue using the application.
+Upon relaunching the application, the data file is validated by `JsonFinanceTrackerParser`.
+
+Should the current system time be later than or equals to the last observed time, the last observed time in `Timekeeper` is updated to the current system time.
+
+##### Validating the time whenever a command is executed
+
+The following sequence diagram shows what happens when a command is entered by the user.
+
+![Sequence diagram for Timekeeper](images/TimekeeperSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix A: Product scope**
