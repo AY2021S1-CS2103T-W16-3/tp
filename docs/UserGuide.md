@@ -105,6 +105,10 @@ The user interface of Fine$$e is divided into 4 tabs, each serving a specific pu
 
 Displays a list of all recent transactions (both [incomes](#44-income) and [expenses](#43-expense)), along with your [expense limit](#47-expense-limit), [savings goal](#48-savings-goal), remaining budget and current savings.
 
+> :information_source: &nbsp; Transaction amounts are prepended with either `+` or `-` so as to distinguish between [incomes](#44-income) and [expenses](#43-expense) respectively.
+> In the case of the latter, the amount is also highlighted in red.
+> This applies only to the Overview tab.
+
 ![Overview Tab](images/userguide/OverviewTab.png)
 
 #### 2.2.2 Incomes Tab
