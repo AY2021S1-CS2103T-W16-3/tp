@@ -52,9 +52,21 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/src/main/java/ay2021s1_cs2103_w16_3/finesse/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TransactionListPanel`, `StatusBarFooter` etc. All of these, including `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TransactionListPanel`, `OverviewTabPane` etc.
+All of these, including `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts is defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of [`MainWindow`](https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/src/main/java/ay2021s1_cs2103_w16_3/finesse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
+There are 5 tab panes which are contained within `MainWindow`:
+* `OverviewTabPane` - Displays an overview of the most recent transactions (both incomes and expenses) along with the savings goals.
+  * Contains `TransactionListPanel` and `SavingsGoalPanel`.
+* `IncomeTabPane` - Displays a list of incomes along with bookmark incomes.
+  * Contains `IncomePanel` and `BookmarkIncomePanel`.
+* `ExpenseTabPane` - Displays a list of expenses along with bookmark expenses.
+  * Contains `ExpensePanel` and `BookmarkExpensePanel`.
+* `AnalyticsTabPane` - Displays statistics.
+* `UserGuideTabPane` - Displays the user guide.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts is defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of [`MainWindow`](https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/src/main/java/ay2021s1_cs2103_w16_3/finesse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component:
 
