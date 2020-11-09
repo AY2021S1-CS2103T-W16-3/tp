@@ -214,6 +214,8 @@ If the command in question is one of those listed above, the UI will switch to t
 
 ##### Design considerations
 
+The alternative implementations considered, as well as the rationale behind our current implementation are as follows:
+
 | Alternative considered  | Current implementation and rationale   |
 | ----------- | -------------------------   |
 | Add a method in `MainWindow` which can be called to programmatically switch tabs in the user interface upon execution of the command. | Encapsulate the tab switching information within `CommandResult` to prevent tight coupling of `Logic` and `UI` components. |
@@ -429,6 +431,14 @@ The following activity diagram summarizes what happens when the user presses the
 
 ![Activity diagram for pressing the ↓ arrow key](images/CommandHistoryDownActivityDiagram.png)
 
+##### Design considerations
+
+The alternative implementations considered, as well as the rationale behind our current implementation are as follows:
+
+| Alternative considered  | Current implementation and rationale   |
+| ----------- | -------------------------   |
+| Use Java's in-built `Stack` class in `CommandHistory`. | Use a custom `EvictingStack` instead, so as to prevent potentially running out of memory if an extremely large number of commands are entered. |
+
 ### Data integrity safeguards
 
 ##### Overview
@@ -454,6 +464,14 @@ Should the current system time be later than or equals to the last observed time
 The following sequence diagram shows what happens when a command is entered by the user.
 
 ![Sequence diagram for Timekeeper](images/TimekeeperSequenceDiagram.png)
+
+##### Design considerations
+
+The alternative implementations considered, as well as the rationale behind our current implementation are as follows:
+
+| Alternative considered  | Current implementation and rationale   |
+| ----------- | -------------------------   |
+| Query and use the time from some remote server rather than the system time. | Keep track of the last observed system time so that there is no need for an internet connection to use the application. |
 
 --------------------------------------------------------------------------------------------------------------------
 
