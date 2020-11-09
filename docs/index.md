@@ -13,7 +13,17 @@ title: Fine$$e
 * If you are interested in using Fine$$e, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#2-quick-start).
 * If you are interested in developing Fine$$e, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
-
 **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+* Libraries used:
+  * [Git Hooks Gradle Plugin](https://plugins.gradle.org/plugin/com.github.jakemarsden.git-hooks) *(licensed under the [MIT License](https://github.com/jakemarsden/git-hooks-gradle-plugin/blob/master/LICENSE))*
+  * [Gradle Git Hook](https://plugins.gradle.org/plugin/com.star-zero.gradle.githook) *(licensed under the [Apache License 2.0](https://github.com/STAR-ZERO/gradle-githook/blob/master/LICENSE))*
+  * [Gradle plugin for PIT Mutation Testing](https://plugins.gradle.org/plugin/info.solidsoft.pitest)
+  * [IDEA Inspection Plugin](https://github.com/JetBrains/inspection-plugin) *(licensed under the [Apache License 2.0](https://github.com/STAR-ZERO/gradle-githook/blob/master/LICENSE))*
+  * [JavaFX](https://openjfx.io/)
+  * [Jackson](https://github.com/FasterXML/jackson)
+  * [Jekyll Spaceship](https://rubygems.org/gems/jekyll-spaceship) *(licensed under the [MIT License](https://github.com/jakemarsden/git-hooks-gradle-plugin/blob/master/LICENSE))*
+  * [JUnit5](https://github.com/junit-team/junit5)
+  * [PlantUML](https://plantuml.com/)
