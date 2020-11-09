@@ -50,12 +50,39 @@ public class TransactionCard extends UiPart<Region> {
      * Binds the width of the {@code TransactionCard} to that of its containing list.
      */
     public TransactionCard(Transaction transaction, int displayedIndex, ReadOnlyDoubleProperty width) {
+        this(transaction, displayedIndex, false, width);
+    }
+
+    /**
+     * Creates a {@code TransactionCard} with the given {@code Transaction} and index to display.
+     * Binds the width of the {@code TransactionCard} to that of its containing list.
+     * If {@code displaySign} is {@code true}, displays the '+' sign beside the {@code Amount}
+     * if the transaction is an income, and the '-' sign if the transaction is an expense.
+     */
+    public TransactionCard(Transaction transaction, int displayedIndex, boolean displaySign,
+            ReadOnlyDoubleProperty width) {
         super(FXML);
         this.transaction = transaction;
         cardPane.maxWidthProperty().bind(width.subtract(32));
         id.setText(displayedIndex + ". ");
         title.setText(transaction.getTitle().toString());
-        amount.setText(transaction.getAmount().toString());
+
+        String amountStr = transaction.getAmount().toString();
+        if (displaySign) {
+            boolean isIncome = transaction instanceof Income;
+            boolean isExpense = transaction instanceof Expense;
+            assert isIncome != isExpense;
+            if (isIncome) {
+                amount.setText("+" + amountStr);
+            }
+            if (isExpense) {
+                amount.setText("-" + amountStr);
+                amount.setStyle("-fx-text-fill: #FF4D4D");
+            }
+        } else {
+            amount.setText(amountStr);
+        }
+
         transaction.getCategories().stream()
                 .sorted(Comparator.comparing(category -> category.getCategoryName()))
                 .forEach(category -> {
@@ -97,29 +124,6 @@ public class TransactionCard extends UiPart<Region> {
             scrollPane.fireEvent(scrollEvent);
             scrollEvent.consume();
         });
-    }
-
-    /**
-     * Creates a {@code TransactionCard} with the given {@code Transaction} and index to display.
-     * Binds the width of the {@code TransactionCard} to that of its containing list.
-     * If {@code displaySign} is {@code true}, displays the '+' sign beside the {@code Amount}
-     * if the transaction is an income, and the '-' sign if the transaction is an expense.
-     */
-    public TransactionCard(Transaction transaction, int displayedIndex, boolean displaySign,
-            ReadOnlyDoubleProperty width) {
-        this(transaction, displayedIndex, width);
-        if (displaySign) {
-            boolean isIncome = transaction instanceof Income;
-            boolean isExpense = transaction instanceof Expense;
-            assert isIncome != isExpense;
-            if (isIncome) {
-                amount.setText("+" + amount.getText());
-            }
-            if (isExpense) {
-                amount.setText("-" + amount.getText());
-                amount.setStyle("-fx-text-fill: #FF4D4D");
-            }
-        }
     }
 
     @Override
