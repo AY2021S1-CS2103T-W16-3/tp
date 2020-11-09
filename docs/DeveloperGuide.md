@@ -90,6 +90,7 @@ Below is the Sequence Diagram for interactions within the `Logic` component for 
 The `Model`:
 
 * stores a `UserPref` object that represents the user’s preferences.
+* stores a `CommandHistory` object that keeps track of the 50 most recent commands entered.
 * stores the finance tracker data in the following components:
     * a `TransactionList` containing `Transaction`s.
     * a `BookmarkExpenseList` and `BookmarkIncomeList`, each containing `BookmarkTransaction`s.
@@ -176,6 +177,48 @@ Classes used by multiple components are in the `ay2021s1_cs2103_w16_3.finesse.co
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Tabs
+
+#### Programmatically switch selected tab
+
+##### Overview
+
+Fine$$e supports the ability to switch tabs programmatically.
+The following is a list of commands that utilise this ability:
+* `help` - Opens the [user guide](UserGuide.md).
+* `tab` - Switches to the tab corresponding to the index entered by the user.
+* `add-expense` - Adds an expense to the finance tracker and switches to the Expenses tab.
+* `ls-expense` - Shows a list of all expenses in the finance tracker by switching to the Expenses tab.
+* `add-income` - Adds an income to the finance tracker and switches to the Incomes tab.
+* `ls-income` - Shows a list of all incomes in the finance tracker by switching to the Incomes tab.
+* `add-bookmark-expense` - Adds a bookmark expense to the finance tracker and switches to the Expenses tab.
+* `add-bookmark-income` - Adds a bookmark income to the finance tracker and switches to the Incomes tab.
+
+##### Implementation of feature
+
+The ability to programmatically update the selected tab is implemented via `CommandResult`.
+Upon the successful execution of a command, a `CommandResult` is generated and passed back to `MainWindow`.
+This `CommandResult` contains the necessary information which the `MainWindow` needs to update the user interface, such as:
+* The feedback to be displayed to the user;
+* Whether to exit the application; and
+* Whether to programmatically switch to a different tab in the user interface.
+
+`MainWindow` will then select the tab specified in `CommandResult` as the active tab if applicable.
+
+##### Switching tabs
+
+The following sequence diagram shows how the `CommandResult` is created and returned upon the execution of any command.
+If the command in question is one of those listed above, the UI will switch to the specified tab.
+
+![Interactions inside the Logic Component when executing commands](images/CommandResultSequenceDiagram.png)
+
+##### Design considerations
+
+| Alternative considered  | Current implementation and rationale   |
+| ----------- | -------------------------   |
+| Add a method in `MainWindow` which can be called to programmatically switch tabs in the user interface upon execution of the command. | Encapsulate the tab switching information within `CommandResult` to prevent tight coupling of `Logic` and `UI` components. |
+
+
 ### Transactions
 
 #### Find transactions feature
@@ -232,33 +275,6 @@ The alternative implementations considered, as well as the rationale behind our 
 | Having separate command parsers for each tab in which the find command can be input, e.g. `FindTransactionCommandParser`, `FindExpenseCommandParser` and `FindIncomeCommandParser`, which return a `FindTransactionCommand`, a `FindExpenseCommand` and a `FindIncomeCommand` respectively. | Use only one `FindCommandParser`, which returns a `FindCommand` that is then further split into the respective `FindXYZCommand`. This is because the parsing for the input is similar same regardless of the tab the user is on.          |
 | Have `FindCommandParser` take in an `Index` corresponding to the parameter being searched. | Make the input of similar format to that of adding transactions, so that the input can be parsed into an `ArgumentMultimap` which is then used generate the relevant `Predicate`s. This is so that multiple search parameters can be employed in one command. |
 
-#### Programmatically switch selected tab
-
-Fine$$e supports the ability to switch tabs programmatically.
-The following is a list of commands that utilise this ability:
-* `help` - Opens the [user guide](UserGuide.md).
-* `tab` - Switches to the tab corresponding to the index entered by the user.
-* `add-expense` - Adds an expense to the finance tracker and switches to the Expenses tab.
-* `ls-expense` - Shows a list of all expenses in the finance tracker by switching to the Expenses tab.
-* `add-income` - Adds an income to the finance tracker and switches to the Incomes tab.
-* `ls-income` - Shows a list of all incomes in the finance tracker by switching to the Incomes tab.
-* `add-bookmark-expense` - Adds a bookmark expense to the finance tracker and switches to the Expenses tab.
-* `add-bookmark-income` - Adds a bookmark income to the finance tracker and switches to the Incomes tab.
-
-The ability to programmatically update the selected tab is implemented via `CommandResult`.
-Upon the successful execution of a command, a `CommandResult` is generated and passed back to `MainWindow`.
-This `CommandResult` contains the necessary information which the `MainWindow` needs to update the user interface, such as:
-* The feedback to be displayed to the user;
-* Whether to exit the application; and
-* Whether to programmatically switch to a different tab in the user interface.
-
-![Interactions inside the Logic Component when executing commands](images/CommandResultSequenceDiagram.png)
-
-Alternatives considered:
-
-* Add a method in `MainWindow` which can be called to programmatically switch tabs in the user interface upon execution of the command.
-  This was decided against as it would result in a much tighter coupling of `Logic` and `UI` components.
-
 ### Budgeting
 ##### Overview
 
@@ -271,7 +287,7 @@ The class diagram below depicts the components involved in the budget feature.
 
 ##### Implementation of feature
 
-The find transactions feature is implemented via `MonthlyBudget`, which contains the following fields:
+The budgeting feature is implemented via `MonthlyBudget`, which contains the following fields:
 
 * Two `ObjectProperty<Amount>` fields for `monthlyExpenseLimit` and `monthlySavingsGoal`.
 * Two `ObjectProperty<CalculatedAmount>` fields for `remainingBudget` and `currentSavings`.
@@ -357,6 +373,14 @@ it to an `Expense` object.
 ### Analytics
 
 [Coming soon]
+
+### Command history
+
+##### Overview
+
+In order to fully replicate the Command Line Interface (CLI) experience, Fine$$e features the ability to navigate through the last 50 commands entered.
+This is done by pressing the ↑ or ↓ arrow keys on the keyboard while focused on the command input box.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
