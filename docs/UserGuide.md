@@ -197,7 +197,7 @@ The formats of the parameters used in the rest of the document are as follows:
 Unless stated otherwise, only one input per parameter is allowed for each command.
 
 Furthermore, within each command, any other parameters, other than the ones listed in each command format, are considered invalid.
-An exception is thrown if any invalid parameters are present.
+The command will not be executed, and an error message will be displayed, if any invalid parameters are present.
 
 </div>
 
