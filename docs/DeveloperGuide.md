@@ -349,7 +349,25 @@ it to an `Expense` object.
 
 ### Analytics
 
-[Coming soon]
+The Analytics feature allows the user to view their spending and saving trends over a period of time.
+Based on the current transaction lists, the total monthly expenses, incomes and savings over the past three months are calculated and displayed in the Analytics Tab in the form of bar charts.
+
+#### Implementation of feature
+
+![Object diagram for Analytics feature](images/AnalyticsTabObjectDiagram.png)
+
+The `AnalyticsTabPane` is constructed as such:
+1. `AnalyticsTabPane` takes in a `MonthlyBudget` object from `Model`
+1. The following fields from `MonthlyBudget` are accessed:
+   * `ObservableList<CalculatedAmount>` fields: `monthlyExpenses`, `monthlyIncomes` and `monthlySavings`
+   * `ObservableList<String>` field: `months`
+1. The `BarChart` objects (`expenseAnalyticsBarChart`, `incomeAnalyticsBarChart` and `savingsAnalyticsBarChart`) are constructed and `Axis` objects are added to them.
+1. The values from the above fields in *step 2* are accessed to construct `XY.Data` objects.
+1. The `XY.Data` Objects are added to the `BarChart`s.
+
+#### Design considerations
+
+* An external library, [Data2Viz](https://data2viz.io/), was considered, rather than *JavaFX Charts*, but the former was rejected due to difficulty in implementation.
 
 --------------------------------------------------------------------------------------------------------------------
 
