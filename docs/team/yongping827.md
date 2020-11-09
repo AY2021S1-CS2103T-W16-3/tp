@@ -25,6 +25,8 @@ Fine$$e is a desktop finance tracker that allows tertiary students to better man
   * Modified how all transactions (expenses and incomes) are stored in various components of the finance tracker so that it suits the needs of each component. (Pull requests [#76](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/76), [#77](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/77), [#103](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/103), [#123](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/123))
   * Modified the savings goal panel to show either remaining budget or budget deficit, and either current savings or savings deficit, and colored the text red if a deficit value is displayed. (Pull request [#207](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/207))
   * Modified duplicate check for bookmark expenses and incomes. (Pull request [#228](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/228))
+  * Abstracted similar behaviour in parsers to avoid duplicate code. (Pull request [#307](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/307))
+  * Modified prefix parsing behaviour to recognize all prefixes and detect invalid ones. (Pull request [#307](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/307))
 
 * **Documentation**:
   * User Guide:
@@ -32,6 +34,7 @@ Fine$$e is a desktop finance tracker that allows tertiary students to better man
     * Resolved all issues pertaining to the user guide from the practical exam dry run. (Pull request [#258](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/258))
   * Developer Guide:
     * Updated model and storage sections. (Pull request [#143](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/143))
+    * Add Analytics feature section. (Pull request [#317](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/317))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#102](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/102), [#118](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/118), [#135](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/135), [#136](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/136), [#148](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/148), [#166](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/166), [#172](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/172), [#183](https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/183)
