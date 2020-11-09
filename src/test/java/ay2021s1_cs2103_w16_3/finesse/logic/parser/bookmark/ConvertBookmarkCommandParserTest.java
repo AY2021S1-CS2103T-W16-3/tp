@@ -1,10 +1,12 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser.bookmark;
 
 import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_PREFIX_PRESENT_HEADER;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DATE_DESC_BUBBLE_TEA;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.DATE_DESC_SPOTIFY_SUBSCRIPTION;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static ay2021s1_cs2103_w16_3.finesse.logic.commands.CommandTestUtil.VALID_DATE_SPOTIFY_SUBSCRIPTION;
+import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CliSyntax.PREFIX_DATE_TO;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ay2021s1_cs2103_w16_3.finesse.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static ay2021s1_cs2103_w16_3.finesse.testutil.TypicalIndexes.INDEX_SECOND;
@@ -85,5 +87,13 @@ public class ConvertBookmarkCommandParserTest {
                 new ConvertBookmarkCommand(targetIndex, convertedDate);
 
         assertParseSuccess(parser, userInput, expectedConvertBookmarkCommand);
+    }
+
+    @Test
+    public void parse_invalidFieldSpecified_throwsParseException() {
+        Index targetIndex = INDEX_SECOND;
+        String userInput = targetIndex.getOneBased() + PREFIX_DATE_TO.toString() + VALID_DATE_SPOTIFY_SUBSCRIPTION;
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ConvertBookmarkCommand.MESSAGE_USAGE));
     }
 }

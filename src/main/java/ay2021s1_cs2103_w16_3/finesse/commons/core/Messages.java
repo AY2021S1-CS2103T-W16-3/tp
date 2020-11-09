@@ -23,4 +23,8 @@ public class Messages {
     public static final String MESSAGE_NO_ARGUMENTS_COMMAND_FORMAT = "'%s' command cannot have any arguments.";
     public static final String MESSAGE_INVALID_PREFIX_PRESENT_HEADER = "These prefixes should not be used:";
 
+    /**
+     * Prevents instantiation of this class.
+     */
+    private Messages() {}
 }

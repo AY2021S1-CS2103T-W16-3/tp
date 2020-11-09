@@ -23,43 +23,26 @@ public class ArgumentTokenizer {
     /**
      * Prevents instantiation of this class.
      */
-    protected ArgumentTokenizer() {}
+    private ArgumentTokenizer() {}
 
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
-     * respective argument values. All prefixes from {@code CliSyntax} are recognized, but only the specified
-     * {@param prefixes} are considered valid. The other prefixes not specified are considered invalid and, if detected,
-     * will throw {@code ParseException}.
-     *
-     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}.
-     * @param prefixes   Valid prefixes from the set of prefixes in {@code CliSyntax} to tokenize the arguments with.
-     * @return           ArgumentMultimap object that maps prefixes to their arguments.
-     * @throws           ParseException if any invalid prefixes are detected.
-     */
-    public static ArgumentMultimap tokenize(String argsString, String exceptionMessage, Prefix... prefixes)
-            throws ParseException {
-        return tokenize(argsString, CliSyntax.getAllPrefixes(), exceptionMessage, prefixes);
-    }
-
-    /**
-     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
-     * respective argument values. All prefixes from {@param prefixFullSet} are recognized, but only the specified
-     * {@param prefixes} are considered valid. The other prefixes from {@param prefixFullSet} that are not specified are
-     * considered invalid and, if detected, will throw {@code ParseException}.
+     * respective argument values. All prefixes from {@code CliSyntax::getAllPrefixes} are recognized, but only the
+     * specified {@param prefixes} are considered valid. The other prefixes from {@param prefixFullSet} that are not
+     * specified are considered invalid and, if detected, will throw {@code ParseException}.
      *
      * @param argsString    Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}.
-     * @param prefixFullSet Set of all prefixes to tokenize the arguments with.
-     * @param prefixes      Subset of prefixFullSet that are considered valid. Any other prefixes is invalid and.
+     * @param prefixes      Subset of prefixFullSet that are considered valid. Any other prefixes is invalid and
      *                      thus should throw ParseException.
      * @return              ArgumentMultimap object that maps prefixes to their arguments.
      * @throws              ParseException if any invalid prefixes are detected.
      */
-    protected static ArgumentMultimap tokenize(String argsString, Prefix[] prefixFullSet, String exceptionMessage,
-            Prefix... prefixes) throws ParseException {
-        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixFullSet);
+    public static ArgumentMultimap tokenize(String argsString, String exceptionMessage, Prefix... prefixes)
+            throws ParseException {
+        List<PrefixPosition> positions = findAllPrefixPositions(argsString, CliSyntax.getAllPrefixes());
         ArgumentMultimap argumentMultimap = extractArguments(argsString, positions);
 
-        List<Prefix> prefixComplementList = Arrays.stream(prefixFullSet).collect(Collectors.toList());
+        List<Prefix> prefixComplementList = Arrays.stream(CliSyntax.getAllPrefixes()).collect(Collectors.toList());
         List<Prefix> prefixSubList = Arrays.stream(prefixes).collect(Collectors.toList());
         prefixComplementList.removeAll(prefixSubList);
         List<Prefix> presentInvalidPrefixes = argumentMultimap.getPresentPrefixes(
