@@ -486,6 +486,9 @@ It could be textbooks for the new semester, that cup of bubble tea you drank the
 <p>Expected Outcome:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New expense added: Bubble Tea Amount: $5.00 Date: 03/10/2020 Categories: [Food &amp; Beverage]
 </code></pre></div></div>
+
+<p><img src="/tp/images/userguide/AddExpense.png" alt="Add Expense"></p>
+
 <p>Adds a new expense titled <code class="highlighter-rouge">Bubble Tea</code>, with amount <code class="highlighter-rouge">$5.00</code>, date <code class="highlighter-rouge">03/10/2020</code>, and a single category <code class="highlighter-rouge">Food &amp; Beverage</code>.</p>
 
 <h4 id="432-edit-expense-edit">4.3.2 Edit Expense: <code class="highlighter-rouge">edit</code>
@@ -511,18 +514,21 @@ For parameters that have been omitted, the value will remain unchanged.</li>
 
 <p>Examples:</p>
 <ul>
-  <li><code class="highlighter-rouge">edit 2 t/Shopee Internship d/24/10/2020</code></li>
+  <li><code class="highlighter-rouge">edit 1 t/Shopee Internship d/24/10/2020</code></li>
   <li><code class="highlighter-rouge">edit 3 a/$2000 c/</code></li>
 </ul>
 
 <p>Example Usage:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>edit 1 a/5 d/22/09/2020
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>edit 2 a/5 d/22/09/2020
 </code></pre></div></div>
 
 <p>Expected Outcome:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Edited Expense: Artificial Intelligence: A Modern Approach Amount: $5.00 Date: 22/09/2020 Categories: [Textbook]
 </code></pre></div></div>
-<p>Edits the first expense in the currently displayed expenses list to have amount <code class="highlighter-rouge">$5.00</code> and date <code class="highlighter-rouge">22/09/2020</code>.
+
+<p><img src="/tp/images/userguide/EditExpense.png" alt="Edit Expense"></p>
+
+<p>Edits the second expense in the currently displayed expenses list to have amount <code class="highlighter-rouge">$5.00</code> and date <code class="highlighter-rouge">22/09/2020</code>.
 The rest of the expense information remains unchanged.</p>
 
 <blockquote>
@@ -543,17 +549,17 @@ The rest of the expense information remains unchanged.</p>
 
 <p>Example:</p>
 <ul>
-  <li><code class="highlighter-rouge">delete 1</code></li>
+  <li><code class="highlighter-rouge">delete 3</code></li>
 </ul>
 
 <p>Example Usage:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>delete 3
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>delete 1
 </code></pre></div></div>
 
 <p>Expected Outcome:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deleted Expense: Bubble Tea Amount: $4.80 Date: 14/10/2020 Categories: [Food &amp; Beverage]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deleted Expense: Bubble Tea Amount: $5.00 Date: 22/09/2020 Categories: [Food &amp; Beverage]
 </code></pre></div></div>
-<p>Deletes the third expense in the currently displayed expenses list.</p>
+<p>Deletes the first expense in the currently displayed expenses list.</p>
 
 <h4 id="434-list-expense-ls-expense">4.3.4 List Expense: <code class="highlighter-rouge">ls-expense</code>
 </h4>
@@ -693,9 +699,12 @@ It could be your internship allowance, prize money you won from a pitch competit
 </code></pre></div></div>
 
 <p>Expected Outcome:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New income added: Shopee Internship Amount: $560.00 Date: 03/10/2020 Categories: [Internship]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New income added: Shopee Internship Amount: $560.00 Date: 03/10/2020 Categories: [Work]
 </code></pre></div></div>
-<p>Adds a new income titled <code class="highlighter-rouge">Shopee Internship</code>, with amount <code class="highlighter-rouge">$560.00</code>, date <code class="highlighter-rouge">03/10/2020</code>, and a single category <code class="highlighter-rouge">Internship</code>.</p>
+
+<p><img src="/tp/images/userguide/AddIncome.png" alt="Add Income"></p>
+
+<p>Adds a new income titled <code class="highlighter-rouge">Shopee Internship</code>, with amount <code class="highlighter-rouge">$560.00</code>, date <code class="highlighter-rouge">03/10/2020</code>, and a single category <code class="highlighter-rouge">Work</code>.</p>
 
 <h4 id="442-edit-income-edit">4.4.2 Edit Income: <code class="highlighter-rouge">edit</code>
 </h4>
@@ -729,8 +738,11 @@ For parameters that have been omitted, the value will remain unchanged.</li>
 </code></pre></div></div>
 
 <p>Expected Outcome:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Edited Income: Teaching Assistant Amount: $2000.00 Date: 18/10/2020 Categories:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Edited Income: Start-up Funding Amount: $2000.00 Date: 01/10/2020 Categories:
 </code></pre></div></div>
+
+<p><img src="/tp/images/userguide/EditIncome.png" alt="Edit Income"></p>
+
 <p>Edits the third income in the currently displayed incomes list to have amount <code class="highlighter-rouge">$2000.00</code> and no categories.
 The rest of the income information remains unchanged.</p>
 
@@ -756,7 +768,7 @@ The rest of the income information remains unchanged.</p>
 </ul>
 
 <p>Example Usage:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>delete 2
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>delete 1
 </code></pre></div></div>
 
 <p>Expected Outcome:</p>
@@ -1252,6 +1264,9 @@ The monthly expense limit is visible on the Overview tab along with your remaini
 <p>Expected Outcome:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New monthly expense limit set: $400.00
 </code></pre></div></div>
+
+<p><img src="/tp/images/userguide/SetExpenseLimit.png" alt="Set Monthly Expense Limit"></p>
+
 <p>Sets the monthly expense limit in the finance tracker to be <code class="highlighter-rouge">$400.00</code>.</p>
 
 <h3 id="48-savings-goal">4.8 Savings Goal</h3>
@@ -1285,6 +1300,9 @@ The monthly savings goal visible on the Overview tab along with your current sav
 <p>Expected Outcome:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>New monthly savings goal set: $50.00
 </code></pre></div></div>
+
+<p><img src="/tp/images/userguide/SetSavingsGoal.png" alt="Set Savings Goal"></p>
+
 <p>Sets the monthly savings goal in the finance tracker to be <code class="highlighter-rouge">$50.00</code>.</p>
 
 <h3 id="49-analytics">4.9 Analytics</h3>
