@@ -363,7 +363,7 @@ When the constructor for `AnalyticsTabPane` is called:
    The following fields from `MonthlyBudget` are accessed:
    * `ObservableList<CalculatedAmount>` fields: `monthlyExpenses`, `monthlyIncomes` and `monthlySavings`
    * `ObservableList<String>` field: `months`
-   
+
    The method `AnalyticsTabPane#populateDataIn` is called for each `BarChart` object.
 1. In the method `AnalyticsTabPane#populateDataIn`, the values from the above fields in *step 3* are accessed to construct `XY.Data` objects.
 1. The `XY.Data` objects are added to the `BarChart` objects.
