@@ -60,10 +60,16 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns true if at least one of the given prefixes has a nonempty value.
+     * Returns a list of prefixes that are present in this {@code ArgumentMultimap}.
      */
-    public boolean areAnyPrefixesPresent(Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> getValue(prefix).isPresent());
+    public List<Prefix> getPresentPrefixes(Prefix... prefixes) {
+        List<Prefix> presentPrefixes = new ArrayList<>();
+        Stream.of(prefixes).forEach(prefix -> {
+            if (getValue(prefix).isPresent()) {
+                presentPrefixes.add(prefix);
+            }
+        });
+        return presentPrefixes;
     }
 
     /**

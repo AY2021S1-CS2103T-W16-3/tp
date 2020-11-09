@@ -27,10 +27,11 @@ public class ConvertBookmarkCommandParser implements Parser<ConvertBookmarkComma
     public ConvertBookmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap;
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ConvertBookmarkCommand.MESSAGE_USAGE,
+                PREFIX_DATE);
+
         Index index;
         try {
-            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE);
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

@@ -1,5 +1,7 @@
 package ay2021s1_cs2103_w16_3.finesse.logic.parser;
 
+import static ay2021s1_cs2103_w16_3.finesse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,9 +34,9 @@ public class ArgumentTokenizer {
      * @return           ArgumentMultimap object that maps prefixes to their arguments
      * @throws           ParseException
      */
-    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes)
+    public static ArgumentMultimap tokenize(String argsString, String exceptionMessage, Prefix... prefixes)
             throws ParseException {
-        return tokenize(argsString, CliSyntax.getAllPrefixes(), prefixes);
+        return tokenize(argsString, CliSyntax.getAllPrefixes(), exceptionMessage, prefixes);
     }
 
     /**
@@ -50,17 +52,22 @@ public class ArgumentTokenizer {
      * @return              ArgumentMultimap object that maps prefixes to their arguments
      * @throws              ParseException
      */
-    protected static ArgumentMultimap tokenize(String argsString, Prefix[] prefixFullSet, Prefix... prefixes)
-            throws ParseException {
+    protected static ArgumentMultimap tokenize(String argsString, Prefix[] prefixFullSet, String exceptionMessage,
+            Prefix... prefixes) throws ParseException {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixFullSet);
         ArgumentMultimap argumentMultimap = extractArguments(argsString, positions);
 
         List<Prefix> prefixComplementList = Arrays.stream(prefixFullSet).collect(Collectors.toList());
         List<Prefix> prefixSubList = Arrays.stream(prefixes).collect(Collectors.toList());
         prefixComplementList.removeAll(prefixSubList);
+        List<Prefix> presentInvalidPrefixes = argumentMultimap.getPresentPrefixes(
+                prefixComplementList.toArray(new Prefix[0]));
 
-        if (argumentMultimap.areAnyPrefixesPresent(prefixComplementList.toArray(new Prefix[0]))) {
-            throw new ParseException("This is an exception message.");
+        if (!presentInvalidPrefixes.isEmpty()) {
+            StringBuilder invalidPrefixesMessage = new StringBuilder("These prefixes should not be used:");
+            presentInvalidPrefixes.forEach(prefix -> invalidPrefixesMessage.append(" ").append(prefix.toString()));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    invalidPrefixesMessage.toString() + "\n" + exceptionMessage));
         }
         return argumentMultimap;
     }

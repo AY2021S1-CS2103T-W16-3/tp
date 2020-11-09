@@ -29,10 +29,11 @@ public class EditBookmarkCommandParser implements Parser<EditBookmarkCommand> {
     public EditBookmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap;
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, EditBookmarkCommand.MESSAGE_USAGE, PREFIX_TITLE,
+                PREFIX_AMOUNT, PREFIX_CATEGORY);
+
         Index index;
         try {
-            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_CATEGORY);
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookmarkCommand.MESSAGE_USAGE),

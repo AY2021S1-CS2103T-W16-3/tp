@@ -172,12 +172,8 @@ public class ParserUtil {
         requireNonNull(args);
         requireNonNull(exceptionMessage);
 
-        ArgumentMultimap argMultimap;
-        try {
-            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_CATEGORY);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage), pe);
-        }
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, exceptionMessage, PREFIX_TITLE, PREFIX_AMOUNT,
+                PREFIX_CATEGORY);
 
         if (!argMultimap.getPreamble().isEmpty() || !argMultimap.arePrefixesPresent(PREFIX_TITLE, PREFIX_AMOUNT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage));
@@ -210,12 +206,8 @@ public class ParserUtil {
         requireNonNull(args);
         requireNonNull(exceptionMessage);
 
-        ArgumentMultimap argMultimap;
-        try {
-            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_CATEGORY);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage), pe);
-        }
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, exceptionMessage, PREFIX_TITLE, PREFIX_AMOUNT,
+                PREFIX_DATE, PREFIX_CATEGORY);
 
         if (!argMultimap.getPreamble().isEmpty() || !argMultimap.arePrefixesPresent(PREFIX_TITLE, PREFIX_AMOUNT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, exceptionMessage));

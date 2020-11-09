@@ -26,10 +26,11 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap;
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, EditCommand.MESSAGE_USAGE, PREFIX_TITLE,
+                PREFIX_AMOUNT, PREFIX_DATE, PREFIX_CATEGORY);;
+
         Index index;
         try {
-            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_CATEGORY);
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
