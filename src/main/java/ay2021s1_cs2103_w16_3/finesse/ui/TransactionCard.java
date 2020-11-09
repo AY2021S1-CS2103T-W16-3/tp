@@ -102,8 +102,8 @@ public class TransactionCard extends UiPart<Region> {
     /**
      * Creates a {@code TransactionCard} with the given {@code Transaction} and index to display.
      * Binds the width of the {@code TransactionCard} to that of its containing list.
-     * Displays the '+' sign beside the {@code Amount} if the transaction is an income, and the
-     * '-' sign if the transaction is an expense.
+     * If {@code displaySign} is {@code true}, displays the '+' sign beside the {@code Amount}
+     * if the transaction is an income, and the '-' sign if the transaction is an expense.
      */
     public TransactionCard(Transaction transaction, int displayedIndex, boolean displaySign,
             ReadOnlyDoubleProperty width) {
