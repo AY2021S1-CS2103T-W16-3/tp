@@ -1070,7 +1070,9 @@ Term | Definition
 Bookmark Expense | A template for an expense, which can be used to create expenses that are added to the finance tracker.
 Bookmark Income | A template for an income, which can be used to create incomes that are added to the finance tracker.
 Current Date | The system date on the computer on which Fine$$e is set up.
+Current Month | The month of the system date on the computer on which Fine$$e is set up.
 Expense | A one-time transaction that results in a decrease in the amount of money you have.
+Home Folder | The folder in which `finesse.jar` is placed in.
 Income | A one-time transaction that results in an increase in the amount of money you have.
 Text Cursor | A blinking vertical line that indicates where text will be placed when entered.
 
