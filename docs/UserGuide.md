@@ -316,8 +316,7 @@ edit 2 a/5 d/22/09/2020
 
 Expected Outcome:
 ```
-Edited Expense: Artificial Intelligence: A Modern Approach Amount: $5.00
-Date: 22/09/2020 Categories: [Textbook]
+Edited Expense: Lunch Amount: $5.00 Date: 22/09/2020 Categories: [Deck][NUS]
 ```
 
 ![Edit Expense](images/userguide/EditExpense.png)
@@ -407,14 +406,20 @@ Examples:
 
 Example Usage:
 ```
-find t/tea t/coffee a/5 df/01/09/2020 dt/30/09/2020
+find t/tea t/fees df/01/09/2020 dt/30/10/2020
 ```
 
 Expected Outcome:
 ```
 2 transactions listed!
 ```
-Lists all expenses with titles containing `tea` and/or `coffee`, with amount equal to `$5.00`, in September 2020.
+
+![Find Expenses](images/userguide/FindExpenses.png)
+
+{:.image-caption}
+Expenses tab displaying the matched expenses
+
+Lists all expenses with titles containing `tea` and/or `fees`, in September and October 2020.
 
 ### 4.4 Income
 
@@ -577,14 +582,20 @@ Examples:
 
 Example Usage:
 ```
-find c/prize c/gift af/10 at/100
+find t/internship c/work af/100 at/1000
 ```
 
 Expected Outcome:
 ```
 2 transactions listed!
 ```
-Lists all incomes with the category `prize` and/or `gift`, with amounts between `$10.00` and `$100.00` inclusive.
+
+![Find Incomes](images/userguide/FindIncomes.png)
+
+{:.image-caption}
+Incomes tab displaying the matched incomes
+
+Lists all incomes with the title `internship`, category `work`, with amounts between `$100.00` and `$1000.00` inclusive.
 
 ### 4.5 Bookmark Expense
 
